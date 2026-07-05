@@ -1,7 +1,8 @@
 import { notFound } from 'next/navigation';
 import Link from 'next/link';
-import { getThemeBySlug, ACTIVITY_DEFS, isValidLevel } from '@/data/themes';
+import { getThemeBySlug, isValidLevel } from '@/data/themes';
 import LevelBadge from '@/components/LevelBadge';
+import ActivityGrid from '@/components/ActivityGrid';
 import type { Level } from '@/types';
 
 export default async function ActivityListPage({
@@ -38,25 +39,7 @@ export default async function ActivityListPage({
       </p>
 
       {/* Activity grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-        {ACTIVITY_DEFS.map(activity => (
-          <Link
-            key={activity.type}
-            href={`/themes/${slug}/${level}/${activity.type}`}
-            className="group block bg-white rounded-2xl border border-slate-200 p-5 hover:shadow-md hover:border-indigo-200 transition-all"
-          >
-            <div className="text-2xl mb-3">{activity.icon}</div>
-            <h3 className="font-bold text-slate-900 mb-1">{activity.label}</h3>
-            <p className="text-xs text-slate-400 mb-4">{activity.labelJapanese}</p>
-            <div className="flex items-center justify-between">
-              <span className="text-xs text-slate-400">{activity.estimatedMinutes} min</span>
-              <span className="text-xs font-semibold text-indigo-400 group-hover:text-indigo-700 transition-colors">
-                Start →
-              </span>
-            </div>
-          </Link>
-        ))}
-      </div>
+      <ActivityGrid themeId={theme.id} slug={slug} level={level} />
     </div>
   );
 }
