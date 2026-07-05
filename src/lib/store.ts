@@ -1,6 +1,16 @@
 import type { Level, ActivityType, ThemeProgress } from '@/types';
 
-const STORAGE_KEY = 'etp-progress';
+const STORAGE_KEY  = 'etp-progress';
+const GLOSSARY_KEY = 'etp-glossary';
+
+export interface GlossaryItem {
+  word: string;
+  japanese: string;
+  definition: string;
+  example: string;
+  themeId: string;
+  savedDate: string;
+}
 
 function readAll(): Record<string, ThemeProgress> {
   if (typeof window === 'undefined') return {};
@@ -45,4 +55,36 @@ export function markActivityComplete(themeId: string, type: ActivityType): void 
 
 export function getAllProgress(): Record<string, ThemeProgress> {
   return readAll();
+}
+
+// ── Glossary ──────────────────────────────────────────────────────────────────
+
+function readGlossary(): GlossaryItem[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(GLOSSARY_KEY);
+    return raw ? (JSON.parse(raw) as GlossaryItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeGlossary(items: GlossaryItem[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(GLOSSARY_KEY, JSON.stringify(items));
+  } catch {}
+}
+
+export function getGlossary(): GlossaryItem[] {
+  return readGlossary();
+}
+
+export function isWordInGlossary(word: string): boolean {
+  return readGlossary().some(item => item.word.toLowerCase() === word.toLowerCase());
+}
+
+export function addGlossaryItem(item: GlossaryItem): void {
+  if (isWordInGlossary(item.word)) return;
+  writeGlossary([...readGlossary(), item]);
 }
