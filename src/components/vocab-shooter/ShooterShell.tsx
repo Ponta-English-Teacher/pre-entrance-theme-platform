@@ -5,12 +5,14 @@ import { useRouter } from 'next/navigation';
 import type { VocabEntry } from '@/data/vocabulary/masterVocabulary';
 import FlashCards from '@/components/vocab-shooter/FlashCards';
 import GameArena from '@/components/vocab-shooter/GameArena';
+import FillBlank from '@/components/vocab-shooter/FillBlank';
 
-type Stage = 'flashcards' | 'gamearena';
+type Stage = 'flashcards' | 'gamearena' | 'fillblank';
 
 const STAGE_LABEL: Record<Stage, string> = {
   flashcards: 'Flash Cards',
   gamearena:  'Matching Game',
+  fillblank:  'Fill in the Blank',
 };
 
 export default function ShooterShell({
@@ -51,6 +53,13 @@ export default function ShooterShell({
         <GameArena
           words={setWords}
           allWords={allWords}
+          backHref={backHref}
+          onComplete={() => setStage('fillblank')}
+        />
+      )}
+      {stage === 'fillblank' && (
+        <FillBlank
+          words={setWords}
           backHref={backHref}
           onComplete={() => router.push(backHref)}
         />
