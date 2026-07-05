@@ -15,9 +15,11 @@ const POS_STYLE: Record<string, string> = {
 export default function FlashCards({
   words,
   backHref,
+  onComplete,
 }: {
   words: VocabEntry[];
   backHref: string;
+  onComplete?: () => void;
 }) {
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
@@ -103,12 +105,21 @@ export default function FlashCards({
         </span>
 
         {isLast ? (
-          <Link
-            href={backHref}
-            className="px-5 py-2.5 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
-          >
-            Finish
-          </Link>
+          onComplete ? (
+            <button
+              onClick={onComplete}
+              className="px-5 py-2.5 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+            >
+              Next →
+            </button>
+          ) : (
+            <Link
+              href={backHref}
+              className="px-5 py-2.5 rounded-xl font-semibold text-sm bg-indigo-600 hover:bg-indigo-700 text-white transition-colors"
+            >
+              Finish
+            </Link>
+          )
         ) : (
           <button
             onClick={handleNext}
