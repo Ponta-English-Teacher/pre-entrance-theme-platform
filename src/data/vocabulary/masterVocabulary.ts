@@ -390,8 +390,8 @@ export function getVocabById(id: string): VocabEntry | undefined {
 }
 
 export function getVocabSubset(ids: string[]): VocabEntry[] {
-  const idSet = new Set(ids);
-  return MASTER_VOCABULARY.filter(entry => idSet.has(entry.id));
+  const map = new Map(MASTER_VOCABULARY.map(e => [e.id, e]));
+  return ids.flatMap(id => (map.has(id) ? [map.get(id)!] : []));
 }
 
 export function getVocabByTheme(themeId: string): VocabEntry[] {
