@@ -1,5 +1,6 @@
 import Link from 'next/link';
 import type { Theme } from '@/types';
+import ThemeProgressBadge from '@/components/ThemeProgressBadge';
 
 const COLOR: Record<string, { bar: string; tag: string; arrow: string }> = {
   violet:  { bar: 'bg-violet-500',  tag: 'bg-violet-100 text-violet-700',   arrow: 'text-violet-600' },
@@ -24,10 +25,13 @@ export default function ThemeCard({ theme }: { theme: Theme }) {
         <h2 className="text-xl font-bold text-slate-900 mb-2 group-hover:text-indigo-700 transition-colors">
           {theme.title}
         </h2>
-        <p className="text-sm text-slate-500 leading-relaxed mb-4">{theme.description}</p>
-        <span className={`text-sm font-semibold ${c.arrow}`}>
-          Choose level →
-        </span>
+        <p className="text-sm text-slate-500 leading-relaxed mb-3">{theme.description}</p>
+        <div className="flex items-center justify-between">
+          <span className={`text-sm font-semibold ${c.arrow}`}>
+            Choose level →
+          </span>
+          <ThemeProgressBadge themeId={theme.id} />
+        </div>
       </div>
     </Link>
   );
