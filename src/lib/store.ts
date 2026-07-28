@@ -109,6 +109,49 @@ export function markPracticeSetComplete(themeId: string, level: string, setNumbe
   } catch {}
 }
 
+// ── Reading progress ──────────────────────────────────────────────────────────
+
+const READING_KEY = 'etp-reading-progress';
+
+export interface ReadingProgress {
+  lastParagraphIndex: number;
+  completed: boolean;
+  completedAt: string | null;
+}
+
+function readReadingProgress(): Record<string, ReadingProgress> {
+  if (typeof window === 'undefined') return {};
+  try {
+    const raw = localStorage.getItem(READING_KEY);
+    return raw ? (JSON.parse(raw) as Record<string, ReadingProgress>) : {};
+  } catch {
+    return {};
+  }
+}
+
+function writeReadingProgress(data: Record<string, ReadingProgress>): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(READING_KEY, JSON.stringify(data));
+  } catch {}
+}
+
+export function getReadingProgress(passageId: string): ReadingProgress {
+  return readReadingProgress()[passageId] ?? { lastParagraphIndex: 0, completed: false, completedAt: null };
+}
+
+export function saveReadingProgress(passageId: string, paragraphIndex: number): void {
+  const all = readReadingProgress();
+  all[passageId] = { ...getReadingProgress(passageId), lastParagraphIndex: paragraphIndex };
+  writeReadingProgress(all);
+}
+
+export function markReadingComplete(passageId: string): void {
+  const all = readReadingProgress();
+  all[passageId] = { ...getReadingProgress(passageId), completed: true, completedAt: new Date().toISOString() };
+  writeReadingProgress(all);
+}
+
 // ── Glossary ──────────────────────────────────────────────────────────────────
 
 function readGlossary(): GlossaryItem[] {

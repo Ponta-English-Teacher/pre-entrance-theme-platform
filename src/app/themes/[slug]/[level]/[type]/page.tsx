@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { getThemeBySlug, ACTIVITY_DEFS, isValidLevel, isValidActivityType } from '@/data/themes';
 import LevelBadge from '@/components/LevelBadge';
 import VocabularyActivity from '@/components/activities/VocabularyActivity';
+import ReadingActivity from '@/components/activities/ReadingActivity';
 import type { Level, ActivityType } from '@/types';
 
 export default async function ActivityPlayerPage({
@@ -51,6 +52,8 @@ export default async function ActivityPlayerPage({
       {/* Activity content */}
       {type === 'vocabulary' ? (
         <VocabularyActivity themeId={theme.id} level={level} />
+      ) : type === 'reading' ? (
+        <ReadingActivity themeId={theme.id} level={level} />
       ) : (
         <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
           <div className="text-5xl mb-4">{activity.icon}</div>
