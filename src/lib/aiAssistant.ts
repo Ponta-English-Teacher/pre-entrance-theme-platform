@@ -40,8 +40,8 @@ export interface HelpContext {
 
   // missionCheck location
   missionCheckQuestion?: string;
-  missionCheckExplainer?: string;
-  missionCheckHint?: string;
+  missionCheckExplainerJa?: string;
+  missionCheckHintJa?: string;
   answerParagraphNumber?: number;
 
   // writing location
@@ -59,31 +59,31 @@ export interface AIHelpResponse {
 }
 
 export const PARAGRAPH_HELP_OPTIONS: HelpOption[] = [
-  { id: 'easier', label: 'Explain this paragraph in easier English' },
-  { id: 'japanese', label: 'Explain it in Japanese' },
-  { id: 'word', label: 'Explain a difficult word' },
-  { id: 'sentence', label: 'Explain a sentence' },
-  { id: 'readAloud', label: 'Read it aloud' },
-  { id: 'mission', label: "Remind me of today's mission" },
-  { id: 'question', label: 'Ask me a simple question about this paragraph' },
+  { id: 'easier', label: 'やさしい英語で説明' },
+  { id: 'japanese', label: '日本語でわかりやすく説明' },
+  { id: 'word', label: '難しい単語を確認' },
+  { id: 'sentence', label: '文の意味を確認' },
+  { id: 'readAloud', label: '読み上げを聞く' },
+  { id: 'mission', label: '今日のミッションを確認' },
+  { id: 'question', label: 'この段落の簡単な問題に挑戦' },
 ];
 
 export const MISSION_CHECK_HELP_OPTIONS: HelpOption[] = [
-  { id: 'meaning', label: 'What does this question mean?' },
-  { id: 'word', label: 'Explain a difficult word in the question' },
-  { id: 'hint', label: 'Give me a hint' },
-  { id: 'reread', label: 'Tell me which paragraph to read again' },
-  { id: 'noAnswer', label: 'Help me without giving me the answer' },
+  { id: 'meaning', label: '質問の意味を確認' },
+  { id: 'word', label: '質問の難しい単語を確認' },
+  { id: 'hint', label: 'ヒントを見る' },
+  { id: 'reread', label: '読み返す段落を確認' },
+  { id: 'noAnswer', label: '答えは言わずにヒントだけ' },
 ];
 
 export const WRITING_HELP_OPTIONS: HelpOption[] = [
-  { id: 'understand', label: 'Help me understand the writing question' },
-  { id: 'idea', label: 'Help me think of an idea' },
-  { id: 'start', label: 'Help me start' },
-  { id: 'word', label: 'Suggest a useful target word' },
-  { id: 'grammar', label: 'Check my grammar' },
-  { id: 'natural', label: 'Make my sentence more natural' },
-  { id: 'answered', label: 'Tell me whether I answered the question' },
+  { id: 'understand', label: '質問の意味を確認' },
+  { id: 'idea', label: 'アイデアのヒント' },
+  { id: 'start', label: '書き出しのヒント' },
+  { id: 'word', label: '使える単語を確認' },
+  { id: 'grammar', label: '文法をチェック' },
+  { id: 'natural', label: 'より自然な表現を確認する' },
+  { id: 'answered', label: '質問に答えられているか確認' },
 ];
 
 function wait(ms: number): Promise<void> {
@@ -99,50 +99,56 @@ function paragraphHelp(ctx: HelpContext): AIHelpResponse {
   const p = ctx.paragraph!;
   switch (ctx.helpType) {
     case 'easier':
-      return { text: p.plainEnglish };
+      return { text: `段落全体を、やさしい英語で言い換えるとこうなります。\n\n${p.plainEnglish}` };
     case 'japanese':
-      return { text: p.japanese };
+      return { text: `日本語にすると、こんな意味です。\n\n${p.japanese}` };
     case 'word': {
       const hits = findVocabHits(p.english, ctx.targetVocab);
       if (hits.length === 0) {
-        return { text: "I don't see one of today's target words in this paragraph — try looking up any word in the Dictionary." };
+        return { text: '今日の単語は、この段落には出てきていないようです。気になる単語があれば、辞書で調べてみましょう。' };
       }
-      return { text: hits.map(v => `• ${v.word} (${v.japanese}) — ${v.coreMeaning}`).join('\n') };
+      return {
+        text: `この段落に出てくる今日の単語はこちらです。\n\n${hits.map(v => `・${v.word}（${v.japanese}）`).join('\n')}`,
+      };
     }
     case 'sentence':
-      return { text: `Here it is in simpler English: "${p.plainEnglish}"\n\nIf one sentence is still unclear, compare it with the Japanese: ${p.japanese}` };
+      return {
+        text: `わかりにくいところがあるかもしれませんね。段落をやさしい英語にすると、こうなります。\n\n${p.plainEnglish}\n\nそれでも迷ったら、日本語訳とも見比べてみましょう。\n${p.japanese}`,
+      };
     case 'readAloud':
-      return { text: '🔊 Playing this paragraph aloud...', speak: p.english };
+      return { text: '🔊 読み上げますね。', speak: p.english };
     case 'mission':
-      return { text: `Your mission: ${ctx.mission}` };
+      return { text: `今日のミッションはこちらです。\n\n${ctx.mission}` };
     case 'question':
-      return { text: p.checkQuestion };
+      return { text: `この段落について、簡単な問題に挑戦してみましょう。\n\n${p.checkQuestion}` };
     default:
-      return { text: "I'm not sure how to help with that yet." };
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
   }
 }
 
 function missionCheckHelp(ctx: HelpContext): AIHelpResponse {
   switch (ctx.helpType) {
     case 'meaning':
-      return { text: ctx.missionCheckExplainer ?? '' };
+      return { text: `質問をやさしく言うと、こういうことです。\n\n${ctx.missionCheckExplainerJa ?? ''}` };
     case 'word': {
       const hits = findVocabHits(ctx.missionCheckQuestion ?? '', ctx.targetVocab);
       if (hits.length === 0) {
-        return { text: "There isn't a target vocabulary word in this question — try reading it once more, slowly." };
+        return { text: 'この質問には、今日の単語は使われていないようです。落ち着いてもう一度読んでみましょう。' };
       }
-      return { text: hits.map(v => `• ${v.word} (${v.japanese}) — ${v.coreMeaning}`).join('\n') };
+      return {
+        text: `質問に出てくる今日の単語はこちらです。\n\n${hits.map(v => `・${v.word}（${v.japanese}）`).join('\n')}`,
+      };
     }
     case 'hint':
-      return { text: ctx.missionCheckHint ?? '' };
+      return { text: `ヒントはこちらです。\n\n${ctx.missionCheckHintJa ?? ''}` };
     case 'reread':
-      return { text: `Try reading paragraph ${ctx.answerParagraphNumber} again — the answer is closest to that part.` };
+      return { text: `もう一度、第${ctx.answerParagraphNumber}段落を読んでみましょう。答えのヒントがそこにありますよ。` };
     case 'noAnswer':
       return {
-        text: `I won't give the answer directly, but here is a hint: ${ctx.missionCheckHint} Re-read paragraph ${ctx.answerParagraphNumber} and look for what actually changed for the person in the example.`,
+        text: `答えをそのまま伝えることはしませんが、ヒントを出しますね。\n\n${ctx.missionCheckHintJa ?? ''}\n\n第${ctx.answerParagraphNumber}段落を読み返して、登場人物にどんな変化があったかを探してみましょう。`,
       };
     default:
-      return { text: "I'm not sure how to help with that yet." };
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
   }
 }
 
@@ -155,52 +161,58 @@ function writingHelp(ctx: HelpContext): AIHelpResponse {
 
   switch (ctx.helpType) {
     case 'understand':
-      return { text: 'In simple words, the question is asking: do you agree with what the author said, and can you explain why in your own words?' };
+      return {
+        text: '簡単に言うと、この質問は「筆者の考えに賛成かどうか、そしてその理由を自分の言葉で説明できるか」を聞いています。',
+      };
     case 'idea':
       return {
-        text: 'Here are two ways to start thinking:\n1) Do you remember a time you tried something new, like Aya did?\n2) Do you believe confidence is something people are born with, or something they build over time?',
+        text: '考えるヒントを2つ挙げますね。\n① アヤのように、自分も新しいことに挑戦した経験はありますか？\n② 自信は生まれつきのものだと思いますか、それとも経験を通して身についていくものだと思いますか？',
       };
     case 'start': {
       const suggestion = ctx.usefulExpressions?.[0]?.phrase ?? 'I think...';
-      return { text: `A simple way to start: "${suggestion}"` };
+      return { text: `書き出しのヒントです。こんな表現から始めてみましょう。\n\n"${suggestion}"` };
     }
     case 'word': {
       const usedWords = new Set(findVocabHits(text, ctx.wordBank ?? []).map(v => v.word));
       const unused = (ctx.wordBank ?? []).filter(v => !usedWords.has(v.word));
       if (unused.length === 0) {
-        return { text: "You've already used the key words from today's Word Bank — nice work!" };
+        return { text: '今日のワードバンクの単語は、もう使えていますね。よくできました！' };
       }
       const pick = unused[0];
-      return { text: `Try using the word "${pick.word}" (${pick.japanese}) somewhere in your answer.` };
+      return { text: `「${pick.word}」（${pick.japanese}）という単語を、文章のどこかで使ってみましょう。` };
     }
     case 'grammar': {
-      if (!text) return { text: 'Write a sentence first, and I can check it with you.' };
+      if (!text) return { text: 'まずは何か書いてみましょう。書けたら、一緒に文法をチェックしますね。' };
       const tips: string[] = [];
-      if (!/[.!?]$/.test(text)) tips.push('Try ending your sentence with a period (.).');
-      if (!/^[A-Z]/.test(text)) tips.push('Start your sentence with a capital letter.');
-      if (/(^|[^a-zA-Z])i(?![a-zA-Z])/.test(text)) tips.push('Remember to capitalize "I" when it stands alone.');
-      if (tips.length === 0) tips.push('Your sentence looks clear! Read it aloud once to check it sounds natural.');
-      return { text: tips.join(' ') };
+      if (!/[.!?]$/.test(text)) tips.push('文の最後にピリオド（.）を忘れずに付けてみましょう。');
+      if (!/^[A-Z]/.test(text)) tips.push('文の最初の文字は大文字にしましょう。');
+      if (/(^|[^a-zA-Z])i(?![a-zA-Z])/.test(text)) tips.push('「I」は一文字で使うときも大文字にすることを忘れずに。');
+      if (tips.length === 0) tips.push('文法はきれいに書けていますね！声に出して読んでみると、自然かどうか確認できますよ。');
+      return { text: tips.join('\n') };
     }
     case 'natural': {
-      if (!text) return { text: 'Write a sentence first, and I can suggest a more natural way to say it.' };
+      if (!text) return { text: 'まずは何か書いてみましょう。書けたら、もっと自然な言い方を一緒に考えますね。' };
       const starter = ctx.usefulExpressions?.[0]?.phrase ?? 'I think...';
-      return { text: `Try reading your sentence aloud. Short, clear sentences often sound more natural than long ones. Starting with "${starter}" can also help it flow.` };
+      return {
+        text: `声に出して読んでみましょう。短くわかりやすい文の方が、自然に聞こえることが多いですよ。"${starter}" のような表現から始めるのもおすすめです。`,
+      };
     }
     case 'answered': {
-      if (!text) return { text: "You haven't written anything yet — start with whether you agree or disagree." };
+      if (!text) return { text: 'まだ何も書かれていないようです。賛成か反対か、そこから書き始めてみましょう。' };
       const sentenceCount = countSentences(text);
       const mentionsAgreement = /\b(agree|disagree)\b/i.test(text);
       if (sentenceCount < (ctx.minSentences ?? 2)) {
-        return { text: `You're off to a good start, but try writing at least ${ctx.minSentences ?? 2} sentences so your idea is clear.` };
+        return { text: `いいスタートです。考えをもっとはっきり伝えるために、${ctx.minSentences ?? 2}文以上書いてみましょう。` };
       }
       if (!mentionsAgreement) {
-        return { text: 'Your answer does not clearly say whether you agree or disagree. Try adding a sentence like "I agree because..." or "I disagree because..."' };
+        return {
+          text: '賛成か反対か、まだはっきり伝わってきません。"I agree because..." や "I disagree because..." のような文を加えてみましょう。',
+        };
       }
-      return { text: 'Yes — you clearly stated your opinion and explained it. Good work!' };
+      return { text: 'しっかり自分の意見を伝えられていますね。よく書けています！' };
     }
     default:
-      return { text: "I'm not sure how to help with that yet." };
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
   }
 }
 
@@ -215,6 +227,6 @@ export async function requestAIHelp(context: HelpContext): Promise<AIHelpRespons
     case 'writing':
       return writingHelp(context);
     default:
-      return { text: "I'm not sure how to help with that yet." };
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
   }
 }

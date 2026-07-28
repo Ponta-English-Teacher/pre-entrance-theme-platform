@@ -10,7 +10,7 @@ export default function ContextualHelpButton({
   onToggle,
   options,
   buildContext,
-  label = 'AI Help',
+  label = 'AIに質問する',
 }: {
   helpId: string;
   activeId: string | null;
@@ -62,7 +62,7 @@ export default function ContextualHelpButton({
 
       {isOpen && (
         <div className="absolute z-20 left-0 mt-2 w-72 max-w-[85vw] bg-white rounded-2xl border border-slate-200 shadow-lg p-4">
-          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">How can I help?</p>
+          <p className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">何を知りたいですか？</p>
           <div className="flex flex-col gap-1 mb-3">
             {options.map(opt => (
               <button
@@ -76,7 +76,7 @@ export default function ContextualHelpButton({
             ))}
           </div>
 
-          {loading && <p className="text-xs text-slate-400 italic">Thinking...</p>}
+          {loading && <p className="text-xs text-slate-400 italic">考え中...</p>}
 
           {response && !loading && (
             <div className="text-sm text-slate-700 leading-relaxed bg-indigo-50 rounded-xl p-3 whitespace-pre-line">

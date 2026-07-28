@@ -36,7 +36,11 @@ export interface MissionCheck {
   question: string;
   /** Simpler restatement, for "what does this question mean?" */
   explainer: string;
+  /** Japanese version of explainer, shown by the AI helper so non-fluent students can actually use it. */
+  explainerJa: string;
   hint: string;
+  /** Japanese version of hint, shown by the AI helper so non-fluent students can actually use it. */
+  hintJa: string;
   options: MissionCheckOption[];
   /** Which paragraph the answer is grounded in, for "which paragraph should I reread?" */
   answerParagraphId: string;
@@ -153,7 +157,9 @@ export const MASTER_READINGS: ReadingLesson[] = [
     missionCheck: {
       question: 'What does the author believe helps people grow and understand themselves?',
       explainer: 'In simple words: what does the writer think is the reason people slowly learn who they are?',
+      explainerJa: 'この質問は、「人が成長して自分自身を理解するために、筆者は何が役立つと考えているか」を聞いています。',
       hint: "Look at what happens to Aya in paragraph 2, and the phrase 'small choices' in paragraph 3.",
+      hintJa: '第2段落のアヤの例と、第3段落にある "small choices"（小さな選択）という表現に注目してみましょう。',
       options: [
         { id: 'a', label: 'Trying small challenges and reflecting on them', correct: true },
         { id: 'b', label: 'Being naturally confident from birth', correct: false },

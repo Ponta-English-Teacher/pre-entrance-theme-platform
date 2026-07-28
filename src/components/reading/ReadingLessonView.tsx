@@ -130,8 +130,8 @@ export default function ReadingLessonView({
       location: 'missionCheck',
       helpType,
       missionCheckQuestion: lesson.missionCheck.question,
-      missionCheckExplainer: lesson.missionCheck.explainer,
-      missionCheckHint: lesson.missionCheck.hint,
+      missionCheckExplainerJa: lesson.missionCheck.explainerJa,
+      missionCheckHintJa: lesson.missionCheck.hintJa,
       answerParagraphNumber,
     };
   }
