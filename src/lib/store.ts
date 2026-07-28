@@ -114,9 +114,12 @@ export function markPracticeSetComplete(themeId: string, level: string, setNumbe
 const READING_KEY = 'etp-reading-progress';
 
 export interface ReadingProgress {
-  lastParagraphIndex: number;
   completed: boolean;
   completedAt: string | null;
+  preReadingChoice: string | null;
+  missionCheckAnswer: string | null;
+  evidenceChoice: string | null;
+  writingDraft: string;
 }
 
 function readReadingProgress(): Record<string, ReadingProgress> {
@@ -137,19 +140,36 @@ function writeReadingProgress(data: Record<string, ReadingProgress>): void {
 }
 
 export function getReadingProgress(passageId: string): ReadingProgress {
-  return readReadingProgress()[passageId] ?? { lastParagraphIndex: 0, completed: false, completedAt: null };
+  return readReadingProgress()[passageId] ?? {
+    completed: false,
+    completedAt: null,
+    preReadingChoice: null,
+    missionCheckAnswer: null,
+    evidenceChoice: null,
+    writingDraft: '',
+  };
 }
 
-export function saveReadingProgress(passageId: string, paragraphIndex: number): void {
+function mergeReadingProgress(passageId: string, patch: Partial<ReadingProgress>): void {
   const all = readReadingProgress();
-  all[passageId] = { ...getReadingProgress(passageId), lastParagraphIndex: paragraphIndex };
+  all[passageId] = { ...getReadingProgress(passageId), ...patch };
   writeReadingProgress(all);
+}
+
+export function saveReadingPreReadingChoice(passageId: string, choiceId: string): void {
+  mergeReadingProgress(passageId, { preReadingChoice: choiceId });
+}
+
+export function saveReadingMissionCheck(passageId: string, answerId: string | null, evidenceId: string | null): void {
+  mergeReadingProgress(passageId, { missionCheckAnswer: answerId, evidenceChoice: evidenceId });
+}
+
+export function saveReadingDraft(passageId: string, text: string): void {
+  mergeReadingProgress(passageId, { writingDraft: text });
 }
 
 export function markReadingComplete(passageId: string): void {
-  const all = readReadingProgress();
-  all[passageId] = { ...getReadingProgress(passageId), completed: true, completedAt: new Date().toISOString() };
-  writeReadingProgress(all);
+  mergeReadingProgress(passageId, { completed: true, completedAt: new Date().toISOString() });
 }
 
 // ── Glossary ──────────────────────────────────────────────────────────────────

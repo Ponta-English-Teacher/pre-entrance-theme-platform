@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { getReadingProgress } from '@/lib/store';
 import type { ReadingProgress } from '@/lib/store';
-import type { ReadingPassage } from '@/data/reading/masterReadings';
+import type { ReadingLesson } from '@/data/reading/masterReadings';
 import type { Level } from '@/types';
 
 export default function ReadingPassageList({
@@ -12,7 +12,7 @@ export default function ReadingPassageList({
   themeId,
   level,
 }: {
-  passages: ReadingPassage[];
+  passages: ReadingLesson[];
   themeId: string;
   level: Level;
 }) {
@@ -31,7 +31,7 @@ export default function ReadingPassageList({
         return (
           <Link
             key={passage.id}
-            href={`/reading?theme=${themeId}&level=${level}&passage=${passage.id}`}
+            href={`/reading?theme=${themeId}&level=${level}&lesson=${passage.id}`}
             className="block bg-white rounded-2xl border border-slate-200 shadow-sm hover:shadow-md transition-shadow p-6"
           >
             <div className="flex items-start justify-between gap-4">
@@ -46,7 +46,7 @@ export default function ReadingPassageList({
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-emerald-100 text-emerald-700 whitespace-nowrap">
                   ✓ Done
                 </span>
-              ) : progress && progress.lastParagraphIndex > 0 ? (
+              ) : progress && (progress.preReadingChoice || progress.missionCheckAnswer || progress.writingDraft) ? (
                 <span className="px-2.5 py-0.5 rounded-full text-xs font-semibold bg-amber-100 text-amber-700 whitespace-nowrap">
                   In progress
                 </span>
