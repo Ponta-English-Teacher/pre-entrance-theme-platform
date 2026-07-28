@@ -57,6 +57,58 @@ export function getAllProgress(): Record<string, ThemeProgress> {
   return readAll();
 }
 
+// ── Studied words ─────────────────────────────────────────────────────────────
+
+const STUDIED_KEY  = 'etp-studied-words';
+const PRACTICE_KEY = 'etp-practice';
+
+export function getStudiedWordIds(): string[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(STUDIED_KEY);
+    return raw ? (JSON.parse(raw) as string[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+export function markWordStudied(wordId: string): void {
+  if (typeof window === 'undefined') return;
+  const ids = getStudiedWordIds();
+  if (!ids.includes(wordId)) {
+    ids.push(wordId);
+    try { localStorage.setItem(STUDIED_KEY, JSON.stringify(ids)); } catch {}
+  }
+}
+
+// ── Practice set completion ───────────────────────────────────────────────────
+
+export function getCompletedPracticeSets(themeId: string, level: string): number[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(PRACTICE_KEY);
+    const all = raw ? (JSON.parse(raw) as Record<string, number[]>) : {};
+    return all[`${themeId}/${level}`] ?? [];
+  } catch {
+    return [];
+  }
+}
+
+export function markPracticeSetComplete(themeId: string, level: string, setNumber: number): void {
+  if (typeof window === 'undefined') return;
+  try {
+    const raw  = localStorage.getItem(PRACTICE_KEY);
+    const all  = raw ? (JSON.parse(raw) as Record<string, number[]>) : {};
+    const key  = `${themeId}/${level}`;
+    const sets = all[key] ?? [];
+    if (!sets.includes(setNumber)) {
+      sets.push(setNumber);
+      all[key] = sets;
+      localStorage.setItem(PRACTICE_KEY, JSON.stringify(all));
+    }
+  } catch {}
+}
+
 // ── Glossary ──────────────────────────────────────────────────────────────────
 
 function readGlossary(): GlossaryItem[] {

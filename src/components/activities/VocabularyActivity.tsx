@@ -1,6 +1,7 @@
-import { getThemeVocabIds } from '@/data/vocabulary/themeVocabSets';
+import { getThemeVocabIds, buildPracticeSets } from '@/data/vocabulary/themeVocabSets';
 import { getVocabSubset } from '@/data/vocabulary/masterVocabulary';
 import VocabularyWordList from '@/components/activities/VocabularyWordList';
+import PracticeSection    from '@/components/activities/PracticeSection';
 import type { Level } from '@/types';
 
 export default function VocabularyActivity({
@@ -29,6 +30,9 @@ export default function VocabularyActivity({
   const standardCount   = words.filter(w => w.introductionLevel === 'standard').length;
   const challengeCount  = words.filter(w => w.introductionLevel === 'challenge').length;
 
+  const practiceSets = buildPracticeSets(ids);
+  const setCounts    = practiceSets.map(s => s.length);
+
   return (
     <div>
       {/* Summary bar */}
@@ -52,6 +56,8 @@ export default function VocabularyActivity({
       </div>
 
       <VocabularyWordList words={words} themeId={themeId} level={level} />
+
+      <PracticeSection themeId={themeId} level={level} setCounts={setCounts} />
     </div>
   );
 }

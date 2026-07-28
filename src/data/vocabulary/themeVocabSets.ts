@@ -38,3 +38,18 @@ export function buildShooterSets(ids: string[]): string[][] {
   }
   return sets;
 }
+
+export function buildPracticeSets(ids: string[]): string[][] {
+  if (ids.length === 0) return [];
+  const numSets = Math.max(1, Math.min(4, Math.floor(ids.length / 5)));
+  const base      = Math.floor(ids.length / numSets);
+  const remainder = ids.length % numSets;
+  const sets: string[][] = [];
+  let cursor = 0;
+  for (let i = 0; i < numSets; i++) {
+    const size = base + (i < remainder ? 1 : 0);
+    sets.push(ids.slice(cursor, cursor + size));
+    cursor += size;
+  }
+  return sets;
+}

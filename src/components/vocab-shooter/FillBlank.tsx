@@ -18,11 +18,12 @@ export default function FillBlank({
 }: {
   words: VocabEntry[];
   backHref: string;
-  onComplete: () => void;
+  onComplete: (correct: number) => void;
 }) {
-  const [index,  setIndex]  = useState(0);
-  const [input,  setInput]  = useState('');
-  const [status, setStatus] = useState<Status>('idle');
+  const [index,        setIndex]        = useState(0);
+  const [input,        setInput]        = useState('');
+  const [status,       setStatus]       = useState<Status>('idle');
+  const [correctCount, setCorrectCount] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const current = words[index];
@@ -41,11 +42,11 @@ export default function FillBlank({
         setInput('');
         setStatus('idle');
       } else {
-        onComplete();
+        onComplete(correctCount);
       }
     }, delay);
     return () => clearTimeout(timer);
-  }, [status, index, words.length, onComplete]);
+  }, [status, index, words.length, onComplete, correctCount]);
 
   useEffect(() => {
     if (status !== 'wrong') return;
@@ -63,6 +64,7 @@ export default function FillBlank({
     const answer = input.trim().toLowerCase();
     if (answer === current.word.toLowerCase()) {
       setStatus('correct');
+      setCorrectCount(c => c + 1);
     } else {
       setStatus('wrong');
     }

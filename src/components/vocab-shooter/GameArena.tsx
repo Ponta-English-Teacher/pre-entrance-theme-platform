@@ -29,7 +29,7 @@ export default function GameArena({
   words: VocabEntry[];
   allWords: VocabEntry[];
   backHref: string;
-  onComplete: () => void;
+  onComplete: (score: number) => void;
 }) {
   const [index, setIndex]       = useState(0);
   const [selectedId, setSelected] = useState<string | null>(null);
@@ -48,14 +48,15 @@ export default function GameArena({
   function handleSelect(choice: Choice) {
     if (selectedId !== null) return;
     setSelected(choice.id);
-    if (choice.isCorrect) setScore(s => s + 1);
+    const newScore = choice.isCorrect ? score + 1 : score;
+    if (choice.isCorrect) setScore(newScore);
 
     const delay = choice.isCorrect ? 700 : 1300;
     setTimeout(() => {
       if (index < words.length - 1) {
         setIndex(i => i + 1);
       } else {
-        onComplete();
+        onComplete(newScore);
       }
     }, delay);
   }

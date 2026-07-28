@@ -1,6 +1,6 @@
 import { redirect } from 'next/navigation';
 import { isValidLevel } from '@/data/themes';
-import { THEME_VOCAB_SETS, getThemeVocabIds, buildShooterSets } from '@/data/vocabulary/themeVocabSets';
+import { THEME_VOCAB_SETS, getThemeVocabIds, buildPracticeSets } from '@/data/vocabulary/themeVocabSets';
 import { getVocabSubset } from '@/data/vocabulary/masterVocabulary';
 import ShooterShell from '@/components/vocab-shooter/ShooterShell';
 
@@ -19,11 +19,12 @@ export default async function VocabShooterPage({
   if (!isValidLevel(rawLevel))          redirect('/themes');
   if (!THEME_VOCAB_SETS[themeId])       redirect('/themes');
 
-  const setIndex = parseInt(rawSet, 10) - 1;
-  if (isNaN(setIndex) || setIndex < 0 || setIndex > 3) redirect('/themes');
-
   const allIds   = getThemeVocabIds(themeId, rawLevel);
-  const sets     = buildShooterSets(allIds);
+  const sets     = buildPracticeSets(allIds);
+
+  const setIndex = parseInt(rawSet, 10) - 1;
+  if (isNaN(setIndex) || setIndex < 0 || setIndex >= sets.length) redirect('/themes');
+
   const setIds   = sets[setIndex];
 
   if (setIds.length === 0) redirect('/themes');
@@ -39,6 +40,7 @@ export default async function VocabShooterPage({
       backHref={backHref}
       setNumber={setIndex + 1}
       level={rawLevel}
+      themeId={themeId}
     />
   );
 }
