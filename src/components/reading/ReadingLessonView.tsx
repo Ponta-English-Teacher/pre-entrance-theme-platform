@@ -22,6 +22,7 @@ import {
 import ContextualHelpButton from '@/components/reading/ContextualHelpButton';
 import WordBank from '@/components/reading/WordBank';
 import ProgressBar from '@/components/ProgressBar';
+import WritingTutor, { type WritingTutorHandle } from '@/components/writing-tutor/WritingTutor';
 
 export default function ReadingLessonView({
   lesson,
@@ -33,7 +34,7 @@ export default function ReadingLessonView({
   backHref: string;
 }) {
   const router = useRouter();
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const writingTutorRef = useRef<WritingTutorHandle>(null);
 
   const [activeHelpId, setActiveHelpId] = useState<string | null>(null);
   const [preReadingChoice, setPreReadingChoice] = useState<string | null>(null);
@@ -84,16 +85,7 @@ export default function ReadingLessonView({
   }
 
   function insertIntoWriting(fragment: string) {
-    const el = textareaRef.current;
-    const start = el?.selectionStart ?? writingText.length;
-    const end = el?.selectionEnd ?? writingText.length;
-    const next = writingText.slice(0, start) + fragment + writingText.slice(end);
-    setWritingText(next);
-    requestAnimationFrame(() => {
-      el?.focus();
-      const cursor = start + fragment.length;
-      el?.setSelectionRange(cursor, cursor);
-    });
+    writingTutorRef.current?.insertText(fragment);
   }
 
   function handleFinish() {
@@ -285,20 +277,28 @@ export default function ReadingLessonView({
         </div>
         <p className="text-sm text-slate-500 mb-4">{lesson.writing.prompt}</p>
 
-        <textarea
-          ref={textareaRef}
-          value={writingText}
-          onChange={e => setWritingText(e.target.value)}
-          rows={4}
-          placeholder="Write your answer here..."
-          className="w-full bg-white rounded-2xl border border-slate-200 shadow-sm p-4 text-sm text-slate-900 leading-relaxed mb-4 focus:outline-none focus:ring-2 focus:ring-indigo-300"
-        />
+        <div className="mb-4">
+          <WordBank
+            wordBank={lesson.writing.wordBank}
+            extraVocabIds={extraVocabIds}
+            usefulExpressions={lesson.writing.usefulExpressions}
+            onInsert={insertIntoWriting}
+          />
+        </div>
 
-        <WordBank
-          wordBank={lesson.writing.wordBank}
-          extraVocabIds={extraVocabIds}
-          usefulExpressions={lesson.writing.usefulExpressions}
-          onInsert={insertIntoWriting}
+        <WritingTutor
+          ref={writingTutorRef}
+          themeId={themeId}
+          level={lesson.level}
+          lessonId={lesson.id}
+          mission={lesson.mission}
+          readingPassage={lesson.paragraphs.map(p => p.english)}
+          targetVocab={targetVocabForHelp}
+          writingPrompt={lesson.writing.prompt}
+          writingPromptJapanese={lesson.writing.promptJapanese}
+          minSentences={lesson.writing.minSentences}
+          initialDraft={writingText}
+          onDraftChange={setWritingText}
         />
       </section>
 

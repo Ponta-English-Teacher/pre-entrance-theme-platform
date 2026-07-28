@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
 import type { Level } from '@/types';
 import type {
   FlaggedIssue,
@@ -18,6 +18,12 @@ import type {
  * can be dropped into any lesson page just by passing in that lesson's
  * context. Intentionally simple/functional — no staged reveal, no "Why?"
  * drill-down, no revision-cycle UI. Those belong to a later milestone.
+ *
+ * initialDraft/onDraftChange/the imperative insertText handle exist only so
+ * a host page can keep its own read-only view of the draft in sync (e.g. a
+ * live word-usage counter) and let an external control (e.g. a Word Bank)
+ * insert text into this component's own textarea — the component still owns
+ * the draft itself.
  */
 
 export interface WritingTutorProps {
@@ -30,25 +36,69 @@ export interface WritingTutorProps {
   writingPrompt: string;
   writingPromptJapanese: string;
   minSentences: number;
+  initialDraft?: string;
+  onDraftChange?: (text: string) => void;
 }
 
-export default function WritingTutor({
-  themeId,
-  level,
-  lessonId,
-  mission,
-  readingPassage,
-  targetVocab,
-  writingPrompt,
-  writingPromptJapanese,
-  minSentences,
-}: WritingTutorProps) {
-  const [draftText, setDraftText] = useState('');
+export interface WritingTutorHandle {
+  insertText: (fragment: string) => void;
+}
+
+const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function WritingTutor(
+  {
+    themeId,
+    level,
+    lessonId,
+    mission,
+    readingPassage,
+    targetVocab,
+    writingPrompt,
+    writingPromptJapanese,
+    minSentences,
+    initialDraft,
+    onDraftChange,
+  },
+  ref,
+) {
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const [draftText, setDraftTextState] = useState(initialDraft ?? '');
   const [feedback, setFeedback] = useState<WritingFeedbackResult | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
   const [revisionNumber, setRevisionNumber] = useState(1);
   const [previouslyFlaggedIssues, setPreviouslyFlaggedIssues] = useState<FlaggedIssue[]>([]);
+
+  function setDraftText(text: string) {
+    setDraftTextState(text);
+    onDraftChange?.(text);
+  }
+
+  // initialDraft often isn't known yet on first mount (e.g. it comes from
+  // localStorage, read by the host page only after its own hydration effect
+  // runs). Adopt it the one time it actually arrives, but never again after
+  // that, so a student's own typing is never overwritten.
+  const hasSyncedInitialDraft = useRef(false);
+  useEffect(() => {
+    if (!hasSyncedInitialDraft.current && initialDraft) {
+      hasSyncedInitialDraft.current = true;
+      setDraftTextState(initialDraft);
+    }
+  }, [initialDraft]);
+
+  useImperativeHandle(ref, () => ({
+    insertText(fragment: string) {
+      const el = textareaRef.current;
+      const start = el?.selectionStart ?? draftText.length;
+      const end = el?.selectionEnd ?? draftText.length;
+      const next = draftText.slice(0, start) + fragment + draftText.slice(end);
+      setDraftText(next);
+      requestAnimationFrame(() => {
+        el?.focus();
+        const cursor = start + fragment.length;
+        el?.setSelectionRange(cursor, cursor);
+      });
+    },
+  }));
 
   async function handleGetFeedback() {
     if (!draftText.trim() || loading) return;
@@ -98,6 +148,7 @@ export default function WritingTutor({
   return (
     <div className="max-w-2xl mx-auto">
       <textarea
+        ref={textareaRef}
         value={draftText}
         onChange={e => setDraftText(e.target.value)}
         rows={5}
@@ -197,7 +248,11 @@ export default function WritingTutor({
       )}
     </div>
   );
-}
+});
+
+WritingTutor.displayName = 'WritingTutor';
+
+export default WritingTutor;
 
 function FeedbackSection({ title, children }: { title: string; children: React.ReactNode }) {
   return (
