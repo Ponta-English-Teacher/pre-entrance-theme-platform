@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/navigation';
 import { getReadingProgress, saveReadingProgress, markReadingComplete, markActivityComplete } from '@/lib/store';
 import type { ReadingPassage } from '@/data/reading/masterReadings';
+import ProgressBar from '@/components/ProgressBar';
 
 export default function ReadingPassageReader({
   passage,
@@ -48,10 +49,8 @@ export default function ReadingPassageReader({
     router.push(`/themes/${themeId}/${passage.level}`);
   }
 
-  if (!hydrated) return null;
-
   return (
-    <div className="max-w-2xl mx-auto">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
       {/* Header */}
       <div className="flex items-start justify-between gap-4 mb-6">
         <div>
@@ -69,11 +68,8 @@ export default function ReadingPassageReader({
           Paragraph {index + 1} of {passage.paragraphs.length}
         </span>
       </div>
-      <div className="w-full bg-slate-100 rounded-full h-1.5 mb-4">
-        <div
-          className="bg-indigo-500 h-1.5 rounded-full transition-all"
-          style={{ width: `${((index + 1) / passage.paragraphs.length) * 100}%` }}
-        />
+      <div className="mb-4">
+        <ProgressBar current={index + 1} total={passage.paragraphs.length} />
       </div>
 
       {/* Paragraph navigator */}
@@ -82,6 +78,8 @@ export default function ReadingPassageReader({
           <button
             key={p.id}
             onClick={() => goTo(i)}
+            aria-label={`Go to paragraph ${i + 1}`}
+            aria-current={i === index ? 'step' : undefined}
             className={`w-6 h-6 rounded-full text-xs font-semibold transition-colors ${
               i === index
                 ? 'bg-indigo-600 text-white'
@@ -104,13 +102,18 @@ export default function ReadingPassageReader({
         <p className="text-lg text-slate-900 leading-relaxed">{current.english}</p>
 
         {showTranslation && (
-          <p className="text-sm text-slate-500 leading-relaxed mt-5 pt-5 border-t border-slate-100">
+          <p
+            id={`${current.id}-translation`}
+            className="text-sm text-slate-500 leading-relaxed mt-5 pt-5 border-t border-slate-100"
+          >
             {current.japanese}
           </p>
         )}
 
         <button
           onClick={() => setShowTranslation(v => !v)}
+          aria-expanded={showTranslation}
+          aria-controls={`${current.id}-translation`}
           className="text-xs font-semibold text-indigo-600 hover:text-indigo-700 transition-colors mt-6"
         >
           {showTranslation ? '日本語を隠す ▴' : '日本語訳を見る ▾'}
