@@ -8,6 +8,9 @@ export interface ReadingParagraph {
   plainEnglish: string;
   /** A light comprehension question, used by the "ask me a question" help option. */
   checkQuestion: string;
+  /** Pre-generated narration audio (see scripts/generate-reading-audio.ts). Absent means no
+   *  generated audio exists yet — the read-aloud help option falls back to browser TTS. */
+  audioUrl?: string;
 }
 
 export interface SurveyOption {
@@ -118,6 +121,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
         plainEnglish:
           'You do not have to know everything about yourself right now. You learn who you are little by little, especially when you try new things and think about them afterward.',
         checkQuestion: 'According to this paragraph, does your identity appear all at once, or does it grow slowly?',
+        audioUrl: '/audio/reading/km-f-reading-01-p1.mp3',
       },
       {
         id: 'km-f-reading-01-p2',
@@ -128,6 +132,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
         plainEnglish:
           'Aya was shy, but she tried something difficult: speaking in English about what mattered to her. It was hard, but she did it. After that, she felt more confident and found a strength she did not know she had.',
         checkQuestion: 'What small challenge did Aya face, and what did it give her?',
+        audioUrl: '/audio/reading/km-f-reading-01-p2.mp3',
       },
       {
         id: 'km-f-reading-01-p3',
@@ -138,6 +143,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
         plainEnglish:
           'Your character grows from many small choices, not one big moment. Thinking honestly about your experiences helps you understand and describe yourself, and set goals for the future. You do not need to have all the answers now — just keep trying and learning.',
         checkQuestion: 'According to this paragraph, what helps you move closer to your dream?',
+        audioUrl: '/audio/reading/km-f-reading-01-p3.mp3',
       },
     ],
 

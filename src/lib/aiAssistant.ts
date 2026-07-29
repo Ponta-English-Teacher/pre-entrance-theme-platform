@@ -36,6 +36,8 @@ export interface HelpContext {
     japanese: string;
     plainEnglish: string;
     checkQuestion: string;
+    /** Pre-generated narration audio, when available (see scripts/generate-reading-audio.ts). */
+    audioUrl?: string;
   };
 
   // missionCheck location
@@ -54,8 +56,10 @@ export interface HelpContext {
 
 export interface AIHelpResponse {
   text: string;
-  /** English text to speak aloud via the Web Speech API, when relevant. */
+  /** English text to speak aloud via the Web Speech API — used only when audioUrl is absent, or as the runtime-failure fallback for it. */
   speak?: string;
+  /** Pre-generated narration audio to play directly, when available. Takes priority over `speak`. */
+  audioUrl?: string;
 }
 
 export const PARAGRAPH_HELP_OPTIONS: HelpOption[] = [
@@ -116,7 +120,9 @@ function paragraphHelp(ctx: HelpContext): AIHelpResponse {
         text: `わかりにくいところがあるかもしれませんね。段落をやさしい英語にすると、こうなります。\n\n${p.plainEnglish}\n\nそれでも迷ったら、日本語訳とも見比べてみましょう。\n${p.japanese}`,
       };
     case 'readAloud':
-      return { text: '🔊 読み上げますね。', speak: p.english };
+      return p.audioUrl
+        ? { text: '🔊 読み上げますね。', audioUrl: p.audioUrl, speak: p.english }
+        : { text: '🔊 読み上げますね。', speak: p.english };
     case 'mission':
       return { text: `今日のミッションはこちらです。\n\n${ctx.mission}` };
     case 'question':

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import type { HelpContext, HelpOption } from '@/lib/aiAssistant';
 import { requestAIHelp } from '@/lib/aiAssistant';
 
@@ -22,25 +22,71 @@ export default function ContextualHelpButton({
   const isOpen = activeId === helpId;
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string | null>(null);
+  const [audioUrl, setAudioUrl] = useState<string | null>(null);
+  const [fallbackSpeak, setFallbackSpeak] = useState<string | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
-  async function handleSelect(optionId: string) {
-    setLoading(true);
-    setResponse(null);
-    const result = await requestAIHelp(buildContext(optionId));
-    setResponse(result.text);
-    setLoading(false);
-    if (result.speak && typeof window !== 'undefined' && 'speechSynthesis' in window) {
-      const utterance = new SpeechSynthesisUtterance(result.speak);
+  function speakWithBrowserTTS(text: string) {
+    if (typeof window !== 'undefined' && 'speechSynthesis' in window) {
+      const utterance = new SpeechSynthesisUtterance(text);
       utterance.lang = 'en-US';
       window.speechSynthesis.speak(utterance);
     }
   }
 
+  async function handleSelect(optionId: string) {
+    setLoading(true);
+    setResponse(null);
+    setAudioUrl(null);
+    setIsPlaying(false);
+    const result = await requestAIHelp(buildContext(optionId));
+    setResponse(result.text);
+    setLoading(false);
+
+    if (result.audioUrl) {
+      // Pre-generated audio available — play it via the inline controls below.
+      // Fall back text is kept in case the file fails to load/play at runtime.
+      setAudioUrl(result.audioUrl);
+      setFallbackSpeak(result.speak ?? null);
+    } else if (result.speak) {
+      speakWithBrowserTTS(result.speak);
+    }
+  }
+
+  function handleAudioError() {
+    setAudioUrl(null);
+    if (fallbackSpeak) speakWithBrowserTTS(fallbackSpeak);
+  }
+
+  function togglePlay() {
+    const el = audioRef.current;
+    if (!el) return;
+    if (isPlaying) {
+      el.pause();
+      setIsPlaying(false);
+    } else {
+      el.play();
+      setIsPlaying(true);
+    }
+  }
+
+  function restart() {
+    const el = audioRef.current;
+    if (!el) return;
+    el.currentTime = 0;
+    el.play();
+    setIsPlaying(true);
+  }
+
   function handleToggle() {
     if (isOpen) {
+      audioRef.current?.pause();
+      setIsPlaying(false);
       onToggle(null);
     } else {
       setResponse(null);
+      setAudioUrl(null);
       onToggle(helpId);
     }
   }
@@ -81,6 +127,35 @@ export default function ContextualHelpButton({
           {response && !loading && (
             <div className="text-sm text-slate-700 leading-relaxed bg-indigo-50 rounded-xl p-3 whitespace-pre-line">
               {response}
+            </div>
+          )}
+
+          {audioUrl && !loading && (
+            <div className="mt-2 flex items-center gap-2 bg-indigo-50 rounded-xl p-2.5">
+              {/* eslint-disable-next-line jsx-a11y/media-has-caption */}
+              <audio
+                ref={audioRef}
+                src={audioUrl}
+                onEnded={() => setIsPlaying(false)}
+                onError={handleAudioError}
+              />
+              <button
+                type="button"
+                onClick={togglePlay}
+                aria-label={isPlaying ? 'Pause' : 'Play'}
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-600 text-white text-sm hover:bg-indigo-700 transition-colors"
+              >
+                {isPlaying ? '⏸' : '▶'}
+              </button>
+              <button
+                type="button"
+                onClick={restart}
+                aria-label="Restart"
+                className="flex h-8 w-8 items-center justify-center rounded-full bg-white border border-indigo-200 text-indigo-600 text-sm hover:border-indigo-400 transition-colors"
+              >
+                ⟲
+              </button>
+              <span className="text-xs text-slate-500">読み上げ</span>
             </div>
           )}
         </div>

@@ -110,6 +110,7 @@ export default function ReadingLessonView({
         japanese: paragraph.japanese,
         plainEnglish: paragraph.plainEnglish,
         checkQuestion: paragraph.checkQuestion,
+        audioUrl: paragraph.audioUrl,
       },
     });
   }
