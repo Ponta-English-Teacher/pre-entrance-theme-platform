@@ -9,6 +9,7 @@ import type {
   WritingTutorRequest,
   WritingTutorResponse,
 } from '@/lib/ai/writingTutor/types';
+import { diffWords } from '@/lib/textDiff';
 
 /**
  * Standalone, reusable Writing Tutor. Sends a student's draft to
@@ -189,9 +190,23 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
                   {feedback.corrections.map((c, i) => (
                     <li key={i}>
                       <p className="font-serif text-lg">
-                        <span className="line-through text-slate-400">{c.wrong}</span>
-                        {' → '}
-                        <span className="font-semibold text-slate-900">{c.correct}</span>
+                        {diffWords(c.wrong, c.correct).map((seg, segIndex) => {
+                          if (seg.type === 'delete') {
+                            return (
+                              <span key={segIndex} className="line-through text-slate-400">
+                                {seg.text}
+                              </span>
+                            );
+                          }
+                          if (seg.type === 'insert') {
+                            return (
+                              <span key={segIndex} className="font-semibold text-indigo-700">
+                                {seg.text}
+                              </span>
+                            );
+                          }
+                          return <span key={segIndex}>{seg.text}</span>;
+                        })}
                       </p>
                       <p className="text-sm text-slate-600 mt-0.5">{c.whyJa}</p>
                     </li>
