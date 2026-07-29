@@ -34,6 +34,8 @@ export interface ActivityDef {
   labelJapanese: string;
   estimatedMinutes: number;
   icon: string;
+  /** Excluded from the activity selection grid, but the route/type stays valid (old links keep working). */
+  hidden?: boolean;
 }
 
 export interface ThemeProgress {

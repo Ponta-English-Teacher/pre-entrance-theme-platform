@@ -75,12 +75,14 @@ export const LEVEL_INFO: LevelInfo[] = [
 ];
 
 export const ACTIVITY_DEFS: ActivityDef[] = [
-  { type: 'vocabulary',  label: 'Vocabulary',  labelJapanese: '語彙',        estimatedMinutes: 20, icon: '📖' },
-  { type: 'grammar',     label: 'Grammar',     labelJapanese: '文法',        estimatedMinutes: 25, icon: '✏️' },
-  { type: 'reading',     label: 'Reading',     labelJapanese: 'リーディング', estimatedMinutes: 30, icon: '📄' },
-  { type: 'writing',     label: 'Writing',     labelJapanese: 'ライティング', estimatedMinutes: 35, icon: '🖊️' },
-  { type: 'speaking',    label: 'Speaking',    labelJapanese: 'スピーキング', estimatedMinutes: 20, icon: '🎙️' },
-  { type: 'translation', label: 'Translation', labelJapanese: '翻訳',        estimatedMinutes: 20, icon: '🔄' },
+  { type: 'vocabulary',  label: 'Vocabulary',         labelJapanese: '語彙',                    estimatedMinutes: 20, icon: '📖' },
+  { type: 'reading',     label: 'Reading & Writing',  labelJapanese: 'リーディング＆ライティング', estimatedMinutes: 45, icon: '✍️' },
+  { type: 'speaking',    label: 'Speaking',           labelJapanese: 'スピーキング',             estimatedMinutes: 20, icon: '🎙️' },
+  // Hidden from the activity grid for now — routes stay valid so old links don't break, and the
+  // underlying activity-player dispatch (src/app/themes/[slug]/[level]/[type]/page.tsx) is untouched.
+  { type: 'grammar',     label: 'Grammar',            labelJapanese: '文法',                    estimatedMinutes: 25, icon: '✏️', hidden: true },
+  { type: 'writing',     label: 'Writing',            labelJapanese: 'ライティング',             estimatedMinutes: 35, icon: '🖊️', hidden: true },
+  { type: 'translation', label: 'Translation',        labelJapanese: '翻訳',                    estimatedMinutes: 20, icon: '🔄', hidden: true },
 ];
 
 export function getThemeBySlug(slug: string): Theme | undefined {
