@@ -16,7 +16,7 @@ export type AIPartnerSpeechResult = { ok: true; audio: Buffer } | { ok: false; e
 /**
  * Generates speech for a single AI Partner reply, on request. Nothing is
  * written to disk — the audio exists only as bytes returned to the caller,
- * per AI_PARTNER_ACTIVITY_DESIGN.md §4a ("not permanently stored").
+ * per AI_TALK_ACTIVITY_DESIGN.md §4a ("not permanently stored").
  */
 export async function getAIPartnerSpeech(request: AIPartnerSpeechRequest): Promise<AIPartnerSpeechResult> {
   if (request.speechGenerationCountSoFar >= AI_PARTNER_MAX_SPEECH_GENERATIONS) {

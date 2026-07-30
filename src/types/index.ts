@@ -5,6 +5,7 @@ export type ActivityType =
   | 'grammar'
   | 'reading'
   | 'writing'
+  | 'ai-talk'
   | 'speaking'
   | 'translation';
 

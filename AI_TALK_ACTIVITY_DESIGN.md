@@ -1,6 +1,8 @@
-# "Talk with Your AI Partner" — Activity Design
+# AI Talk — Activity Design
 
-Status: **Version 1 decisions locked in.** Design only — no production code yet. This is the approved blueprint implementation should follow.
+Status: **Version 1 decisions locked in.** Implementation underway per the milestone plan below.
+
+**Naming note**: this activity is called **AI Talk** in the product, the activity grid, and `ActivityType` (`'ai-talk'`). It is one of three distinct AI roles in this platform — the other two are the **AI Tutor** (an embedded assistant inside Reading & Writing, not an activity) and **Pronunciation & Delivery** (a future independent activity, reserved under the `speaking` type). Earlier milestones used the working name "AI Partner," and the internal implementation still does (`src/lib/ai/aiPartner/*`, `src/components/ai-partner/*`, `/api/ai-partner*`) — that internal naming is unchanged by this rename; only the user-facing activity name and this document's title were updated.
 
 The purpose of this activity is to let students use English naturally, in a low-pressure conversation connected to the current theme — not a chatbot demo, not a speaking test, not a grammar drill, not a fixed-question interview.
 
@@ -174,7 +176,7 @@ No chat bubbles, no avatars, no messaging-app look. The same textbook visual lan
 
 ## Sample student journey — "Knowing Myself," Foundation
 
-1. Student opens the theme's activity grid, clicks **Talk with Your AI Partner** (now a real card).
+1. Student opens the theme's activity grid, clicks **AI Talk** (now a real card).
 2. Intro screen: *"Let's talk about who you're becoming — there's no right or wrong answer here."* One button: **Start Conversation**.
 3. AI opens: *"Hi! I read that Aya felt nervous but tried something new anyway. Has something like that ever happened to you?"*
 4. Student types a short, imperfect reply: *"Yes. I join English speech contest. I very nervous."*

@@ -77,7 +77,11 @@ export const LEVEL_INFO: LevelInfo[] = [
 export const ACTIVITY_DEFS: ActivityDef[] = [
   { type: 'vocabulary',  label: 'Vocabulary',         labelJapanese: '語彙',                    estimatedMinutes: 20, icon: '📖' },
   { type: 'reading',     label: 'Reading & Writing',  labelJapanese: 'リーディング＆ライティング', estimatedMinutes: 45, icon: '✍️' },
-  { type: 'speaking',    label: 'Speaking',           labelJapanese: 'スピーキング',             estimatedMinutes: 20, icon: '🎙️' },
+  { type: 'ai-talk',     label: 'AI Talk',            labelJapanese: 'AIトーク',                estimatedMinutes: 15, icon: '💬' },
+  // Reserved for a future Pronunciation & Delivery activity (reading aloud, rhythm, stress,
+  // intonation) — a distinct activity from AI Talk. Hidden until that activity has a real
+  // design and implementation; the type/route stay valid so nothing breaks when it's built.
+  { type: 'speaking',    label: 'Speaking',           labelJapanese: 'スピーキング',             estimatedMinutes: 20, icon: '🎙️', hidden: true },
   // Hidden from the activity grid for now — routes stay valid so old links don't break, and the
   // underlying activity-player dispatch (src/app/themes/[slug]/[level]/[type]/page.tsx) is untouched.
   { type: 'grammar',     label: 'Grammar',            labelJapanese: '文法',                    estimatedMinutes: 25, icon: '✏️', hidden: true },
@@ -94,5 +98,5 @@ export function isValidLevel(value: string): value is Level {
 }
 
 export function isValidActivityType(value: string): value is ActivityType {
-  return ['vocabulary', 'grammar', 'reading', 'writing', 'speaking', 'translation'].includes(value);
+  return ['vocabulary', 'grammar', 'reading', 'writing', 'ai-talk', 'speaking', 'translation'].includes(value);
 }

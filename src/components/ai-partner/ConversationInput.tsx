@@ -2,7 +2,7 @@ import type { KeyboardEvent } from 'react';
 
 /**
  * Plain, bordered notebook-style input box — not a rounded chat-pill,
- * matching AI_PARTNER_ACTIVITY_DESIGN.md §8. Shows a quiet turn counter and
+ * matching AI_TALK_ACTIVITY_DESIGN.md §8. Shows a quiet turn counter and
  * disables itself the instant the hard turn cap is reached.
  */
 export default function ConversationInput({

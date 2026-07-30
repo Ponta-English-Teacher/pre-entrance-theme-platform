@@ -61,28 +61,7 @@ export default function ActivityGrid({
 
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {visibleActivities.slice(0, 2).map(renderActivityCard)}
-
-      {/* Placeholder — not yet backed by a route or feature; purely visual, disabled */}
-      <div
-        aria-disabled="true"
-        className="block bg-slate-50 rounded-2xl border border-dashed border-slate-200 p-5 cursor-not-allowed"
-      >
-        <div className="flex items-start justify-between mb-3">
-          <span className="text-2xl grayscale opacity-60">🤝</span>
-          <span className="px-2 py-0.5 rounded-full text-xs font-semibold bg-slate-200 text-slate-500">
-            Coming Soon
-          </span>
-        </div>
-        <h3 className="font-bold text-slate-500 mb-1">Talk with Your AI Partner</h3>
-        <p className="text-xs text-slate-400 mb-4">AIパートナーと話そう</p>
-        <div className="flex items-center justify-between">
-          <span className="text-xs text-slate-400">&nbsp;</span>
-          <span className="text-xs font-semibold text-slate-300">Coming soon</span>
-        </div>
-      </div>
-
-      {visibleActivities.slice(2).map(renderActivityCard)}
+      {visibleActivities.map(renderActivityCard)}
     </div>
   );
 }

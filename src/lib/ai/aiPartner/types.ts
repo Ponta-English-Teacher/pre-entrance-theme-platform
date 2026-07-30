@@ -2,7 +2,7 @@ import type { Level } from '@/types';
 
 /**
  * Types for the "Talk with Your AI Partner" backend.
- * See AI_PARTNER_ACTIVITY_DESIGN.md — this implements the Version 1 scope only
+ * See AI_TALK_ACTIVITY_DESIGN.md — this implements the Version 1 scope only
  * (§4a speech architecture, §6 completion/progress).
  */
 

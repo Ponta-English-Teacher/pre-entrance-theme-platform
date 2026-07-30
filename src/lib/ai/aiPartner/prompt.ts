@@ -5,7 +5,7 @@ import type { AIPartnerTurnRequest } from './types';
 /**
  * Reusable prompt module for the AI Partner conversation. Pure data/string
  * assembly, no network calls — mirrors src/lib/ai/writingTutor/prompt.ts.
- * Implements AI_PARTNER_ACTIVITY_DESIGN.md §2, §3, §5, §7.
+ * Implements AI_TALK_ACTIVITY_DESIGN.md §2, §3, §5, §7.
  */
 
 const LEVEL_GUIDANCE: Record<Level, string> = {

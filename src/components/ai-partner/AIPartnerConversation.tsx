@@ -15,7 +15,7 @@ import ConversationInput from './ConversationInput';
  * the Milestone 2 test harness.
  *
  * Speech is a strictly separate, on-request concern from the text
- * conversation (AI_PARTNER_ACTIVITY_DESIGN.md §4a): the reply is generated
+ * conversation (AI_TALK_ACTIVITY_DESIGN.md §4a): the reply is generated
  * and shown first, and pressing Play is the only thing that ever triggers a
  * speech request. Generated audio is cached only in this component's own
  * memory (an object URL per turn id) for the lifetime of this mounted
@@ -31,6 +31,8 @@ export interface AIPartnerConversationProps {
   readingPassage: string[];
   targetVocab: TargetVocabItem[];
   opener: string;
+  /** Reports the current student-turn count after every change, so a host page can drive its own completion/finish logic without this component knowing about activities or progress tracking. */
+  onStudentTurnCountChange?: (count: number) => void;
 }
 
 export default function AIPartnerConversation({
@@ -42,6 +44,7 @@ export default function AIPartnerConversation({
   readingPassage,
   targetVocab,
   opener,
+  onStudentTurnCountChange,
 }: AIPartnerConversationProps) {
   const [turns, setTurns] = useState<TranscriptTurnData[]>(() => [
     { id: 'opener', role: 'partner', text: opener },
@@ -68,6 +71,10 @@ export default function AIPartnerConversation({
       cache.forEach(url => URL.revokeObjectURL(url));
     };
   }, []);
+
+  useEffect(() => {
+    onStudentTurnCountChange?.(studentTurnCount);
+  }, [studentTurnCount, onStudentTurnCountChange]);
 
   async function sendMessage(history: TranscriptTurnData[]) {
     setIsSubmitting(true);
