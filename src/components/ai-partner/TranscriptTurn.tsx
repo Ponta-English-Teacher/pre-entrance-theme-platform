@@ -33,7 +33,7 @@ export default function TranscriptTurn({
         {isPartner ? 'Partner' : 'You'}
       </p>
       <div className="flex items-start gap-3">
-        <p className="font-serif text-[1.05rem] leading-[1.8] text-slate-900 flex-1">{turn.text}</p>
+        <p className="font-serif text-[1.05rem] leading-[1.8] text-slate-900 flex-1 whitespace-pre-line">{turn.text}</p>
 
         {isPartner && onPlay && (
           <div className="flex items-center gap-1.5 shrink-0 pt-0.5">
