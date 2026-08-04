@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ACTIVITY_DEFS } from '@/data/themes';
+import { getReadingsByTheme } from '@/data/reading/masterReadings';
 import { getThemeProgress } from '@/lib/store';
 import type { Level, ActivityType } from '@/types';
 
@@ -21,7 +22,16 @@ export default function ActivityGrid({
     setCompleted(getThemeProgress(themeId).completedActivities);
   }, [themeId]);
 
-  const visibleActivities = ACTIVITY_DEFS.filter(activity => !activity.hidden);
+  // Writing is content-gated rather than statically hidden: only visible for
+  // a theme/level whose reading lesson has experienceVersion === 2 (Theme 1
+  // Foundation, during this prototype stage). Every other theme/level has no
+  // such lesson and continues to see the same 3 activities as before.
+  const hasStandaloneWriting = getReadingsByTheme(themeId, level).some(l => l.experienceVersion === 2);
+  const visibleActivities = ACTIVITY_DEFS.filter(activity => {
+    if (activity.hidden) return false;
+    if (activity.type === 'writing') return hasStandaloneWriting;
+    return true;
+  });
 
   function renderActivityCard(activity: (typeof visibleActivities)[number]) {
     const done = completed.includes(activity.type);

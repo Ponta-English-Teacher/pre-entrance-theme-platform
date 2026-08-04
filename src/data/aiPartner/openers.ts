@@ -23,7 +23,52 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'knowing-myself',
     foundation:
-      "Hi! I read about Aya — she was shy, but she gave that presentation anyway, and it gave her real confidence. Has trying something small like that ever changed how you feel about yourself?",
+      "Hi! Today's reading asked whether personality is something we're born with, or something we build through experience. What do you think — has a challenge or new experience ever changed who you are?",
+  },
+  {
+    themeId: 'university-student',
+    foundation:
+      "Hi! I read about Sora — she felt nervous, but she walked over and introduced herself to that photography club anyway, on her very first day. When you start university, is there something new you'd like to try, even if you feel a little nervous about it at first?",
+  },
+  {
+    themeId: 'designing-my-future',
+    foundation:
+      "Hi! I read about Ren — he didn't have a clear dream, until one small moment of helping his sister gave him a real sense of direction. Has anything small ever made you think differently about your own future?",
+  },
+  {
+    themeId: 'living-together',
+    foundation:
+      "Hi! I read about Mio and her roommate — they didn't agree on much at first, but talking honestly helped them find a compromise and grow closer. Is there someone you get along well with, or someone you've learned to get along with over time?",
+  },
+  {
+    themeId: 'facts-or-fake',
+    foundation:
+      "Hi! I read about Haruto — he almost believed a scary message in a group chat, until he checked the source and found out it wasn't true. Have you ever seen information online that turned out to be false?",
+  },
+  {
+    themeId: 'peace-and-war',
+    foundation:
+      "Hi! I read about Yuna — she finally asked her grandmother about the war, and learned about a piece of her family's history. Is there something from an older family member's life you'd like to know more about?",
+  },
+  {
+    themeId: 'caring-for-our-planet',
+    foundation:
+      "Hi! I read about Aoi — she noticed her favorite beach changing, and started small by carrying a reusable bottle and joining a beach cleanup. Is there a small environmental habit you already have, or one you'd like to start?",
+  },
+  {
+    themeId: 'living-with-ai',
+    foundation:
+      "Hi! I read about Kenta — he learned that AI could help him start an essay, but the thinking had to be his. How do you make sure your own thinking stays part of the process when you use AI?",
+  },
+  {
+    themeId: 'learning-from-history',
+    foundation:
+      "Hi! I read about Rin — she found an old photograph of her ancestor and discovered a piece of her family's history. Is there something from your own family's past that you'd like to know more about?",
+  },
+  {
+    themeId: 'science-in-everyday-life',
+    foundation:
+      "Hi! I read about Yuto — he got curious about something ordinary, a wet can of juice, and investigated it like a scientist. Is there something in your everyday life you're curious about?",
   },
 ];
 

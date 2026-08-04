@@ -10,6 +10,7 @@ import type {
   WritingTutorResponse,
 } from '@/lib/ai/writingTutor/types';
 import { diffWords } from '@/lib/textDiff';
+import SelectableContent from '@/components/selection-assistant/SelectableContent';
 
 /**
  * Standalone, reusable Writing Tutor. Sends a student's draft to
@@ -175,7 +176,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
       {feedback && (
         <div>
           <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-4">📝 Teacher&rsquo;s Comments</p>
-          <div className="flex flex-col gap-5">
+          <SelectableContent activityType="writing-feedback" themeId={themeId} level={level} label="Teacher's Comments" className="flex flex-col gap-5">
             <FeedbackSection title="Overall Feedback" variant="primary">
               <p>{feedback.overallFeedbackJa}</p>
             </FeedbackSection>
@@ -261,7 +262,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
                 <p>{feedback.revisionDeltaJa}</p>
               </FeedbackSection>
             )}
-          </div>
+          </SelectableContent>
         </div>
       )}
     </div>

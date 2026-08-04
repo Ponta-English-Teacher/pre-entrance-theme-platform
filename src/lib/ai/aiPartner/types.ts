@@ -70,3 +70,34 @@ export const AI_PARTNER_MAX_SPEECH_GENERATIONS = 15;
 
 /** Defensive upper bound on text length sent to the speech endpoint (replies are 1–3 sentences). */
 export const AI_PARTNER_MAX_SPEECH_TEXT_LENGTH = 500;
+
+/**
+ * Conversation-support tools — "💬 What does it mean?" and "🗣 How do you say
+ * it?" — added so a student never has to leave AI Talk to resolve a
+ * communication breakdown. Deliberately separate from Selection Assistant:
+ * these operate on live conversation turns, not on selected passage/writing
+ * text, and belong only to AI Talk.
+ */
+export type ConversationSupportAction = 'explain' | 'express';
+
+export interface ConversationSupportRequest {
+  action: ConversationSupportAction;
+  level: Level;
+  /** 'explain' — the specific word/phrase/expression the student selected. Explain ONLY this, never the whole turn. */
+  selectedText?: string;
+  /** 'explain' — the full partner turn the selection came from, for context (e.g. why "dangerous" was a joke). */
+  fullTurnText?: string;
+  /** 'explain' — a few preceding turns, for extra context when needed. */
+  recentHistory?: ConversationTurn[];
+  /** 'express' — what the student wants to say, in Japanese or rough English. */
+  studentInput?: string;
+}
+
+export interface ConversationSupportResponse {
+  ok: boolean;
+  /** 'explain' result. */
+  explanation?: string;
+  /** 'express' result — 1–2 natural expressions the student can use. */
+  suggestions?: string[];
+  error?: string;
+}

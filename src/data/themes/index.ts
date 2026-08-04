@@ -12,6 +12,28 @@ export const THEMES: Theme[] = [
     order: 1,
   },
   {
+    id: 'university-student',
+    slug: 'university-student',
+    title: 'What Does It Mean to Be a University Student?',
+    titleJapanese: '大学生になるということ',
+    description: 'Think about the transition into university life and the kind of student you want to become.',
+    descriptionJapanese: '大学生活への移行や、自分がどんな学生になりたいかについて英語で考えます。',
+    color: 'sky',
+    order: 2,
+  },
+  {
+    // Renamed from the earlier "building-my-future" placeholder to match the frozen
+    // docs/CURRICULUM_MAP.md title exactly (see that doc's Theme 3 Notes).
+    id: 'designing-my-future',
+    slug: 'designing-my-future',
+    title: 'Designing My Future',
+    titleJapanese: '未来を描く',
+    description: 'Think about your future goals, choices, and the path after university.',
+    descriptionJapanese: '将来の目標や進路の選択について、英語で考え表現します。',
+    color: 'amber',
+    order: 3,
+  },
+  {
     id: 'living-together',
     slug: 'living-together',
     title: 'Living Together',
@@ -19,17 +41,27 @@ export const THEMES: Theme[] = [
     description: 'Understand relationships, community, and what it means to live with others.',
     descriptionJapanese: '人間関係、コミュニティ、多様性について英語で考え、表現します。',
     color: 'emerald',
-    order: 2,
+    order: 4,
   },
   {
-    id: 'building-my-future',
-    slug: 'building-my-future',
-    title: 'Building My Future',
-    titleJapanese: '未来を創る',
-    description: 'Think about goals, choices, and the path ahead at university and beyond.',
-    descriptionJapanese: '進路、目標、大学生活について英語で考え、自分の言葉で伝えます。',
-    color: 'amber',
-    order: 3,
+    id: 'facts-or-fake',
+    slug: 'facts-or-fake',
+    title: 'Facts or Fake?',
+    titleJapanese: '情報を見きわめる',
+    description: 'Build critical thinking and media literacy skills to evaluate what you read online.',
+    descriptionJapanese: '情報の真偽を見極める力とメディアリテラシーを英語で身につけます。',
+    color: 'orange',
+    order: 5,
+  },
+  {
+    id: 'peace-and-war',
+    slug: 'peace-and-war',
+    title: 'Peace and War',
+    titleJapanese: '平和と戦争',
+    description: 'Think about conflict, peace, and the lessons history offers.',
+    descriptionJapanese: '争いや平和、歴史から学べる教訓について英語で考えます。',
+    color: 'indigo',
+    order: 6,
   },
   {
     id: 'caring-for-our-planet',
@@ -39,7 +71,17 @@ export const THEMES: Theme[] = [
     description: 'Engage with environmental challenges and what individuals can do.',
     descriptionJapanese: '環境問題と私たちにできる行動について、英語で意見を表現します。',
     color: 'teal',
-    order: 4,
+    order: 7,
+  },
+  {
+    id: 'living-with-ai',
+    slug: 'living-with-ai',
+    title: 'Living with AI',
+    titleJapanese: 'AIと生きる',
+    description: 'Think about the role of AI in daily life, learning, and the future.',
+    descriptionJapanese: '日常生活や学び、未来におけるAIの役割について英語で考えます。',
+    color: 'fuchsia',
+    order: 8,
   },
   {
     id: 'learning-from-history',
@@ -49,7 +91,17 @@ export const THEMES: Theme[] = [
     description: 'Explore historical events and the lessons they carry into the present.',
     descriptionJapanese: '歴史的な出来事を英語で読み解き、現在との関係を考えます。',
     color: 'rose',
-    order: 5,
+    order: 9,
+  },
+  {
+    id: 'science-in-everyday-life',
+    slug: 'science-in-everyday-life',
+    title: 'Science in Everyday Life',
+    titleJapanese: '日常のサイエンス',
+    description: 'Connect scientific thinking to your daily life and curiosity.',
+    descriptionJapanese: '身近な出来事から科学的な考え方や好奇心について英語で学びます。',
+    color: 'cyan',
+    order: 10,
   },
 ];
 
@@ -85,7 +137,13 @@ export const ACTIVITY_DEFS: ActivityDef[] = [
   // Hidden from the activity grid for now — routes stay valid so old links don't break, and the
   // underlying activity-player dispatch (src/app/themes/[slug]/[level]/[type]/page.tsx) is untouched.
   { type: 'grammar',     label: 'Grammar',            labelJapanese: '文法',                    estimatedMinutes: 25, icon: '✏️', hidden: true },
-  { type: 'writing',     label: 'Writing',            labelJapanese: 'ライティング',             estimatedMinutes: 35, icon: '🖊️', hidden: true },
+  // NOT statically hidden — visibility is content-gated per theme/level in
+  // ActivityGrid.tsx (only shown where a lesson has experienceVersion === 2,
+  // i.e. Theme 1 Foundation during this prototype stage). Every other
+  // theme/level has no such lesson, so this stays invisible for them exactly
+  // as `hidden: true` would have made it, with no change needed here later
+  // as more themes migrate.
+  { type: 'writing',     label: 'Writing',            labelJapanese: 'ライティング',             estimatedMinutes: 35, icon: '🖊️' },
   { type: 'translation', label: 'Translation',        labelJapanese: '翻訳',                    estimatedMinutes: 20, icon: '🔄', hidden: true },
 ];
 

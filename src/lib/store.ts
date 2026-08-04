@@ -114,12 +114,24 @@ export function markPracticeSetComplete(themeId: string, level: string, setNumbe
 const READING_KEY = 'etp-reading-progress';
 
 export interface ReadingProgress {
+  /** Means "the reading part is done." For lessons still using the original
+   *  combined ReadingLessonView (V1), this has always included writing too.
+   *  For Theme 1 (ReadingLessonViewV2 + standalone WritingActivity), this now
+   *  means reading specifically — see writingCompleted below. */
   completed: boolean;
   completedAt: string | null;
   preReadingChoice: string | null;
+  /** Reached the end of the Reading section — the one new completion signal per
+   *  READING_WRITING_EXPERIENCE_DESIGN.md §7 (a scroll marker, not a "read every word" measure). */
+  readingViewed: boolean;
   missionCheckAnswer: string | null;
   evidenceChoice: string | null;
+  vocabInContextAnswer: string | null;
   writingDraft: string;
+  /** Added when Writing became its own activity — independent of `completed`,
+   *  which now means "reading part done" for lessons using the new experience. */
+  writingCompleted: boolean;
+  writingCompletedAt: string | null;
 }
 
 function readReadingProgress(): Record<string, ReadingProgress> {
@@ -144,9 +156,13 @@ export function getReadingProgress(passageId: string): ReadingProgress {
     completed: false,
     completedAt: null,
     preReadingChoice: null,
+    readingViewed: false,
     missionCheckAnswer: null,
     evidenceChoice: null,
+    vocabInContextAnswer: null,
     writingDraft: '',
+    writingCompleted: false,
+    writingCompletedAt: null,
   };
 }
 
@@ -164,12 +180,25 @@ export function saveReadingMissionCheck(passageId: string, answerId: string | nu
   mergeReadingProgress(passageId, { missionCheckAnswer: answerId, evidenceChoice: evidenceId });
 }
 
+export function saveReadingVocabInContext(passageId: string, answerId: string | null): void {
+  mergeReadingProgress(passageId, { vocabInContextAnswer: answerId });
+}
+
+export function markReadingViewed(passageId: string): void {
+  if (getReadingProgress(passageId).readingViewed) return;
+  mergeReadingProgress(passageId, { readingViewed: true });
+}
+
 export function saveReadingDraft(passageId: string, text: string): void {
   mergeReadingProgress(passageId, { writingDraft: text });
 }
 
 export function markReadingComplete(passageId: string): void {
   mergeReadingProgress(passageId, { completed: true, completedAt: new Date().toISOString() });
+}
+
+export function markWritingComplete(passageId: string): void {
+  mergeReadingProgress(passageId, { writingCompleted: true, writingCompletedAt: new Date().toISOString() });
 }
 
 // ── Glossary ──────────────────────────────────────────────────────────────────

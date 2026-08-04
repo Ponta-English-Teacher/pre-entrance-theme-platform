@@ -4,6 +4,7 @@ import { useState, useEffect } from 'react';
 import { getGlossary } from '@/lib/store';
 import type { GlossaryItem } from '@/lib/store';
 import { THEMES } from '@/data/themes';
+import SelectableContent from '@/components/selection-assistant/SelectableContent';
 
 export default function PortfolioPage() {
   const [glossary, setGlossary] = useState<GlossaryItem[]>([]);
@@ -58,13 +59,13 @@ export default function PortfolioPage() {
                   <div className="space-y-4">
                     {items.map(item => (
                       <div key={item.word} className="flex items-start gap-3">
-                        <div className="flex-1 min-w-0">
+                        <SelectableContent activityType="vocabulary" themeId={theme.id} label={`Glossary — ${item.word}`} className="flex-1 min-w-0">
                           <div className="flex items-baseline gap-2 flex-wrap mb-0.5">
                             <span className="font-bold text-slate-900">{item.word}</span>
                             <span className="text-sm font-medium text-indigo-600">{item.japanese}</span>
                           </div>
                           <p className="text-sm text-slate-600 leading-relaxed">{item.definition}</p>
-                        </div>
+                        </SelectableContent>
                         <time className="text-xs text-slate-400 whitespace-nowrap mt-0.5">
                           {new Date(item.savedDate).toLocaleDateString()}
                         </time>

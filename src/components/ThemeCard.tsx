@@ -8,6 +8,11 @@ const COLOR: Record<string, { bar: string; tag: string; arrow: string }> = {
   amber:   { bar: 'bg-amber-500',   tag: 'bg-amber-100 text-amber-700',     arrow: 'text-amber-600' },
   teal:    { bar: 'bg-teal-500',    tag: 'bg-teal-100 text-teal-700',       arrow: 'text-teal-600' },
   rose:    { bar: 'bg-rose-500',    tag: 'bg-rose-100 text-rose-700',       arrow: 'text-rose-600' },
+  sky:     { bar: 'bg-sky-500',     tag: 'bg-sky-100 text-sky-700',         arrow: 'text-sky-600' },
+  indigo:  { bar: 'bg-indigo-500',  tag: 'bg-indigo-100 text-indigo-700',   arrow: 'text-indigo-600' },
+  orange:  { bar: 'bg-orange-500',  tag: 'bg-orange-100 text-orange-700',   arrow: 'text-orange-600' },
+  fuchsia: { bar: 'bg-fuchsia-500', tag: 'bg-fuchsia-100 text-fuchsia-700', arrow: 'text-fuchsia-600' },
+  cyan:    { bar: 'bg-cyan-500',    tag: 'bg-cyan-100 text-cyan-700',       arrow: 'text-cyan-600' },
 };
 
 export default function ThemeCard({ theme }: { theme: Theme }) {

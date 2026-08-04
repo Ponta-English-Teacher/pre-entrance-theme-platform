@@ -1,4 +1,12 @@
-export default function ProgressBar({ current, total }: { current: number; total: number }) {
+export default function ProgressBar({
+  current,
+  total,
+  colorClassName = 'bg-indigo-500',
+}: {
+  current: number;
+  total: number;
+  colorClassName?: string;
+}) {
   const percent = total > 0 ? (current / total) * 100 : 0;
   return (
     <div
@@ -9,7 +17,7 @@ export default function ProgressBar({ current, total }: { current: number; total
       aria-valuemax={total}
     >
       <div
-        className="bg-indigo-500 h-1.5 rounded-full transition-all"
+        className={`${colorClassName} h-1.5 rounded-full transition-all`}
         style={{ width: `${percent}%` }}
       />
     </div>

@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import type { VocabEntry } from '@/data/vocabulary/masterVocabulary';
+import type { Level } from '@/types';
 import FlashCards from '@/components/vocab-shooter/FlashCards';
 import GameArena  from '@/components/vocab-shooter/GameArena';
 import FillBlank  from '@/components/vocab-shooter/FillBlank';
@@ -51,6 +52,8 @@ export default function ShooterShell({
           words={setWords}
           backHref={backHref}
           onComplete={() => setStage('gamearena')}
+          themeId={themeId}
+          level={level as Level}
         />
       )}
       {stage === 'gamearena' && (

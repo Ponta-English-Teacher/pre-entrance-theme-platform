@@ -11,6 +11,11 @@ export type SpeechStatus = 'idle' | 'loading' | 'ready' | 'error';
  * hairline rule between turns, matching Reading's textbook visual language.
  * No chat bubbles, no avatars. Only partner turns get a Play control —
  * students don't need their own typed text read back.
+ *
+ * Deliberately does NOT use the shared Selection Assistant (SelectableContent)
+ * — AI Talk has its own, separate floating selection toolbar (Translate / How
+ * to Read / What does it mean?), scoped only to partner turns via
+ * `data-turn-role`. See AITalkSelectionToolbar.tsx in AIPartnerConversation.
  */
 export default function TranscriptTurn({
   turn,
@@ -33,7 +38,12 @@ export default function TranscriptTurn({
         {isPartner ? 'Partner' : 'You'}
       </p>
       <div className="flex items-start gap-3">
-        <p className="font-serif text-[1.05rem] leading-[1.8] text-slate-900 flex-1 whitespace-pre-line">{turn.text}</p>
+        <p
+          data-turn-role={turn.role}
+          className="flex-1 font-serif text-[1.05rem] leading-[1.8] text-slate-900 whitespace-pre-line"
+        >
+          {turn.text}
+        </p>
 
         {isPartner && onPlay && (
           <div className="flex items-center gap-1.5 shrink-0 pt-0.5">

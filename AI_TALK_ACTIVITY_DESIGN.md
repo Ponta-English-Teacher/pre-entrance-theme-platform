@@ -16,7 +16,7 @@ Not a bare text box. An intro screen, matching the framing pattern already estab
 
 **How the conversation begins**
 
-The AI partner sends the first message — the student never faces a blank input first. The opener is drawn from a small pool of theme-and-level-specific starters (authored content, not generated live), referencing something concrete the student already engaged with (the reading passage's example, the mission) — not a cold "How are you today?"
+The AI partner sends the first message — the student never faces a blank input first. The opener is drawn from a small pool of theme-and-level-specific starters (authored content, not generated live), referencing something concrete the student already engaged with (the reading passage's example, the mission) — not a cold "How are you today?" See `docs/READING_WRITING_ARCHITECTURE.md` §10 for the concrete opener question shapes (e.g. "do you agree with the author," "what would you do if you were the person in the passage") — the conversation begins from the reading passage itself, then expands naturally into the student's own ideas.
 
 **How the conversation develops**
 

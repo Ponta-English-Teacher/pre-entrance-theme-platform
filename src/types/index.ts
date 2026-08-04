@@ -9,7 +9,7 @@ export type ActivityType =
   | 'speaking'
   | 'translation';
 
-export type ThemeColor = 'violet' | 'emerald' | 'amber' | 'teal' | 'rose';
+export type ThemeColor = 'violet' | 'emerald' | 'amber' | 'teal' | 'rose' | 'sky' | 'indigo' | 'orange' | 'fuchsia' | 'cyan';
 
 export interface Theme {
   id: string;

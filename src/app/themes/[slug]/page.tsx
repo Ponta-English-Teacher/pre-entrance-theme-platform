@@ -9,6 +9,11 @@ const BANNER: Record<string, { bg: string; tag: string }> = {
   amber:   { bg: 'bg-amber-600',   tag: 'bg-amber-200 text-amber-900' },
   teal:    { bg: 'bg-teal-600',    tag: 'bg-teal-200 text-teal-900' },
   rose:    { bg: 'bg-rose-600',    tag: 'bg-rose-200 text-rose-900' },
+  sky:     { bg: 'bg-sky-600',     tag: 'bg-sky-200 text-sky-900' },
+  indigo:  { bg: 'bg-indigo-600',  tag: 'bg-indigo-200 text-indigo-900' },
+  orange:  { bg: 'bg-orange-600',  tag: 'bg-orange-200 text-orange-900' },
+  fuchsia: { bg: 'bg-fuchsia-600', tag: 'bg-fuchsia-200 text-fuchsia-900' },
+  cyan:    { bg: 'bg-cyan-600',    tag: 'bg-cyan-200 text-cyan-900' },
 };
 
 export default async function ThemeDetailPage({

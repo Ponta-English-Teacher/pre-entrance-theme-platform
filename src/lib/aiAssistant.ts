@@ -36,15 +36,19 @@ export interface HelpContext {
     japanese: string;
     plainEnglish: string;
     checkQuestion: string;
-    /** Pre-generated narration audio, when available (see scripts/generate-reading-audio.ts). */
-    audioUrl?: string;
   };
 
-  // missionCheck location
+  // missionCheck location — which of the three tasks this help call is for
+  missionCheckTask?: 'answer' | 'evidence' | 'vocabInContext';
   missionCheckQuestion?: string;
   missionCheckExplainerJa?: string;
   missionCheckHintJa?: string;
   answerParagraphNumber?: number;
+  // missionCheck location, task: 'evidence'
+  evidencePrompt?: string;
+  // missionCheck location, task: 'vocabInContext'
+  vocabInContextQuote?: string;
+  vocabInContextQuestion?: string;
 
   // writing location
   writingPrompt?: string;
@@ -56,10 +60,6 @@ export interface HelpContext {
 
 export interface AIHelpResponse {
   text: string;
-  /** English text to speak aloud via the Web Speech API — used only when audioUrl is absent, or as the runtime-failure fallback for it. */
-  speak?: string;
-  /** Pre-generated narration audio to play directly, when available. Takes priority over `speak`. */
-  audioUrl?: string;
 }
 
 export const PARAGRAPH_HELP_OPTIONS: HelpOption[] = [
@@ -67,7 +67,6 @@ export const PARAGRAPH_HELP_OPTIONS: HelpOption[] = [
   { id: 'japanese', label: '日本語でわかりやすく説明' },
   { id: 'word', label: '難しい単語を確認' },
   { id: 'sentence', label: '文の意味を確認' },
-  { id: 'readAloud', label: '読み上げを聞く' },
   { id: 'mission', label: '今日のミッションを確認' },
   { id: 'question', label: 'この段落の簡単な問題に挑戦' },
 ];
@@ -77,6 +76,20 @@ export const MISSION_CHECK_HELP_OPTIONS: HelpOption[] = [
   { id: 'word', label: '質問の難しい単語を確認' },
   { id: 'hint', label: 'ヒントを見る' },
   { id: 'reread', label: '読み返す段落を確認' },
+  { id: 'noAnswer', label: '答えは言わずにヒントだけ' },
+];
+
+export const MISSION_CHECK_EVIDENCE_HELP_OPTIONS: HelpOption[] = [
+  { id: 'meaning', label: '質問の意味を確認' },
+  { id: 'reread', label: '読み返す段落を確認' },
+  { id: 'kind', label: 'どんな根拠を探せばいいか' },
+  { id: 'noAnswer', label: '答えは言わずにヒントだけ' },
+];
+
+export const MISSION_CHECK_VOCAB_HELP_OPTIONS: HelpOption[] = [
+  { id: 'meaning', label: '質問の意味を確認' },
+  { id: 'context', label: '文の前後をもう一度確認' },
+  { id: 'clue', label: 'ヒントや例を見る' },
   { id: 'noAnswer', label: '答えは言わずにヒントだけ' },
 ];
 
@@ -119,10 +132,6 @@ function paragraphHelp(ctx: HelpContext): AIHelpResponse {
       return {
         text: `わかりにくいところがあるかもしれませんね。段落をやさしい英語にすると、こうなります。\n\n${p.plainEnglish}\n\nそれでも迷ったら、日本語訳とも見比べてみましょう。\n${p.japanese}`,
       };
-    case 'readAloud':
-      return p.audioUrl
-        ? { text: '🔊 読み上げますね。', audioUrl: p.audioUrl, speak: p.english }
-        : { text: '🔊 読み上げますね。', speak: p.english };
     case 'mission':
       return { text: `今日のミッションはこちらです。\n\n${ctx.mission}` };
     case 'question':
@@ -132,7 +141,7 @@ function paragraphHelp(ctx: HelpContext): AIHelpResponse {
   }
 }
 
-function missionCheckHelp(ctx: HelpContext): AIHelpResponse {
+function missionCheckAnswerHelp(ctx: HelpContext): AIHelpResponse {
   switch (ctx.helpType) {
     case 'meaning':
       return { text: `質問をやさしく言うと、こういうことです。\n\n${ctx.missionCheckExplainerJa ?? ''}` };
@@ -155,6 +164,61 @@ function missionCheckHelp(ctx: HelpContext): AIHelpResponse {
       };
     default:
       return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
+  }
+}
+
+function missionCheckEvidenceHelp(ctx: HelpContext): AIHelpResponse {
+  switch (ctx.helpType) {
+    case 'meaning':
+      return {
+        text: `質問をやさしく言うと、こういうことです。\n\n${ctx.evidencePrompt ?? ''}\n\nTask 1で選んだ答えを裏付けている一文を、文章の中から探す問題です。`,
+      };
+    case 'reread':
+      return { text: `もう一度、第${ctx.answerParagraphNumber}段落を読んでみましょう。根拠になる一文がそこにありますよ。` };
+    case 'kind':
+      return {
+        text: 'どの選択肢が正解かは言いませんが、探し方のヒントです。一般的な説明ではなく、実際に起きた出来事や、はっきりとした変化を表している一文を探してみましょう。それが根拠（evidence）になります。',
+      };
+    case 'noAnswer':
+      return {
+        text: `答えをそのまま伝えることはしませんが、ヒントを出しますね。\n\n第${ctx.answerParagraphNumber}段落の中で、実際に起きた出来事を具体的に表している一文を探してみましょう。`,
+      };
+    default:
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
+  }
+}
+
+function missionCheckVocabHelp(ctx: HelpContext): AIHelpResponse {
+  switch (ctx.helpType) {
+    case 'meaning':
+      return {
+        text: `質問をやさしく言うと、こういうことです。\n\n「${ctx.vocabInContextQuote ?? ''}」という文の中で、この単語がどんな意味で使われているかを考える問題です。`,
+      };
+    case 'context':
+      return {
+        text: `この一文をもう一度読んでみましょう。\n\n「${ctx.vocabInContextQuote ?? ''}」\n\n前後の言葉から、その単語がどんな場面・状況で使われているかを考えてみましょう。`,
+      };
+    case 'clue':
+      return {
+        text: '答えはそのまま伝えませんが、考え方のヒントです。その単語には複数の意味があることが多いので、辞書的な意味をそのまま当てはめず、文全体の状況に合う意味はどれかを考えてみましょう。',
+      };
+    case 'noAnswer':
+      return {
+        text: `答えをそのまま伝えることはしませんが、ヒントを出しますね。\n\n「${ctx.vocabInContextQuote ?? ''}」の前後の文脈に注目して、選択肢の中から文の状況に一番自然に合う意味を選んでみましょう。`,
+      };
+    default:
+      return { text: 'ごめんなさい、その質問にはまだうまく答えられません。' };
+  }
+}
+
+function missionCheckHelp(ctx: HelpContext): AIHelpResponse {
+  switch (ctx.missionCheckTask) {
+    case 'evidence':
+      return missionCheckEvidenceHelp(ctx);
+    case 'vocabInContext':
+      return missionCheckVocabHelp(ctx);
+    default:
+      return missionCheckAnswerHelp(ctx);
   }
 }
 

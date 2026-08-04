@@ -4,6 +4,7 @@ import { getThemeBySlug, ACTIVITY_DEFS, isValidLevel, isValidActivityType } from
 import LevelBadge from '@/components/LevelBadge';
 import VocabularyActivity from '@/components/activities/VocabularyActivity';
 import ReadingActivity from '@/components/activities/ReadingActivity';
+import WritingActivity from '@/components/activities/WritingActivity';
 import AITalkActivity from '@/components/activities/AITalkActivity';
 import type { Level, ActivityType } from '@/types';
 
@@ -55,6 +56,8 @@ export default async function ActivityPlayerPage({
         <VocabularyActivity themeId={theme.id} level={level} />
       ) : type === 'reading' ? (
         <ReadingActivity themeId={theme.id} level={level} />
+      ) : type === 'writing' ? (
+        <WritingActivity themeId={theme.id} level={level} />
       ) : type === 'ai-talk' ? (
         <AITalkActivity themeId={theme.id} level={level} />
       ) : (
