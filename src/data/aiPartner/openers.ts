@@ -29,7 +29,9 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'university-student',
     foundation:
-      "Hi! I read about Sora — she felt nervous, but she walked over and introduced herself to that photography club anyway, on her very first day. When you start university, is there something new you'd like to try, even if you feel a little nervous about it at first?",
+      "Hi! Today's reading talked about how, at university, nobody checks your attendance or reminds you about deadlines anymore — you have to manage everything yourself. Is there a responsibility you're a little nervous about handling on your own, or one you're actually looking forward to?",
+    advanced:
+      "Hi! Today's reading argued that becoming independent isn't really about gaining more freedom — it's about relocating responsibility from an external system into yourself, building self-discipline to quietly replace supervision. Do you think you already have habits that show real self-discipline, or is that something you expect to build once you're at university?",
   },
   {
     themeId: 'designing-my-future',

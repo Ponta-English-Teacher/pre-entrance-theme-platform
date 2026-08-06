@@ -469,151 +469,309 @@ export const MASTER_READINGS: ReadingLesson[] = [
   },
 
   // ── What Does It Mean to Be a University Student? — Foundation ─────────────
-  // Ported from docs/THEME_02_READING_WRITING.md (approved design).
+  // Rebuilt 2026-08-07 from the frozen manuscript (docs/THEME_02_MANUSCRIPT.md),
+  // replacing the old pre-redevelopment "Sora" narrative entirely, per the
+  // full-rebuild-not-revision policy. The Advanced entry below is a genuinely
+  // separate manuscript, not an extension of this one (READING_WRITING_
+  // ARCHITECTURE.md §2).
 
   {
     id: 'us-f-reading-01',
     themeId: 'university-student',
     level: 'foundation',
-    title: 'Becoming a University Student',
+    title: 'What Does It Mean to Be a University Student?',
     titleJapanese: '大学生になるということ',
     estimatedMinutes: 15,
-    welcome: "Today, you will read about a student's first days at university, and think about what it means to become more independent.",
-    mission: 'As you read, notice what changes for Sora as she becomes a university student. At the end, think about what you are looking forward to.',
+    experienceVersion: 2,
+    welcome: 'Today, you will think about what it really means to become a university student — not the practical details, but the shift toward real independence and responsibility.',
+    mission: 'As you read, notice what actually changes once nobody is checking on you anymore. Think about what kind of responsibility you feel ready for.',
 
     preReadingSurvey: {
-      question: 'How do you feel about starting university?',
+      question: 'Which statement is closest to your own feeling about starting university?',
       options: [
-        { id: 'excited', label: "I'm mostly excited." },
-        { id: 'nervous', label: "I'm mostly nervous." },
-        { id: 'both', label: 'Both, about equally.' },
+        { id: 'ready', label: 'I feel ready to manage things on my own.' },
+        { id: 'nervous', label: 'I feel a little nervous about having so much freedom.' },
+        { id: 'unsure', label: "I'm not sure yet." },
       ],
     },
 
+    // Foundation manuscript frozen 2026-08-07 (author: Hitoshi + ChatGPT), via
+    // Claude first draft, revised together. English fields are verbatim from
+    // the frozen manuscript — do not edit the wording here without revising
+    // the source manuscript first.
     paragraphs: [
       {
         id: 'us-f-reading-01-p1',
         english:
-          'From the outside, university can look a lot like high school — students, classrooms, homework. From the very first day, though, something feels different: students receive far fewer reminders, and much more depends on their own decisions. Becoming a university student means becoming more independent, with real responsibility for your own time.',
+          'What does it really mean to be a university student? At first, the answer seems simple: go to class, do your assignments, and pass your exams. But very quickly, new students notice something bigger — no one is watching over them anymore.',
         japanese:
-          '外から見ると、大学は高校とよく似ているように見えます——生徒、教室、宿題。しかし初日から、何かが違うと感じます。もらえる注意やリマインドはずっと少なくなり、多くのことが自分自身の判断にかかっています。大学生になるということは、より自立し、自分の時間に本当の責任を持つようになるということです。',
+          '大学生になるとは、本当はどういうことなのでしょうか？　最初は、答えは単純に思えます——授業に出て、課題をやり、試験に合格すること。しかし、すぐに新入生たちは、もっと大きな何かに気づきます——もう誰も自分を見張っていないということです。',
         plainEnglish:
-          'University looks similar to high school from the outside, but from day one it feels different — you get fewer reminders, and you have to decide more things yourself. Becoming a university student means becoming more independent and responsible for your own time.',
-        checkQuestion: 'According to this paragraph, what is one big difference between high school and university?',
+          'What does it really mean to be a university student? At first, it seems simple: go to class, do your work, and pass your tests. But new students quickly notice something bigger — nobody is watching them anymore.',
+        checkQuestion: 'According to this paragraph, what do new students notice very quickly?',
       },
       {
         id: 'us-f-reading-01-p2',
         english:
-          "On her first day, Sora wasn't sure what to expect, and she felt both excited and nervous walking across the busy campus. Her professors would not tell her exactly what to do. She had to decide many things for herself, one small choice at a time. Outside the library, a group of students were inviting people to join their photography club. She felt nervous, but she walked over anyway and introduced herself.",
+          'In high school, teachers checked attendance every morning and reminded students about deadlines. At university, no one calls your name or reminds you when a submission is due. You have to manage your own schedule, remember your own deadlines, and decide, every day, whether to actually show up.',
         japanese:
-          '初日、ソラは何が起こるか分からず、賑やかなキャンパスを歩きながら、わくわくすると同時に緊張していました。教授たちは、何をすべきか一つひとつ教えてはくれません。彼女は、小さな選択を一つずつ、自分自身で決めなければなりませんでした。図書館の外では、写真部の学生たちが新入生を勧誘していました。緊張しながらも、彼女は思い切ってそちらへ歩いて行き、自己紹介をしました。',
+          '高校では、先生が毎朝出席を確認し、締め切りについて生徒に知らせてくれました。大学では、誰もあなたの名前を呼びませんし、提出物の締め切りを教えてくれる人もいません。あなたは自分のスケジュールを自分で管理し、自分で締め切りを覚え、そして毎日、実際に授業に出るかどうかを自分で決めなければなりません。',
         plainEnglish:
-          "On her first day, Sora didn't know what to expect. She felt both excited and nervous walking across campus. No one told her exactly what to do — she had to decide things for herself. Even though she felt nervous, she walked over to a group inviting people to join a club, and introduced herself.",
-        checkQuestion: 'What did Sora do even though she felt nervous?',
+          'In high school, teachers checked attendance every morning and reminded students about deadlines. At university, no one calls your name or reminds you when something is due. You have to manage your own schedule, remember your own deadlines, and decide every day whether to actually go to class.',
+        checkQuestion: 'According to this paragraph, what did teachers do in high school that no one does at university?',
       },
       {
         id: 'us-f-reading-01-p3',
         english:
-          'It took a few weeks for Sora to adjust to this new kind of freedom. She had to manage her own schedule, and she made a few mistakes along the way. By the time her first real assignment for her major was due, she felt a little more sure about handling things on her own. She was slowly learning what kind of student she wanted to become — someone who could take responsibility for her own choices, even the ones that felt uncertain at first.',
+          'This freedom can feel like a real challenge at first. Missing one class does not feel serious in the moment — but a semester built on small choices like that adds up fast. Being independent does not mean nobody cares what you do. It means you are the one who has to care.',
         japanese:
-          'ソラがこの新しい自由に慣れるまでには、数週間かかりました。彼女は自分のスケジュールを自分で管理しなければならず、途中でいくつか失敗もしました。専攻の最初の本格的な課題の締め切りが来る頃には、彼女は物事を自分の力でこなせるという自信を少し持てるようになっていました。彼女は、自分の選択に責任を持てる人——たとえその選択が最初は不安なものであっても——どんな学生になりたいのかを、少しずつ学んでいきました。',
+          'この自由は、最初は本当に難しく感じられることがあります。一回授業を休んでも、その瞬間には大したことに感じないかもしれません——しかし、そうした小さな選択の積み重ねでできた一学期は、あっという間に大きな差になります。自立しているということは、誰もあなたのすることを気にかけていないという意味ではありません。それは、あなた自身が気にかけなければならない人になる、という意味です。',
         plainEnglish:
-          'It took Sora a few weeks to get used to this new freedom. She had to manage her own schedule and made some mistakes along the way. By the time her first big assignment was due, she felt a bit more confident handling things herself. She was learning to become someone who takes responsibility for her own choices, even uncertain ones.',
-        checkQuestion: 'According to this paragraph, what helped Sora feel more confident by the end?',
+          'This freedom can feel really difficult at first. Missing one class does not feel like a big deal at the time — but a whole semester made of small choices like that adds up quickly. Being independent does not mean nobody cares what you do. It means you are the person who has to care.',
+        checkQuestion: "According to this paragraph, what does 'being independent' actually mean?",
+      },
+      {
+        id: 'us-f-reading-01-p4',
+        english:
+          'This is what real responsibility looks like — not one big moment, but many small choices, every week, that nobody else will make for you. Being independent like this is not always easy, but it opens doors that never existed before: new choices, new challenges, and real chances to grow. Students who learn to manage this responsibility early do not just survive university — they develop into someone stronger, more capable, and ready for whatever comes next.',
+        japanese:
+          'これが、本当の責任というものの姿です——一つの大きな瞬間ではなく、誰も代わりにやってくれない、毎週の数えきれない小さな選択の積み重ねです。このように自立することは、いつも簡単というわけではありませんが、これまで存在しなかった扉を開いてくれます——新しい選択、新しい挑戦、そして本当に成長できるチャンスです。早いうちにこの責任をうまく管理できるようになった学生は、ただ大学生活を乗り切るだけではありません——彼らはより強く、より力のある、そしてこれから何が来ても対応できる人へと成長していきます。',
+        plainEnglish:
+          'This is what real responsibility looks like — not one big moment, but many small choices every week that nobody else will make for you. Becoming independent like this is not always easy, but it opens doors that did not exist before: new choices, new challenges, and real chances to grow. Students who learn to manage this responsibility early do not just get through university — they grow into someone stronger, more capable, and ready for whatever comes next.',
+        checkQuestion: 'According to this final paragraph, what happens to students who learn to manage this responsibility early?',
       },
     ],
 
     targetVocabIds: [
-      'us-f-01', // campus
-      'us-f-02', // major
       'us-f-03', // assignment
+      'us-f-01', // attendance
+      'us-f-02', // submission
+      'us-f-06', // manage
+      'us-f-08', // challenge
       'us-f-04', // independent
       'us-f-05', // responsibility
-      'us-f-06', // manage
-      'us-f-07', // decide
-      'us-f-08', // expect
-      'us-f-09', // adjust
-      'us-f-10', // excited
-      'us-f-11', // nervous
-      'us-f-12', // join
-      'us-f-13', // introduce
+      'us-f-09', // develop
     ],
 
-    noticeLanguage: [
-      {
-        type: 'target-vocab',
-        prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['campus', 'major', 'assignment', 'independent', 'responsibility', 'manage', 'decide', 'expect', 'adjust', 'excited', 'nervous', 'join', 'introduce'],
-      },
-      {
-        type: 'expressions',
-        prompt: 'Notice these useful expressions.',
-        items: ['real responsibility', 'one small choice at a time', 'handling things on her own'],
-      },
-      {
-        type: 'discourse-marker',
-        prompt: 'Notice the word "though" in paragraph 1 — a quieter way to introduce a contrast than "but" or "however."',
-        items: ['From the very first day, though, something feels different'],
-      },
-      {
-        type: 'grammar-pattern',
-        prompt: 'Notice this pattern in paragraph 3, connecting an event’s timing to a change in feeling.',
-        items: ['By the time her first real assignment for her major was due, she felt a little more sure about handling things on her own.'],
-      },
-    ],
+    // Deferred, matching Theme 1's own current state — see that entry's
+    // comment. Not part of this task's scope.
+    noticeLanguage: [],
 
     missionCheck: {
-      question: 'According to the passage, what is different about being a university student compared to high school?',
-      explainer: 'In simple words: what changes when you go from high school to university?',
-      explainerJa: 'この質問は、「高校から大学に変わると、何が違ってくるのか」を聞いています。',
-      hint: "Look at the phrases 'far fewer reminders' and 'responsibility for your own time' in paragraph 1.",
-      hintJa: '第1段落の「far fewer reminders」や「responsibility for your own time」という表現に注目してみましょう。',
+      question: 'According to the passage, what changes when a student goes from high school to university?',
+      explainer: 'In simple words — what is different about attendance and deadlines at university compared to high school?',
+      explainerJa: '簡単に言うと、大学では出席や締め切りについて、高校と比べて何が違うのか、という質問です。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'University students receive the same amount of guidance as they did in high school.', correct: false },
-        { id: 'b', label: 'University students receive far fewer reminders and have more responsibility for their own time.', correct: true },
-        { id: 'c', label: 'University students do not need to attend classes regularly.', correct: false },
+        { id: 'a', label: 'Teachers still check attendance and remind students about deadlines, just like in high school.', correct: false },
+        { id: 'b', label: 'No one checks attendance or reminds students about deadlines — students must manage this themselves.', correct: true },
+        { id: 'c', label: 'Attendance and deadlines no longer matter at university.', correct: false },
       ],
-      answerParagraphId: 'us-f-reading-01-p1',
-      evidencePrompt: 'Which idea from the reading shows the specific moment Sora made an independent decision, without anyone telling her what to do?',
+      answerParagraphId: 'us-f-reading-01-p2',
+      evidencePrompt: 'Which idea from the reading best shows that being independent does not mean nobody cares?',
       evidenceOptions: [
-        { id: 'e1', label: 'Becoming a university student means becoming more independent, with real responsibility for your own time.', paragraphId: 'us-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'She felt nervous, but she walked over anyway and introduced herself.', paragraphId: 'us-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'It took a few weeks for Sora to adjust to this new kind of freedom.', paragraphId: 'us-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'No one calls your name or reminds you when a submission is due.', paragraphId: 'us-f-reading-01-p2', correct: false },
+        { id: 'e2', label: 'Being independent does not mean nobody cares what you do. It means you are the one who has to care.', paragraphId: 'us-f-reading-01-p3', correct: true },
+        { id: 'e3', label: 'They begin to develop into someone stronger, more capable, and ready for whatever comes next.', paragraphId: 'us-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'her first real assignment for her major',
-        question: 'What does "major" mean here?',
+        quote: 'a semester built on small choices like that adds up fast',
+        question: 'What does "adds up" mean here?',
         options: [
-          { id: 'a', label: 'A very important or serious thing.', correct: false },
-          { id: 'b', label: 'The main subject a student studies at university.', correct: true },
-          { id: 'c', label: 'A type of military officer.', correct: false },
+          { id: 'a', label: 'Small things gradually combine to create a bigger result.', correct: true },
+          { id: 'b', label: 'To calculate a math problem correctly.', correct: false },
+          { id: 'c', label: 'To become suddenly very expensive.', correct: false },
         ],
       },
     },
 
+    // Foundation Writing — per docs/WRITING_PHILOSOPHY.md, a short personal
+    // "Answer a question" task (READING_WRITING_ARCHITECTURE.md §6), not a
+    // comprehension check on the passage.
     writing: {
-      prompt: 'When you start university, what is one thing you would like to do or learn? Why does it interest you?',
-      promptJapanese: '大学に入ったら、やってみたいことや学びたいことは何ですか。それはなぜ興味があるのですか。',
+      prompt: 'Think about starting university. What is one small responsibility you will need to manage on your own for the first time? How do you feel about it?',
+      promptJapanese: '大学生活が始まったら、あなたが自分自身で管理しなければならない小さな責任は何だと思いますか？それについてどう感じますか？',
       minSentences: 2,
-      sentenceStarters: ['When I start university, I want to...', "I feel a little nervous about..., but I'm excited to...", 'One thing I want to do is...'],
+      sentenceStarters: ['One responsibility I will have is', 'At first, I think I will feel', 'To manage this well, I will', 'I am looking forward to'],
       wordBank: [
-        { vocabId: 'us-f-04', examplePhrase: 'I want to become more independent.' },
+        { vocabId: 'us-f-01', examplePhrase: 'I know my attendance will matter more than I expect.' },
+        { vocabId: 'us-f-02', examplePhrase: 'I want to remember every submission deadline.' },
+        { vocabId: 'us-f-03', examplePhrase: 'I plan to start each assignment early.' },
+        { vocabId: 'us-f-04', examplePhrase: 'I am ready to become more independent.' },
         { vocabId: 'us-f-05', examplePhrase: "I'm ready for more responsibility." },
-        { vocabId: 'us-f-12', examplePhrase: 'I want to join a club where...' },
-        { vocabId: 'us-f-08', examplePhrase: 'I expect that...' },
-        { vocabId: 'us-f-10', examplePhrase: "I'm excited to..." },
-        { vocabId: 'us-f-02', examplePhrase: 'For my major, I want to study...' },
+        { vocabId: 'us-f-06', examplePhrase: 'I want to manage my own schedule well.' },
+        { vocabId: 'us-f-08', examplePhrase: 'This will be a real challenge for me.' },
+        { vocabId: 'us-f-09', examplePhrase: 'I hope to develop good habits early.' },
       ],
       usefulExpressions: [
-        { phrase: 'I want to...', japanese: '私は...したいです' },
-        { phrase: "I'm excited to...", japanese: '私は...することにわくわくしています' },
-        { phrase: 'I feel nervous about..., but...', japanese: '...について緊張していますが、...' },
-        { phrase: 'One thing I want to do is...', japanese: '私がやりたいことの一つは...です' },
-        { phrase: 'This interests me because...', japanese: 'これに興味があるのは...だからです' },
+        { phrase: 'I am ready to...', japanese: '私は...する準備ができています' },
+        { phrase: 'This will be a challenge, but...', japanese: 'これは挑戦になると思いますが、...' },
+        { phrase: 'One thing I want to manage well is...', japanese: 'うまく管理したいことの一つは...です' },
+        { phrase: 'I hope to develop...', japanese: '私は...を身につけたいです' },
+        { phrase: 'I am looking forward to...', japanese: '私は...を楽しみにしています' },
       ],
     },
 
-    takeaway: 'Becoming a university student means becoming more independent, with real responsibility for your own time.',
+    takeaway: 'Being independent like this is not always easy, but it opens doors that never existed before: new choices, new challenges, and real chances to grow.',
+  },
+
+  // ── What Does It Mean to Be a University Student? — Advanced ────────────────
+  // Built 2026-08-07 from the frozen manuscript (docs/THEME_02_MANUSCRIPT.md).
+  // Genuinely separate manuscript from Foundation, not an extension of it
+  // (READING_WRITING_ARCHITECTURE.md §2) — Foundation stays concrete/daily
+  // (attendance, one missed class); Advanced explores the psychological shift
+  // from externally-imposed structure to self-generated structure.
+
+  {
+    id: 'us-s-reading-01',
+    themeId: 'university-student',
+    level: 'advanced',
+    title: 'What Does Independence Actually Require?',
+    titleJapanese: '自立には、本当は何が必要なのか？',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a question that looks simple on the surface but isn\'t: what does it actually mean to become independent? By the end, you may find that independence has less to do with freedom, and more to do with a responsibility you have to build for yourself.',
+    mission: 'As you read, notice how the passage redefines self-discipline, initiative, and commitment. Think about which of these you already practice, and which you will need to build for the first time.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'freedom', label: 'Independence mainly means having more freedom and fewer people checking on you.' },
+        { id: 'structure', label: 'Independence mainly means building your own structure and discipline.' },
+        { id: 'both', label: 'Independence comes from both freedom and self-built structure together.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    // Advanced manuscript frozen 2026-08-07 (author: Hitoshi + ChatGPT), via
+    // Claude first draft, revised together over three rounds (positive
+    // Foundation ending, trimmed Advanced opening, "obedient" reworded,
+    // added closing line). English fields are verbatim from the frozen
+    // manuscript — do not edit the wording here without revising the source
+    // manuscript first.
+    paragraphs: [
+      {
+        id: 'us-s-reading-01-p1',
+        english:
+          'For most students, the first weeks of university feel like an unusual kind of freedom. Nobody checks whether you attended a lecture. Nobody reminds you, the night before, that an essay is due tomorrow. It is easy to mistake this for simplicity — as if independence just means fewer people telling you what to do. In reality, something far more demanding is happening underneath the surface: the structure that used to be provided for you now has to be built by you, and almost nobody warns incoming students how difficult that quietly becomes. A student can walk past an empty lecture hall and not realize until weeks later what that missed hour actually cost them.',
+        japanese:
+          'ほとんどの学生にとって、大学生活最初の数週間は、これまでにない自由のように感じられます。誰も、あなたが講義に出席したかどうかを確認しません。誰も、前の晩に「明日レポートの締め切りだよ」と教えてくれません。これを「単純なこと」——自立とは単に、あれこれ指示してくる人が少なくなることだ——と勘違いするのは簡単です。しかし実際には、その表面の下でずっと厳しいことが起きています。かつて誰かが用意してくれていた「構造」を、これからは自分自身で築かなければならないのです。そして、それがどれほど静かに難しくなっていくかを、新入生に前もって警告してくれる人は、ほとんどいません。ある学生は、誰もいない講義室の前を通り過ぎても、その時は何も感じないかもしれません。しかし、その一時間を逃したことが実際に何を意味していたのか、本当に気づくのは、何週間も後のことなのです。',
+        plainEnglish:
+          'For most students, the first weeks of university feel like a strange kind of freedom. Nobody checks whether you went to a lecture. Nobody reminds you the night before that an essay is due tomorrow. It is easy to think this is simple — as if independence just means fewer people telling you what to do. But really, something much harder is happening underneath. The structure that used to be given to you now has to be built by you, and almost nobody warns new students how hard that quietly becomes. A student can walk past an empty lecture hall and not understand until weeks later what that one missed hour actually cost them.',
+        checkQuestion: 'According to this paragraph, what mistake do students often make about what independence means?',
+      },
+      {
+        id: 'us-s-reading-01-p2',
+        english:
+          'In high school, most students never had to invent their own sense of priority, because priorities arrived ready-made. A teacher decided which assignment mattered this week; a fixed timetable decided which subject came next; a strict deadline, enforced by someone else, decided when the work actually had to be finished. Students who performed well under this system succeeded because they were skilled at following a structure someone else had already designed, not because they had learned to build one themselves. University quietly removes that designer without replacing them. Suddenly, a student has to decide, alone, which task deserves attention first, which deadline is genuinely urgent, and which can reasonably wait — decisions that used to belong to someone else, made by someone who is no longer in the room.',
+        japanese:
+          '高校では、ほとんどの生徒は、自分自身で「何を優先するか」を考え出す必要がありませんでした。優先順位はすでに出来上がった形で与えられていたからです。今週どの課題が重要かは先生が決め、次にどの科目をやるかは決まった時間割が決め、実際にいつまでに仕上げなければならないかは、誰か他の人が課す厳格な締め切りが決めていました。このシステムのもとでうまくやれていた生徒たちが成功していたのは、他の誰かがすでにデザインした構造にうまく従うことに長けていたからであり、自分自身でその構造を築くことを学んでいたからではありません。大学は、その「デザインしてくれる人」を、代わりを用意しないまま静かに取り去ってしまいます。突然、学生は一人で決めなければならなくなります——どの課題に真っ先に取り組むべきか、どの締め切りが本当に緊急なのか、そしてどれなら待っても大丈夫なのか。それはかつて他の誰かのものだった決定であり、その人はもうこの部屋にはいないのです。',
+        plainEnglish:
+          'In high school, most students never had to figure out their own sense of priority, because priorities were already decided for them. A teacher decided which assignment mattered this week; a fixed timetable decided which subject came next; a strict deadline, enforced by someone else, decided when the work really had to be finished. Students who did well under this system succeeded because they were good at following a structure someone else had already made, not because they had learned to build one themselves. University quietly takes that person away without replacing them. Suddenly, a student has to decide alone which task matters most, which deadline is really urgent, and which one can wait — decisions that used to belong to someone else, someone who is no longer there.',
+        checkQuestion: 'According to this paragraph, why did students who performed well in high school actually succeed?',
+      },
+      {
+        id: 'us-s-reading-01-p3',
+        english:
+          'This is where self-discipline becomes something different from what it used to mean. Real self-discipline is not simply obeying a rule that already exists; it is the ability to create a rule for yourself, and then keep it, even when no one would notice if you didn\'t. A student with genuine initiative does not wait to be told to start researching a topic, review lecture notes, or ask a professor a clarifying question — they act before being asked, because they have already decided the work matters. This kind of commitment is tested most severely not in the first exciting weeks of a semester, when everything still feels new, but months later, when the initial motivation has faded and the only thing left keeping a student working is the promise they quietly made to themselves, with no one else there to enforce it. Two students can sit in the same lecture, hear the same instructions, and walk away with completely different futures — not because one is more talented, but because one quietly decided to act on what they heard, and the other quietly decided to wait.',
+        japanese:
+          'ここで、自己規律（self-discipline）は、これまでとは違う意味を持つようになります。本当の自己規律とは、単にすでにあるルールに従うことではありません。自分自身のためのルールを作り出し、たとえ従わなくても誰も気づかないような場面でも、それを守り続ける力のことです。本当の自発性（initiative）を持つ学生は、テーマについて調べ始めるように、講義ノートを見直すように、あるいは教授に確認の質問をするようにと言われるのを待ちません——すでに自分でその作業が重要だと決めているからこそ、言われる前に行動するのです。この種の関わり続ける力（commitment）が最も厳しく試されるのは、すべてがまだ新しく感じられる学期の最初のわくわくする数週間ではなく、何か月も後——最初のやる気が薄れ、学生を働かせ続けている唯一のものが、自分自身に静かに立てた約束だけになり、それを強制する人が他に誰もいないときです。二人の学生が同じ講義に座り、同じ説明を聞いても、まったく異なる未来を歩んでいくことがあります——それは一方がより才能があるからではなく、一方は聞いたことについて静かに行動することを選び、もう一方は静かに待つことを選んだからなのです。',
+        plainEnglish:
+          'This is where self-discipline starts to mean something different. Real self-discipline is not just obeying a rule that already exists; it is the ability to make a rule for yourself, and then keep it, even when no one would notice if you didn\'t. A student with real initiative does not wait to be told to start researching a topic, look over lecture notes, or ask a professor a question — they act before being asked, because they have already decided the work matters. This kind of commitment is tested most, not in the exciting first weeks of a semester when everything feels new, but months later, when the first burst of motivation has faded and the only thing keeping a student working is a promise they quietly made to themselves, with no one else there to enforce it. Two students can sit in the same lecture, hear the same instructions, and end up with completely different futures — not because one is more talented, but because one quietly chose to act on what they heard, and the other quietly chose to wait.',
+        checkQuestion: "According to this paragraph, when is a student's commitment actually tested the most?",
+      },
+      {
+        id: 'us-s-reading-01-p4',
+        english:
+          'Seen this way, becoming a university student is less about gaining freedom and more about relocating responsibility — from an external system into the individual. A student has genuinely adapted to university life not when supervision disappears, but when it no longer needs to exist, because self-discipline has already taken its place. Independence, then, is not the absence of structure; it is the quiet, ongoing work of building that structure yourself, one priority and one deadline at a time, long after anyone else has stopped checking. Independence is not the moment no one is watching anymore. It is the moment you finally are.',
+        japanese:
+          'このように見ると、大学生になるということは、自由を手に入れることよりも、むしろ責任を——外部のシステムから、個人自身の中へと——移し替えることに近いのです。ある学生が本当に大学生活に適応した（adapt）と言えるのは、監督がなくなったときではなく、自己規律（self-discipline）がすでにその代わりを果たしているために、監督そのものがもはや必要なくなったときです。つまり自立（independence）とは、構造がないことではありません。それは、他の誰もが確認するのをやめてしまってからも、一つひとつの優先事項（priority）と締め切り（deadline）に向き合いながら、その構造を自分自身で築き続ける、静かで終わりのない仕事なのです。自立とは、もう誰も見ていない瞬間のことではありません。それは、あなたがついに、自分自身を見ている瞬間のことなのです。',
+        plainEnglish:
+          'Seen this way, becoming a university student is less about gaining freedom and more about moving responsibility — from an outside system into the person themselves. A student has really adapted to university life not when supervision disappears, but when it no longer needs to exist, because self-discipline has already taken its place. Independence, then, is not the absence of structure; it is the quiet, ongoing work of building that structure yourself, one priority and one deadline at a time, long after anyone else has stopped checking. Independence is not the moment no one is watching anymore. It is the moment you finally are.',
+        checkQuestion: "According to this final paragraph, when has a student truly 'adapted' to university life?",
+      },
+    ],
+
+    targetVocabIds: [
+      'us-s-01', // independence
+      'us-s-06', // priority
+      'us-s-07', // deadline
+      'us-s-02', // self-discipline
+      'us-s-03', // initiative
+      'us-s-04', // commitment
+      'us-f-05', // responsibility (reinforced from Foundation)
+      'us-s-05', // adapt
+    ],
+
+    noticeLanguage: [],
+
+    // Mission Check's three fixed slots, mirroring Theme 1 Advanced's
+    // pattern: the main question requires synthesis across paragraphs (never
+    // one quotable line), the evidence task draws distractors from more than
+    // one side of the passage, and vocabulary-in-context targets one official
+    // target word whose meaning could plausibly be misread out of context.
+    missionCheck: {
+      question: 'Based on the passage as a whole, which statement would the author most likely agree with?',
+      explainer: 'In simple words — after reading the whole passage, what does the author actually think "becoming independent" really means?',
+      explainerJa: '簡単に言うと、文章全体を読んだ後、筆者は「自立する」ということが本当は何を意味すると考えているか、という質問です。',
+      hint: 'Look especially at paragraph 4, but think about how paragraphs 2 and 3 work together too.',
+      hintJa: '特に第4段落に注目してください。ただし、第2段落と第3段落がどのように関係し合っているかも考えてみましょう。',
+      options: [
+        { id: 'a', label: 'University students have more freedom than high school students because fewer people check on them.', correct: false },
+        { id: 'b', label: 'Independence means relocating responsibility from an external system into the individual, not simply having less supervision.', correct: true },
+        { id: 'c', label: 'Self-discipline matters only in the first few weeks of a new semester.', correct: false },
+      ],
+      answerParagraphId: 'us-s-reading-01-p4',
+      evidencePrompt: 'Which quotation from the passage best shows evidence that self-discipline is different from simply following rules?',
+      evidenceOptions: [
+        { id: 'e1', label: 'Nobody checks whether you attended a lecture. Nobody reminds you, the night before, that an essay is due tomorrow.', paragraphId: 'us-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Real self-discipline is not simply obeying a rule that already exists; it is the ability to create a rule for yourself, and then keep it.', paragraphId: 'us-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'Independence, then, is not the absence of structure; it is the quiet, ongoing work of building that structure yourself.', paragraphId: 'us-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'This kind of commitment is tested most severely not in the first exciting weeks of a semester, but months later.',
+        question: 'What does "commitment" mean in this sentence?',
+        options: [
+          { id: 'a', label: 'Continuing to do something over time, even after the initial motivation has faded.', correct: true },
+          { id: 'b', label: 'A formal written agreement between two people.', correct: false },
+          { id: 'c', label: 'A single decision made at one specific moment.', correct: false },
+        ],
+      },
+    },
+
+    // Advanced Writing — per docs/WRITING_PHILOSOPHY.md, "Explain your
+    // opinion" (READING_WRITING_ARCHITECTURE.md §6, 80–120 words); the
+    // reading's structure-you-build-yourself framework is used only as a
+    // lens for the student to examine their own habits, never as something
+    // to evaluate or summarize.
+    writing: {
+      prompt:
+        'Think about the shift this passage describes — from having structure given to you, to building it yourself. Which of your own habits already show self-discipline or initiative? Which do you think you will need to develop once nobody is checking on you? Explain your ideas with reasons or examples. Aim for about 80–120 words.',
+      promptJapanese:
+        'この文章が描いている変化——誰かに与えられていた構造から、自分自身でそれを築くことへの変化——について考えてみましょう。あなたの習慣の中で、すでに自己規律や自発性を示しているものはどれですか？誰にも確認されなくなったときのために、これから身につける必要があると思うものはどれですか？理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
+      minSentences: 5,
+      sentenceStarters: ['One habit that already shows self-discipline is', 'I have taken initiative before by', 'One priority I will need to manage is', 'This is something I will need to develop because', 'I think real independence means'],
+      wordBank: [
+        { vocabId: 'us-s-01', examplePhrase: 'To me, real independence means building my own structure, not just having freedom from rules.' },
+        { vocabId: 'us-s-02', examplePhrase: 'I already have some self-discipline when it comes to studying for exams.' },
+        { vocabId: 'us-s-03', examplePhrase: 'I want to take more initiative instead of waiting to be told what to do.' },
+        { vocabId: 'us-s-04', examplePhrase: 'My commitment is usually strongest right at the start, and I want to change that.' },
+        { vocabId: 'us-s-05', examplePhrase: 'I think I will adapt quickly once I get used to managing my own time.' },
+        { vocabId: 'us-s-06', examplePhrase: 'Learning to set my own priorities will probably be the hardest part.' },
+        { vocabId: 'us-s-07', examplePhrase: 'I want to treat every deadline as something I chose, not something forced on me.' },
+        { vocabId: 'us-f-05', examplePhrase: 'In the end, I think independence and responsibility are really the same thing.' },
+      ],
+      usefulExpressions: [
+        { phrase: 'To me, real independence means', japanese: '私にとって、本当の自立とは' },
+        { phrase: 'I already show self-discipline when', japanese: '私はすでに...のときに自己規律を示しています' },
+        { phrase: 'One thing I will need to develop is', japanese: '私が身につける必要があることの一つは' },
+        { phrase: 'Unlike in high school,', japanese: '高校とは違って' },
+        { phrase: 'In the long run,', japanese: '長い目で見れば' },
+      ],
+    },
+
+    takeaway: 'Independence is not the moment no one is watching anymore. It is the moment you finally are.',
   },
 
   // ── Designing My Future — Foundation ────────────────────────────────────────

@@ -1,7 +1,7 @@
 # Theme 2 Reading & Writing Plan
 ## What Does It Mean to Be a University Student? — Foundation
 
-Status: **Approved — design complete, not yet implemented in code.**
+Status: **Superseded (2026-08-07).** This pre-redevelopment plan (old three-level assumptions, "Sora" narrative) is reference material only, per the full-rebuild-not-revision policy. The canonical Theme 2 manuscript is now `docs/THEME_02_MANUSCRIPT.md`.
 
 ---
 

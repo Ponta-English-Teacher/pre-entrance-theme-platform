@@ -1,7 +1,7 @@
 # Theme 2 Vocabulary Plan
 ## What Does It Mean to Be a University Student?
 
-Status: **Foundation, Standard, and Challenge finalized — Theme 2 vocabulary is structurally complete.** "Structurally complete" means the word lists themselves are decided; full entries (part of speech, CEFR tag, Japanese meaning, example sentence, etc. per `docs/VOCABULARY_ARCHITECTURE.md` §7) are not yet written, so `docs/CONTENT_PROGRESS.md` still shows 🔶 In Progress rather than ✅ Complete for all three levels.
+Status: **Superseded (2026-08-07).** This pre-redevelopment plan (old three-level word lists) is reference material only, per the full-rebuild-not-revision policy. The canonical Theme 2 vocabulary (Foundation + Advanced, two-level architecture) is now `docs/THEME_02_MANUSCRIPT.md`, implemented in `src/data/vocabulary/masterVocabulary.ts`.
 
 Foundation lexical sets: University Life · Academic Life · Independence & Responsibility · Expectations & Adjustment · Social Life.
 

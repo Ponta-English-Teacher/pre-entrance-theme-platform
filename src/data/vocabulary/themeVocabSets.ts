@@ -14,8 +14,12 @@ export const THEME_VOCAB_SETS: Record<string, ThemeVocabSet> = {
   },
   'university-student': {
     themeId: 'university-student',
-    foundation: ['us-f-01', 'us-f-02', 'us-f-03', 'us-f-04', 'us-f-05', 'us-f-06', 'us-f-07', 'us-f-08', 'us-f-09', 'us-f-10', 'us-f-11', 'us-f-12', 'us-f-13'],
-    advanced:   [],
+    // us-f-07 ("decide") deliberately excluded — not part of Theme 2's new
+    // target set, kept only for Theme 3's cross-reference. "responsibility"
+    // (us-f-05) is the one Foundation word this theme's Advanced level
+    // reinforces; it is not duplicated into the advanced array below.
+    foundation: ['us-f-01', 'us-f-02', 'us-f-03', 'us-f-04', 'us-f-05', 'us-f-06', 'us-f-08', 'us-f-09'],
+    advanced:   ['us-s-01', 'us-s-02', 'us-s-03', 'us-s-04', 'us-s-05', 'us-s-06', 'us-s-07'],
   },
   'designing-my-future': {
     themeId: 'designing-my-future',
