@@ -56,12 +56,11 @@ exists or is planned.
   ten-theme curriculum meant to stay coherent as a whole, not ten
   independent efforts.
 
-**Current implementation gap** (see §16): the codebase's own `Level` type
-and level-selection UI still list three values (`foundation`, `standard`,
-`challenge`). The two-level architecture above is the approved target: the
-code has not yet been migrated to match it. Treat every other section of
-this document as describing the two-level target, not the current type
-definition.
+**Implemented** (see §16): the codebase's `Level` type, level-selection UI,
+routing, and progress tracking now match the two-level architecture above
+(`foundation` | `advanced`) — migrated 2026-08-04, including a migration for
+any `standard`/`challenge` values already saved in a returning student's
+browser storage and legacy URLs containing those level names.
 
 ---
 
@@ -202,8 +201,8 @@ an activity is structured, styled, or interacted with should vary by theme.
 
 | Varies by | Fields |
 |---|---|
-| **Theme** | Educational objective, essential questions, core educational message, reading concept, Foundation vocabulary, Advanced vocabulary, Foundation passage, Advanced extension paragraph(s), Notice Language selections, Vocabulary Check questions, Mission Check tasks, Writing topics (plural — see §9), Writing Toolbox content (starters/word bank/expressions), AI Talk opener(s) and topics |
-| **Foundation vs. Advanced** | Vocabulary is cumulative (Advanced = Foundation + additional words, never a reset). The passage is cumulative (Advanced = Foundation passage + an extension paragraph, not a parallel alternative story). Comprehension task *type*, not just difficulty, shifts — see §7. |
+| **Theme** | Educational objective, essential questions, core educational message, reading concept, Foundation vocabulary, Advanced vocabulary, Foundation passage, Advanced passage, Notice Language selections, Vocabulary Check questions, Mission Check tasks, Writing topics (plural — see §9), Writing Toolbox content (starters/word bank/expressions), AI Talk opener(s) and topics |
+| **Foundation vs. Advanced** | Vocabulary is cumulative (Advanced = Foundation + additional words, never a reset). **The passage is not cumulative**: each level has its own complete, standalone manuscript. Advanced explores the same broad theme through its own essential question — it does not append an extension paragraph to Foundation's passage, and is not a parallel alternative story either; it is a separate piece of writing that happens to share a theme. Comprehension task *type*, not just difficulty, shifts — see §7. |
 | **Original vs. Simplified** | Wording and sentence complexity only. Every idea, every paragraph, and every target word present in Original must also be present in Simplified. |
 
 ---
@@ -544,7 +543,7 @@ of the following, in this order of priority:
    to change to make this take effect.
 5. **Before reusing the shared Reading/Writing/Toolbox components as-is**,
    check them for anything hardcoded to a specific theme (copy, assumptions
-   about exactly one Advanced extension paragraph, etc.) — treat this as a
+   about passage length or paragraph count, etc.) — treat this as a
    checklist item, not an assumption, until it has been formally audited
    (see §16).
 6. **Confirm activity visibility updates automatically** — the Activity
@@ -582,11 +581,14 @@ application.
   Reading and Writing pages.
 - The content-gating mechanism that lets a theme/level opt into the new
   experience without affecting any other theme.
+- The two-level architecture (§1) in the codebase itself — the `Level`
+  type, level-selection UI, routing, and progress tracking are Foundation/
+  Advanced only, with a migration for any `standard`/`challenge` values
+  already saved in a returning student's browser storage or present in
+  legacy URLs.
 
 ### Approved, not yet implemented
 
-- The two-level architecture (§1) in the codebase itself — the `Level`
-  type and level-selection UI still list three values.
 - Vocabulary Check as a Reading section.
 - Notice Language's narrowed scope and active-response redesign.
 - Mission Check's full bilingual question/option text (currently

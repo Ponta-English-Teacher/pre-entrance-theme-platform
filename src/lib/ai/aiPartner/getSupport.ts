@@ -24,18 +24,22 @@ export async function getConversationSupport(
       return { ok: true, explanation: response.output_text.trim() };
     }
 
-    const { systemInstructions, input } = buildExpressPrompt(request);
+    const { systemInstructions, input, schema } = buildExpressPrompt(request);
     const response = await client.responses.create({
       model: OPENAI_MODEL,
       instructions: systemInstructions,
       input,
+      text: {
+        format: {
+          type: 'json_schema',
+          name: 'express_coach_reply',
+          schema,
+          strict: true,
+        },
+      },
     });
-    const suggestions = response.output_text
-      .trim()
-      .split('\n')
-      .map(line => line.trim().replace(/^["'\-•\d.]+\s*/, '').replace(/["']$/, ''))
-      .filter(Boolean);
-    return { ok: true, suggestions };
+    const parsed = JSON.parse(response.output_text) as { reply: string; suggestions: string[] };
+    return { ok: true, reply: parsed.reply, suggestions: parsed.suggestions };
   } catch (error) {
     console.error('getConversationSupport failed', error);
     return {

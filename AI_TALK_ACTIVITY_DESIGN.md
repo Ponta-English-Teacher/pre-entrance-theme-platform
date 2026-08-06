@@ -30,15 +30,17 @@ Student-controlled. "Finish Conversation" is available at all times. As the stud
 
 ## 2. Level differences
 
-| | Foundation | Standard | Challenge |
-|---|---|---|---|
-| AI turn length | Shorter, simplest vocabulary/grammar | Slightly longer, more natural idiom | Longer where it earns its length; richer vocabulary |
-| Question style | Concrete, close to the reading/personal experience | A bit more open-ended/opinion-based | Invites reasoning ("why do you think that"), may gently offer an alternative view to respond to |
-| Support visibility | Vocabulary/help panel open by default | Available, collapsed by default | Available on request only |
-| Japanese support | Freely offered, one tap away | Available but not pushed | Minimal, on request only |
-| Target vocabulary | Foundation set only | Foundation + Standard (cumulative) | All three tiers |
-| **Completion target** | **6 student turns** | **8 student turns** | **10 student turns** |
-| **Hard maximum** | **15 student turns (all levels)** | | |
+Two levels, not three — see `docs/THEME_EXPERIENCE_TEMPLATE.md` §1. Advanced carries forward the tuning originally designed for the old "Standard" tier (turn target, question style, support visibility); the deleted "Challenge" tier's more demanding tuning was not folded in, matching the two-level migration precedent already applied elsewhere (e.g. `docs/READING_WRITING_ARCHITECTURE.md` §6).
+
+| | Foundation | Advanced |
+|---|---|---|
+| AI turn length | Shorter, simplest vocabulary/grammar | Slightly longer, more natural idiom |
+| Question style | Concrete, close to the reading/personal experience | A bit more open-ended and opinion-based; may invite the student to consider a different viewpoint |
+| Support visibility | Vocabulary/help panel open by default | Available, collapsed by default |
+| Japanese support | Freely offered, one tap away | Available but not pushed |
+| Target vocabulary | Foundation set only | Foundation + Advanced (cumulative) |
+| **Completion target** | **6 student turns** | **8 student turns** |
+| **Hard maximum** | **15 student turns (both levels)** | |
 
 ---
 
@@ -83,7 +85,7 @@ This is a genuinely different problem from Reading's passage audio (see `READING
 - **Not permanently stored**: nothing is written to disk or a database. The audio exists only as an HTTP response body and then in the browser's memory for that session — satisfying "do not store AI Partner audio permanently in V1" by simply never writing it anywhere server-side, rather than writing-then-deleting.
 - **Client-side session cache**: once a reply's audio has been fetched, the resulting blob is kept in the component's own memory (keyed by turn) for the rest of that session. Pressing Play again on the same reply replays the cached blob — no second call to the endpoint. This alone satisfies "avoid regenerating the same reply repeatedly," with no server-side cache/store needed at all.
 
-**Cost control**: with the already-approved completion targets (Foundation 6 / Standard 8 / Challenge 10, hard max 15), a session has at most 15 partner replies — so at most 15 possible speech generations even in the worst case of a student playing every single one, which realistically won't happen since Play is opt-in per message, not automatic. As a simple additional safeguard, a per-session speech-generation counter (distinct from the conversation-turn cap) disables further *new* generations past 15 — it never actually constrains a student who wants to hear every reply once, it only guards against a pathological/bugged case of repeated new generation requests.
+**Cost control**: with the already-approved completion targets (Foundation 6 / Advanced 8, hard max 15), a session has at most 15 partner replies — so at most 15 possible speech generations even in the worst case of a student playing every single one, which realistically won't happen since Play is opt-in per message, not automatic. As a simple additional safeguard, a per-session speech-generation counter (distinct from the conversation-turn cap) disables further *new* generations past 15 — it never actually constrains a student who wants to hear every reply once, it only guards against a pathological/bugged case of repeated new generation requests.
 
 **Fallback on speech failure**: **decided: text-only, not browser TTS.** The entire premise of building real generated speech here is that "the naturalness of the partner's voice is part of the learning experience"; falling back to a robotic browser voice on failure would quietly contradict that premise rather than honor it. On failure, the Play button simply resets (a small, non-alarming "audio unavailable" state) and the text conversation continues completely unaffected.
 
@@ -101,7 +103,7 @@ Every request includes the theme's name/description, the current level's target 
 
 ## 6. Completion and progress
 
-**Completion rule**: a student turn count target per level — **Foundation 6, Standard 8, Challenge 10** — with a **hard maximum of 15 student turns at every level**. "Finish Conversation" is always available; if a student finishes before reaching their level's target, the session still ends gracefully, but the activity is only marked complete (`markActivityComplete`) once the target is met. Reaching 15 turns ends the conversation automatically (input disabled, a warm closing message, summary generated) — a hard technical stop, not just a suggestion.
+**Completion rule**: a student turn count target per level — **Foundation 6, Advanced 8** — with a **hard maximum of 15 student turns at both levels**. "Finish Conversation" is always available; if a student finishes before reaching their level's target, the session still ends gracefully, but the activity is only marked complete (`markActivityComplete`) once the target is met. Reaching 15 turns ends the conversation automatically (input disabled, a warm closing message, summary generated) — a hard technical stop, not just a suggestion.
 
 **What is saved — a lightweight session summary only, not the full transcript:**
 - theme
@@ -158,7 +160,7 @@ No chat bubbles, no avatars, no messaging-app look. The same textbook visual lan
 - Recasting as the default correction mechanism; explicit correction strictly opt-in.
 - Contextual help reusing the existing Reading pattern (vocabulary, Japanese explanation, response-idea hints) — mocked, not a second real-AI cost center (see architecture notes).
 - On-request partner speech via a dedicated `/api/ai-partner/speech` endpoint (§4a) — not autoplay, not stored permanently, capped per session.
-- Completion targets: Foundation 6 / Standard 8 / Challenge 10 student turns; hard cap 15 at every level.
+- Completion targets: Foundation 6 / Advanced 8 student turns; hard cap 15 at both levels.
 - Lightweight session summary only (theme, level, date, turn count, topics, useful language, optional reflection) — no full transcript persistence.
 - Completion flag via the existing `markActivityComplete` mechanism; portfolio shows a completion marker only.
 - Firm safety guardrails in the system prompt.
@@ -193,7 +195,7 @@ No chat bubbles, no avatars, no messaging-app look. The same textbook visual lan
 1. **Persona** — unnamed, no avatar, no fixed personality. Decided.
 2. **Transcript storage** — lightweight summary only, not the full transcript. Decided.
 3. **Grounding in Writing Tutor submissions** — not automatic in V1; a future opt-in choice. Decided.
-4. **Minimum-turns threshold** — Foundation 6 / Standard 8 / Challenge 10, hard cap 15. Decided.
+4. **Minimum-turns threshold** — Foundation 6 / Advanced 8, hard cap 15. Decided.
 5. **Teacher visibility** — not built in V1; data shape kept simple enough to add later. Decided.
 6. **Cost/rate posture** — real AI backend, 1–3 sentence replies, one exchange at a time, 15-turn hard cap enforced. Decided.
 7. **Partner speech** — on-request only (no autoplay), direct (non-streamed) audio response, client-side session-only caching, no permanent storage, per-session generation cap, text-only fallback on failure (not browser TTS). Decided.

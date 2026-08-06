@@ -102,7 +102,7 @@ export default function AITalkExplanationPanel({
           </div>
         )}
         {panel.error && !panel.loading && (
-          <p className="text-base text-rose-600 leading-relaxed">{panel.error}</p>
+          <p className="text-base text-rose-600 leading-relaxed whitespace-pre-line">{panel.error}</p>
         )}
         {panel.text && !panel.loading && (
           <p className="text-lg leading-relaxed text-slate-800">{panel.text}</p>

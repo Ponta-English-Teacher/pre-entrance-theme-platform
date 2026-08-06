@@ -37,8 +37,8 @@ export interface EvidenceOption {
 }
 
 /** Task 3 — Vocabulary in Context, per docs/READING_WRITING_ARCHITECTURE.md §4.
- *  A single fixed-shape task for Foundation; Standard/Challenge's richer task-type mix
- *  (inference, critical thinking) is out of scope until those levels are built. */
+ *  A single fixed-shape task for Foundation; Advanced's richer task-type mix
+ *  (inference, critical thinking) is out of scope until that level is built. */
 export interface VocabInContextTask {
   quote: string;
   question: string;
@@ -125,6 +125,14 @@ export interface ReadingLesson {
   /** 2-4 activities selected per docs/READING_WRITING_ARCHITECTURE.md §5 — a flexible toolbox, not a fixed checklist. */
   noticeLanguage: NoticeLanguageActivity[];
   missionCheck: MissionCheck;
+  /** The `writing` field is always required so this object type-checks even
+   *  before Writing content exists — but it must never be shown to students
+   *  as if it were real. Set `writingReady: false` while `writing` still
+   *  holds placeholder content; WritingActivity.tsx then shows the same
+   *  graceful "coming soon" state it already shows when no lesson exists at
+   *  all, instead of rendering the placeholder prompt. Absent/undefined
+   *  means ready — every existing lesson's writing content is real. */
+  writingReady?: boolean;
   writing: WritingTask;
   takeaway: string;
 }
@@ -270,6 +278,194 @@ export const MASTER_READINGS: ReadingLesson[] = [
     },
 
     takeaway: 'Instead of asking, "What kind of person am I?", it may be better to ask, "What kind of person am I becoming?"',
+  },
+
+  // ── Knowing Myself — Advanced ─────────────────────────────────────────────
+  // Built 2026-08-05 from the frozen manuscript, docs/THEME_01_ADVANCED_READING_PASSAGE.md
+  // ("Nature or Nurture?"). Paragraph `english` fields are verbatim copies of that
+  // manuscript — do not edit the wording here without updating the source doc first.
+  // Writing task approved and added the same day.
+
+  {
+    id: 'km-s-reading-01',
+    themeId: 'knowing-myself',
+    level: 'advanced',
+    title: 'Nature or Nurture: Where Does Personality Really Come From?',
+    titleJapanese: '生まれか、育ちか——性格は本当はどこから来るのか？',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore one of psychology\'s oldest debates: is personality mainly something we are born with, or something shaped by our experiences? By the end, you may find the real answer is more interesting than simply choosing a side.',
+    mission: 'As you read, notice the evidence given for both nature and nurture, and pay attention to how the passage moves from two competing sides toward a more complex conclusion. Think about which parts of your own personality feel inherited, and which feel learned.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'nature', label: 'Personality mainly comes from genetics — the qualities we are born with.' },
+        { id: 'nurture', label: 'Personality mainly comes from environment and experience.' },
+        { id: 'both', label: 'Personality comes from an interaction between both.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    // Verbatim from docs/THEME_01_ADVANCED_READING_PASSAGE.md — approved final
+    // manuscript, frozen 2026-08-05. No generated audio exists yet for this
+    // passage — audioUrl intentionally omitted, matching Foundation's pattern.
+    paragraphs: [
+      {
+        id: 'km-s-reading-01-p1',
+        english:
+          'Some people are outgoing and confident, while others are quiet and cautious. Some enjoy taking risks, while others prefer stability and routine, and still others fall somewhere between the two. These differences appear early in life, often before a child even starts school, and tend to stay remarkably stable as we grow older. For many years, psychologists have tried to answer a simple but difficult question: are such differences mainly the result of nature, the qualities we are born with, or nurture, the experiences that shape us afterward? Both ideas are supported by real evidence, and neither fully explains personality on its own. Increasingly, however, modern psychology suggests that personality develops not from one source or the other, but from the ongoing interaction between them.',
+        japanese:
+          '外向的で自信に満ちた人もいれば、物静かで慎重な人もいます。リスクを取ることを好む人もいれば、安定した決まった生活を好む人もいて、そのどちらでもない人もいます。こうした違いは人生のごく早い時期——多くの場合、子供が学校に通い始める前——にすでに現れ、成長してからもかなり安定して変わらない傾向があります。長年にわたり、心理学者たちはある単純ながらも難しい問いに答えようとしてきました。こうした違いは、主に生まれつきの性質（nature）によるものなのか、それとも、その後の経験によって形作られるもの（nurture）なのか、という問いです。どちらの考え方にも実際の証拠があり、どちらか一方だけでは性格を完全に説明することはできません。しかし、現代心理学ではますます、性格はどちらか一方からではなく、両者の絶え間ない相互作用（interaction）から生まれると考えられるようになっています。',
+        plainEnglish:
+          'Some people are friendly and confident. Other people are quiet and careful. Some people like taking risks. Other people like a safe, steady life. These differences show up very early, often before a child starts school. They usually stay the same as people grow older. For a long time, psychologists have asked a simple but hard question: do these differences come mainly from nature — the qualities we are born with — or from nurture — the things that happen to us later? Both ideas have real evidence behind them. Neither one explains personality completely by itself. More and more, modern psychology says that personality comes from both nature and nurture working together, not from just one of them.',
+        checkQuestion: 'According to this paragraph, what question have psychologists tried to answer for many years?',
+      },
+      {
+        id: 'km-s-reading-01-p2',
+        english:
+          'Some researchers argue that inherited characteristics have a far greater influence on personality than many people once believed. Even very young infants show clear differences in temperament — some are naturally calm, others easily startled — before most of their later experiences have had a chance to shape them. One of the strongest pieces of evidence for this view comes from studies of identical twins. Even when such twins are raised apart, in different families and sometimes different countries, they often grow up to develop surprisingly similar personalities, interests, and habits, discovering when they finally meet as adults that they share far more than they ever expected. Two people who never shared a childhood can still laugh in the same way or worry about the same small things. These findings suggest that the qualities we inherit from our parents play a real and lasting role in shaping who we become.',
+        japanese:
+          '一部の研究者は、生まれつき受け継いだ特徴が、かつて多くの人が考えていたよりもはるかに大きく性格に影響していると主張します。ごく幼い乳児でさえ、気質（temperament）にはっきりとした違いが見られます——生まれつき落ち着いている子もいれば、すぐに驚いてしまう子もいます——それは、その後の経験がその子に影響を与える機会をほとんど持つ前のことです。この見方を支える最も強力な証拠のひとつは、一卵性双生児を対象にした研究から得られています。そうした双子が、別々の家庭で、時には異なる国で育てられた場合でも、大人になって成長すると、驚くほど似た性格や興味、習慣を持つようになることが多く、ついに再会したときには、予想していたよりもずっと多くのものを分かち合っていたことに気づくのです。子供時代を一度も共に過ごしたことのない二人が、同じように笑ったり、同じような小さなことを心配したりすることもあります。こうした発見は、私たちが親から受け継ぐ（inherit）性質が、私たちがどんな人間になるかを形作るうえで、本当に、そして長く続く役割を果たしていることを示唆しています。',
+        plainEnglish:
+          'Some researchers say that the characteristics we inherit have a much bigger effect on personality than people once thought. Even very young babies show clear differences in temperament. Some babies are naturally calm. Other babies are easily surprised. This happens before their environment has had much time to affect them. One of the strongest pieces of evidence for this idea comes from studies of identical twins. Even when these twins grow up apart, in different families and sometimes different countries, they often develop very similar personalities, interests, and habits. When they finally meet as adults, they discover they share much more than they expected. Two people who never grew up together can still laugh the same way or worry about the same small things. This suggests that the qualities we inherit from our parents play a real, lasting part in who we become.',
+        checkQuestion: 'According to this paragraph, what does the study of identical twins raised apart suggest about personality?',
+      },
+      {
+        id: 'km-s-reading-01-p3',
+        english:
+          'Other researchers, however, emphasize the importance of nurture. They argue that personality continues to develop throughout life through family relationships, education, friendships, work, and countless smaller experiences that accumulate over time. Although each person is born with certain tendencies, the environment can strengthen, weaken, or even change the way those tendencies are expressed. A child who is naturally shy, for example, may become noticeably more confident after years of encouragement from teachers, friends, and family who gently invite her to participate rather than allowing her to withdraw. This kind of change is not limited to childhood: an employee who once avoided speaking up in meetings may, after years of steady practice and support from colleagues, gradually build the resilience to lead a difficult project herself, driven by a motivation that grew stronger with each small success. From this perspective, personality is not fixed at birth, and neither are our aspirations. Both continue to grow, sometimes quietly and sometimes dramatically, as we learn, adapt, and respond to the world around us.',
+        japanese:
+          'しかし、他の研究者たちは、育ち（nurture）の重要性を強調します。彼らは、性格は家族関係、教育、友人関係、仕事、そしてその他数えきれないほどの小さな経験が積み重なることを通じて、人生を通してずっと発達し続けると主張します。人はそれぞれ、生まれつきある種の傾向を持って生まれますが、環境はその傾向をより強めたり、弱めたり、あるいは表れ方そのものを変えたりすることができます。例えば、生まれつき内気な子供は、参加するようにと優しく誘い続けてくれる先生や友人、家族からの励ましを何年も受けることで、目に見えて自信を持てるようになることがあります。こうした変化は子供時代だけに限られたものではありません。かつて会議で発言することを避けていた社員が、何年もの地道な練習と同僚からの支えを経て、少しずつ、難しいプロジェクトを自ら率いるだけの回復力（resilience）を築き、小さな成功を重ねるたびに強くなっていくやる気（motivation）に後押しされていく、ということもあるのです。この見方からすれば、性格は生まれたときに固定されているわけではなく、私たちの志（aspirations）もまた同じです。そのどちらも、私たちが学び、適応し、周りの世界に反応していく中で、時には静かに、時には劇的に、成長し続けるのです。',
+        plainEnglish:
+          'Other researchers, though, focus on how important nurture is. They say that personality keeps developing throughout our whole lives, through family relationships, education, friendships, work, and countless smaller experiences that add up over time. Every person is born with certain tendencies, but the environment can make those tendencies stronger, weaker, or even change how they show up. For example, a child who is naturally shy might become much more confident after years of encouragement from teachers, friends, and family who keep gently asking her to join in, instead of letting her stay quiet. This kind of change is not only something that happens in childhood. An employee who used to avoid speaking up in meetings might, after years of practice and support from co-workers, slowly build the resilience to lead a difficult project herself — helped by a motivation that becomes stronger with every small success. From this point of view, personality is not fixed when we are born, and neither are our dreams for the future. Both keep growing, sometimes slowly and sometimes suddenly, as we learn, adjust, and respond to the world around us.',
+        checkQuestion: 'According to this paragraph, how can a naturally shy child become more confident?',
+      },
+      {
+        id: 'km-s-reading-01-p4',
+        english:
+          'Taken together, these findings suggest a different way of thinking about personality. Inherited characteristics may provide a starting point — a certain temperament, a natural tendency — but the environment plays an important role in how those characteristics develop over time. In other words, nature and nurture do not compete — they work together, and neither one alone explains who someone becomes. Understanding this relationship can make us more patient with people whose starting point was simply different from our own, and more honest about our own. We cannot choose the qualities we were born with, and there is little value in wishing they were different. But we can choose, in large part, how we respond to our experiences, and whether we allow them to help us grow. The question worth asking, then, is not whether nature or nurture matters more, but this: which parts of who you are did you inherit, and which have you built through everything you have lived and learned so far?',
+        japanese:
+          'これらの発見を総合すると、性格についての異なる考え方が見えてきます。生まれつき受け継いだ特徴は、ある種の気質、生まれつきの傾向という出発点を与えてくれるかもしれませんが、その特徴が実際にどのように発達していくかについては、環境が重要な役割を果たします。言い換えれば、生まれ（nature）と育ち（nurture）は互いに競い合っているのではなく、共に働き合っており、そのどちらか一方だけでは、ある人がどのような人間になるのかを説明することはできません。この関係を理解することは、私たちが、自分とは違う出発点を持つ人々に対してより寛容になり、また自分自身についてもより正直になる助けとなります。私たちは、自分が生まれ持った性質を選ぶことはできませんし、それが違っていればよかったと願うことにあまり意味はありません。しかし私たちは、自分の経験にどう反応するか、そして、その経験を自分の成長の助けとするかどうかを、大部分において選ぶことができます。だとすれば、本当に問うべき問いは、もはや生まれと育ちのどちらがより重要かということではなく、次のことなのかもしれません——あなたという人間のどの部分を、あなたは受け継いだのでしょうか。そして、これまで生きてきて、学んできたすべてを通して、あなたはどの部分を自ら築いてきたのでしょうか。',
+        plainEnglish:
+          'Taken all together, these findings point to a different way of thinking about personality. Inherited characteristics may give us a starting point — a certain temperament, a natural tendency — but the environment plays an important part in how those characteristics actually develop over time. In other words, nature and nurture do not compete with each other. They work together, and neither one by itself can explain who a person becomes. Understanding this can help us be more patient with people who started from a different place than we did, and more honest about ourselves too. We cannot choose the qualities we were born with, and there is little point in wishing they were different. But we can choose, in large part, how we respond to our experiences, and whether we let those experiences help us grow. So maybe the real question is no longer whether nature or nurture matters more. Maybe it is this: which parts of who you are did you inherit — and which parts have you built through everything you have lived and learned so far?',
+        checkQuestion: 'According to this final paragraph, what does understanding the relationship between nature and nurture help us do?',
+      },
+    ],
+
+    targetVocabIds: [
+      'km-s-01', // nature
+      'km-s-02', // nurture
+      'km-s-03', // temperament
+      'km-s-04', // inherit
+      'km-s-05', // interaction
+      'km-s-06', // aspiration
+      'km-s-07', // motivation
+      'km-s-08', // resilience
+    ],
+
+    // Deferred, matching Theme 1 Foundation's own current state — see that
+    // entry's comment. Not part of this task's scope.
+    noticeLanguage: [],
+
+    // Mission Check's three fixed slots are deliberately designed so that,
+    // together, they cover all seven comprehension dimensions requested for
+    // this level: Task 1 (main question) tests main idea + interpretation of
+    // the passage's scientific stance + inference (the passage never states
+    // its conclusion as one quotable line — the correct option requires
+    // synthesizing paragraphs 2-4 and rejecting a plausible misreading of the
+    // twin-study evidence). Task 2 (supporting evidence) tests evidence
+    // selection *and* comparison, since its distractors are drawn from the
+    // nature paragraph, the nurture paragraph, and the synthesis paragraph,
+    // requiring genuine discrimination between the two arguments rather than
+    // simple quote-matching. Task 3 (vocabulary in context) tests the word
+    // "interaction" — one of the eight official target words — in a context
+    // where its meaning is easy to misread as "conversation."
+    missionCheck: {
+      question: 'Based on the passage as a whole, which statement would the author most likely agree with?',
+      explainer: 'In simple words — after reading the whole passage, which idea does the author seem to actually believe is true?',
+      explainerJa: '簡単に言うと、文章全体を読んだ後、筆者は実際にはどの考えが正しいと思っているようか、という質問です。',
+      hint: 'Look especially at paragraph 4, but think about how paragraphs 2 and 3 work together too.',
+      hintJa: '特に第4段落に注目してください。ただし、第2段落と第3段落がどのように関係し合っているかも考えてみましょう。',
+      options: [
+        { id: 'a', label: 'Personality is decided entirely before birth, and experience can only make small adjustments to it.', correct: false },
+        { id: 'b', label: 'Nature provides a starting point, but experience plays a real role in how that starting point actually develops.', correct: true },
+        { id: 'c', label: 'The studies of identical twins prove that environment has almost no real effect on personality.', correct: false },
+      ],
+      answerParagraphId: 'km-s-reading-01-p4',
+      evidencePrompt: 'Which quotation from the passage best shows evidence specifically supporting the nurture side of the debate?',
+      evidenceOptions: [
+        {
+          id: 'e1',
+          label: 'Even very young infants show clear differences in temperament — some are naturally calm, others easily startled — before most of their later experiences have had a chance to shape them.',
+          paragraphId: 'km-s-reading-01-p2',
+          correct: false,
+        },
+        {
+          id: 'e2',
+          label: 'an employee who once avoided speaking up in meetings may, after years of steady practice and support from colleagues, gradually build the resilience to lead a difficult project herself',
+          paragraphId: 'km-s-reading-01-p3',
+          correct: true,
+        },
+        {
+          id: 'e3',
+          label: 'In other words, nature and nurture do not compete — they work together, and neither one alone explains who someone becomes.',
+          paragraphId: 'km-s-reading-01-p4',
+          correct: false,
+        },
+      ],
+      vocabInContext: {
+        quote: 'personality develops not from one source or the other, but from the ongoing interaction between them',
+        question: 'What does "interaction" mean in this sentence?',
+        options: [
+          { id: 'a', label: 'The way two things affect each other and work together, rather than acting separately.', correct: true },
+          { id: 'b', label: 'A short conversation between two people.', correct: false },
+          { id: 'c', label: 'A single, one-time event that changes something permanently.', correct: false },
+        ],
+      },
+    },
+
+    // Advanced Writing — revised 2026-08-05 to align with docs/WRITING_PHILOSOPHY.md
+    // (the permanent Writing philosophy, frozen the same day). The reading's
+    // nature/nurture framework is used here only as a lens for the student to
+    // examine their own personality — never as something to evaluate or
+    // summarize. Per docs/READING_WRITING_ARCHITECTURE.md §6, Advanced's task
+    // tier is "Explain your opinion" (80–120 words); the schema only gates on
+    // minSentences, so 5 sentences approximates that target while the prompt
+    // itself states the word range explicitly.
+    writing: {
+      prompt:
+        'Think about your own personality. Which qualities do you think you were born with? Which qualities have you developed through your experiences? Is there anything about yourself that you would still like to change? Explain your ideas with reasons or examples. Aim for about 80–120 words.',
+      promptJapanese:
+        '自分自身の性格について考えてみましょう。生まれつき持っていると思う資質はどれですか？経験を通して身につけてきた資質はどれですか？自分自身について、まだ変えたいと思うところはありますか？理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
+      minSentences: 5,
+      sentenceStarters: [
+        'I think I was born with',
+        'Through my experiences, I have developed',
+        'For example,',
+        'One thing I would still like to change is',
+        'This is because',
+      ],
+      wordBank: [
+        { vocabId: 'km-s-01', examplePhrase: 'I think my curiosity is part of my nature — I\'ve been asking questions since I was very small.' },
+        { vocabId: 'km-s-02', examplePhrase: 'Through nurture, years of practice helped me become more confident than I used to be.' },
+        { vocabId: 'km-s-03', examplePhrase: 'My temperament has always been calm, even when I was very young.' },
+        { vocabId: 'km-s-04', examplePhrase: 'I think I inherited my sense of humor from my father.' },
+        { vocabId: 'km-s-05', examplePhrase: 'In the end, I think it\'s an interaction between what I was born with and what I\'ve experienced.' },
+        { vocabId: 'km-s-06', examplePhrase: 'One of my aspirations is to become more outgoing than I am now.' },
+        { vocabId: 'km-s-07', examplePhrase: 'My motivation to keep improving comes mostly from my own experiences, not from being told to.' },
+        { vocabId: 'km-s-08', examplePhrase: 'I built my resilience by facing real difficulties, not because I was simply born that way.' },
+      ],
+      usefulExpressions: [
+        { phrase: 'in my opinion', japanese: '私の意見では' },
+        { phrase: 'from my own experience', japanese: '自分自身の経験から' },
+        { phrase: 'one of my strengths is', japanese: '私の長所の一つは' },
+        { phrase: 'over time, I have become', japanese: '時間とともに、私は～になった' },
+        { phrase: 'I would like to become someone who', japanese: '～な人になりたい' },
+      ],
+    },
+
+    takeaway: 'The question worth asking, then, is not whether nature or nurture matters more, but this: which parts of who you are did you inherit, and which have you built through everything you have lived and learned so far?',
   },
 
   // ── What Does It Mean to Be a University Student? — Foundation ─────────────

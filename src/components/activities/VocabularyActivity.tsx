@@ -27,8 +27,7 @@ export default function VocabularyActivity({
   }
 
   const foundationCount = words.filter(w => w.introductionLevel === 'foundation').length;
-  const standardCount   = words.filter(w => w.introductionLevel === 'standard').length;
-  const challengeCount  = words.filter(w => w.introductionLevel === 'challenge').length;
+  const advancedCount   = words.filter(w => w.introductionLevel === 'advanced').length;
 
   const practiceSets = buildPracticeSets(ids);
   const setCounts    = practiceSets.map(s => s.length);
@@ -43,14 +42,9 @@ export default function VocabularyActivity({
             Foundation ×{foundationCount}
           </span>
         )}
-        {standardCount > 0 && (
+        {advancedCount > 0 && (
           <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-blue-100 text-blue-700">
-            Standard ×{standardCount}
-          </span>
-        )}
-        {challengeCount > 0 && (
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-xs font-semibold bg-violet-100 text-violet-700">
-            Challenge ×{challengeCount}
+            Advanced ×{advancedCount}
           </span>
         )}
       </div>

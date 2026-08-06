@@ -15,8 +15,7 @@ import type { Level } from '@/types';
 interface AITalkOpenerSet {
   themeId: string;
   foundation?: string;
-  standard?: string;
-  challenge?: string;
+  advanced?: string;
 }
 
 const AI_TALK_OPENERS: AITalkOpenerSet[] = [
@@ -24,6 +23,8 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
     themeId: 'knowing-myself',
     foundation:
       "Hi! Today's reading asked whether personality is something we're born with, or something we build through experience. What do you think — has a challenge or new experience ever changed who you are?",
+    advanced:
+      "Hi! Today's reading looked at one of psychology's oldest debates — nature versus nurture. I found it striking that even identical twins raised in completely different families can grow up surprisingly alike. What's your own take — do you think you're more a product of what you were born with, or everything you've experienced so far?",
   },
   {
     themeId: 'university-student',

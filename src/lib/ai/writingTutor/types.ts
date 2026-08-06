@@ -1,4 +1,5 @@
 import type { Level } from '@/types';
+import type { ExpressChatTurn } from '@/lib/ai/expressCoach/types';
 
 /**
  * Types for the Writing Tutor AI backend.
@@ -69,4 +70,31 @@ export interface WritingFeedbackResult {
 
 export type WritingTutorResponse =
   | { ok: true; feedback: WritingFeedbackResult }
+  | { ok: false; error: string };
+
+/**
+ * "💡 Help me say it" — Writing's own expression-support tool. Same
+ * interaction model and response contract as AI Talk's version
+ * (src/lib/ai/aiPartner/supportPrompt.ts's 'express' action) via the shared
+ * src/lib/ai/expressCoach/types.ts, but a separate prompt: this one produces
+ * natural WRITTEN English (not conversational/spoken register) and is
+ * grounded in the theme, level, writing prompt, and the student's current
+ * draft rather than a live conversation transcript. Expression support, not
+ * grammar correction — never touches or rewrites what the student has
+ * already written.
+ */
+export interface WritingExpressRequest {
+  level: Level;
+  themeId: string;
+  writingPrompt: string;
+  /** The student's newest message in this coaching chat — Japanese, English, or mixed. */
+  studentInput: string;
+  /** The student's current draft so far, for tone/topic continuity. Optional — a blank draft is common at the start. */
+  currentDraft?: string;
+  /** This coaching chat's own turns so far, oldest first, NOT including studentInput — lets the coach continue naturally instead of resetting every turn. */
+  expressHistory?: ExpressChatTurn[];
+}
+
+export type WritingExpressResponse =
+  | { ok: true; reply: string; suggestions: string[] }
   | { ok: false; error: string };

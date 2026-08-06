@@ -284,11 +284,22 @@ export default function ReadingLessonViewV2({
                   {lesson.missionCheck.options.map(opt => {
                     const isSelected = missionCheckAnswer === opt.id;
                     return (
-                      <button
+                      <div
                         key={opt.id}
-                        type="button"
-                        onClick={() => handleMissionCheckAnswer(opt.id)}
-                        className={`text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        role="button"
+                        tabIndex={0}
+                        onClick={e => {
+                          // A drag-select or a multi-click (double/triple-click, used to
+                          // select a word or line) — not a deliberate choice.
+                          if (e.detail > 1 || window.getSelection()?.toString()) return;
+                          handleMissionCheckAnswer(opt.id);
+                        }}
+                        onKeyDown={e => {
+                          if (e.key !== 'Enter' && e.key !== ' ') return;
+                          e.preventDefault();
+                          handleMissionCheckAnswer(opt.id);
+                        }}
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-700 hover:border-emerald-300'
                             : opt.correct
@@ -296,8 +307,10 @@ export default function ReadingLessonViewV2({
                               : 'bg-rose-50 border-rose-400 text-rose-700'
                         }`}
                       >
-                        {opt.label}
-                      </button>
+                        <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Answer Option">
+                          {opt.label}
+                        </SelectableContent>
+                      </div>
                     );
                   })}
                 </div>
@@ -322,11 +335,22 @@ export default function ReadingLessonViewV2({
                     const paraNum = lesson.paragraphs.findIndex(p => p.id === opt.paragraphId) + 1;
                     const isSelected = evidenceChoice === opt.id;
                     return (
-                      <button
+                      <div
                         key={opt.id}
-                        type="button"
-                        onClick={() => handleEvidenceChoice(opt.id)}
-                        className={`text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        role="button"
+                        tabIndex={0}
+                        onClick={e => {
+                          // A drag-select or a multi-click (double/triple-click, used to
+                          // select a word or line) — not a deliberate choice.
+                          if (e.detail > 1 || window.getSelection()?.toString()) return;
+                          handleEvidenceChoice(opt.id);
+                        }}
+                        onKeyDown={e => {
+                          if (e.key !== 'Enter' && e.key !== ' ') return;
+                          e.preventDefault();
+                          handleEvidenceChoice(opt.id);
+                        }}
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-600 hover:border-emerald-300'
                             : opt.correct
@@ -335,8 +359,10 @@ export default function ReadingLessonViewV2({
                         }`}
                       >
                         <span className="block text-sm font-medium text-slate-500 mb-1.5">Paragraph {paraNum}</span>
-                        <span className="font-serif italic">{opt.label}</span>
-                      </button>
+                        <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Evidence Option">
+                          <span className="font-serif italic">{opt.label}</span>
+                        </SelectableContent>
+                      </div>
                     );
                   })}
                 </div>
@@ -365,11 +391,22 @@ export default function ReadingLessonViewV2({
                   {lesson.missionCheck.vocabInContext.options.map(opt => {
                     const isSelected = vocabInContextAnswer === opt.id;
                     return (
-                      <button
+                      <div
                         key={opt.id}
-                        type="button"
-                        onClick={() => handleVocabInContextAnswer(opt.id)}
-                        className={`text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        role="button"
+                        tabIndex={0}
+                        onClick={e => {
+                          // A drag-select or a multi-click (double/triple-click, used to
+                          // select a word or line) — not a deliberate choice.
+                          if (e.detail > 1 || window.getSelection()?.toString()) return;
+                          handleVocabInContextAnswer(opt.id);
+                        }}
+                        onKeyDown={e => {
+                          if (e.key !== 'Enter' && e.key !== ' ') return;
+                          e.preventDefault();
+                          handleVocabInContextAnswer(opt.id);
+                        }}
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-700 hover:border-emerald-300'
                             : opt.correct
@@ -377,8 +414,10 @@ export default function ReadingLessonViewV2({
                               : 'bg-rose-50 border-rose-400 text-rose-700'
                         }`}
                       >
-                        {opt.label}
-                      </button>
+                        <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Vocabulary Option">
+                          {opt.label}
+                        </SelectableContent>
+                      </div>
                     );
                   })}
                 </div>

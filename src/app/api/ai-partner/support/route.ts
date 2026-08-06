@@ -1,6 +1,7 @@
 import { NextResponse } from 'next/server';
 import { getConversationSupport } from '@/lib/ai/aiPartner/getSupport';
 import type { ConversationSupportRequest, ConversationTurn } from '@/lib/ai/aiPartner/types';
+import { isValidExpressChatTurn } from '@/lib/ai/expressCoach/types';
 
 function isValidTurn(value: unknown): value is ConversationTurn {
   if (!value || typeof value !== 'object') return false;
@@ -12,7 +13,7 @@ function isValidRequest(body: unknown): body is ConversationSupportRequest {
   if (!body || typeof body !== 'object') return false;
   const b = body as Record<string, unknown>;
 
-  if (typeof b.level !== 'string' || !['foundation', 'standard', 'challenge'].includes(b.level)) {
+  if (typeof b.level !== 'string' || !['foundation', 'advanced'].includes(b.level)) {
     return false;
   }
   if (b.recentHistory !== undefined && (!Array.isArray(b.recentHistory) || !b.recentHistory.every(isValidTurn))) {
@@ -23,6 +24,9 @@ function isValidRequest(body: unknown): body is ConversationSupportRequest {
     return typeof b.selectedText === 'string' && b.selectedText.trim().length > 0;
   }
   if (b.action === 'express') {
+    if (b.expressHistory !== undefined && (!Array.isArray(b.expressHistory) || !b.expressHistory.every(isValidExpressChatTurn))) {
+      return false;
+    }
     return typeof b.studentInput === 'string' && b.studentInput.trim().length > 0;
   }
   return false;

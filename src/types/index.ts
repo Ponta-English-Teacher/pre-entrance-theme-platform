@@ -1,4 +1,4 @@
-export type Level = 'foundation' | 'standard' | 'challenge';
+export type Level = 'foundation' | 'advanced';
 
 export type ActivityType =
   | 'vocabulary'

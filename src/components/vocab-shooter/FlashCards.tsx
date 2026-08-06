@@ -5,6 +5,7 @@ import Link from 'next/link';
 import type { VocabEntry } from '@/data/vocabulary/masterVocabulary';
 import type { Level } from '@/types';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 
 const POS_STYLE: Record<string, string> = {
   noun:      'bg-blue-100 text-blue-700',
@@ -30,6 +31,7 @@ export default function FlashCards({
   const [index, setIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
   const [speechState, setSpeechState] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [speechErrorMessage, setSpeechErrorMessage] = useState<string | null>(null);
 
   const current = words[index];
   const isFirst  = index === 0;
@@ -38,12 +40,14 @@ export default function FlashCards({
   function handlePrev() {
     setRevealed(false);
     setSpeechState('idle');
+    setSpeechErrorMessage(null);
     setIndex(i => i - 1);
   }
 
   function handleNext() {
     setRevealed(false);
     setSpeechState('idle');
+    setSpeechErrorMessage(null);
     setIndex(i => i + 1);
   }
 
@@ -58,6 +62,17 @@ export default function FlashCards({
   async function handleSpeak(e: React.MouseEvent) {
     e.stopPropagation();
     if (speechState === 'loading') return;
+
+    // Caught here, before any network call — see SELECTION_ASSISTANT_MAX_TEXT_LENGTH.
+    // Not reachable in practice (a single word is always far under the
+    // limit), kept for consistency with every other caller of this endpoint.
+    if (current.word.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+      setSpeechErrorMessage(SELECTION_TEXT_TOO_LONG_MESSAGE);
+      setSpeechState('error');
+      return;
+    }
+
+    setSpeechErrorMessage(null);
     setSpeechState('loading');
     try {
       const res = await fetch('/api/selection-assistant/speech', {
@@ -141,7 +156,7 @@ export default function FlashCards({
                     speechState === 'error' ? 'text-rose-500' : 'text-slate-400 hover:text-indigo-600'
                   } ${speechState === 'loading' ? 'opacity-50' : ''}`}
                   aria-label="Hear pronunciation"
-                  title={speechState === 'error' ? "Couldn't play audio — try again" : 'Hear pronunciation'}
+                  title={speechState === 'error' ? (speechErrorMessage ?? "Couldn't play audio — try again") : 'Hear pronunciation'}
                 >
                   🔊
                 </button>

@@ -6,6 +6,7 @@ import { findVocabEntryByWord } from '@/data/vocabulary/masterVocabulary';
 import { addGlossaryItem, isWordInGlossary } from '@/lib/store';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
 import type { VocabLookupResponse } from '@/lib/ai/vocabLookup/types';
+import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 
 const POS_STYLE: Record<string, string> = {
   noun:      'bg-blue-100 text-blue-700',
@@ -58,6 +59,7 @@ export default function VocabDictionaryModal({
   const [display, setDisplay] = useState<DisplayState>({ status: 'ready', entry });
   const [saved, setSaved] = useState(false);
   const [speechState, setSpeechState] = useState<'idle' | 'loading' | 'error'>('idle');
+  const [speechErrorMessage, setSpeechErrorMessage] = useState<string | null>(null);
   const panelRef = useRef<HTMLDivElement>(null);
   const [desktopPosition, setDesktopPosition] = useState<{ top: number; left: number } | null>(null);
   const [dragging, setDragging] = useState(false);
@@ -205,6 +207,17 @@ export default function VocabDictionaryModal({
   async function handleSpeak() {
     if (display.status !== 'ready' || speechState === 'loading') return;
     const word = display.entry.word;
+
+    // Caught here, before any network call — see SELECTION_ASSISTANT_MAX_TEXT_LENGTH.
+    // Not reachable in practice (a single word is always far under the
+    // limit), kept for consistency with every other caller of this endpoint.
+    if (word.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+      setSpeechErrorMessage(SELECTION_TEXT_TOO_LONG_MESSAGE);
+      setSpeechState('error');
+      return;
+    }
+
+    setSpeechErrorMessage(null);
     setSpeechState('loading');
     try {
       const res = await fetch('/api/selection-assistant/speech', {
@@ -263,7 +276,7 @@ export default function VocabDictionaryModal({
                 speechState === 'error' ? 'text-rose-500' : 'text-slate-400 hover:text-indigo-600'
               } ${display.status !== 'ready' || speechState === 'loading' ? 'opacity-50' : ''}`}
               aria-label="Hear pronunciation"
-              title={speechState === 'error' ? "Couldn't play audio — try again" : 'Hear pronunciation'}
+              title={speechState === 'error' ? (speechErrorMessage ?? "Couldn't play audio — try again") : 'Hear pronunciation'}
             >
               🔊
             </button>

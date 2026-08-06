@@ -17,8 +17,7 @@ import { markWordStudied, getStudiedWordIds } from '@/lib/store';
 
 const LEVEL_INTRO_LABEL: Record<string, string> = {
   foundation: 'Foundation',
-  standard:   'Standard',
-  challenge:  'Challenge',
+  advanced:   'Advanced',
 };
 
 export default function VocabularyWordList({

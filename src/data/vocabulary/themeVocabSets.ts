@@ -3,70 +3,59 @@ import type { Level } from '@/types';
 export interface ThemeVocabSet {
   themeId: string;
   foundation: string[];
-  standard: string[];
-  challenge: string[];
+  advanced: string[];
 }
 
 export const THEME_VOCAB_SETS: Record<string, ThemeVocabSet> = {
   'knowing-myself': {
     themeId: 'knowing-myself',
     foundation: ['km-f-01', 'km-f-06', 'km-f-07', 'km-f-02', 'km-f-04', 'km-f-08', 'km-f-10', 'km-f-11'],
-    standard:   ['km-s-01', 'km-s-02', 'km-s-03', 'km-s-04', 'km-s-05', 'km-s-06', 'km-s-07', 'km-s-08'],
-    challenge:  ['km-c-01', 'km-c-02', 'km-c-03', 'km-c-04', 'km-c-05', 'km-c-06'],
+    advanced:   ['km-s-01', 'km-s-02', 'km-s-03', 'km-s-04', 'km-s-05', 'km-s-06', 'km-s-07', 'km-s-08'],
   },
   'university-student': {
     themeId: 'university-student',
     foundation: ['us-f-01', 'us-f-02', 'us-f-03', 'us-f-04', 'us-f-05', 'us-f-06', 'us-f-07', 'us-f-08', 'us-f-09', 'us-f-10', 'us-f-11', 'us-f-12', 'us-f-13'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'designing-my-future': {
     themeId: 'designing-my-future',
     foundation: ['km-f-03', 'km-f-05', 'us-f-07', 'df-f-01', 'df-f-02', 'df-f-03', 'km-f-09'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'living-together': {
     themeId: 'living-together',
     foundation: ['lt-f-01', 'lt-f-02', 'lt-f-03', 'lt-f-04', 'lt-f-05', 'lt-f-06', 'lt-f-07', 'lt-f-08', 'lt-f-09', 'lt-f-10'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'facts-or-fake': {
     themeId: 'facts-or-fake',
     foundation: ['ff-f-01', 'ff-f-02', 'ff-f-03', 'ff-f-04', 'ff-f-05', 'ff-f-06', 'ff-f-07', 'lt-f-02', 'ff-f-08', 'ff-f-09'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'peace-and-war': {
     themeId: 'peace-and-war',
     foundation: ['pw-f-01', 'pw-f-02', 'pw-f-03', 'pw-f-04', 'pw-f-05', 'pw-f-06', 'pw-f-07', 'pw-f-08'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'caring-for-our-planet': {
     themeId: 'caring-for-our-planet',
     foundation: ['cp-f-01', 'cp-f-02', 'cp-f-03', 'cp-f-04', 'cp-f-05', 'cp-f-06'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'living-with-ai': {
     themeId: 'living-with-ai',
     foundation: ['la-f-01', 'la-f-02', 'la-f-03', 'la-f-04', 'la-f-05'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'learning-from-history': {
     themeId: 'learning-from-history',
     foundation: ['pw-f-07', 'pw-f-08', 'lh-f-01', 'lh-f-02', 'lh-f-03', 'lh-f-04', 'lh-f-05'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
   'science-in-everyday-life': {
     themeId: 'science-in-everyday-life',
     foundation: ['se-f-01', 'se-f-02', 'se-f-03', 'se-f-04', 'se-f-05', 'se-f-06'],
-    standard:   [],
-    challenge:  [],
+    advanced:   [],
   },
 };
 
@@ -74,8 +63,7 @@ export function getThemeVocabIds(themeId: string, level: Level): string[] {
   const set = THEME_VOCAB_SETS[themeId];
   if (!set) return [];
   if (level === 'foundation') return set.foundation;
-  if (level === 'standard') return [...set.foundation, ...set.standard];
-  return [...set.foundation, ...set.standard, ...set.challenge];
+  return [...set.foundation, ...set.advanced];
 }
 
 export function buildShooterSets(ids: string[]): string[][] {

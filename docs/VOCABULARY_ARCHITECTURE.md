@@ -11,8 +11,7 @@ Recommended cumulative mastery targets, counted across the **whole curriculum** 
 | Level | Cumulative target vocabulary |
 |---|---|
 | End of Foundation | **≈100 words** |
-| End of Standard | **≈180 words** (100 carried over + 80 new) |
-| End of Challenge | **≈240 words** (180 carried over + 60 new) |
+| End of Advanced | **≈180 words** (100 carried over + 80 new) |
 
 **Justification**
 
@@ -20,7 +19,7 @@ These are the platform's own deliberately curated core vocabulary — not a clai
 
 `docs/VOCABULARY_PHILOSOPHY.md` §9 is explicit that the objective is retention, not word count. A compact ~100-word Foundation core, fully reinforced through ten themes, produces more usable English than a list ten times the size seen once per theme and forgotten. This also matches realistic scope for a supplementary pre-entrance program (roughly a semester's worth of study), not an immersion course.
 
-The step sizes (100 → +80 → +60) deliberately shrink as level increases: growth at higher levels should come increasingly from deepening the use of *already-known* words — collocations, register, nuance — rather than from raw new-word volume. This directly reflects the "prefer reinforcement" principle in `docs/VOCABULARY_PHILOSOPHY.md` §6.
+The step size shrinks from Foundation to Advanced (100 → +80): growth at the higher level should come increasingly from deepening the use of *already-known* words — collocations, register, nuance — rather than from raw new-word volume. This directly reflects the "prefer reinforcement" principle in `docs/VOCABULARY_PHILOSOPHY.md` §6.
 
 ---
 
@@ -31,10 +30,9 @@ Recommended **new** words introduced per theme, per level:
 | Level | New words per theme (target) | × 10 themes |
 |---|---|---|
 | Foundation | ~10 | 100 |
-| Standard | ~8 | 80 |
-| Challenge | ~6 | 60 |
+| Advanced | ~8 | 80 |
 
-This is not an arbitrary number — it is the pattern already implemented for Theme 1 (Knowing Myself: 10 Foundation / 8 Standard / 6 Challenge words in `src/data/vocabulary/themeVocabSets.ts`). This document recommends continuing that existing precedent across all ten themes rather than introducing a different shape for later themes.
+Theme 1 (Knowing Myself) currently has 8 Foundation / 8 Advanced words in `src/data/vocabulary/themeVocabSets.ts` — both within this section's tolerance ranges (§5), though Foundation sits slightly under the ~10 target. This document recommends the ~10/~8 shape as the target to plan toward for the remaining themes, not a claim that every theme (including Theme 1) hits it exactly.
 
 Note that "new words per theme" and "words a student encounters in that theme" are not the same number — a theme's Reading & Writing and AI Talk material will also naturally re-surface reinforced words from earlier themes (see §4). The counts above are only the *newly introduced* items counted toward the cumulative totals in §1.
 
@@ -44,7 +42,7 @@ Note that "new words per theme" and "words a student encounters in that theme" a
 
 Vocabulary accumulates across the curriculum; no theme restarts from zero. Each theme adds its new words on top of everything already introduced, and earlier words remain part of the "known" set students are expected to keep using.
 
-Expected cumulative progression (Foundation shown; Standard and Challenge accumulate the same way on top of it):
+Expected cumulative progression (Foundation shown; Advanced accumulates the same way on top of it):
 
 | Theme | New (Foundation) | Cumulative (Foundation) |
 |---|---|---|
@@ -59,7 +57,7 @@ Expected cumulative progression (Foundation shown; Standard and Challenge accumu
 | 9. Learning from History | 10 | 90 |
 | 10. Science in Everyday Life | 10 | 100 |
 
-The same shape applies at Standard (cumulative total climbs from 100 to 180 across the ten themes, +8 each) and Challenge (climbs from 180 to 240, +6 each). By Theme 10, a Foundation-level student has met the full ~100-word core; a Challenge-level student has met the full ~240-word core, built entirely from words introduced no later than the theme in which they first appeared.
+The same shape applies at Advanced (cumulative total climbs from 100 to 180 across the ten themes, +8 each). By Theme 10, a Foundation-level student has met the full ~100-word core; an Advanced-level student has met the full ~180-word core, built entirely from words introduced no later than the theme in which they first appeared.
 
 ---
 
@@ -76,13 +74,12 @@ This is an educational principle to aim for, not a rigid mathematical requiremen
 
 # 5. Theme Balance
 
-The per-theme targets in §2 (10/8/6 new words) are **averages to plan around, not rigid quotas**. Some themes will naturally support more vocabulary than others — for example, a more concept-dense theme (e.g. Living with AI, Facts or Fake?) may justify a slightly larger new-word set than a more narrative theme (e.g. Knowing Myself).
+The per-theme targets in §2 (10/8 new words) are **averages to plan around, not rigid quotas**. Some themes will naturally support more vocabulary than others — for example, a more concept-dense theme (e.g. Living with AI, Facts or Fake?) may justify a slightly larger new-word set than a more narrative theme (e.g. Knowing Myself).
 
 Recommended tolerance range per theme:
 
 - Foundation: 8–12 new words
-- Standard: 6–10 new words
-- Challenge: 4–8 new words
+- Advanced: 6–10 new words
 
 Individual themes may sit above or below the average, provided the curriculum-wide cumulative totals in §1 stay close to their targets by Theme 10. A theme should never be padded with words that don't satisfy `docs/VOCABULARY_PHILOSOPHY.md` §4's selection questions just to hit an exact per-theme number — theme balance serves the curriculum total, not the reverse.
 
@@ -92,7 +89,7 @@ Individual themes may sit above or below the average, provided the curriculum-wi
 
 Every theme's vocabulary unit should organize its words into meaningful semantic groups, not one flat list — but this is a **per-theme design decision, not a universal template**. There is no fixed set of categories reused across all ten themes; each theme's lexical sets are chosen individually, based on that theme's own subject matter, exactly as described in `docs/VOCABULARY_PHILOSOPHY.md` §7 (which shows Theme 1's own categories — Identity, Personality, Interests, Goals — as an example specific to that theme, not a pattern the other nine themes must follow).
 
-When a theme's own categories happen to include vocabulary needed to *analyze or argue about* the theme in a sophisticated way — not merely to understand its core concepts — that vocabulary belongs primarily to **Standard and Challenge**. This is not a difficulty distinction: per `docs/VOCABULARY_PHILOSOPHY.md` §3, Foundation may include conceptually demanding words students are expected to recognize rather than produce. What stays reserved for Standard and Challenge is vocabulary needed to reason and write about the theme analytically, not vocabulary that is merely abstract or academic-sounding.
+When a theme's own categories happen to include vocabulary needed to *analyze or argue about* the theme in a sophisticated way — not merely to understand its core concepts — that vocabulary belongs primarily to **Advanced**. This is not a difficulty distinction: per `docs/VOCABULARY_PHILOSOPHY.md` §3, Foundation may include conceptually demanding words students are expected to recognize rather than produce. What stays reserved for Advanced is vocabulary needed to reason and write about the theme analytically, not vocabulary that is merely abstract or academic-sounding.
 
 What matters, regardless of which categories a given theme chooses, is that its words are grouped by meaning rather than left as an unordered list.
 

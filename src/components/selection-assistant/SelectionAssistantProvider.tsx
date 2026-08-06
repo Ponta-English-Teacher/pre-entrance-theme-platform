@@ -6,6 +6,7 @@ import SelectionToolbar from './SelectionToolbar';
 import SelectionExplanationPanel, { type SelectionPanelState } from './SelectionExplanationPanel';
 import { extractSelectionContext } from '@/lib/selectionAssistant/extractContext';
 import type { ActiveSelection, SelectionActionId, SelectionScopeMeta } from '@/lib/selectionAssistant/types';
+import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 
 interface ScopeEntry {
   el: HTMLElement;
@@ -95,6 +96,14 @@ export default function SelectionAssistantProvider({ children }: { children: Rea
   const requestSpeech = useCallback(async () => {
     if (!activeSelection) return;
     const snapshot = activeSelection;
+
+    // Caught here, before any network call, so an over-limit selection never
+    // depends on the API route to report it — see SELECTION_ASSISTANT_MAX_TEXT_LENGTH.
+    if (snapshot.text.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+      setPanel({ open: true, loading: false, action: 'howToRead', explanation: null, error: SELECTION_TEXT_TOO_LONG_MESSAGE, selection: snapshot });
+      return;
+    }
+
     setPanel({ open: true, loading: true, action: 'howToRead', explanation: null, error: null, selection: snapshot });
 
     try {
@@ -138,6 +147,15 @@ export default function SelectionAssistantProvider({ children }: { children: Rea
 
     if (!activeSelection) return;
     const snapshot = activeSelection;
+
+    // Same pre-flight check as requestSpeech — one shared limit for every
+    // Selection Assistant action, so Translate/Easy English never silently
+    // behave differently from How to Read on a long selection.
+    if (snapshot.text.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+      setPanel({ open: true, loading: false, action: actionId, explanation: null, error: SELECTION_TEXT_TOO_LONG_MESSAGE, selection: snapshot });
+      return;
+    }
+
     setPanel({ open: true, loading: true, action: actionId, explanation: null, error: null, selection: snapshot });
 
     try {

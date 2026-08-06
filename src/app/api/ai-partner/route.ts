@@ -15,7 +15,7 @@ function isValidRequest(body: unknown): body is AIPartnerTurnRequest {
   if (
     typeof b.themeId !== 'string' ||
     typeof b.level !== 'string' ||
-    !['foundation', 'standard', 'challenge'].includes(b.level) ||
+    !['foundation', 'advanced'].includes(b.level) ||
     typeof b.themeDescription !== 'string' ||
     typeof b.themeDescriptionJapanese !== 'string' ||
     typeof b.mission !== 'string' ||

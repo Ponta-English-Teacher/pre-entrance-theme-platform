@@ -145,7 +145,7 @@ export default function SelectionExplanationPanel({
           </div>
         )}
         {panel.error && !panel.loading && (
-          <p className="text-base text-rose-600 leading-relaxed">{panel.error}</p>
+          <p className="text-base text-rose-600 leading-relaxed whitespace-pre-line">{panel.error}</p>
         )}
         {panel.explanation && !panel.loading && (
           <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>

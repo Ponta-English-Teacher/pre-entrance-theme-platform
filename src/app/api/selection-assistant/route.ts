@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import { getSelectionExplanation } from '@/lib/ai/selectionAssistant/getExplanation';
+import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 import type { SelectionAssistantRequest } from '@/lib/ai/selectionAssistant/types';
 
 function isValidRequest(body: unknown): body is SelectionAssistantRequest {
@@ -27,6 +28,14 @@ export async function POST(req: Request) {
 
   if (!isValidRequest(body)) {
     return NextResponse.json({ ok: false, error: 'Missing or invalid required fields.' }, { status: 400 });
+  }
+
+  // Same limit and message as the speech endpoint — checked separately from
+  // shape validation so Translate/Easy English get the specific bilingual
+  // message too, not just How to Read. Mirrors the pre-flight check every
+  // client already runs, so this only fires if a client is bypassed entirely.
+  if (body.selectedText.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+    return NextResponse.json({ ok: false, error: SELECTION_TEXT_TOO_LONG_MESSAGE }, { status: 400 });
   }
 
   const result = await getSelectionExplanation(body);

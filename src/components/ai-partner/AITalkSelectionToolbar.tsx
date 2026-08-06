@@ -46,6 +46,9 @@ export default function AITalkSelectionToolbar({
 
     let top = selection.rect.top - height - GAP;
     if (top < GAP) top = selection.rect.bottom + GAP;
+    // A tall selection can push the flipped position off the bottom of the
+    // screen too — clamp so the toolbar is always reachable.
+    top = Math.max(GAP, Math.min(top, window.innerHeight - height - GAP));
 
     const left = Math.max(GAP, Math.min(midX - width / 2, window.innerWidth - width - GAP));
 

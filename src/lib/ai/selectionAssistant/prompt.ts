@@ -17,8 +17,7 @@ const ACTION_INSTRUCTIONS: Record<ExplanationActionId, string> = {
 
 const LEVEL_GUIDANCE: Record<Level, string> = {
   foundation: 'This student is at Foundation level — keep your own explanation itself in very simple English and short sentences.',
-  standard: 'This student is at Standard level — normal, clear English in your explanation is fine.',
-  challenge: 'This student is at Challenge level — you can use somewhat richer English and assume stronger vocabulary in your explanation.',
+  advanced: 'This student is at Advanced level — normal, clear English in your explanation is fine.',
 };
 
 export function buildSelectionAssistantSystemInstructions(level: Level): string {

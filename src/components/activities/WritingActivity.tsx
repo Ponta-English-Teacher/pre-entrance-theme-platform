@@ -12,6 +12,7 @@ import {
   markActivityComplete,
 } from '@/lib/store';
 import WritingToolbox from '@/components/activities/WritingToolbox';
+import WritingExpressPanel from '@/components/activities/WritingExpressPanel';
 import ProgressBar from '@/components/ProgressBar';
 import WritingTutor, { type WritingTutorHandle } from '@/components/writing-tutor/WritingTutor';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
@@ -57,6 +58,7 @@ export default function WritingActivity({
   const [hydrated, setHydrated] = useState(false);
   const [showIncompleteNote, setShowIncompleteNote] = useState(false);
   const [showContinueScreen, setShowContinueScreen] = useState(false);
+  const [showExpressPanel, setShowExpressPanel] = useState(false);
 
   useEffect(() => {
     if (!lesson) return;
@@ -71,7 +73,9 @@ export default function WritingActivity({
     saveReadingDraft(lesson.id, writingText);
   }, [hydrated, lesson, writingText]);
 
-  if (!lesson) {
+  // writingReady === false means a ReadingLesson exists (Reading is live)
+  // but its `writing` content is a placeholder, not real — never render it.
+  if (!lesson || lesson.writingReady === false) {
     return (
       <div className="bg-white rounded-2xl border border-slate-200 p-12 text-center">
         <div className="text-5xl mb-4">✏️</div>
@@ -145,11 +149,44 @@ export default function WritingActivity({
           initialDraft={writingText}
           onDraftChange={setWritingText}
         />
+
+        {/* Expression support — "I don't know how to say it in English."
+            Separate from the Writing Toolbox (pre-authored) and from Get
+            Feedback (corrects what's already written): this helps the
+            student put a new idea into English in the first place. */}
+        <div className="flex items-center gap-2 mt-4">
+          <button
+            type="button"
+            onClick={() => setShowExpressPanel(v => !v)}
+            className={`px-3.5 py-2 rounded-full text-sm font-semibold border transition-colors ${
+              showExpressPanel
+                ? 'bg-indigo-600 border-indigo-600 text-white'
+                : 'bg-white border-slate-300 text-slate-600 hover:border-indigo-400 hover:text-indigo-600'
+            }`}
+          >
+            💡 Help me say it
+          </button>
+        </div>
+
+        {showExpressPanel && (
+          <div className="mt-3">
+            <WritingExpressPanel
+              level={level}
+              themeId={themeId}
+              writingPrompt={lesson.writing.prompt}
+              currentDraft={writingText}
+              onClose={() => setShowExpressPanel(false)}
+              onInsertSuggestion={insertIntoWriting}
+            />
+          </div>
+        )}
       </div>
 
       {/* 4: Writing Toolbox — deliberately the most visually prominent
           section on the page after the writing area itself. */}
       <WritingToolbox
+        themeId={themeId}
+        level={level}
         sentenceStarters={lesson.writing.sentenceStarters}
         wordBank={lesson.writing.wordBank}
         extraVocabIds={extraVocabIds}

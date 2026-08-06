@@ -113,23 +113,22 @@ export const LEVEL_INFO: LevelInfo[] = [
     descriptionJapanese: '読みやすい文・基本的な語彙。英語に慣れるところからはじめます。',
   },
   {
-    level: 'standard',
-    label: 'Standard',
-    labelJapanese: '標準',
-    descriptionJapanese: '大学で求められる英語のレベル。このコースの中心となる学習範囲です。',
-  },
-  {
-    level: 'challenge',
-    label: 'Challenge',
-    labelJapanese: '発展',
-    descriptionJapanese: 'より複雑な表現・高度な語彙。力試しをしたい方に。',
+    level: 'advanced',
+    label: 'Advanced',
+    labelJapanese: '上級',
+    descriptionJapanese: '豊かな語彙と自然な英語で、より深く考え、意見を表現します。',
   },
 ];
 
 export const ACTIVITY_DEFS: ActivityDef[] = [
   { type: 'vocabulary',  label: 'Vocabulary',         labelJapanese: '語彙',                    estimatedMinutes: 20, icon: '📖' },
-  { type: 'reading',     label: 'Reading & Writing',  labelJapanese: 'リーディング＆ライティング', estimatedMinutes: 45, icon: '✍️' },
-  { type: 'ai-talk',     label: 'AI Talk',            labelJapanese: 'AIトーク',                estimatedMinutes: 15, icon: '💬' },
+  // Renamed from "Reading & Writing" — Reading and Writing are two
+  // standalone activities in the Theme Experience Template (Writing has its
+  // own WritingActivity.tsx page/route since the V2 experience), so the
+  // combined label is obsolete for any migrated theme/level. The `type`
+  // stays 'reading' (an id, not user-facing) so no routes or stored
+  // progress break.
+  { type: 'reading',     label: 'Reading',            labelJapanese: 'リーディング',             estimatedMinutes: 45, icon: '📰' },
   // Reserved for a future Pronunciation & Delivery activity (reading aloud, rhythm, stress,
   // intonation) — a distinct activity from AI Talk. Hidden until that activity has a real
   // design and implementation; the type/route stay valid so nothing breaks when it's built.
@@ -139,11 +138,15 @@ export const ACTIVITY_DEFS: ActivityDef[] = [
   { type: 'grammar',     label: 'Grammar',            labelJapanese: '文法',                    estimatedMinutes: 25, icon: '✏️', hidden: true },
   // NOT statically hidden — visibility is content-gated per theme/level in
   // ActivityGrid.tsx (only shown where a lesson has experienceVersion === 2,
-  // i.e. Theme 1 Foundation during this prototype stage). Every other
-  // theme/level has no such lesson, so this stays invisible for them exactly
-  // as `hidden: true` would have made it, with no change needed here later
-  // as more themes migrate.
+  // i.e. Theme 1, during this prototype stage — see also `writingReady` for
+  // per-level content gating within that). Every other theme/level has no
+  // such lesson, so this stays invisible for them exactly as `hidden: true`
+  // would have made it, with no change needed here later as more themes
+  // migrate. Positioned right after Reading, before AI Talk, to match the
+  // approved Theme Experience Template sequence: Vocabulary → Reading →
+  // Writing → AI Talk.
   { type: 'writing',     label: 'Writing',            labelJapanese: 'ライティング',             estimatedMinutes: 35, icon: '🖊️' },
+  { type: 'ai-talk',     label: 'AI Talk',            labelJapanese: 'AIトーク',                estimatedMinutes: 15, icon: '💬' },
   { type: 'translation', label: 'Translation',        labelJapanese: '翻訳',                    estimatedMinutes: 20, icon: '🔄', hidden: true },
 ];
 
@@ -152,7 +155,7 @@ export function getThemeBySlug(slug: string): Theme | undefined {
 }
 
 export function isValidLevel(value: string): value is Level {
-  return ['foundation', 'standard', 'challenge'].includes(value);
+  return ['foundation', 'advanced'].includes(value);
 }
 
 export function isValidActivityType(value: string): value is ActivityType {

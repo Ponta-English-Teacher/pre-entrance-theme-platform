@@ -9,14 +9,12 @@ import type { Level } from '@/types';
 
 const BORDER: Record<Level, string> = {
   foundation: 'border-emerald-200 hover:border-emerald-400',
-  standard:   'border-blue-200   hover:border-blue-400',
-  challenge:  'border-violet-200 hover:border-violet-400',
+  advanced:   'border-blue-200   hover:border-blue-400',
 };
 
 const SELECTED: Record<Level, string> = {
   foundation: 'border-emerald-500 ring-2 ring-emerald-200',
-  standard:   'border-blue-500   ring-2 ring-blue-200',
-  challenge:  'border-violet-500 ring-2 ring-violet-200',
+  advanced:   'border-blue-500   ring-2 ring-blue-200',
 };
 
 export default function LevelPicker({ themeId, slug }: { themeId: string; slug: string }) {
@@ -46,7 +44,7 @@ export default function LevelPicker({ themeId, slug }: { themeId: string; slug: 
       <p className="text-slate-500 text-sm mb-6">
         You can choose a different level for each theme. Pick what feels right for you today.
       </p>
-      <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {LEVEL_INFO.map(info => {
           const isSelected = savedLevel === info.level;
           return (

@@ -12,11 +12,34 @@ export interface GlossaryItem {
   savedDate: string;
 }
 
+/** Pre-migration values that may still be sitting in a returning student's
+ *  localStorage from before the three-level (Foundation/Standard/Challenge)
+ *  to two-level (Foundation/Advanced) architecture change. */
+type StoredLevel = Level | 'standard' | 'challenge';
+
+function migrateStoredLevel(level: StoredLevel | null): Level | null {
+  if (level === 'standard' || level === 'challenge') return 'advanced';
+  return level;
+}
+
 function readAll(): Record<string, ThemeProgress> {
   if (typeof window === 'undefined') return {};
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    return raw ? (JSON.parse(raw) as Record<string, ThemeProgress>) : {};
+    if (!raw) return {};
+    const parsed = JSON.parse(raw) as Record<string, ThemeProgress & { chosenLevel: StoredLevel | null }>;
+
+    let migrated = false;
+    for (const themeId of Object.keys(parsed)) {
+      const migratedLevel = migrateStoredLevel(parsed[themeId].chosenLevel);
+      if (migratedLevel !== parsed[themeId].chosenLevel) {
+        parsed[themeId] = { ...parsed[themeId], chosenLevel: migratedLevel };
+        migrated = true;
+      }
+    }
+    const result = parsed as Record<string, ThemeProgress>;
+    if (migrated) writeAll(result); // persist the old-level → advanced migration immediately
+    return result;
   } catch {
     return {};
   }
@@ -83,11 +106,34 @@ export function markWordStudied(wordId: string): void {
 
 // ── Practice set completion ───────────────────────────────────────────────────
 
+/** Composite keys are `${themeId}/${level}` — merge any pre-migration
+ *  `.../standard` or `.../challenge` keys into `.../advanced` and drop the
+ *  old keys, so completion progress isn't silently orphaned under a level
+ *  name that no longer exists. */
+function migratePracticeKeys(all: Record<string, number[]>): { data: Record<string, number[]>; migrated: boolean } {
+  let migrated = false;
+  const data = { ...all };
+  for (const key of Object.keys(data)) {
+    const match = key.match(/^(.*)\/(standard|challenge)$/);
+    if (!match) continue;
+    const advancedKey = `${match[1]}/advanced`;
+    const merged = Array.from(new Set([...(data[advancedKey] ?? []), ...data[key]]));
+    data[advancedKey] = merged;
+    delete data[key];
+    migrated = true;
+  }
+  return { data, migrated };
+}
+
 export function getCompletedPracticeSets(themeId: string, level: string): number[] {
   if (typeof window === 'undefined') return [];
   try {
     const raw = localStorage.getItem(PRACTICE_KEY);
-    const all = raw ? (JSON.parse(raw) as Record<string, number[]>) : {};
+    const rawAll = raw ? (JSON.parse(raw) as Record<string, number[]>) : {};
+    const { data: all, migrated } = migratePracticeKeys(rawAll);
+    if (migrated) {
+      try { localStorage.setItem(PRACTICE_KEY, JSON.stringify(all)); } catch {}
+    }
     return all[`${themeId}/${level}`] ?? [];
   } catch {
     return [];

@@ -1,4 +1,4 @@
-import { notFound } from 'next/navigation';
+import { notFound, redirect } from 'next/navigation';
 import Link from 'next/link';
 import { getThemeBySlug, ACTIVITY_DEFS, isValidLevel, isValidActivityType } from '@/data/themes';
 import LevelBadge from '@/components/LevelBadge';
@@ -17,6 +17,13 @@ export default async function ActivityPlayerPage({
 
   const theme = getThemeBySlug(slug);
   if (!theme) notFound();
+
+  // Pre-migration bookmarks/links from the old three-level (Foundation/
+  // Standard/Challenge) architecture — normalize to Advanced rather than
+  // 404ing on an old but still-recognizable URL.
+  if (rawLevel === 'standard' || rawLevel === 'challenge') {
+    redirect(`/themes/${slug}/advanced/${rawType}`);
+  }
   if (!isValidLevel(rawLevel)) notFound();
   if (!isValidActivityType(rawType)) notFound();
 

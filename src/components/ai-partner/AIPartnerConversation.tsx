@@ -5,6 +5,7 @@ import type { Level } from '@/types';
 import { AI_PARTNER_HARD_MAX_STUDENT_TURNS, AI_PARTNER_LEVEL_TURN_TARGETS } from '@/lib/ai/aiPartner/types';
 import type { AIPartnerTurnRequest, AIPartnerTurnResponse, TargetVocabItem } from '@/lib/ai/aiPartner/types';
 import { extractSelectionContext } from '@/lib/selectionAssistant/extractContext';
+import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 import TranscriptTurn, { type SpeechStatus, type TranscriptTurnData } from './TranscriptTurn';
 import ConversationInput from './ConversationInput';
 import ConversationSupportPanel from './ConversationSupportPanel';
@@ -34,7 +35,7 @@ import AITalkExplanationPanel, { type AITalkSelectionPanelState } from './AITalk
  *   not sharing its code, so that shared component never has to change to
  *   accommodate AI-Talk-specific behavior (explaining only a selection,
  *   never the whole message).
- * - Expressing yourself (produced language): "🗣 How do you say it?",
+ * - Expressing yourself (produced language): "💡 Help me say it",
  *   input-based, beside the reply box, via ConversationSupportPanel.
  */
 
@@ -261,6 +262,11 @@ export default function AIPartnerConversation({
     // Assistant. Plays directly; the panel is only used to show an error.
     // Never falls back to browser SpeechSynthesis.
     if (action === 'howToRead') {
+      // Caught here, before any network call — see SELECTION_ASSISTANT_MAX_TEXT_LENGTH.
+      if (snapshot.text.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+        setSelectionPanel({ open: true, loading: false, action, text: null, error: SELECTION_TEXT_TOO_LONG_MESSAGE, selection: snapshot });
+        return;
+      }
       try {
         const res = await fetch('/api/selection-assistant/speech', {
           method: 'POST',
@@ -295,6 +301,12 @@ export default function AIPartnerConversation({
     // translate endpoint (Reading's own code is untouched); translates only
     // the selected text, using the full turn as surrounding context.
     if (action === 'translate') {
+      // Same pre-flight check as How to Read — one shared limit for every
+      // Selection Assistant action. See SELECTION_ASSISTANT_MAX_TEXT_LENGTH.
+      if (snapshot.text.length > SELECTION_ASSISTANT_MAX_TEXT_LENGTH) {
+        setSelectionPanel({ open: true, loading: false, action, text: null, error: SELECTION_TEXT_TOO_LONG_MESSAGE, selection: snapshot });
+        return;
+      }
       try {
         const res = await fetch('/api/selection-assistant', {
           method: 'POST',
@@ -421,13 +433,15 @@ export default function AIPartnerConversation({
               : 'bg-white border-slate-300 text-slate-600 hover:border-indigo-400 hover:text-indigo-600'
           }`}
         >
-          🗣 How do you say it?
+          💡 Help me say it
         </button>
       </div>
 
       {showExpressPanel && (
         <ConversationSupportPanel
           level={level}
+          themeDescription={themeDescription}
+          recentHistory={turns.slice(-4).map(t => ({ role: t.role, text: t.text }))}
           onClose={() => setShowExpressPanel(false)}
           onInsertSuggestion={handleInsertSuggestion}
         />

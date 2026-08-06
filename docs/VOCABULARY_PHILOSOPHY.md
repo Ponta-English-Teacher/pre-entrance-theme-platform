@@ -14,7 +14,7 @@ Every theme introduces some genuinely new vocabulary suited to its own subject, 
 
 ## 3. Progression
 
-Three levels, treated as **one continuous progression across the entire curriculum**, not three separate ceilings repeated per theme.
+Two levels, treated as **one continuous progression across the entire curriculum**, not two separate ceilings repeated per theme.
 
 **Foundation does not mean "easy."** It is not the simplest words that fit a theme, and it is not defined by whether a word can be said naturally in casual conversation. Foundation vocabulary is the set of indispensable concepts students need to understand the theme — chosen for conceptual necessity, not for ease of production.
 
@@ -23,8 +23,7 @@ Our target learners are admitted university students, with approximately Eiken G
 **Reading Only** should contain words already assumed to be familiar to this population — even when they are central to the topic (e.g. *hope, safe, study, exam, friend*). Thematic centrality alone is never a reason to promote an already-known word into target vocabulary.
 
 - **Foundation** — the indispensable concepts for the theme.
-- **Standard** — extends naturally toward more sophisticated discussion of the theme, approximately CEFR B1.
-- **Challenge** — approaches CEFR B2, encouraging reflection and abstraction.
+- **Advanced** — extends naturally toward more sophisticated discussion of the theme, encouraging reflection and abstraction, approximately CEFR B1–B2. (This tier carries forward the scope originally described for the old three-level model's "Standard" tier; the deleted "Challenge" tier's vocabulary was not folded in — see Theme 1's own Advanced set for the precedent this establishes.)
 
 A student progressing through the same level from Theme 1 to Theme 10 should feel one gradual, coherent climb in vocabulary sophistication — not ten independent bands that each reset to the same starting point. Because the curriculum accumulates, the same named level is allowed to feel slightly more demanding by Theme 10 than it did at Theme 1.
 
@@ -52,7 +51,7 @@ For each important vocabulary item, consider two questions:
 1. In which theme should this word first become target vocabulary?
 2. In which later themes should this word naturally reappear to reinforce and deepen understanding?
 
-The first question determines the word's introduction point (Foundation, Standard, or Challenge). The second question helps maintain a coherent curriculum across all themes.
+The first question determines the word's introduction point (Foundation or Advanced). The second question helps maintain a coherent curriculum across all themes.
 
 When a word is reinforced in a later theme, it should normally appear at the same level or a higher level than its original introduction — not at a lower level. Reinforcement deepens a word's use; it should not appear to reset its difficulty.
 
