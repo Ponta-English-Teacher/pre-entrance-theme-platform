@@ -394,6 +394,7 @@ export default function AIPartnerConversation({
             isPlaying={playingTurnId === turn.id}
             onPlay={turn.role === 'partner' ? () => handlePlay(turn) : undefined}
             onPause={turn.role === 'partner' ? handlePause : undefined}
+            onInsert={turn.role === 'partner' ? handleInsertSuggestion : undefined}
           />
         ))}
 
