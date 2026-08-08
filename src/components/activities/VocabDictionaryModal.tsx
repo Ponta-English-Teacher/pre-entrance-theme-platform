@@ -376,6 +376,24 @@ export default function VocabDictionaryModal({
                 </div>
               ) : null}
 
+              {/* Word Family — template addition (2026-08-08): a short, POS-
+                  tagged list of the word's natural family members. Plain
+                  text, not interactive — distinct from Derivatives below,
+                  which stays exactly as it was (clickable, no POS tags). */}
+              {display.entry.wordFamily && display.entry.wordFamily.length > 0 && (
+                <div>
+                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Word Family</h3>
+                  <ul className="space-y-1 list-disc list-inside">
+                    {display.entry.wordFamily.map(m => (
+                      <li key={m.word} className="text-sm text-slate-700">
+                        <span className="font-semibold text-slate-800">{m.word}</span>
+                        <span className="text-slate-400"> ({m.pos})</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
               {/* 5. Derivatives（派生語） — every word here is itself explorable. */}
               {display.entry.derivatives && display.entry.derivatives.length > 0 && (
                 <div>

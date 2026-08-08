@@ -20,6 +20,15 @@ export interface VocabEntry {
   coreMeaningJa?: string;      // Japanese translation of coreMeaning (prototype field)
   exampleTranslations?: [string, string]; // Japanese translations of the two examples
   derivatives?: string[];      // same word-family members only (派生語), e.g. person/personal/personally/personality
+  /** Word Family template addition (2026-08-08): the word's natural family,
+   *  each member tagged with its own part of speech, e.g. independent (adj.)
+   *  -> [{ word: 'independence', pos: 'noun' }, { word: 'independently', pos: 'adverb' }].
+   *  Only genuinely useful, commonly used forms — omit entirely when a word
+   *  has no natural family worth showing (e.g. "goal", "deadline"). A
+   *  separate, additive field from `derivatives` (which stays exactly as
+   *  it was — its own "Derivatives（派生語）" section, its own click-to-
+   *  explore behavior, both untouched). */
+  wordFamily?: Array<{ word: string; pos: 'noun' | 'verb' | 'adjective' | 'adverb' }>;
 }
 
 export const MASTER_VOCABULARY: VocabEntry[] = [
@@ -48,6 +57,11 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'このテーマの中心的な問いは、性格が生まれつき決まっているのか、経験を通して築かれるのか、ということです。',
     collocations: ['your own personality', 'personality is built', 'part of your personality', 'develop your personality', 'a strong personality'],
     derivatives: ['person', 'personal', 'personally', 'personality', 'personalize'],
+    wordFamily: [
+      { word: 'person', pos: 'noun' },
+      { word: 'personal', pos: 'adjective' },
+      { word: 'personally', pos: 'adverb' },
+    ],
   },
 
   {
@@ -68,6 +82,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章の議論全体がこの単語にかかっています——「生まれつき」に対するもう一方の要素として、性格を形作るものです。',
     collocations: ['gain experience', 'a valuable experience', 'learn from experience', 'our experiences', 'through experience'],
     derivatives: ['experience', 'experienced', 'inexperienced'],
+    wordFamily: [
+      { word: 'experienced', pos: 'adjective' },
+      { word: 'inexperienced', pos: 'adjective' },
+    ],
   },
 
   {
@@ -88,6 +106,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章では、挑戦は自信や強みを見つけるための具体的な手段として描かれています——避けるべき障害ではなく、成長の源です。',
     collocations: ['face a challenge', 'overcome a challenge', 'a difficult challenge', 'a big challenge', 'take on a challenge'],
     derivatives: ['challenge', 'challenging', 'challenged'],
+    wordFamily: [
+      { word: 'challenging', pos: 'adjective' },
+    ],
   },
 
   {
@@ -108,6 +129,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章では、自信は困難を乗り越えることによって築かれるものであり、一部の人が生まれつき持っている固定的な性質ではないと描かれています。',
     collocations: ['feel confident', 'become more confident', 'gain confidence', 'confidence in yourself', 'grow in confidence'],
     derivatives: ['confidence', 'confident', 'confidently'],
+    wordFamily: [
+      { word: 'confident', pos: 'adjective' },
+      { word: 'confidently', pos: 'adverb' },
+    ],
   },
 
   {
@@ -128,6 +153,11 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: '強みは、試す前からすでに知っているものではなく、挑戦を通して発見するものとして描かれています。',
     collocations: ['discover a strength', 'a personal strength', 'new strengths', 'identify your strengths', 'find a strength'],
     derivatives: ['strength', 'strong', 'strongly', 'strengthen'],
+    wordFamily: [
+      { word: 'strong', pos: 'adjective' },
+      { word: 'strongly', pos: 'adverb' },
+      { word: 'strengthen', pos: 'verb' },
+    ],
   },
 
   {
@@ -148,6 +178,11 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章では、develop（成長する）はreflect（振り返る）と結びついています——この二つの動詞が合わさって、文章全体が描く継続的なプロセスになっています。',
     collocations: ['continue to develop', 'develop as a person', 'develop a skill', 'develop over time', 'keep developing'],
     derivatives: ['develop', 'development', 'developed', 'developing'],
+    wordFamily: [
+      { word: 'development', pos: 'noun' },
+      { word: 'developed', pos: 'adjective' },
+      { word: 'developing', pos: 'adjective' },
+    ],
   },
 
   {
@@ -168,6 +203,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: '振り返ることは、性格を築く上での積極的で継続的な行為として描かれています——一度きりではなく、繰り返し行うものです。',
     collocations: ['reflect on', 'reflect on your experiences', 'take time to reflect', 'reflect carefully', 'stop and reflect'],
     derivatives: ['reflect', 'reflection', 'reflective'],
+    wordFamily: [
+      { word: 'reflection', pos: 'noun' },
+      { word: 'reflective', pos: 'adjective' },
+    ],
   },
 
   {
@@ -188,6 +227,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章の最後の主張は、スキルや自信だけでなく、価値観も経験を通して育つということです——議論の対象を「できること」だけでなく「大切にしていること」にも広げています。',
     collocations: ['personal values', 'your values', 'values grow', 'important values', 'shape your values'],
     derivatives: ['value', 'valuable', 'valued'],
+    wordFamily: [
+      { word: 'valuable', pos: 'adjective' },
+      { word: 'valued', pos: 'adjective' },
+    ],
   },
 
   // The following three words (goal, dream, important) are no longer part of
@@ -232,6 +275,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage treats a "distant dream" as something you move toward gradually through small steps, not something you either have or don\'t.',
     collocations: ['a distant dream', 'feel closer to a dream', 'still a dream', 'pursue a dream', 'make a dream come true'],
     otherMeanings: ['dream (verb, sleep): to experience images or stories during sleep', 'daydream: imagining something pleasant while you are awake'],
+    wordFamily: [
+      { word: 'dreamer', pos: 'noun' },
+    ],
   },
 
   {
@@ -250,6 +296,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['self', 'core'],
     themeNote: 'The passage treats even a very small moment as genuinely important — this theme resists the idea that only big, dramatic events matter.',
     collocations: ['something important', 'important to notice', 'an important part', 'feel important', 'important for who you become'],
+    wordFamily: [
+      { word: 'importance', pos: 'noun' },
+      { word: 'importantly', pos: 'adverb' },
+    ],
   },
 
   // ── Knowing Myself — Advanced ─────────────────────────────────────────────
@@ -276,6 +326,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['nature versus nurture', 'human nature', 'by nature', 'a cautious nature', "a person's true nature"],
     otherMeanings: ["nature (everyday sense): the physical world, including plants, animals, and landscapes, as in 'a walk in nature.'"],
     derivatives: ['nature', 'natural', 'naturally', 'unnatural'],
+    wordFamily: [
+      { word: 'natural', pos: 'adjective' },
+      { word: 'naturally', pos: 'adverb' },
+    ],
   },
 
   {
@@ -297,6 +351,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['nature versus nurture', 'the power of nurture', 'shaped by nurture', 'nurture and environment'],
     otherMeanings: ["nurture (verb): to care for someone and help them grow, as in 'she nurtured her students' confidence for years.'"],
     derivatives: ['nurture', 'nurturing', 'nurtured'],
+    wordFamily: [
+      { word: 'nurturing', pos: 'adjective' },
+      { word: 'nurtured', pos: 'adjective' },
+    ],
   },
 
   {
@@ -316,6 +374,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: "The reading's clearest piece of evidence for the 'nature' side: temperament differences that appear before a child has had much chance to be shaped by experience at all. It's a more precise, almost scientific word than 'personality' for this specific idea.",
     themeNoteJa: 'この文章における「nature（生まれつき）」側の最も明確な証拠となる単語です。経験によって形作られる前の、幼い子供にすでに見られる違いを指します。「personality」よりも、この特定の考えを表すのにより正確で、やや専門的な言葉です。',
     collocations: ['a calm temperament', 'a natural temperament', 'differences in temperament', 'temperament and personality'],
+    wordFamily: [
+      { word: 'temperamental', pos: 'adjective' },
+    ],
   },
 
   {
@@ -337,6 +398,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['inherit a trait', 'inherit characteristics from', 'inherited qualities', 'genetically inherited'],
     otherMeanings: ["inherit (property/money): to receive money, property, or a title after someone dies, as in 'he inherited the family business.'"],
     derivatives: ['inherit', 'inherited', 'inheritance', 'inheritable'],
+    wordFamily: [
+      { word: 'inherited', pos: 'adjective' },
+      { word: 'inheritance', pos: 'noun' },
+    ],
   },
 
   {
@@ -357,6 +422,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章全体の中で、最も重要な単語です。この文章の実質的な主張（テーゼ）そのものを表しています。文章全体の構成は、読者に「どちらか一方を選ぶ」のではなく、この「相互作用」という考え方へと導くように作られています。',
     collocations: ['the interaction of nature and nurture', 'a complex interaction', 'social interaction', 'interaction between two factors'],
     derivatives: ['interact', 'interaction', 'interactive'],
+    wordFamily: [
+      { word: 'interact', pos: 'verb' },
+      { word: 'interactive', pos: 'adjective' },
+    ],
   },
 
   {
@@ -377,6 +446,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章の中で、nurture（育ち・経験）が大人になってからも本当に働き続けていることを示す、最も分かりやすい例です。aspiration（志）は、resilience（回復力）やmotivation（動機）と同じように、生まれつき決まっているのではなく、人生を通してずっと育っていくものとして描かれています。',
     collocations: ['career aspiration', 'express your aspirations', 'aspiration to become', 'share aspirations', 'aspirations for the future'],
     derivatives: ['aspire', 'aspiring', 'aspirational', 'aspiration'],
+    wordFamily: [
+      { word: 'aspire', pos: 'verb' },
+      { word: 'aspiring', pos: 'adjective' },
+    ],
   },
 
   {
@@ -398,6 +471,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['inner motivation', 'source of motivation', 'stay motivated', 'find motivation', 'motivation to study'],
     otherMeanings: ["motivation (formal): the stated reason for an action or decision, as in 'his motivation for leaving was never made clear.'"],
     derivatives: ['motivate', 'motivated', 'motivating', 'motivation'],
+    wordFamily: [
+      { word: 'motivate', pos: 'verb' },
+      { word: 'motivated', pos: 'adjective' },
+    ],
   },
 
   {
@@ -418,6 +495,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: '性格の特徴が、子供時代だけでなく大人になってからも育てられることを示す、この文章で最も分かりやすい証拠です。会議で発言できなかった社員が難しいプロジェクトを率いるまでになる過程は、文章の前半に出てくる内気な子供が自信を身につけていく過程と同じ仕組みで描かれています。',
     collocations: ['show resilience', 'build resilience', 'emotional resilience', 'resilience in the face of', 'resilience through hardship'],
     derivatives: ['resilient', 'resilience'],
+    wordFamily: [
+      { word: 'resilient', pos: 'adjective' },
+    ],
   },
 
   // ── What Does It Mean to Be a University Student? — Foundation ─────────────
@@ -447,6 +527,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life'],
     themeNote: 'Attendance is the clearest example of a system that used to watch you and now simply doesn\'t — what you do with that gap is entirely up to you.',
     collocations: ['check attendance', 'poor attendance', 'attendance record', 'affect your attendance', 'take attendance'],
+    wordFamily: [
+      { word: 'attend', pos: 'verb' },
+    ],
   },
 
   {
@@ -466,6 +549,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Submission is a small, concrete word for a big shift: remembering a deadline is now entirely the student\'s own job.',
     collocations: ['submission deadline', 'late submission', 'submit an assignment', 'final submission', 'online submission'],
     derivatives: ['submit', 'submission', 'submitted'],
+    wordFamily: [
+      { word: 'submit', pos: 'verb' },
+    ],
   },
 
   {
@@ -484,6 +570,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['academic'],
     themeNote: 'University assignments require more independence than high school homework — no one reminds you to do them, and no one checks that you started early.',
     collocations: ['finish an assignment', 'submit an assignment', 'assignment deadline', 'work on an assignment', 'a group assignment'],
+    wordFamily: [
+      { word: 'assign', pos: 'verb' },
+    ],
   },
 
   {
@@ -502,6 +591,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life', 'core'],
     themeNote: 'Independence is the central shift this theme is about — from being guided at every step to making your own choices.',
     collocations: ['become independent', 'independent thinking', 'independent of', 'fully independent', 'more independent than before'],
+    wordFamily: [
+      { word: 'independence', pos: 'noun' },
+      { word: 'independently', pos: 'adverb' },
+    ],
   },
 
   {
@@ -520,6 +613,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life', 'core'],
     themeNote: 'Responsibility pairs naturally with independence in this theme — freedom and responsibility arrive together, not separately. This same word deepens again at Advanced level, explored there as something a student must build for themselves rather than simply receive.',
     collocations: ['take responsibility', 'personal responsibility', 'a sense of responsibility', 'responsibility for your own...', 'more responsibility than before'],
+    wordFamily: [
+      { word: 'responsible', pos: 'adjective' },
+      { word: 'responsibly', pos: 'adverb' },
+    ],
   },
 
   {
@@ -539,6 +636,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Managing your own schedule and deadlines, with nobody checking, is one of the most concrete daily skills this theme is really about.',
     collocations: ['manage your time', 'manage your schedule', 'manage to do something', 'manage well', 'hard to manage'],
     otherMeanings: ['manage (business): to be in charge of a company, team, or project (e.g., manage a store)'],
+    wordFamily: [
+      { word: 'management', pos: 'noun' },
+      { word: 'manageable', pos: 'adjective' },
+    ],
   },
 
   {
@@ -557,6 +658,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life', 'action'],
     themeNote: 'University multiplies the number of everyday decisions a student must make alone — this word names that shift directly.',
     collocations: ['decide for yourself', 'decide to do something', 'hard to decide', 'decide on', 'still deciding'],
+    wordFamily: [
+      { word: 'decision', pos: 'noun' },
+      { word: 'decisive', pos: 'adjective' },
+    ],
   },
 
   {
@@ -576,6 +681,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'A deliberate spiral word from Theme 1 (Knowing Myself), where challenge was the mechanism through which confidence and strength were discovered. Here it reappears in a new context: the challenge of managing real independence for the first time.',
     collocations: ['a real challenge', 'face a challenge', 'feel like a challenge', 'a new challenge', 'challenge at first'],
     derivatives: ['challenge', 'challenging', 'challenged'],
+    wordFamily: [
+      { word: 'challenging', pos: 'adjective' },
+    ],
   },
 
   {
@@ -595,6 +703,11 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Another deliberate spiral word from Theme 1, where developing was linked to reflecting on experience. Here, development comes specifically from taking on real responsibility, not from one dramatic change.',
     collocations: ['develop into', 'continue to develop', 'develop a skill', 'develop good habits', 'develop over time'],
     derivatives: ['develop', 'development', 'developed', 'developing'],
+    wordFamily: [
+      { word: 'development', pos: 'noun' },
+      { word: 'developed', pos: 'adjective' },
+      { word: 'developing', pos: 'adjective' },
+    ],
   },
 
   // ── What Does It Mean to Be a University Student? — Advanced ────────────────
@@ -621,6 +734,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: "The Advanced passage deliberately complicates the easy version of this word — independence isn't freedom from structure, it's the ongoing work of building structure yourself.",
     collocations: ['gain independence', 'a sense of independence', 'true independence', 'independence from', 'value independence'],
     derivatives: ['independent', 'independence', 'independently'],
+    wordFamily: [
+      { word: 'independent', pos: 'adjective' },
+      { word: 'independently', pos: 'adverb' },
+    ],
   },
 
   {
@@ -639,6 +756,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life', 'core'],
     themeNote: 'The passage\'s central distinction: self-discipline is not the same as being obedient to someone else\'s rule — it is creating and keeping a rule for yourself.',
     collocations: ['real self-discipline', 'build self-discipline', 'lack self-discipline', 'self-discipline and initiative', 'require self-discipline'],
+    wordFamily: [
+      { word: 'self-disciplined', pos: 'adjective' },
+    ],
   },
 
   {
@@ -658,6 +778,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage\'s clearest behavioral test of self-discipline: acting before being asked, because you\'ve already decided the work matters.',
     collocations: ['take initiative', 'show initiative', 'on your own initiative', 'genuine initiative', 'lack initiative'],
     derivatives: ['initiative', 'initiate'],
+    wordFamily: [
+      { word: 'initiate', pos: 'verb' },
+    ],
   },
 
   {
@@ -676,6 +799,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     tags: ['university-life', 'core'],
     themeNote: 'The passage is explicit that commitment is measured by what survives after motivation fades — not by how a student feels in an exciting first week.',
     collocations: ['a strong commitment', "test someone's commitment", 'commitment to something', 'keep a commitment', 'long-term commitment'],
+    wordFamily: [
+      { word: 'commit', pos: 'verb' },
+      { word: 'committed', pos: 'adjective' },
+    ],
   },
 
   {
@@ -695,6 +822,10 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage redefines what "adapting" actually means here: not getting used to less supervision, but replacing that supervision with self-discipline.',
     collocations: ['adapt to', 'adapt quickly', 'fail to adapt', 'adapt your approach', 'adapt well'],
     derivatives: ['adapt', 'adapted', 'adaptable', 'adaptation'],
+    wordFamily: [
+      { word: 'adaptation', pos: 'noun' },
+      { word: 'adaptable', pos: 'adjective' },
+    ],
   },
 
   {
@@ -714,6 +845,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: "The passage's key example of a decision high school made for you: deciding what matters most is exactly the skill university suddenly requires without ever teaching it directly.",
     collocations: ['set a priority', 'top priority', 'a sense of priority', 'competing priorities', 'get your priorities right'],
     derivatives: ['priority', 'prioritize'],
+    wordFamily: [
+      { word: 'prioritize', pos: 'verb' },
+    ],
   },
 
   {
