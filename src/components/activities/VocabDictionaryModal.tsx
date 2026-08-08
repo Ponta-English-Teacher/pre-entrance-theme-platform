@@ -376,18 +376,27 @@ export default function VocabDictionaryModal({
                 </div>
               ) : null}
 
-              {/* Word Family — template addition (2026-08-08): a short, POS-
-                  tagged list of the word's natural family members. Plain
-                  text, not interactive — distinct from Derivatives below,
-                  which stays exactly as it was (clickable, no POS tags). */}
+              {/* Word Family — template addition (2026-08-08, extended
+                  2026-08-09 with a short parallel Japanese gloss per member
+                  so the whole family connects at a glance, not just a list
+                  of English forms). Plain text, not interactive — distinct
+                  from Derivatives below, which stays exactly as it was
+                  (clickable, no POS tags, no Japanese). Kept as its own
+                  self-contained block so a future, separate "Word Origin /
+                  Roots" section (not part of this task) could be added
+                  right after it without touching this block's structure. */}
               {display.entry.wordFamily && display.entry.wordFamily.length > 0 && (
                 <div>
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Word Family</h3>
-                  <ul className="space-y-1 list-disc list-inside">
+                  <ul className="space-y-2">
                     {display.entry.wordFamily.map(m => (
-                      <li key={m.word} className="text-sm text-slate-700">
-                        <span className="font-semibold text-slate-800">{m.word}</span>
-                        <span className="text-slate-400"> ({m.pos})</span>
+                      <li key={m.word} className="text-sm">
+                        <p className="text-slate-700">
+                          <span className="text-slate-400 mr-1" aria-hidden="true">•</span>
+                          <span className="font-semibold text-slate-800">{m.word}</span>
+                          <span className="text-slate-400"> ({m.pos})</span>
+                        </p>
+                        <p className="text-slate-500 pl-3.5 mt-0.5">{m.japanese}</p>
                       </li>
                     ))}
                   </ul>

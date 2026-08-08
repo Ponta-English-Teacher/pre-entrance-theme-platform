@@ -20,15 +20,19 @@ export interface VocabEntry {
   coreMeaningJa?: string;      // Japanese translation of coreMeaning (prototype field)
   exampleTranslations?: [string, string]; // Japanese translations of the two examples
   derivatives?: string[];      // same word-family members only (派生語), e.g. person/personal/personally/personality
-  /** Word Family template addition (2026-08-08): the word's natural family,
-   *  each member tagged with its own part of speech, e.g. independent (adj.)
-   *  -> [{ word: 'independence', pos: 'noun' }, { word: 'independently', pos: 'adverb' }].
+  /** Word Family template addition (2026-08-08, extended 2026-08-09 with a
+   *  short parallel Japanese gloss per member): the word's natural family,
+   *  each member tagged with its own part of speech and a short Japanese
+   *  meaning, so students connect the whole family almost instantly rather
+   *  than just seeing a list of English forms — e.g. independent (adj.) ->
+   *  [{ word: 'independence', pos: 'noun', japanese: '独立・自立' },
+   *   { word: 'independently', pos: 'adverb', japanese: '独立して・自力で' }].
    *  Only genuinely useful, commonly used forms — omit entirely when a word
    *  has no natural family worth showing (e.g. "goal", "deadline"). A
    *  separate, additive field from `derivatives` (which stays exactly as
    *  it was — its own "Derivatives（派生語）" section, its own click-to-
    *  explore behavior, both untouched). */
-  wordFamily?: Array<{ word: string; pos: 'noun' | 'verb' | 'adjective' | 'adverb' }>;
+  wordFamily?: Array<{ word: string; pos: 'noun' | 'verb' | 'adjective' | 'adverb'; japanese: string }>;
 }
 
 export const MASTER_VOCABULARY: VocabEntry[] = [
@@ -58,9 +62,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['your own personality', 'personality is built', 'part of your personality', 'develop your personality', 'a strong personality'],
     derivatives: ['person', 'personal', 'personally', 'personality', 'personalize'],
     wordFamily: [
-      { word: 'person', pos: 'noun' },
-      { word: 'personal', pos: 'adjective' },
-      { word: 'personally', pos: 'adverb' },
+      { word: 'person', pos: 'noun', japanese: '人' },
+      { word: 'personal', pos: 'adjective', japanese: '個人的な' },
+      { word: 'personally', pos: 'adverb', japanese: '個人的に' },
     ],
   },
 
@@ -83,8 +87,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['gain experience', 'a valuable experience', 'learn from experience', 'our experiences', 'through experience'],
     derivatives: ['experience', 'experienced', 'inexperienced'],
     wordFamily: [
-      { word: 'experienced', pos: 'adjective' },
-      { word: 'inexperienced', pos: 'adjective' },
+      { word: 'experienced', pos: 'adjective', japanese: '経験豊富な' },
+      { word: 'inexperienced', pos: 'adjective', japanese: '経験不足の' },
     ],
   },
 
@@ -107,7 +111,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['face a challenge', 'overcome a challenge', 'a difficult challenge', 'a big challenge', 'take on a challenge'],
     derivatives: ['challenge', 'challenging', 'challenged'],
     wordFamily: [
-      { word: 'challenging', pos: 'adjective' },
+      { word: 'challenging', pos: 'adjective', japanese: 'やりがいのある・難しい' },
     ],
   },
 
@@ -130,8 +134,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['feel confident', 'become more confident', 'gain confidence', 'confidence in yourself', 'grow in confidence'],
     derivatives: ['confidence', 'confident', 'confidently'],
     wordFamily: [
-      { word: 'confident', pos: 'adjective' },
-      { word: 'confidently', pos: 'adverb' },
+      { word: 'confident', pos: 'adjective', japanese: '自信のある' },
+      { word: 'confidently', pos: 'adverb', japanese: '自信を持って' },
     ],
   },
 
@@ -154,9 +158,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['discover a strength', 'a personal strength', 'new strengths', 'identify your strengths', 'find a strength'],
     derivatives: ['strength', 'strong', 'strongly', 'strengthen'],
     wordFamily: [
-      { word: 'strong', pos: 'adjective' },
-      { word: 'strongly', pos: 'adverb' },
-      { word: 'strengthen', pos: 'verb' },
+      { word: 'strong', pos: 'adjective', japanese: '強い' },
+      { word: 'strongly', pos: 'adverb', japanese: '強く' },
+      { word: 'strengthen', pos: 'verb', japanese: '強化する' },
     ],
   },
 
@@ -179,9 +183,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['continue to develop', 'develop as a person', 'develop a skill', 'develop over time', 'keep developing'],
     derivatives: ['develop', 'development', 'developed', 'developing'],
     wordFamily: [
-      { word: 'development', pos: 'noun' },
-      { word: 'developed', pos: 'adjective' },
-      { word: 'developing', pos: 'adjective' },
+      { word: 'development', pos: 'noun', japanese: '発達・発展' },
+      { word: 'developed', pos: 'adjective', japanese: '発達した・先進的な' },
+      { word: 'developing', pos: 'adjective', japanese: '発展途上の' },
     ],
   },
 
@@ -204,8 +208,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['reflect on', 'reflect on your experiences', 'take time to reflect', 'reflect carefully', 'stop and reflect'],
     derivatives: ['reflect', 'reflection', 'reflective'],
     wordFamily: [
-      { word: 'reflection', pos: 'noun' },
-      { word: 'reflective', pos: 'adjective' },
+      { word: 'reflection', pos: 'noun', japanese: '反省・振り返り' },
+      { word: 'reflective', pos: 'adjective', japanese: '内省的な' },
     ],
   },
 
@@ -228,8 +232,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['personal values', 'your values', 'values grow', 'important values', 'shape your values'],
     derivatives: ['value', 'valuable', 'valued'],
     wordFamily: [
-      { word: 'valuable', pos: 'adjective' },
-      { word: 'valued', pos: 'adjective' },
+      { word: 'valuable', pos: 'adjective', japanese: '価値がある' },
+      { word: 'valued', pos: 'adjective', japanese: '大切にされている' },
     ],
   },
 
@@ -276,7 +280,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['a distant dream', 'feel closer to a dream', 'still a dream', 'pursue a dream', 'make a dream come true'],
     otherMeanings: ['dream (verb, sleep): to experience images or stories during sleep', 'daydream: imagining something pleasant while you are awake'],
     wordFamily: [
-      { word: 'dreamer', pos: 'noun' },
+      { word: 'dreamer', pos: 'noun', japanese: '夢を見る人' },
     ],
   },
 
@@ -297,8 +301,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage treats even a very small moment as genuinely important — this theme resists the idea that only big, dramatic events matter.',
     collocations: ['something important', 'important to notice', 'an important part', 'feel important', 'important for who you become'],
     wordFamily: [
-      { word: 'importance', pos: 'noun' },
-      { word: 'importantly', pos: 'adverb' },
+      { word: 'importance', pos: 'noun', japanese: '重要性' },
+      { word: 'importantly', pos: 'adverb', japanese: '重要なことに' },
     ],
   },
 
@@ -327,8 +331,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     otherMeanings: ["nature (everyday sense): the physical world, including plants, animals, and landscapes, as in 'a walk in nature.'"],
     derivatives: ['nature', 'natural', 'naturally', 'unnatural'],
     wordFamily: [
-      { word: 'natural', pos: 'adjective' },
-      { word: 'naturally', pos: 'adverb' },
+      { word: 'natural', pos: 'adjective', japanese: '自然な・生まれつきの' },
+      { word: 'naturally', pos: 'adverb', japanese: '自然に・生まれつき' },
     ],
   },
 
@@ -352,8 +356,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     otherMeanings: ["nurture (verb): to care for someone and help them grow, as in 'she nurtured her students' confidence for years.'"],
     derivatives: ['nurture', 'nurturing', 'nurtured'],
     wordFamily: [
-      { word: 'nurturing', pos: 'adjective' },
-      { word: 'nurtured', pos: 'adjective' },
+      { word: 'nurturing', pos: 'adjective', japanese: '育成的な・愛情深い' },
+      { word: 'nurtured', pos: 'adjective', japanese: '育まれた' },
     ],
   },
 
@@ -375,7 +379,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNoteJa: 'この文章における「nature（生まれつき）」側の最も明確な証拠となる単語です。経験によって形作られる前の、幼い子供にすでに見られる違いを指します。「personality」よりも、この特定の考えを表すのにより正確で、やや専門的な言葉です。',
     collocations: ['a calm temperament', 'a natural temperament', 'differences in temperament', 'temperament and personality'],
     wordFamily: [
-      { word: 'temperamental', pos: 'adjective' },
+      { word: 'temperamental', pos: 'adjective', japanese: '気分屋の・気質による' },
     ],
   },
 
@@ -399,8 +403,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     otherMeanings: ["inherit (property/money): to receive money, property, or a title after someone dies, as in 'he inherited the family business.'"],
     derivatives: ['inherit', 'inherited', 'inheritance', 'inheritable'],
     wordFamily: [
-      { word: 'inherited', pos: 'adjective' },
-      { word: 'inheritance', pos: 'noun' },
+      { word: 'inherited', pos: 'adjective', japanese: '受け継いだ' },
+      { word: 'inheritance', pos: 'noun', japanese: '相続・遺伝' },
     ],
   },
 
@@ -423,8 +427,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['the interaction of nature and nurture', 'a complex interaction', 'social interaction', 'interaction between two factors'],
     derivatives: ['interact', 'interaction', 'interactive'],
     wordFamily: [
-      { word: 'interact', pos: 'verb' },
-      { word: 'interactive', pos: 'adjective' },
+      { word: 'interact', pos: 'verb', japanese: '相互作用する' },
+      { word: 'interactive', pos: 'adjective', japanese: '双方向の・対話的な' },
     ],
   },
 
@@ -447,8 +451,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['career aspiration', 'express your aspirations', 'aspiration to become', 'share aspirations', 'aspirations for the future'],
     derivatives: ['aspire', 'aspiring', 'aspirational', 'aspiration'],
     wordFamily: [
-      { word: 'aspire', pos: 'verb' },
-      { word: 'aspiring', pos: 'adjective' },
+      { word: 'aspire', pos: 'verb', japanese: '切望する' },
+      { word: 'aspiring', pos: 'adjective', japanese: '意欲的な・～を志す' },
     ],
   },
 
@@ -472,8 +476,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     otherMeanings: ["motivation (formal): the stated reason for an action or decision, as in 'his motivation for leaving was never made clear.'"],
     derivatives: ['motivate', 'motivated', 'motivating', 'motivation'],
     wordFamily: [
-      { word: 'motivate', pos: 'verb' },
-      { word: 'motivated', pos: 'adjective' },
+      { word: 'motivate', pos: 'verb', japanese: 'やる気にさせる' },
+      { word: 'motivated', pos: 'adjective', japanese: 'やる気のある' },
     ],
   },
 
@@ -496,7 +500,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['show resilience', 'build resilience', 'emotional resilience', 'resilience in the face of', 'resilience through hardship'],
     derivatives: ['resilient', 'resilience'],
     wordFamily: [
-      { word: 'resilient', pos: 'adjective' },
+      { word: 'resilient', pos: 'adjective', japanese: '粘り強い・回復力のある' },
     ],
   },
 
@@ -528,7 +532,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Attendance is the clearest example of a system that used to watch you and now simply doesn\'t — what you do with that gap is entirely up to you.',
     collocations: ['check attendance', 'poor attendance', 'attendance record', 'affect your attendance', 'take attendance'],
     wordFamily: [
-      { word: 'attend', pos: 'verb' },
+      { word: 'attend', pos: 'verb', japanese: '出席する' },
     ],
   },
 
@@ -550,7 +554,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['submission deadline', 'late submission', 'submit an assignment', 'final submission', 'online submission'],
     derivatives: ['submit', 'submission', 'submitted'],
     wordFamily: [
-      { word: 'submit', pos: 'verb' },
+      { word: 'submit', pos: 'verb', japanese: '提出する' },
     ],
   },
 
@@ -571,7 +575,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'University assignments require more independence than high school homework — no one reminds you to do them, and no one checks that you started early.',
     collocations: ['finish an assignment', 'submit an assignment', 'assignment deadline', 'work on an assignment', 'a group assignment'],
     wordFamily: [
-      { word: 'assign', pos: 'verb' },
+      { word: 'assign', pos: 'verb', japanese: '課す・割り当てる' },
     ],
   },
 
@@ -592,8 +596,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Independence is the central shift this theme is about — from being guided at every step to making your own choices.',
     collocations: ['become independent', 'independent thinking', 'independent of', 'fully independent', 'more independent than before'],
     wordFamily: [
-      { word: 'independence', pos: 'noun' },
-      { word: 'independently', pos: 'adverb' },
+      { word: 'independence', pos: 'noun', japanese: '独立・自立' },
+      { word: 'independently', pos: 'adverb', japanese: '独立して・自力で' },
     ],
   },
 
@@ -614,8 +618,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'Responsibility pairs naturally with independence in this theme — freedom and responsibility arrive together, not separately. This same word deepens again at Advanced level, explored there as something a student must build for themselves rather than simply receive.',
     collocations: ['take responsibility', 'personal responsibility', 'a sense of responsibility', 'responsibility for your own...', 'more responsibility than before'],
     wordFamily: [
-      { word: 'responsible', pos: 'adjective' },
-      { word: 'responsibly', pos: 'adverb' },
+      { word: 'responsible', pos: 'adjective', japanese: '責任がある' },
+      { word: 'responsibly', pos: 'adverb', japanese: '責任を持って' },
     ],
   },
 
@@ -637,8 +641,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['manage your time', 'manage your schedule', 'manage to do something', 'manage well', 'hard to manage'],
     otherMeanings: ['manage (business): to be in charge of a company, team, or project (e.g., manage a store)'],
     wordFamily: [
-      { word: 'management', pos: 'noun' },
-      { word: 'manageable', pos: 'adjective' },
+      { word: 'management', pos: 'noun', japanese: '管理・経営' },
+      { word: 'manageable', pos: 'adjective', japanese: '管理できる' },
     ],
   },
 
@@ -659,8 +663,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'University multiplies the number of everyday decisions a student must make alone — this word names that shift directly.',
     collocations: ['decide for yourself', 'decide to do something', 'hard to decide', 'decide on', 'still deciding'],
     wordFamily: [
-      { word: 'decision', pos: 'noun' },
-      { word: 'decisive', pos: 'adjective' },
+      { word: 'decision', pos: 'noun', japanese: '決定' },
+      { word: 'decisive', pos: 'adjective', japanese: '決断力のある' },
     ],
   },
 
@@ -682,7 +686,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['a real challenge', 'face a challenge', 'feel like a challenge', 'a new challenge', 'challenge at first'],
     derivatives: ['challenge', 'challenging', 'challenged'],
     wordFamily: [
-      { word: 'challenging', pos: 'adjective' },
+      { word: 'challenging', pos: 'adjective', japanese: 'やりがいのある・難しい' },
     ],
   },
 
@@ -704,9 +708,9 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['develop into', 'continue to develop', 'develop a skill', 'develop good habits', 'develop over time'],
     derivatives: ['develop', 'development', 'developed', 'developing'],
     wordFamily: [
-      { word: 'development', pos: 'noun' },
-      { word: 'developed', pos: 'adjective' },
-      { word: 'developing', pos: 'adjective' },
+      { word: 'development', pos: 'noun', japanese: '発達・発展' },
+      { word: 'developed', pos: 'adjective', japanese: '発達した・先進的な' },
+      { word: 'developing', pos: 'adjective', japanese: '発展途上の' },
     ],
   },
 
@@ -735,8 +739,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['gain independence', 'a sense of independence', 'true independence', 'independence from', 'value independence'],
     derivatives: ['independent', 'independence', 'independently'],
     wordFamily: [
-      { word: 'independent', pos: 'adjective' },
-      { word: 'independently', pos: 'adverb' },
+      { word: 'independent', pos: 'adjective', japanese: '自立した' },
+      { word: 'independently', pos: 'adverb', japanese: '独立して・自力で' },
     ],
   },
 
@@ -757,7 +761,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage\'s central distinction: self-discipline is not the same as being obedient to someone else\'s rule — it is creating and keeping a rule for yourself.',
     collocations: ['real self-discipline', 'build self-discipline', 'lack self-discipline', 'self-discipline and initiative', 'require self-discipline'],
     wordFamily: [
-      { word: 'self-disciplined', pos: 'adjective' },
+      { word: 'self-disciplined', pos: 'adjective', japanese: '自己規律のある' },
     ],
   },
 
@@ -779,7 +783,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['take initiative', 'show initiative', 'on your own initiative', 'genuine initiative', 'lack initiative'],
     derivatives: ['initiative', 'initiate'],
     wordFamily: [
-      { word: 'initiate', pos: 'verb' },
+      { word: 'initiate', pos: 'verb', japanese: '始める・着手する' },
     ],
   },
 
@@ -800,8 +804,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themeNote: 'The passage is explicit that commitment is measured by what survives after motivation fades — not by how a student feels in an exciting first week.',
     collocations: ['a strong commitment', "test someone's commitment", 'commitment to something', 'keep a commitment', 'long-term commitment'],
     wordFamily: [
-      { word: 'commit', pos: 'verb' },
-      { word: 'committed', pos: 'adjective' },
+      { word: 'commit', pos: 'verb', japanese: '関わる・専念する' },
+      { word: 'committed', pos: 'adjective', japanese: '専念している・熱心な' },
     ],
   },
 
@@ -823,8 +827,8 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['adapt to', 'adapt quickly', 'fail to adapt', 'adapt your approach', 'adapt well'],
     derivatives: ['adapt', 'adapted', 'adaptable', 'adaptation'],
     wordFamily: [
-      { word: 'adaptation', pos: 'noun' },
-      { word: 'adaptable', pos: 'adjective' },
+      { word: 'adaptation', pos: 'noun', japanese: '適応' },
+      { word: 'adaptable', pos: 'adjective', japanese: '順応性のある' },
     ],
   },
 
@@ -846,7 +850,7 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     collocations: ['set a priority', 'top priority', 'a sense of priority', 'competing priorities', 'get your priorities right'],
     derivatives: ['priority', 'prioritize'],
     wordFamily: [
-      { word: 'prioritize', pos: 'verb' },
+      { word: 'prioritize', pos: 'verb', japanese: '優先する' },
     ],
   },
 
