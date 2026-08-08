@@ -448,6 +448,25 @@ not:
   Read" on selected text is strictly more flexible. Themes not yet migrated
   to this template may still use the older per-paragraph Play button — that
   is expected during the transition, not an inconsistency to fix urgently.
+- **Recursive Selection Assistant (frozen 2026-08-09).** The text shown
+  inside a Selection Assistant result — Translate, How to Read, and Easy
+  English alike, since all three render through the same
+  `SelectionExplanationPanel` — is itself selectable, wrapped in
+  `SelectableContent` exactly like any other educational text (§ Vocabulary
+  Preview rule below is the same principle applied to a different
+  surface). A student who hits another unfamiliar word inside an
+  explanation can select it and get the normal Translate/How to
+  Read/Easy English toolbar again, recursively, without the panel closing
+  or losing its place. The explanation panel remains draggable throughout
+  (`handleHeaderMouseDown` in `SelectionExplanationPanel.tsx`, scoped to
+  the header's own background — not its text, so a mousedown that starts
+  on the header's text or the panel body is never mistaken for a drag).
+  The floating toolbar (`SelectionToolbar.tsx`) always renders above any
+  open explanation panel (`z-[60]` vs. the panel's `z-50`) so a selection
+  made inside the panel is never visually hidden underneath it. These
+  behaviors are part of the permanent platform template and must not be
+  changed without explicit approval — this is not scoped to Reading; it
+  applies everywhere the Selection Assistant appears.
 - **Vocabulary Preview interaction rule (frozen 2026-08-09).** Inside the
   Vocabulary Preview's word card (`VocabDictionaryModal.tsx`), any
   educational text is learning material unless it is an explicit UI
@@ -601,6 +620,10 @@ application.
   legacy URLs.
 - The Vocabulary Preview interaction rule (§12), for Meaning, Examples,
   Common Collocations, and Word Family — manually verified 2026-08-09.
+- The Recursive Selection Assistant rule (§12) — manually verified
+  2026-08-09 across all three actions (Translate, How to Read, Easy
+  English), including toolbar-above-panel stacking and the panel staying
+  draggable throughout.
 
 ### Approved, not yet implemented
 

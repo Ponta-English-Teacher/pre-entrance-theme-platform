@@ -100,7 +100,15 @@ export default function SelectionExplanationPanel({
 
   function handleHeaderMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     if (window.innerWidth < DESKTOP_BREAKPOINT) return; // mobile bottom sheet doesn't drag
-    if ((e.target as HTMLElement).closest('button')) return; // let the close button handle its own click
+    const target = e.target as HTMLElement;
+    if (target.closest('button')) return; // let the close button handle its own click
+    // A mousedown that starts on the header's own text (the action label or
+    // the quoted original selection) must not arm a drag — that text sits
+    // directly above the explanation with no gap, so a gesture meant to
+    // begin selecting the explanation easily lands here first. This text is
+    // already sm:select-none, so it isn't selectable either way; the drag
+    // handle is the header's background/padding only.
+    if (target.closest('p')) return;
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     dragStartRef.current = { pointerX: e.clientX, pointerY: e.clientY, top: rect.top, left: rect.left };
