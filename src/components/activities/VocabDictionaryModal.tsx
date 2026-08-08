@@ -386,21 +386,23 @@ export default function VocabDictionaryModal({
                   Roots" section (not part of this task) could be added
                   right after it without touching this block's structure. */}
               {display.entry.wordFamily && display.entry.wordFamily.length > 0 && (
-                <div>
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Word Family</h3>
-                  <ul className="space-y-2">
-                    {display.entry.wordFamily.map(m => (
-                      <li key={m.word} className="text-sm">
-                        <p className="text-slate-700">
-                          <span className="text-slate-400 mr-1" aria-hidden="true">•</span>
-                          <span className="font-semibold text-slate-800">{m.word}</span>
-                          <span className="text-slate-400"> ({m.pos})</span>
-                        </p>
-                        <p className="text-slate-500 pl-3.5 mt-0.5">{m.japanese}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <SelectableContent activityType="vocabulary" themeId={themeId} label={`Vocabulary — ${display.entry.word} (word family)`}>
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Word Family</h3>
+                    <ul className="space-y-2">
+                      {display.entry.wordFamily.map(m => (
+                        <li key={m.word} className="text-sm">
+                          <p className="text-slate-700">
+                            <span className="text-slate-400 mr-1" aria-hidden="true">•</span>
+                            <span className="font-semibold text-slate-800">{m.word}</span>
+                            <span className="text-slate-400"> ({m.pos})</span>
+                          </p>
+                          <p className="text-slate-500 pl-3.5 mt-0.5">{m.japanese}</p>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </SelectableContent>
               )}
 
               {/* 5. Derivatives（派生語） — every word here is itself explorable. */}
