@@ -245,7 +245,19 @@ export default function VocabDictionaryModal({
     <>
       {/* Transparent click-catcher, not a heavy dimmed backdrop — the card
           should feel attached to the word, not like a detached dialog. */}
-      <div className="fixed inset-0 z-40 bg-slate-900/10" onClick={onClose} />
+      <div
+        className="fixed inset-0 z-40 bg-slate-900/10"
+        onClick={() => {
+          // A click-and-drag text selection (Examples/Collocations/Word
+          // Family) that ends just outside the card's edge still fires a
+          // click here — that's a selection finishing, not a request to
+          // close the card, so only close on a real click with nothing
+          // selected. Same guard used for Mission Check's answer options
+          // in ReadingLessonViewV2.
+          if (window.getSelection()?.toString()) return;
+          onClose();
+        }}
+      />
 
       <div
         ref={panelRef}
@@ -347,33 +359,41 @@ export default function VocabDictionaryModal({
                 </div>
               </SelectableContent>
 
-              {/* 4. Common Collocations */}
+              {/* 4. Common Collocations — chip appearance kept, but plain
+                  <span>s/<li>s throughout (never buttons), wrapped in
+                  SelectableContent so this participates in the Selection
+                  Assistant exactly like Examples: study material to select,
+                  not a UI control to click. */}
               {display.entry.collocationsDetailed ? (
-                <div>
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Common Collocations</h3>
-                  <ul className="space-y-3">
-                    {display.entry.collocationsDetailed.map((c, i) => (
-                      <li key={i} className="pl-3 border-l-2 border-slate-200">
-                        <p className="text-sm">
-                          <span className="font-bold text-slate-800">{c.phrase}</span>
-                          <span className="text-slate-500 ml-2">{c.glossJa}</span>
-                        </p>
-                        <p className="text-sm text-indigo-700 mt-0.5">→ {c.example}</p>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ) : display.entry.collocations.length > 0 ? (
-                <div>
-                  <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Common Collocations</h3>
-                  <div className="flex flex-wrap gap-2">
-                    {display.entry.collocations.map(c => (
-                      <span key={c} className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-medium border border-indigo-100">
-                        {c}
-                      </span>
-                    ))}
+                <SelectableContent activityType="vocabulary" themeId={themeId} label={`Vocabulary — ${display.entry.word} (collocations)`}>
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Common Collocations</h3>
+                    <ul className="space-y-3">
+                      {display.entry.collocationsDetailed.map((c, i) => (
+                        <li key={i} className="pl-3 border-l-2 border-slate-200">
+                          <p className="text-sm">
+                            <span className="font-bold text-slate-800">{c.phrase}</span>
+                            <span className="text-slate-500 ml-2">{c.glossJa}</span>
+                          </p>
+                          <p className="text-sm text-indigo-700 mt-0.5">→ {c.example}</p>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </div>
+                </SelectableContent>
+              ) : display.entry.collocations.length > 0 ? (
+                <SelectableContent activityType="vocabulary" themeId={themeId} label={`Vocabulary — ${display.entry.word} (collocations)`}>
+                  <div>
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Common Collocations</h3>
+                    <div className="flex flex-wrap gap-2">
+                      {display.entry.collocations.map(c => (
+                        <span key={c} className="px-3 py-1 bg-indigo-50 text-indigo-700 rounded-full text-xs font-medium border border-indigo-100">
+                          {c}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                </SelectableContent>
               ) : null}
 
               {/* Word Family — template addition (2026-08-08, extended
