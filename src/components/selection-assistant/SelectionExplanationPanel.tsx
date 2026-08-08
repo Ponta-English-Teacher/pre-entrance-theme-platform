@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SELECTION_ACTIONS } from '@/lib/selectionAssistant/types';
 import type { ActiveSelection, SelectionActionId } from '@/lib/selectionAssistant/types';
+import SelectableContent from './SelectableContent';
 
 export interface SelectionPanelState {
   open: boolean;
@@ -56,7 +57,14 @@ export default function SelectionExplanationPanel({
   useEffect(() => {
     if (!panel.open) return;
     function handleOutsideClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+      if (!ref.current || ref.current.contains(e.target as Node)) return;
+      // A text-selection drag started inside the panel (e.g. selecting a
+      // word inside the explanation to look it up again) must never close
+      // it, even if the selection extends past the panel's edge by the
+      // time this fires. Same guard used for the Vocabulary Card's
+      // backdrop and the Writing Toolbox.
+      if (window.getSelection()?.toString()) return;
+      onClose();
     }
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
@@ -148,7 +156,9 @@ export default function SelectionExplanationPanel({
           <p className="text-base text-rose-600 leading-relaxed whitespace-pre-line">{panel.error}</p>
         )}
         {panel.explanation && !panel.loading && (
-          <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
+          <SelectableContent activityType="selection-explanation" label={`${actionMeta?.label ?? 'Explanation'} — result`}>
+            <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
+          </SelectableContent>
         )}
       </div>
     </div>
