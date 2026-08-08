@@ -448,6 +448,19 @@ not:
   Read" on selected text is strictly more flexible. Themes not yet migrated
   to this template may still use the older per-paragraph Play button — that
   is expected during the transition, not an inconsistency to fix urgently.
+- **Vocabulary Preview interaction rule (frozen 2026-08-09).** Inside the
+  Vocabulary Preview's word card (`VocabDictionaryModal.tsx`), any
+  educational text is learning material unless it is an explicit UI
+  control, and all educational text participates in the Selection
+  Assistant by default: Headword, Meaning/Simple English definition,
+  Examples, Common Collocations, Word Family, and any future educational
+  section (Word Roots, Synonyms/Antonyms, or anything added later). Only
+  genuine UI controls — audio playback, Save to Glossary, Close,
+  navigation (e.g. Derivatives' click-to-open-another-word chips) —
+  behave as buttons. In short: **educational content → selectable →
+  Selection Assistant; UI controls → clickable → perform actions.** This
+  is the standing rule for every future vocabulary enhancement, not only
+  the sections that exist today.
 
 ---
 
@@ -586,6 +599,8 @@ application.
   Advanced only, with a migration for any `standard`/`challenge` values
   already saved in a returning student's browser storage or present in
   legacy URLs.
+- The Vocabulary Preview interaction rule (§12), for Meaning, Examples,
+  Common Collocations, and Word Family — manually verified 2026-08-09.
 
 ### Approved, not yet implemented
 
@@ -611,6 +626,12 @@ application.
 - Migrating any other theme, or Theme 1 Advanced, to this template.
 - A formal audit of the shared Reading/Writing/Toolbox components for
   anything hardcoded to Theme 1 specifically, before broad reuse.
+- The Vocabulary Preview interaction rule (§12) applied to the Headword —
+  the one known gap as of 2026-08-09. Not a simple copy of the pattern
+  used elsewhere: the header row also carries the desktop drag-to-move-
+  the-card handler, which currently claims any mousedown there except on
+  a `<button>`, so the headword needs to be excluded from that handler
+  (the same way buttons already are) before it can be wrapped safely.
 
 ### Ideas for future versions
 
