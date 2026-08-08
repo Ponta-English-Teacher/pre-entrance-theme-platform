@@ -2,6 +2,8 @@
 
 Status: **Frozen.** Educational Goal, Essential Question, Foundation Reading Passage, and Advanced Reading Passage approved 2026-08-07, after three rounds of revision. This is now the canonical manuscript for Theme 2, the same status Theme 1's manuscript holds — see `docs/THEME_01_ADVANCED_READING_PASSAGE.md` for precedent. Implementation (Vocabulary, Reading, Writing, AI Talk) is derived from this document; do not rewrite the manuscript itself as part of implementation work.
 
+**Update (2026-08-09): the full Theme 2 implementation — not just this manuscript — is now approved and frozen**, the platform's second reference implementation (the content template — see `docs/THEME_EXPERIENCE_TEMPLATE.md`'s status block and `docs/CONTENT_PROGRESS.md`). Do not redesign or modify Theme 2 in future work unless explicitly requested.
+
 The educational focus is deliberately **not** campus facilities or university systems — it is becoming an independent, responsible university student.
 
 ---
