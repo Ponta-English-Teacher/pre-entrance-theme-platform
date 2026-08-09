@@ -775,9 +775,10 @@ export const MASTER_READINGS: ReadingLesson[] = [
   },
 
   // ── Designing My Future — Foundation ────────────────────────────────────────
-  // Rebuilt 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
-  // English fields are verbatim from the frozen manuscript — do not edit the
-  // wording here without revising the source manuscript first.
+  // Rebuilt 2026-08-09 from the author's canonical manuscript ("Many people
+  // think that designing a future begins by deciding what they want to
+  // become..."). English fields are verbatim from that manuscript — do not
+  // edit the wording here without revising the source manuscript first.
 
   {
     id: 'df-f-reading-01',
@@ -787,15 +788,15 @@ export const MASTER_READINGS: ReadingLesson[] = [
     titleJapanese: '未来を描く',
     estimatedMinutes: 15,
     experienceVersion: 2,
-    welcome: 'Today, you will think about how a future is actually built — not by already knowing the right answer, but by paying attention to what your own experience reveals about you.',
-    mission: 'As you read, notice the small, ordinary moments the passage says can reveal something about your future. Think about a class, a project, or a task that has already told you something about yourself.',
+    welcome: 'Today, you will think about a different way to understand how a future takes shape — not by choosing a destination first, but by gradually coming to understand yourself.',
+    mission: 'As you read, notice the different kinds of experience the passage says can reveal something about you. Think about a subject, a group experience, or a difficult task that has already told you something about yourself.',
 
     preReadingSurvey: {
-      question: 'Which statement is closest to how you feel about your own future right now?',
+      question: 'Which statement is closest to how you feel about designing your future?',
       options: [
-        { id: 'know', label: 'I feel like I should already know exactly what I want to become.' },
-        { id: 'discovering', label: "I feel okay not knowing yet — I'm still discovering it." },
-        { id: 'unsure', label: "I'm not sure how I feel about it." },
+        { id: 'destination', label: 'I think it mainly means choosing a clear destination as early as possible.' },
+        { id: 'self-understanding', label: 'I think it mainly means understanding myself, and the destination comes later.' },
+        { id: 'unsure', label: "I'm not sure yet." },
       ],
     },
 
@@ -803,42 +804,42 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'df-f-reading-01-p1',
         english:
-          "Many people start university believing they should already know exactly what they want to become. When they don't, it can feel like something is missing — as though everyone else has already found an answer they haven't. But designing a future is rarely that simple, and it is almost never just one decision.",
+          'Many people think that designing a future begins by deciding what they want to become. This idea seems reasonable because having a clear destination makes decisions easier. However, there may be another way to think about the future. Before deciding where we want to go, we may first need to understand ourselves.',
         japanese:
-          '多くの人は、大学に入る時点で、自分が将来何になりたいかをすでにはっきり分かっているべきだと思って大学生活を始めます。もしそうでなければ、まるで自分だけ答えを見つけられていないかのように、何かが欠けているように感じることがあります。しかし、将来を思い描くことは、めったにそれほど単純ではありませんし、たった一つの決断で決まることも、ほとんどありません。',
+          '多くの人は、将来を思い描くことは、自分が何になりたいかを決めることから始まると考えています。この考え方は、はっきりとした目的地があれば決断がしやすくなるため、もっともらしく思えます。しかし、将来について考える別の方法があるかもしれません。どこへ向かいたいかを決める前に、まず自分自身を理解する必要があるのかもしれません。',
         plainEnglish:
-          "Many people start university thinking they should already know exactly what they want to become. If they don't, it can feel like something is missing — as if everyone else already has an answer they don't have. But designing a future is rarely that simple, and it is almost never just one decision.",
-        checkQuestion: "According to this paragraph, what can it feel like when a new student doesn't already know what they want to become?",
+          'Many people think that designing a future starts with deciding what they want to become. This idea seems reasonable because having a clear destination makes decisions easier. But there may be another way to think about the future. Before deciding where we want to go, we may first need to understand ourselves.',
+        checkQuestion: 'According to this paragraph, what does this passage suggest we may need to do before deciding where we want to go?',
       },
       {
         id: 'df-f-reading-01-p2',
         english:
-          'In reality, most people discover their future gradually, through ordinary experience rather than one moment of clarity. A new subject can reveal a preference. A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking. A difficult task can reveal a strength, or a potential, you had no reason to test before.',
+          'Self-understanding rarely appears all at once. It develops gradually through experience. A new subject may reveal a preference. Working with other people may reveal a tendency. A difficult task may reveal a strength or a potential that had never been noticed before. These experiences help us understand not only what we enjoy, but also how we naturally respond to different situations.',
         japanese:
-          '実際には、ほとんどの人は、劇的なひらめきの瞬間からではなく、ごく普通の経験を通して、少しずつ自分の将来を見つけていきます。新しい科目が、自分の好みに気づかせてくれることもあります。グループプロジェクトが、自分の傾向——たとえばリーダーシップを取る癖や、話す前によく考える癖——を明らかにしてくれることもあります。難しい課題が、それまで試す理由のなかった強みや可能性を明らかにしてくれることもあります。',
+          '自己理解は、めったに一度にすべて現れるものではありません。それは経験を通して、少しずつ育っていきます。新しい科目が、好みに気づかせてくれるかもしれません。他の人と一緒に取り組むことが、傾向を明らかにしてくれるかもしれません。難しい課題が、それまで気づかれていなかった強みや可能性を明らかにしてくれるかもしれません。こうした経験は、自分が何を楽しいと感じるかだけでなく、さまざまな状況にどう自然に反応するかを理解する助けにもなります。',
         plainEnglish:
-          'In reality, most people find their future step by step, through everyday experience rather than one dramatic moment. A new subject might show you a preference. A group project might show you a tendency — maybe a habit of leading, or of thinking carefully before you speak. A difficult task might show you a strength, or a potential, that you never had a reason to test before.',
-        checkQuestion: 'According to this paragraph, what three things can ordinary experience — a subject, a project, a task — reveal about a person?',
+          'Self-understanding rarely appears all at once. It develops gradually through experience. A new subject might show you a preference. Working with other people might show you a tendency. A difficult task might show you a strength or a potential you never noticed before. These experiences help us understand not only what we enjoy, but also how we naturally respond to different situations.',
+        checkQuestion: 'According to this paragraph, what three kinds of experience — a subject, working with others, a difficult task — can each reveal about a person?',
       },
       {
         id: 'df-f-reading-01-p3',
         english:
-          'It is easy to assume that only finding the right path counts as progress, and that ruling things out simply means falling behind. This is a mistake. A class that feels wrong, or a task that drains your energy, is not wasted time. Choosing against something, once genuinely tried, is often just as valuable as choosing for something.',
+          'Experience also teaches us what does not suit us. Many people see changing direction as a failure, but it can also be a form of learning. Knowing what to leave behind is just as important as knowing what to pursue. Both help us understand ourselves more clearly.',
         japanese:
-          '正しい道を見つけることだけが前進だと思い込み、何かを候補から外すことは単に遅れを取ることだと考えてしまいがちです。しかし、それは間違いです。合わないと感じる授業や、エネルギーを消耗させる課題は、決して無駄な時間ではありません。何かを本当に試したうえで、それに対して「ノー」を選ぶことは、多くの場合、何かに対して「イエス」を選ぶのと同じくらい価値があります。',
+          '経験はまた、自分に合わないことも教えてくれます。多くの人は方向を変えることを失敗だと考えますが、それは学びの一つの形でもあり得ます。何を追い求めるべきかを知ることと同じくらい、何を手放すべきかを知ることも大切です。そのどちらもが、自分自身をより明確に理解する助けになります。',
         plainEnglish:
-          "It's easy to think that only finding the right path counts as real progress, and that ruling things out just means falling behind. That's a mistake. A class that feels wrong, or a task that drains your energy, is not wasted time. Choosing against something — once you've really tried it — is often just as valuable as choosing for something.",
-        checkQuestion: 'According to this paragraph, why is choosing against something not a waste of time?',
+          'Experience also teaches us what does not suit us. Many people see changing direction as a failure, but it can also be a kind of learning. Knowing what to leave behind is just as important as knowing what to pursue. Both help us understand ourselves more clearly.',
+        checkQuestion: 'According to this paragraph, why might changing direction not actually be a failure?',
       },
       {
         id: 'df-f-reading-01-p4',
         english:
-          'Designing a future, then, is less a single decision than an ongoing process of noticing what interests you, what you are good at, and what does not suit you. You do not need to know your future yet — only to keep paying attention to what your own experience tells you.',
+          'Designing a future, therefore, is not simply choosing a destination. It is a continuous process of discovering who we are. As our understanding of ourselves grows, decisions about the future become more thoughtful and more meaningful.',
         japanese:
-          'つまり将来を思い描くということは、たった一つの決断というよりも、自分が何に興味を持ち、何が得意で、そして何が自分に合わないのかに、絶えず気づき続けていく過程なのです。あなたはまだ自分の将来を知っている必要はありません——ただ、自分自身の経験が教えてくれることに、注意を払い続ければいいのです。',
+          'したがって、将来を思い描くということは、単に目的地を選ぶことではありません。それは、自分が何者であるかを発見し続ける、継続的な過程です。自分自身への理解が深まるにつれて、将来についての決断は、より思慮深く、より意味のあるものになっていきます。',
         plainEnglish:
-          "So designing a future is less about one single decision, and more about an ongoing process of noticing what interests you, what you're good at, and what doesn't suit you. You don't need to know your future yet — you only need to keep paying attention to what your own experience tells you.",
-        checkQuestion: 'According to this final paragraph, what is designing a future actually described as, instead of a single decision?',
+          'So designing a future is not simply about choosing a destination. It is a continuous process of discovering who we are. As our understanding of ourselves grows, decisions about the future become more thoughtful and more meaningful.',
+        checkQuestion: 'According to this final paragraph, what is designing a future actually described as, instead of simply choosing a destination?',
       },
     ],
 
@@ -847,10 +848,10 @@ export const MASTER_READINGS: ReadingLesson[] = [
       'df-f-02', // preference
       'df-f-03', // tendency
       'df-f-04', // potential
-      'df-f-05', // choose
+      'df-f-05', // reveal
       'df-f-06', // suit
-      'df-f-07', // notice
-      'df-f-08', // reveal
+      'df-f-07', // pursue
+      'df-f-08', // continuous
     ],
 
     // Deferred, matching Theme 1 and Theme 2's own current state — not part
@@ -858,30 +859,30 @@ export const MASTER_READINGS: ReadingLesson[] = [
     noticeLanguage: [],
 
     missionCheck: {
-      question: 'According to the passage, how do most people actually discover their future?',
-      explainer: 'In simple words — does the passage say people usually find their future in one big moment, or bit by bit through everyday experience?',
-      explainerJa: '簡単に言うと、この文章は、人は将来を一度の大きな瞬間で見つけると言っているのか、それとも日々の経験を通して少しずつ見つけると言っているのか、という質問です。',
+      question: 'According to the passage, how does self-understanding usually develop?',
+      explainer: 'In simple words — does the passage say self-understanding appears all at once, or gradually through experience?',
+      explainerJa: '簡単に言うと、この文章は自己理解が一度にすべて現れると言っているのか、それとも経験を通して少しずつ現れると言っているのか、という質問です。',
       hint: 'Look at paragraph 2.',
       hintJa: '第2段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'Most people discover their future in one sudden moment of clarity.', correct: false },
-        { id: 'b', label: 'Most people discover their future gradually, through ordinary, everyday experience.', correct: true },
-        { id: 'c', label: 'Most people discover their future only after they finish university.', correct: false },
+        { id: 'a', label: 'Self-understanding usually appears all at once, in a single clear moment.', correct: false },
+        { id: 'b', label: 'Self-understanding rarely appears all at once — it develops gradually through experience.', correct: true },
+        { id: 'c', label: 'Self-understanding only develops after a person has already chosen a career.', correct: false },
       ],
       answerParagraphId: 'df-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading best shows that choosing against something can still be valuable?',
+      evidencePrompt: 'Which idea from the reading best shows that changing direction is not necessarily a failure?',
       evidenceOptions: [
-        { id: 'e1', label: 'A new subject can reveal a preference.', paragraphId: 'df-f-reading-01-p2', correct: false },
-        { id: 'e2', label: 'Choosing against something, once genuinely tried, is often just as valuable as choosing for something.', paragraphId: 'df-f-reading-01-p3', correct: true },
-        { id: 'e3', label: 'You do not need to know your future yet — only to keep paying attention to what your own experience tells you.', paragraphId: 'df-f-reading-01-p4', correct: false },
+        { id: 'e1', label: 'A difficult task may reveal a strength or a potential that had never been noticed before.', paragraphId: 'df-f-reading-01-p2', correct: false },
+        { id: 'e2', label: 'Many people see changing direction as a failure, but it can also be a form of learning.', paragraphId: 'df-f-reading-01-p3', correct: true },
+        { id: 'e3', label: 'It is a continuous process of discovering who we are.', paragraphId: 'df-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking.',
+        quote: 'Working with other people may reveal a tendency.',
         question: 'What does "tendency" mean here?',
         options: [
-          { id: 'a', label: 'A pattern in how someone naturally tends to act or react.', correct: true },
+          { id: 'a', label: 'A pattern in how someone naturally thinks, acts, or reacts.', correct: true },
           { id: 'b', label: 'A strict rule that a group must follow.', correct: false },
-          { id: 'c', label: 'A mistake that only happens one time.', correct: false },
+          { id: 'c', label: 'A single mistake that happens only once.', correct: false },
         ],
       },
     },
@@ -889,56 +890,59 @@ export const MASTER_READINGS: ReadingLesson[] = [
     // Foundation Writing — per docs/WRITING_PHILOSOPHY.md, a short personal
     // "Answer a question" task (READING_WRITING_ARCHITECTURE.md §6).
     writing: {
-      prompt: "Think about a class, club activity, or task you have tried. What did it reveal about you — a preference, a tendency, or a potential you didn't expect? Explain what happened and what you noticed about yourself.",
-      promptJapanese: 'あなたがこれまでに経験した授業や部活動、あるいは何かの課題について考えてみましょう。それは、あなたについて何を明らかにしてくれましたか——好み、傾向、それとも予想していなかった可能性でしょうか。何が起きたか、そして自分自身について何に気づいたかを説明してください。',
+      prompt: "Think about a subject, a group experience, or a difficult task you have had. What did it reveal about you — a preference, a tendency, or a potential you didn't expect? Explain what happened and what you noticed about yourself.",
+      promptJapanese: 'あなたが経験した科目や、他の人と一緒に取り組んだこと、あるいは難しい課題について考えてみましょう。それは、あなたについて何を明らかにしてくれましたか——好み、傾向、それとも予想していなかった可能性でしょうか。何が起きたか、そして自分自身について何に気づいたかを説明してください。',
       minSentences: 2,
-      sentenceStarters: ['One thing I discovered about myself was', 'I noticed a tendency to', 'It revealed that I', "I didn't expect to find that I"],
+      sentenceStarters: ['I discovered that I', 'It revealed a tendency to', 'I noticed a potential I', 'I realized that I want to pursue'],
       wordBank: [
-        { vocabId: 'df-f-01', examplePhrase: 'I discovered that I actually enjoy public speaking.' },
+        { vocabId: 'df-f-01', examplePhrase: 'I discovered that I actually enjoy explaining things to other people.' },
         { vocabId: 'df-f-02', examplePhrase: 'It showed me a clear preference for working with my hands.' },
-        { vocabId: 'df-f-03', examplePhrase: 'I noticed a tendency in myself to take the lead.' },
-        { vocabId: 'df-f-04', examplePhrase: 'The teacher told me I had potential I hadn\'t noticed.' },
-        { vocabId: 'df-f-05', examplePhrase: 'I chose to try it again, even though it was hard.' },
-        { vocabId: 'df-f-06', examplePhrase: "In the end, that class just didn't suit me." },
-        { vocabId: 'df-f-07', examplePhrase: 'I started to notice how much I enjoyed helping others.' },
-        { vocabId: 'df-f-08', examplePhrase: "The experience revealed something I didn't expect about myself." },
+        { vocabId: 'df-f-03', examplePhrase: 'Working in a group revealed a tendency in myself to ask questions first.' },
+        { vocabId: 'df-f-04', examplePhrase: "The teacher told me I had potential I hadn't noticed." },
+        { vocabId: 'df-f-05', examplePhrase: "The experience revealed something I didn't expect about myself." },
+        { vocabId: 'df-f-06', examplePhrase: "In the end, that subject just didn't suit me." },
+        { vocabId: 'df-f-07', examplePhrase: 'It helped me realize what I actually want to pursue.' },
+        { vocabId: 'df-f-08', examplePhrase: "I'm starting to see this as a continuous process, not a one-time decision." },
       ],
       usefulExpressions: [
         { phrase: 'It revealed that I...', japanese: 'それは私が...ということを明らかにしてくれました' },
         { phrase: 'I noticed a tendency to...', japanese: '私は...する傾向があることに気づきました' },
-        { phrase: 'This experience showed me that...', japanese: 'この経験は、私に...ということを教えてくれました' },
+        { phrase: 'This experience taught me that...', japanese: 'この経験は、私に...ということを教えてくれました' },
         { phrase: "I didn't expect to discover...", japanese: '私は...を発見するとは思っていませんでした' },
         { phrase: 'For now, I just want to keep paying attention to...', japanese: '今のところ、私はただ...に注意を払い続けたいです' },
       ],
     },
 
-    takeaway: 'You do not need to know your future yet — only to keep paying attention to what your own experience tells you.',
+    takeaway: 'As our understanding of ourselves grows, decisions about the future become more thoughtful and more meaningful.',
   },
 
   // ── Designing My Future — Advanced ──────────────────────────────────────────
-  // Built 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
-  // Genuinely separate manuscript from Foundation, not an extension of it
-  // (READING_WRITING_ARCHITECTURE.md §2) — Foundation stays concrete/personal
-  // (a class, a group project, a difficult task); Advanced explores the
-  // philosophical debate underneath: is a future discovered or constructed?
+  // Rebuilt 2026-08-09 from the same canonical manuscript's Advanced passage
+  // ("People often believe that designing a future begins with making an
+  // important decision..."). Genuinely separate manuscript from Foundation,
+  // not an extension of it (READING_WRITING_ARCHITECTURE.md §2) — Foundation
+  // stays concrete/personal (a subject, working with others, a difficult
+  // task); Advanced reframes career development itself: not a sequence of
+  // correct decisions toward a predetermined destination, but something
+  // built through continuous adjustment and accumulated experience.
 
   {
     id: 'df-s-reading-01',
     themeId: 'designing-my-future',
     level: 'advanced',
-    title: 'Is a Future Discovered, or Built?',
-    titleJapanese: '将来は「発見」されるのか、それとも「築かれる」のか？',
+    title: 'Choosing a Destination, or Understanding Yourself?',
+    titleJapanese: '目的地を選ぶこと、それとも自分自身を理解すること？',
     estimatedMinutes: 20,
     experienceVersion: 2,
-    welcome: 'Today, you will explore a real debate about how a future actually forms: is it something already inside you, waiting to be discovered — or something you build gradually, through effort, whether or not you feel passionate about it at first?',
-    mission: 'As you read, notice how the passage builds two opposing accounts before bringing them together. Think about which parts of your own experience feel like "discovery" and which feel more like something you are actively constructing.',
+    welcome: 'Today, you will explore two different accounts of how a future actually takes shape — one where a destination already exists and simply needs to be found, and another where self-understanding is built gradually through action and experience.',
+    mission: 'As you read, notice how the passage complicates the idea that a future begins with a decision, and reframes career development as something built through continuous adjustment rather than a fixed sequence of correct choices.',
 
     preReadingSurvey: {
       question: 'Which statement is closest to your own opinion?',
       options: [
-        { id: 'discovery', label: 'Your future is mostly something already inside you, waiting to be discovered.' },
-        { id: 'construction', label: 'Your future is mostly something you build gradually, through effort and action.' },
-        { id: 'both', label: 'Your future comes from both — early tendencies and effort working together.' },
+        { id: 'destination', label: 'A future mainly begins with an important decision about a destination.' },
+        { id: 'experience', label: 'A future mainly develops through action and experience, without a fixed destination in mind.' },
+        { id: 'both', label: 'Both matter about equally — an initial direction and ongoing experience.' },
         { id: 'unsure', label: "I'm not sure." },
       ],
     },
@@ -947,42 +951,52 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'df-s-reading-01-p1',
         english:
-          'Ask someone who feels lost about their future what they are looking for, and they will often describe it the same way: a moment of realization, a sudden clarity about who they really are and what they were always meant to do. This idea has real appeal. It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered — a career, a passion, a purpose — and that the anxiety so many young adults feel is simply the discomfort of not yet having found it. If this is true, then designing a future is really a task of searching: paying close enough attention to yourself, eventually, to locate what was there all along.',
+          'People often believe that designing a future begins with making an important decision. Questions such as "What career should I choose?" or "What kind of life do I want to live?" seem to come first. This way of thinking assumes that the destination already exists, waiting to be identified, and that success depends on finding the correct answer as early as possible. As a result, many young people worry that they are falling behind if they cannot see a clear direction.',
         japanese:
-          '自分の将来を見失っていると感じている人に、何を探しているのか尋ねてみると、たいてい同じように答えます——ある「気づきの瞬間」、自分が本当は何者で、何をするために生まれてきたのかが突然はっきり分かる瞬間、というものです。この考え方には、たしかに大きな魅力があります。それは、すべての人の内側にはすでに「正解」が存在していて、それが発見されるのを待っているのだ——ある職業、ある情熱、ある目的として——そして、多くの若者が感じる不安は、単にまだそれを見つけていないことの不快感に過ぎないのだ、と示唆してくれるからです。もしこれが本当なら、将来を思い描くことは、本質的には「探す」という作業になります——十分に自分自身に注意を向け続けることで、いずれ、ずっとそこにあったものを見つけ出すのです。',
+          '人々はしばしば、将来を思い描くことは重要な決断をすることから始まると考えています。「どんな職業を選ぶべきか」「どんな人生を送りたいか」といった問いが、まず最初に来るように思えます。この考え方は、目的地がすでに存在していて、それが特定されるのを待っているのだと想定しており、成功はできるだけ早く正しい答えを見つけられるかどうかにかかっている、と考えます。その結果、多くの若者は、はっきりとした方向性が見えないと、自分は遅れているのではないかと不安になります。',
         plainEnglish:
-          "Ask someone who feels lost about their future what they're looking for, and they usually describe it the same way: a sudden moment of realization, a sudden clear understanding of who they really are and what they were always meant to do. This idea is very appealing. It suggests that inside every person there is already a correct answer, just waiting to be discovered — a career, a passion, a purpose — and that the anxiety so many young adults feel is simply the discomfort of not having found it yet. If this is true, then designing a future is really just a matter of searching: paying close enough attention to yourself, eventually, to find what was there all along.",
-        checkQuestion: "According to this paragraph, what does the 'self-discovery' view suggest already exists inside every person?",
+          'People often believe that designing a future starts with making an important decision. Questions like "What career should I choose?" or "What kind of life do I want to live?" seem to come first. This way of thinking assumes that the destination already exists, just waiting to be identified, and that success depends on finding the correct answer as early as possible. As a result, many young people worry that they\'re falling behind if they can\'t see a clear direction.',
+        checkQuestion: "According to this paragraph, what does the 'destination already exists' way of thinking assume success depends on?",
       },
       {
         id: 'df-s-reading-01-p2',
         english:
-          'Some people find this account convincing. They point out that certain tendencies — a comfort with ambiguity, a pull toward people rather than toward ideas, a lasting curiosity about how things work — do seem to appear early and remain remarkably stable over time. A child who spends hours taking things apart to see how they function often grows into an adult whose work looks recognizably similar in shape. On this view, self-discovery is not simply a comforting myth. Something does seem to exist before a person consciously notices it, shaping which experiences feel effortless and which feel like friction.',
+          'There is another way to understand the same process. Instead of asking people to discover a future that already exists, it suggests that a future is gradually shaped through experience. People rarely understand themselves completely before they begin to act. Rather, action itself becomes the source of self-understanding. New experiences reveal abilities that had never been tested. Difficult situations expose strengths and weaknesses that could not have been predicted. Even an experience that seems disappointing at the time may later become valuable because it changes the way a person understands both themselves and the world.',
         japanese:
-          'この考え方を説得力があると感じる人たちもいます。彼らは、ある種の傾向——あいまいさを心地よく感じる性質、アイデアよりも人に引かれる性質、物事の仕組みへの尽きることのない好奇心——が早い時期から現れ、驚くほど長い間安定して続くように見える、と指摘します。何時間もかけてものを分解して仕組みを調べていた子どもが、成長して、形はどうであれよく似た仕事に就くことは珍しくありません。この見方に立てば、自己発見は単なる心地よい神話ではありません。人が意識的に気づくよりも前から、何かがすでに存在していて、それがどの経験を「楽で自然」に感じさせ、どの経験を「摩擦」のように感じさせるかを形作っているように見えるのです。',
+          '同じ過程を理解する、別の方法もあります。すでに存在している将来を発見するよう人々に求めるのではなく、この見方は、将来は経験を通して少しずつ形づくられていくのだと考えます。人は、行動を始める前に自分自身を完全に理解していることは、めったにありません。むしろ、行動そのものが自己理解の源になります。新しい経験は、それまで試されたことのなかった能力を明らかにします。難しい状況は、予測できなかった強みや弱みを露わにします。その時は残念に思える経験でさえ、後になって価値あるものになることがあります。それが、自分自身と世界の両方を理解する仕方を変えてくれるからです。',
         plainEnglish:
-          "Some people find this idea convincing. They point out that certain tendencies — being comfortable with unclear situations, being drawn to people rather than ideas, a lasting curiosity about how things work — do seem to appear early and stay remarkably stable over time. A child who spends hours taking things apart to see how they work often grows into an adult whose job looks surprisingly similar in shape. From this view, self-discovery isn't just a comforting myth. Something does seem to exist before a person consciously notices it, shaping which experiences feel easy and which feel like friction.",
-        checkQuestion: "According to this paragraph, what evidence do supporters of the 'self-discovery' view point to?",
+          'There is another way to understand the same process. Instead of asking people to discover a future that already exists, this view suggests that a future is gradually shaped through experience. People rarely understand themselves completely before they start acting. Instead, action itself becomes the source of self-understanding. New experiences reveal abilities that had never been tested. Difficult situations expose strengths and weaknesses that couldn\'t have been predicted. Even an experience that seems disappointing at the time may later become valuable, because it changes how a person understands both themselves and the world.',
+        checkQuestion: "According to this paragraph, what becomes 'the source of self-understanding,' according to this alternative view?",
       },
       {
         id: 'df-s-reading-01-p3',
         english:
-          'Others argue the opposite: that most people do not discover what suits them by looking inward at all, but construct it, gradually, through action taken for reasons that have little to do with passion — a required course, a part-time job taken for the money, a club joined because a friend asked. On this view, the common assumption that enjoyment comes first and effort follows is exactly backward. What actually happens, more often, is the reverse: effort leads to competence, and competence, in turn, produces enjoyment. People do not usually choose to practice something because they already love it. They come to love it because sustained effort made them good at it, and being good at something most people find genuinely satisfying. To put it plainly: enjoyment does not usually come before effort and lead to it. It comes after effort, by way of competence. If this is correct, waiting to feel a spark before committing to anything gets the sequence exactly backward — the spark is not the cause of effort, but one of its effects.',
+          'This perspective also changes the meaning of career development. A career is often imagined as a sequence of correct decisions leading toward a predetermined destination. In reality, however, careers are usually developed through continuous adjustment. Opportunities appear unexpectedly. Interests change. New skills are acquired. People often discover that work they never considered eventually becomes meaningful because they have developed competence through sustained effort. In many cases, enjoyment does not come before effort. Instead, effort leads to competence, and competence gradually produces satisfaction. What people later describe as a passion may therefore be the result of long-term engagement rather than its starting point.',
         japanese:
-          '一方で、まったく逆の主張をする人たちもいます——ほとんどの人は、自分の内側を見つめることによって自分に合うものを見つけるのではなく、情熱とはほとんど関係のない理由で取った行動——必修科目、お金のために始めたアルバイト、友達に誘われて入った部活動——を通して、少しずつそれを「作り上げていく」のだ、という主張です。この見方に立てば、「楽しさが先にあり、努力がそれに続く」という一般的な思い込みは、まったく逆なのです。実際に多く起きているのは、その正反対のこと——努力が能力を生み、その能力が今度は楽しさを生み出す、ということです。人は、すでにそれを愛しているから練習を始めるわけではありません。地道な努力によってそれが上手になり、何かが上手にできること自体を、多くの人は心から満足に感じるからこそ、それを愛するようになるのです。はっきり言えば、楽しさは、努力より先に来て努力を導くものではありません。それは努力のあとに、能力を経由してやって来るのです。もしこれが正しいなら、何かに取り組み始める前に「ひらめき」を感じるのを待つことは、順序をまったく逆にしてしまっています——ひらめきは努力の原因ではなく、努力がもたらす結果の一つなのです。',
+          'この見方は、キャリア形成の意味も変えることになります。キャリアは、あらかじめ決められた目的地に向かう、正しい決断の連続として思い描かれがちです。しかし実際には、キャリアはたいてい、継続的な調整を通して形づくられていきます。機会は予期せぬ形で現れます。興味は変化します。新しいスキルが身についていきます。人はしばしば、以前は考えもしなかった仕事が、やがて意味のあるものになっていくことに気づきます。それは、持続的な努力を通して能力を身につけてきたからです。多くの場合、楽しさは努力より先には来ません。むしろ、努力が能力につながり、能力が少しずつ満足感を生み出します。人が後になって「情熱」と呼ぶものは、そのため、出発点ではなく、長期にわたる関わりの結果であるのかもしれません。',
         plainEnglish:
-          "Others argue the opposite: that most people don't find what suits them by looking inward at all, but build it gradually, through actions taken for reasons that have little to do with passion — a required course, a part-time job taken for the money, a club joined because a friend asked. From this view, the common belief that enjoyment comes first and effort follows is exactly backward. What actually happens, more often, is the reverse: effort leads to competence, and competence, in turn, produces enjoyment. People don't usually start practicing something because they already love it. They come to love it because steady effort made them good at it, and being good at something feels genuinely satisfying to most people. Simply put: enjoyment usually doesn't come before effort and lead to it. It comes after effort, through competence. If this is correct, waiting to feel a spark before committing to something gets the order exactly backward — the spark isn't the cause of effort, it's one of its results.",
-        checkQuestion: 'According to this paragraph, what is the actual order of effort, competence, and enjoyment, according to the opposing view?',
+          'This perspective also changes what career development actually means. A career is often imagined as a sequence of correct decisions leading toward a destination that was fixed from the start. In reality, though, careers are usually developed through continuous adjustment. Opportunities appear unexpectedly. Interests change. New skills are gained. People often discover that work they never considered eventually becomes meaningful, because they\'ve developed competence through sustained effort. In many cases, enjoyment doesn\'t come before effort. Instead, effort leads to competence, and competence gradually produces satisfaction. What people later call a passion may actually be the result of long-term engagement, rather than its starting point.',
+        checkQuestion: 'According to this paragraph, what is the actual order of effort, competence, and enjoyment, in real career development?',
       },
       {
         id: 'df-s-reading-01-p4',
         english:
-          'Taken together, these two accounts suggest that designing a future is neither pure discovery nor pure invention, but something closer to an ongoing negotiation between the two. A person\'s early tendencies do matter — they make certain paths feel more natural and sustainable than others, and ignoring them entirely is its own kind of mistake. But those tendencies are only a starting condition, not a finished answer, and they rarely announce themselves clearly enough to be identified by reflection alone. They surface through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed, the group project that revealed, uncomfortably, that this was not it. Understanding your future, then, may require less patience for private self-examination and more willingness to act before you are certain — because certainty, for most people, turns out to be something a future produces, not something that precedes it.',
+          'None of this means that people should ignore their preferences or natural tendencies. On the contrary, understanding ourselves remains essential. However, self-understanding should not be treated as a single discovery that solves every future decision. It develops continuously through the interaction between our personal characteristics and the experiences we accumulate throughout life.',
         japanese:
-          'この二つの見方を合わせて考えると、将来を思い描くということは、純粋な「発見」でも純粋な「発明」でもなく、その両方の間で絶えず続く「交渉」のようなものだと言えるでしょう。人が早いうちから持つ傾向は、たしかに重要です——それらは、ある種の道を他の道よりも自然で長く続けやすいものに感じさせてくれますし、それらを完全に無視することもまた一種の間違いです。しかし、それらの傾向は、あくまで「出発点」であって「最終的な答え」ではなく、内省だけでは十分にはっきりと自分から名乗り出てくれることは、めったにありません。それらは「摩擦」を通して姿を現します——予想外に夢中になれたあの授業、他のみんなが文句を言っていたのに自分だけはほとんど気にならなかったあの課題、気まずいけれど「これは違う」と明らかにしてくれたあのグループプロジェクト。だとすれば、自分の将来を理解するために本当に必要なのは、一人で静かに自己分析を続ける忍耐力よりもむしろ、確信が持てないうちから行動する意志の強さなのかもしれません——なぜなら、ほとんどの人にとって、確信というものは、将来に先立って存在するものではなく、将来が作り出す「結果」だからです。',
+          'これは、人が自分の好みや生まれ持った傾向を無視すべきだという意味ではまったくありません。それどころか、自分自身を理解することは、依然として欠かせないことです。しかし、自己理解は、将来のあらゆる決断を一度に解決してくれる単一の発見として扱われるべきではありません。それは、私たちの個人的な特性と、人生を通して積み重ねていく経験との相互作用を通して、絶えず発達し続けるものなのです。',
         plainEnglish:
-          "Taken together, these two views suggest that designing a future is neither pure discovery nor pure invention, but something closer to an ongoing negotiation between the two. A person's early tendencies do matter — they make certain paths feel more natural and easier to continue than others, and completely ignoring them is its own kind of mistake. But those tendencies are only a starting point, not a finished answer, and they rarely make themselves clear enough through reflection alone. They show up through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed, the group project that showed you, uncomfortably, that this wasn't it. Understanding your future, then, may require less patience for quiet self-examination and more willingness to act before you're certain — because for most people, certainty turns out to be something a future produces, not something that comes before it.",
-        checkQuestion: "According to this final paragraph, where do a person's early tendencies mainly 'surface,' or become visible?",
+          "None of this means people should ignore their preferences or natural tendencies. On the contrary, understanding ourselves remains essential. But self-understanding shouldn't be treated as a single discovery that solves every future decision at once. It develops continuously, through the interaction between our personal characteristics and the experiences we build up throughout life.",
+        checkQuestion: 'According to this paragraph, through what does self-understanding develop continuously?',
+      },
+      {
+        id: 'df-s-reading-01-p5',
+        english:
+          'Designing a future, therefore, is not simply a matter of choosing the correct destination. It is a lifelong process of understanding ourselves more deeply while continuing to learn from experience. The destination is important, but it is not the beginning. A clearer understanding of ourselves is what gradually allows the destination itself to become clearer.',
+        japanese:
+          'したがって、将来を思い描くということは、単に正しい目的地を選ぶことではありません。それは、経験から学び続けながら、自分自身をより深く理解していく、生涯にわたる過程です。目的地は重要ですが、それは出発点ではありません。自分自身についての理解が明確になっていくことこそが、目的地そのものを少しずつ明確にしていくのです。',
+        plainEnglish:
+          'So designing a future is not simply about choosing the correct destination. It is a lifelong process of understanding ourselves more deeply while continuing to learn from experience. The destination matters, but it is not the starting point. A clearer understanding of ourselves is what gradually makes the destination itself become clearer.',
+        checkQuestion: 'According to this final paragraph, what gradually allows the destination itself to become clearer?',
       },
     ],
 
@@ -990,11 +1004,11 @@ export const MASTER_READINGS: ReadingLesson[] = [
       'df-s-01', // construct
       'df-s-02', // competence
       'df-s-03', // assumption
-      'df-s-04', // ambiguity
-      'df-s-05', // satisfaction
-      'df-s-06', // anxiety
-      'df-s-07', // purpose
-      'df-s-08', // passion
+      'df-s-04', // anxiety
+      'df-s-05', // purpose
+      'df-s-06', // passion
+      'df-s-07', // predetermined
+      'df-s-08', // interaction (spiral reinforcement from Theme 1 Advanced)
     ],
 
     noticeLanguage: [],
@@ -1005,57 +1019,57 @@ export const MASTER_READINGS: ReadingLesson[] = [
     // passage, and vocabulary-in-context targets one official target word.
     missionCheck: {
       question: 'Based on the passage as a whole, which statement would the author most likely agree with?',
-      explainer: 'In simple words — after reading the whole passage, does the author think a future is only discovered, only built, or some mix of both?',
-      explainerJa: '簡単に言うと、文章全体を読んだ後、筆者は将来というものが「発見されるだけ」なのか、「作られるだけ」なのか、それとも両方が組み合わさったものなのか、どう考えているか、という質問です。',
-      hint: 'Look especially at paragraph 4, but think about how paragraphs 2 and 3 work together too.',
-      hintJa: '特に第4段落に注目してください。ただし、第2段落と第3段落がどのように関係し合っているかも考えてみましょう。',
+      explainer: 'In simple words — after reading the whole passage, does the author think designing a future mainly means finding a fixed destination, or continuously understanding yourself through experience?',
+      explainerJa: '簡単に言うと、文章全体を読んだ後、筆者は将来を思い描くということが、主に決まった目的地を見つけることだと考えているのか、それとも経験を通して自分自身を理解し続けることだと考えているのか、という質問です。',
+      hint: 'Look especially at paragraph 5, but think about how paragraphs 2 and 3 support it.',
+      hintJa: '特に第5段落に注目してください。ただし、第2段落と第3段落がそれをどう支えているかも考えてみましょう。',
       options: [
-        { id: 'a', label: 'A future is purely something waiting inside you to be discovered through self-reflection.', correct: false },
-        { id: 'b', label: 'Designing a future is an ongoing negotiation between early tendencies and effort-built competence, not pure discovery or pure invention.', correct: true },
-        { id: 'c', label: "Early tendencies do not matter at all — only effort determines a person's future.", correct: false },
+        { id: 'a', label: 'A future is mainly a fixed destination that exists in advance and simply needs to be identified.', correct: false },
+        { id: 'b', label: 'A clearer understanding of ourselves is what gradually allows the destination itself to become clearer, not the other way around.', correct: true },
+        { id: 'c', label: 'Career development follows a predetermined sequence of correct decisions.', correct: false },
       ],
-      answerParagraphId: 'df-s-reading-01-p4',
+      answerParagraphId: 'df-s-reading-01-p5',
       evidencePrompt: 'Which quotation from the passage best shows evidence that enjoyment usually comes after effort, not before it?',
       evidenceOptions: [
-        { id: 'e1', label: 'It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered.', paragraphId: 'df-s-reading-01-p1', correct: false },
-        { id: 'e2', label: 'Effort leads to competence, and competence, in turn, produces enjoyment.', paragraphId: 'df-s-reading-01-p3', correct: true },
-        { id: 'e3', label: 'They surface through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed.', paragraphId: 'df-s-reading-01-p4', correct: false },
+        { id: 'e1', label: 'This way of thinking assumes that the destination already exists, waiting to be identified.', paragraphId: 'df-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Effort leads to competence, and competence gradually produces satisfaction.', paragraphId: 'df-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'It develops continuously through the interaction between our personal characteristics and the experiences we accumulate throughout life.', paragraphId: 'df-s-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'On this view, the common assumption that enjoyment comes first and effort follows is exactly backward.',
-        question: 'What does "assumption" mean in this sentence?',
+        quote: 'A career is often imagined as a sequence of correct decisions leading toward a predetermined destination.',
+        question: 'What does "predetermined" mean in this sentence?',
         options: [
-          { id: 'a', label: 'Something accepted as true without being directly proven.', correct: true },
-          { id: 'b', label: 'A scientific fact that has already been tested and confirmed.', correct: false },
-          { id: 'c', label: 'A formal promise made between two people.', correct: false },
+          { id: 'a', label: 'Decided or fixed in advance, before anything has actually happened.', correct: true },
+          { id: 'b', label: 'Chosen freely and changed often over time.', correct: false },
+          { id: 'c', label: 'Discovered gradually through years of experience.', correct: false },
         ],
       },
     },
 
     // Advanced Writing — per docs/WRITING_PHILOSOPHY.md, "Explain your
     // opinion" (READING_WRITING_ARCHITECTURE.md §6, 80–120 words); the
-    // reading's discovery-versus-construction framework is used only as a
-    // lens for the student to examine their own experience, never as
-    // something to evaluate or summarize.
+    // reading's destination-versus-self-understanding framework is used
+    // only as a lens for the student to examine their own experience, never
+    // as something to evaluate or summarize.
     writing: {
       prompt:
-        'This passage presents two views: that a future is mostly discovered (early tendencies reveal themselves) or mostly constructed (effort leads to competence, which leads to enjoyment). Which view feels closer to your own experience so far? Explain your ideas with reasons or examples. Aim for about 80–120 words.',
+        'This passage presents two views: that a future begins with finding an already-existing destination, or that it develops gradually through action, adjustment, and accumulated experience. Which view feels closer to your own experience so far? Explain your ideas with reasons or examples. Aim for about 80–120 words.',
       promptJapanese:
-        'この文章では、将来についての二つの見方が示されています——将来はほとんど「発見」されるもの（早くからある傾向が姿を現す）なのか、それとも「構築」されるもの（努力が能力を生み、その能力が楽しさを生む）なのか。あなた自身のこれまでの経験には、どちらの見方が近いと感じますか。理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
+        'この文章では、将来についての二つの見方が示されています——将来はすでに存在している目的地を見つけることから始まるという見方と、行動や調整、積み重ねた経験を通して少しずつ発達していくという見方です。あなた自身のこれまでの経験には、どちらの見方が近いと感じますか。理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
       minSentences: 5,
-      sentenceStarters: ['I think my future is more', 'One tendency I noticed early was', 'One skill I built through effort was', 'This connects to my own experience because', 'In the end, I believe'],
+      sentenceStarters: ['I think my own experience is closer to', 'One assumption I used to have was', 'Through continuous adjustment, I have', 'This connects to my own experience because', 'In the end, I believe'],
       wordBank: [
-        { vocabId: 'df-s-01', examplePhrase: 'I think I construct my interests through effort, more than I discover them.' },
-        { vocabId: 'df-s-02', examplePhrase: 'Once I gained real competence in something, I started to enjoy it much more.' },
-        { vocabId: 'df-s-03', examplePhrase: 'I used to share the assumption that passion has to come first.' },
-        { vocabId: 'df-s-04', examplePhrase: "I'm still learning to feel comfortable with ambiguity about my own future." },
-        { vocabId: 'df-s-05', examplePhrase: 'The satisfaction I feel after finishing something difficult is hard to describe.' },
-        { vocabId: 'df-s-06', examplePhrase: 'Some of my anxiety about the future comes from expecting a single clear answer.' },
-        { vocabId: 'df-s-07', examplePhrase: "I don't think I've found my purpose yet, and I'm starting to think that's fine." },
-        { vocabId: 'df-s-08', examplePhrase: "For me, passion usually arrives after I've already put in real effort." },
+        { vocabId: 'df-s-01', examplePhrase: 'I think I construct my sense of direction through effort, more than I discover it all at once.' },
+        { vocabId: 'df-s-02', examplePhrase: 'Once I built real competence in something, I actually started to enjoy it more.' },
+        { vocabId: 'df-s-03', examplePhrase: 'I used to share the assumption that a destination has to be clear from the beginning.' },
+        { vocabId: 'df-s-04', examplePhrase: 'Some of my anxiety about the future comes from expecting a single correct destination.' },
+        { vocabId: 'df-s-05', examplePhrase: "I don't think I've found my purpose yet, and I'm starting to think that's fine." },
+        { vocabId: 'df-s-06', examplePhrase: "For me, passion usually arrives after I've already put in real effort." },
+        { vocabId: 'df-s-07', examplePhrase: "I no longer think of my future as predetermined — it feels more like something I'm building." },
+        { vocabId: 'df-s-08', examplePhrase: "I think my future depends on the interaction between what I'm naturally like and what I actually experience." },
       ],
       usefulExpressions: [
-        { phrase: 'I think my future is more...', japanese: '私は、自分の将来はより...だと思います' },
+        { phrase: 'I think my own experience is closer to...', japanese: '私自身の経験はより...に近いと思います' },
         { phrase: 'This connects to my own experience because...', japanese: 'これは、...という理由で私自身の経験とつながっています' },
         { phrase: 'Unlike the passage suggests,', japanese: '文章が示唆していることとは違って' },
         { phrase: 'In the end, I believe...', japanese: '最終的に、私は...だと思います' },
@@ -1063,7 +1077,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
       ],
     },
 
-    takeaway: 'Understanding your future, then, may require less patience for private self-examination and more willingness to act before you are certain — because certainty, for most people, turns out to be something a future produces, not something that precedes it.',
+    takeaway: 'A clearer understanding of ourselves is what gradually allows the destination itself to become clearer.',
   },
 
   // ── Living Together — Foundation ────────────────────────────────────────────

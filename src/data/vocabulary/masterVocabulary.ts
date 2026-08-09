@@ -805,11 +805,12 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
   },
 
   // ── Designing My Future — Foundation ────────────────────────────────────────
-  // Rebuilt 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
-  // Old ids df-f-01/02/03 (choice, plan, step) are fully retired — not
-  // referenced by any other theme — and repurposed below for new words.
-  // The old cross-referenced ids km-f-03/05/09 (goal, dream, important) and
-  // us-f-07 (decide) are no longer part of this theme's target vocabulary.
+  // Rebuilt 2026-08-09 from the author's canonical manuscript ("Many people
+  // think that designing a future begins by deciding what they want to
+  // become..."). Ids df-f-01..08 kept, content fully replaced: df-f-05/07/08
+  // change word (choose→reveal, notice→pursue, reveal→continuous); the other
+  // five ids keep the same word with themeNote/examples otherwise unchanged
+  // (they were already grounded in language present in this manuscript too).
 
   {
     id: 'df-f-01',
@@ -820,13 +821,13 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'To find out or realize something for the first time, especially through direct experience rather than by simply deciding it in advance.',
     examples: [
-      'In reality, most people discover their future gradually, through ordinary experience rather than one moment of clarity.',
-      "She didn't plan to love biology — she discovered it almost by accident, in a class she almost didn't take.",
+      'It is a continuous process of discovering who we are.',
+      "She didn't expect to enjoy the subject — she discovered that only after actually trying it.",
     ],
-    relatedWords: ['notice', 'potential', 'tendency'],
+    relatedWords: ['preference', 'potential', 'reveal'],
     tags: ['future', 'core'],
-    themeNote: "This is the theme's central verb — designing a future is framed here as something discovered gradually through experience, not something decided in a single moment.",
-    collocations: ['discover something new', 'discover a passion', 'discover for yourself', 'gradually discover', 'discover through experience'],
+    themeNote: "This is the passage's central verb for how self-understanding actually happens — not decided in advance, but discovered gradually through the process the passage describes.",
+    collocations: ['discover something new', 'discover a preference', 'gradually discover', 'discover through experience', 'discover who you are'],
     wordFamily: [
       { word: 'discovery', pos: 'noun', japanese: '発見' },
     ],
@@ -841,12 +842,12 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'A liking for one thing over another, especially one that only becomes clear through trying different things.',
     examples: [
-      'A new subject can reveal a preference.',
-      'After trying both, he realized his preference was for hands-on work rather than sitting at a desk all day.',
+      'A new subject may reveal a preference.',
+      'After trying a few different clubs, she finally noticed a clear preference for working with her hands.',
     ],
-    relatedWords: ['discover', 'tendency', 'notice'],
+    relatedWords: ['discover', 'tendency', 'reveal'],
     tags: ['future'],
-    themeNote: 'One of the three concrete things ordinary experience can reveal, alongside a tendency and a potential — this word names the smallest, most everyday form of self-knowledge the passage describes.',
+    themeNote: "One of the concrete things ordinary experience can reveal — the passage's smallest, most everyday form of self-understanding.",
     collocations: ['a clear preference', 'reveal a preference', 'have a preference for', 'personal preference', 'discover a preference'],
     wordFamily: [
       { word: 'prefer', pos: 'verb', japanese: '〜のほうを好む' },
@@ -861,14 +862,14 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     pos: 'noun',
     introductionLevel: 'foundation',
     themes: ['designing-my-future'],
-    coreMeaning: 'A pattern in how someone naturally tends to think, act, or react, that shows up again and again.',
+    coreMeaning: 'A pattern in how someone naturally thinks, acts, or reacts, that shows up again and again.',
     examples: [
-      'A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking.',
-      'During the project, she noticed a tendency in herself to ask questions before jumping in.',
+      'Working with other people may reveal a tendency.',
+      'Group work slowly showed him a tendency he had never noticed on his own — a habit of asking questions before jumping in.',
     ],
     relatedWords: ['preference', 'potential', 'reveal'],
     tags: ['future'],
-    themeNote: "The passage's example of a tendency — 'taking the lead' or 'thinking carefully before speaking' — shows how ordinary group work can quietly reveal something about how a person naturally works.",
+    themeNote: "The passage's example of self-understanding built through working with others, not through thinking alone.",
     collocations: ['a natural tendency', 'reveal a tendency', 'notice a tendency', 'tendency to do something', 'a tendency toward'],
     wordFamily: [
       { word: 'tend', pos: 'verb', japanese: '〜する傾向がある' },
@@ -884,13 +885,13 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'An ability or quality that exists but has not yet been tested or fully developed.',
     examples: [
-      'A difficult task can reveal a strength, or a potential, you had no reason to test before.',
-      'The coach saw potential in him long before he saw it in himself.',
+      'A difficult task may reveal a strength or a potential that had never been noticed before.',
+      'Nobody, including her, suspected the potential a single difficult assignment would end up revealing.',
     ],
     relatedWords: ['reveal', 'discover', 'tendency'],
     tags: ['future', 'core'],
-    themeNote: 'The passage pairs potential directly with strength — both are things a difficult task can reveal, precisely because they had no earlier reason to be tested.',
-    collocations: ['reveal potential', 'have potential', 'real potential', 'potential you had no reason to test', 'untested potential'],
+    themeNote: 'The passage pairs potential directly with strength — both are things a difficult task can reveal, precisely because they had no earlier occasion to be tested.',
+    collocations: ['reveal potential', 'have potential', 'real potential', 'untested potential', 'potential that had never been noticed'],
     wordFamily: [
       { word: 'potentially', pos: 'adverb', japanese: '可能性として・もしかしたら' },
     ],
@@ -898,24 +899,20 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
 
   {
     id: 'df-f-05',
-    word: 'choose',
-    japanese: '選ぶ',
+    word: 'reveal',
+    japanese: '明らかにする',
     pos: 'verb',
     introductionLevel: 'foundation',
     themes: ['designing-my-future'],
-    coreMeaning: 'To decide on one thing rather than another, especially after really trying or comparing the options.',
+    coreMeaning: 'To make something clear or visible that was previously hidden or unknown, often without anyone intending it to happen.',
     examples: [
-      'Choosing against something, once genuinely tried, is often just as valuable as choosing for something.',
-      'Choosing not to continue with the debate club taught her almost as much as choosing to join it did.',
+      'A new subject may reveal a preference. Working with other people may reveal a tendency.',
+      'One difficult task revealed more about his real strengths than a whole year of easy classes.',
     ],
-    relatedWords: ['discover', 'suit', 'notice'],
+    relatedWords: ['tendency', 'potential', 'preference'],
     tags: ['future', 'core'],
-    themeNote: "The passage's boldest claim: choosing against something you genuinely tried is just as valuable as choosing for something — ruling things out is real progress, not falling behind.",
-    collocations: ['choose against', 'choose for', 'choose between', 'genuinely tried and chose', 'choose to do something'],
-    wordFamily: [
-      { word: 'choice', pos: 'noun', japanese: '選択' },
-      { word: 'chosen', pos: 'adjective', japanese: '選ばれた' },
-    ],
+    themeNote: "The passage's structural verb — a subject reveals a preference, working with others reveals a tendency, a difficult task reveals a strength or potential. Self-understanding here is not sought directly; it is revealed indirectly, through ordinary experience.",
+    collocations: ['reveal a preference', 'reveal a tendency', 'reveal a strength', 'quietly reveal', 'reveal something about yourself'],
   },
 
   {
@@ -927,13 +924,13 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'To be right or comfortable for a particular person, rather than simply good or bad in general.',
     examples: [
-      'Designing a future, then, is less a single decision than an ongoing process of noticing what interests you, what you are good at, and what does not suit you.',
-      'A quiet library suits some students perfectly and drives others up the wall.',
+      'Experience also teaches us what does not suit us.',
+      'The same class can suit one student perfectly and feel completely wrong for another.',
     ],
-    relatedWords: ['notice', 'choose', 'preference'],
+    relatedWords: ['discover', 'pursue', 'preference'],
     tags: ['future', 'core'],
-    themeNote: "This word gives the whole theme its real meaning — designing a future isn't about finding the objectively 'right' path, but discovering what actually suits you personally.",
-    collocations: ['suit you', 'does not suit', 'suit your interests', 'a class that suits', 'find what suits you'],
+    themeNote: 'The passage treats learning what does not suit you as just as valuable as learning what to pursue — both are described as equally important forms of self-understanding.',
+    collocations: ['suit you', 'does not suit', 'suit your interests', 'what does not suit us', 'find what suits you'],
     otherMeanings: ['suit (clothing, noun): a matching jacket and trousers worn together (e.g., wear a suit to an interview)'],
     wordFamily: [
       { word: 'suitable', pos: 'adjective', japanese: '適した' },
@@ -942,49 +939,64 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
 
   {
     id: 'df-f-07',
-    word: 'notice',
-    japanese: '気づく',
+    word: 'pursue',
+    japanese: '追い求める',
     pos: 'verb',
     introductionLevel: 'foundation',
     themes: ['designing-my-future'],
-    coreMeaning: 'To become consciously aware of something, often something small that would be easy to overlook.',
+    coreMeaning: 'To continue working toward something over time, because it genuinely interests or matters to you.',
     examples: [
-      'Designing a future, then, is less a single decision than an ongoing process of noticing what interests you, what you are good at, and what does not suit you.',
-      'It took a whole semester before he noticed how much he looked forward to Tuesdays — the day of his art class.',
+      'Knowing what to leave behind is just as important as knowing what to pursue.',
+      'It took a difficult class to help her figure out what she actually wanted to pursue.',
     ],
-    relatedWords: ['discover', 'suit', 'reveal'],
+    relatedWords: ['suit', 'discover', 'potential'],
     tags: ['future', 'core'],
-    themeNote: "The passage's own name for the whole activity it describes — designing a future is 'an ongoing process of noticing,' not a single decisive act.",
-    collocations: ['notice something', 'keep noticing', 'an ongoing process of noticing', 'notice what suits you', 'pay attention and notice'],
+    themeNote: 'The passage pairs pursuing with leaving behind as equally important — self-understanding is built from both what you choose to continue and what you choose to let go.',
+    collocations: ['knowing what to pursue', 'pursue something', 'worth pursuing', 'continue to pursue', 'decide what to pursue'],
     wordFamily: [
-      { word: 'noticeable', pos: 'adjective', japanese: '目立った・気づきやすい' },
+      { word: 'pursuit', pos: 'noun', japanese: '追求' },
     ],
   },
 
   {
     id: 'df-f-08',
-    word: 'reveal',
-    japanese: '明らかにする',
-    pos: 'verb',
+    word: 'continuous',
+    japanese: '継続的な',
+    pos: 'adjective',
     introductionLevel: 'foundation',
     themes: ['designing-my-future'],
-    coreMeaning: 'To make something clear or visible that was previously hidden or unknown, often without anyone intending it to happen.',
+    coreMeaning: 'Happening without stopping or being interrupted — an ongoing process rather than a single event.',
     examples: [
-      'A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking.',
-      'One difficult group project revealed more about his real strengths than a whole year of easy classes.',
+      'It is a continuous process of discovering who we are.',
+      'Learning what suits you is a continuous process, not something that finishes after one good or bad experience.',
     ],
-    relatedWords: ['tendency', 'potential', 'preference'],
+    relatedWords: ['discover', 'pursue', 'reveal'],
     tags: ['future', 'core'],
-    themeNote: "The passage's structural verb — a subject reveals a preference, a project reveals a tendency, a task reveals a potential. Self-knowledge here isn't sought directly; it's revealed indirectly, through ordinary activity.",
-    collocations: ['reveal a preference', 'reveal a tendency', 'reveal a strength', 'quietly reveal', 'reveal something about yourself'],
+    themeNote: 'The passage\'s key structural word — designing a future is described as a continuous process, not a single decision made once and finished.',
+    collocations: ['a continuous process', 'continuous effort', 'continuous learning', 'remain continuous', 'continuous rather than one-time'],
+    wordFamily: [
+      { word: 'continue', pos: 'verb', japanese: '続ける' },
+      { word: 'continuously', pos: 'adverb', japanese: '継続的に' },
+    ],
   },
 
   // ── Designing My Future — Advanced ──────────────────────────────────────────
-  // Built 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
-  // No word here is duplicated from Foundation — all 8 are new, following
-  // the user's explicit decision (2026-08-09) to drop the "+1 reinforced"
-  // slot originally proposed for "reflect" in favor of two words more
-  // central to this passage's own argument (purpose, passion).
+  // Rebuilt 2026-08-09 from the same canonical manuscript's Advanced passage
+  // ("People often believe that designing a future begins with making an
+  // important decision..."). construct/competence/assumption keep their
+  // ids/words from the previous draft (content refreshed to this passage);
+  // ambiguity and satisfaction are retired (no longer central to this
+  // passage's argument); predetermined and interaction are new.
+  // "interaction" is a deliberate spiral reinforcement from Theme 1 Advanced
+  // (km-s-05, "the interaction of nature and nurture") — a separate entry
+  // with its own theme-specific examples, same pattern as Theme 2's
+  // "challenge"/"develop" reinforcing Theme 1 Foundation words.
+  // construct/anxiety/purpose do not appear verbatim in this manuscript
+  // (the text uses "shaped," "worry," and career/life/destination language
+  // instead) — kept per the author's explicit instruction that target
+  // vocabulary represents the manuscript's educational concepts, not
+  // necessarily its literal wording; their first example below paraphrases
+  // the relevant passage idea rather than quoting it directly.
 
   {
     id: 'df-s-01',
@@ -993,14 +1005,14 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     pos: 'verb',
     introductionLevel: 'advanced',
     themes: ['designing-my-future'],
-    coreMeaning: 'To build something gradually through deliberate action, rather than simply finding something that already existed.',
+    coreMeaning: 'To build something gradually through action, rather than simply finding something that already existed.',
     examples: [
-      'Others argue the opposite: that most people do not discover what suits them by looking inward at all, but construct it, gradually, through action taken for reasons that have little to do with passion.',
+      "Instead of asking people to discover a future that already exists, this view suggests that a future is gradually shaped through experience — constructed through action rather than found by looking inward.",
       "Some people believe confidence is something you either have or don't; others believe you construct it, one small success at a time.",
     ],
     relatedWords: ['assumption', 'competence', 'purpose'],
     tags: ['future', 'core'],
-    themeNote: "This word names one whole side of the passage's central debate — discovery versus construction — and directly answers the Essential Question: is a future found, or built?",
+    themeNote: "This word names the passage's alternative account of self-understanding: not discovered by looking inward, but constructed gradually through action — a required course, a job, a commitment made almost by accident.",
     collocations: ['construct something', 'construct it gradually', 'construct through action', 'actively construct', 'construct rather than discover'],
     wordFamily: [
       { word: 'construction', pos: 'noun', japanese: '構築・建設' },
@@ -1017,13 +1029,13 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'A real, demonstrated ability to do something well, usually built through sustained effort rather than given from the start.',
     examples: [
-      'What actually happens, more often, is the reverse: effort leads to competence, and competence, in turn, produces enjoyment.',
-      "Her competence in the lab didn't come from natural talent — it came from hundreds of hours of unglamorous practice.",
+      'People often discover that work they never considered eventually becomes meaningful because they have developed competence through sustained effort.',
+      'Effort leads to competence, and competence gradually produces satisfaction.',
     ],
-    relatedWords: ['construct', 'satisfaction', 'assumption'],
+    relatedWords: ['construct', 'passion', 'purpose'],
     tags: ['future', 'core'],
-    themeNote: 'The keystone of the passage\'s central reversal: effort leads to competence, and competence produces enjoyment — not the other way around, as most people assume.',
-    collocations: ['lead to competence', 'build competence', 'real competence', 'competence and enjoyment', 'gain competence'],
+    themeNote: "The keystone of the passage's central reversal: effort leads to competence, and competence gradually produces satisfaction — enjoyment follows competence rather than preceding it.",
+    collocations: ['develop competence', 'lead to competence', 'competence through effort', 'gradually build competence', 'competence and satisfaction'],
     wordFamily: [
       { word: 'competent', pos: 'adjective', japanese: '有能な' },
     ],
@@ -1038,13 +1050,13 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'Something accepted as true without being directly proven, often so automatically that it goes unquestioned.',
     examples: [
-      'On this view, the common assumption that enjoyment comes first and effort follows is exactly backward.',
-      "It's worth questioning the assumption that a good job always has to feel enjoyable from day one.",
+      'This way of thinking assumes that the destination already exists, waiting to be identified, and that success depends on finding the correct answer as early as possible.',
+      "It's worth questioning the assumption that enjoyment always has to come before effort.",
     ],
-    relatedWords: ['construct', 'competence', 'ambiguity'],
+    relatedWords: ['predetermined', 'construct', 'purpose'],
     tags: ['future'],
-    themeNote: "The passage's rhetorical hinge word — it names the popular belief (enjoyment before effort) that the whole argument is built to overturn.",
-    collocations: ['a common assumption', 'question an assumption', 'the assumption that', 'challenge an assumption', 'based on an assumption'],
+    themeNote: "The passage's rhetorical hinge — it names the popular assumption (that a destination already exists, waiting to be found) that the second half of the essay goes on to question.",
+    collocations: ['a common assumption', 'question an assumption', 'the assumption that', 'based on an assumption', 'challenge an assumption'],
     wordFamily: [
       { word: 'assume', pos: 'verb', japanese: '思い込む・仮定する' },
       { word: 'assumed', pos: 'adjective', japanese: '当然とされた' },
@@ -1053,49 +1065,6 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
 
   {
     id: 'df-s-04',
-    word: 'ambiguity',
-    japanese: 'あいまいさ',
-    pos: 'noun',
-    introductionLevel: 'advanced',
-    themes: ['designing-my-future'],
-    coreMeaning: 'A state in which something is unclear or open to more than one interpretation, with no single obvious answer.',
-    examples: [
-      'They point out that certain tendencies — a comfort with ambiguity, a pull toward people rather than toward ideas, a lasting curiosity about how things work — do seem to appear early and remain remarkably stable over time.',
-      'Some students panic at ambiguity in an assignment; others treat it as room to make their own decisions.',
-    ],
-    relatedWords: ['assumption', 'purpose', 'construct'],
-    tags: ['future'],
-    themeNote: "A comfort with ambiguity is offered as one of the early, stable tendencies that may shape a person's future — fittingly, since tolerating an unclear future is what this whole theme ultimately asks of a student.",
-    collocations: ['a comfort with ambiguity', 'tolerate ambiguity', 'genuine ambiguity', 'live with ambiguity', 'deal with ambiguity'],
-    wordFamily: [
-      { word: 'ambiguous', pos: 'adjective', japanese: 'あいまいな' },
-    ],
-  },
-
-  {
-    id: 'df-s-05',
-    word: 'satisfaction',
-    japanese: '満足感',
-    pos: 'noun',
-    introductionLevel: 'advanced',
-    themes: ['designing-my-future'],
-    coreMeaning: 'A feeling of genuine fulfillment that comes from doing something well, especially after real effort.',
-    examples: [
-      'Effort leads to competence, and competence, in turn, produces real satisfaction — being good at something most people find genuinely satisfying.',
-      "There's a particular kind of satisfaction that only comes after you've struggled with something difficult and finally understood it.",
-    ],
-    relatedWords: ['competence', 'construct', 'passion'],
-    tags: ['future', 'core'],
-    themeNote: 'The final link in the passage\'s reversed chain — effort leads to competence, and competence produces satisfaction, arriving last rather than first.',
-    collocations: ['genuine satisfaction', 'find satisfaction in', 'produce satisfaction', 'real satisfaction', 'satisfaction from effort'],
-    wordFamily: [
-      { word: 'satisfy', pos: 'verb', japanese: '満足させる' },
-      { word: 'satisfying', pos: 'adjective', japanese: '満足のいく' },
-    ],
-  },
-
-  {
-    id: 'df-s-06',
     word: 'anxiety',
     japanese: '不安',
     pos: 'noun',
@@ -1103,41 +1072,41 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'A persistent feeling of worry or unease, often about something uncertain in the future.',
     examples: [
-      'It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered — a career, a passion, a purpose — and that the anxiety so many young adults feel is simply the discomfort of not yet having found it.',
-      'A lot of the anxiety students feel about their future comes from believing they should already have the answer.',
+      'As a result, many young people worry that they are falling behind if they cannot see a clear direction — an anxiety that assumes a single correct destination already exists, waiting to be found.',
+      'A lot of the anxiety students feel about their future comes from believing they should already know the answer.',
     ],
-    relatedWords: ['purpose', 'assumption', 'ambiguity'],
+    relatedWords: ['assumption', 'purpose', 'predetermined'],
     tags: ['future'],
-    themeNote: "The passage names this feeling directly, then quietly reframes its cause — the anxiety isn't proof that something is wrong with you, but a side effect of assuming a single correct answer already exists.",
-    collocations: ['feel anxiety', 'the anxiety of', 'a source of anxiety', 'ease your anxiety', 'anxiety about the future'],
+    themeNote: "The passage names this feeling as 'worry' and traces its cause — the anxiety of not yet knowing your direction depends on assuming that a single correct answer already exists, waiting to be identified.",
+    collocations: ['feel anxiety', 'a source of anxiety', 'ease your anxiety', 'anxiety about the future', 'the anxiety of not knowing'],
     wordFamily: [
       { word: 'anxious', pos: 'adjective', japanese: '不安な' },
     ],
   },
 
   {
-    id: 'df-s-07',
+    id: 'df-s-05',
     word: 'purpose',
     japanese: '目的・存在意義',
     pos: 'noun',
     introductionLevel: 'advanced',
     themes: ['designing-my-future'],
-    coreMeaning: 'A clear sense of what you are meant to do or why what you do matters — often imagined as something waiting to be found.',
+    coreMeaning: 'A clear sense of what you are meant to do or why what you do matters.',
     examples: [
-      'It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered — a career, a passion, a purpose.',
-      'He spent a year searching for his purpose before realizing it was forming quietly through the work he was already doing.',
+      'Questions such as "What career should I choose?" or "What kind of life do I want to live?" seem to come first — as though a sense of purpose already exists somewhere, waiting to be identified.',
+      'He stopped searching directly for his purpose and noticed, later, that it had been forming quietly through the work he was already doing.',
     ],
-    relatedWords: ['passion', 'anxiety', 'construct'],
+    relatedWords: ['passion', 'assumption', 'construct'],
     tags: ['future', 'core'],
-    themeNote: "Named alongside 'a career' and 'a passion' as one of the things the essentialist view claims is already inside you, waiting to be uncovered — this word is the object the whole debate is actually about.",
-    collocations: ['find your purpose', 'a sense of purpose', 'search for purpose', 'waiting to be uncovered', 'purpose in life'],
+    themeNote: 'Though the passage itself speaks in terms of career and destination, purpose is the deeper concept both accounts of the essay are really arguing about — whether it precedes action, or emerges from it.',
+    collocations: ['a sense of purpose', 'search for purpose', 'find your purpose', 'purpose already exists', 'purpose in life'],
     wordFamily: [
       { word: 'purposeful', pos: 'adjective', japanese: '目的意識のある' },
     ],
   },
 
   {
-    id: 'df-s-08',
+    id: 'df-s-06',
     word: 'passion',
     japanese: '情熱',
     pos: 'noun',
@@ -1145,15 +1114,59 @@ export const MASTER_VOCABULARY: VocabEntry[] = [
     themes: ['designing-my-future'],
     coreMeaning: 'A strong enthusiasm or love for something — often assumed to be the starting point for effort, rather than something that can follow it.',
     examples: [
-      'Others argue the opposite: that most people do not discover what suits them by looking inward at all, but construct it, gradually, through action taken for reasons that have little to do with passion.',
+      'What people later describe as a passion may therefore be the result of long-term engagement rather than its starting point.',
       'Everyone told her to follow her passion, but for her, passion only arrived after months of unglamorous practice.',
     ],
-    relatedWords: ['purpose', 'satisfaction', 'competence'],
+    relatedWords: ['purpose', 'competence', 'construct'],
     tags: ['future', 'core'],
-    themeNote: 'The word at the center of the passage\'s biggest reversal — the popular idea that passion comes first and effort follows is, according to the passage, "exactly backward."',
-    collocations: ['follow your passion', 'little to do with passion', 'a lasting passion', 'passion for something', 'discover a passion'],
+    themeNote: 'The word at the center of the passage\'s biggest reversal — what people later call passion may be the result of long-term engagement, not its cause.',
+    collocations: ['follow your passion', 'a lasting passion', 'passion for something', 'discover a passion', 'the result of engagement, not its starting point'],
     wordFamily: [
       { word: 'passionate', pos: 'adjective', japanese: '情熱的な' },
+    ],
+  },
+
+  {
+    id: 'df-s-07',
+    word: 'predetermined',
+    japanese: 'あらかじめ決められた',
+    pos: 'adjective',
+    introductionLevel: 'advanced',
+    themes: ['designing-my-future'],
+    coreMeaning: 'Decided or fixed in advance, before anything has actually happened.',
+    examples: [
+      'A career is often imagined as a sequence of correct decisions leading toward a predetermined destination.',
+      'Treating your future as predetermined can make every ordinary experience feel like it barely matters.',
+    ],
+    relatedWords: ['assumption', 'construct', 'purpose'],
+    tags: ['future'],
+    themeNote: "The passage's clearest image of the view it goes on to question — a career imagined as a straight sequence of correct decisions leading to a destination that was fixed from the start.",
+    collocations: ['a predetermined destination', 'predetermined outcome', 'treat something as predetermined', 'far from predetermined', 'not predetermined at all'],
+    wordFamily: [
+      { word: 'determine', pos: 'verb', japanese: '決定する' },
+      { word: 'determined', pos: 'adjective', japanese: '決意した・決定された' },
+    ],
+  },
+
+  {
+    id: 'df-s-08',
+    word: 'interaction',
+    japanese: '相互作用',
+    pos: 'noun',
+    introductionLevel: 'advanced',
+    themes: ['designing-my-future'],
+    coreMeaning: 'The way two or more things affect and respond to each other, rather than acting separately.',
+    examples: [
+      'It develops continuously through the interaction between our personal characteristics and the experiences we accumulate throughout life.',
+      'The result was not caused by one factor alone, but by the interaction between several factors working together.',
+    ],
+    relatedWords: ['construct', 'competence', 'assumption'],
+    tags: ['future', 'core'],
+    themeNote: 'A deliberate spiral word from Theme 1 Advanced, where interaction named the relationship between nature and nurture. Here it reappears in a new context: self-understanding as something that develops through the interaction between personal characteristics and accumulated experience, not from either alone.',
+    collocations: ['the interaction between', 'a continuous interaction', 'interaction between factors', 'develop through interaction', 'interaction over time'],
+    wordFamily: [
+      { word: 'interact', pos: 'verb', japanese: '相互作用する' },
+      { word: 'interactive', pos: 'adjective', japanese: '双方向の・対話的な' },
     ],
   },
 

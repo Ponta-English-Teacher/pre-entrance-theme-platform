@@ -36,9 +36,9 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'designing-my-future',
     foundation:
-      "Hi! Today's reading talked about how most people don't find their future in one big decision — instead, ordinary things like a new subject or a difficult task can quietly reveal a preference, a tendency, or a potential you didn't know about. Has something ordinary ever revealed something about yourself that surprised you?",
+      "Hi! Today's reading suggested that designing a future isn't really about deciding on a destination first — it's about understanding yourself gradually, through the subjects, group work, and difficult tasks that quietly reveal your preferences, tendencies, and potential. Has an ordinary experience ever revealed something about yourself that you didn't expect?",
     advanced:
-      "Hi! Today's reading explored a real debate — is your future something already inside you, waiting to be discovered, or something you construct gradually through effort, with enjoyment arriving after competence rather than before it? Which of those two feels closer to your own experience so far?",
+      "Hi! Today's reading looked at two different ideas about how a future takes shape — one where a destination already exists and just needs to be found, and another where self-understanding is built gradually through action, adjustment, and accumulated experience, with satisfaction and passion arriving after competence rather than before it. Which of those two feels closer to your own experience so far?",
   },
   {
     themeId: 'living-together',
