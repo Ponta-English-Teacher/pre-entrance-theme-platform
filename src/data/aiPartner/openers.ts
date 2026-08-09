@@ -36,9 +36,9 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'designing-my-future',
     foundation:
-      "Hi! Today's reading suggested that designing a future isn't really about deciding on a destination first — it's about understanding yourself gradually, through the subjects, group work, and difficult tasks that quietly reveal your preferences, tendencies, and potential. Has an ordinary experience ever revealed something about yourself that you didn't expect?",
+      "Hi! Today's reading suggested that designing your future starts with understanding yourself, not with choosing a destination first. Has an ordinary experience — a class, working with others, a difficult task — ever revealed something about yourself that you didn't expect?",
     advanced:
-      "Hi! Today's reading looked at two different ideas about how a future takes shape — one where a destination already exists and just needs to be found, and another where self-understanding is built gradually through action, adjustment, and accumulated experience, with satisfaction and passion arriving after competence rather than before it. Which of those two feels closer to your own experience so far?",
+      "Hi! Today's reading explored a real debate about how a future actually takes shape — is it something that already exists, just waiting to be found, or something you build gradually through experience? Which of those two ideas feels closer to your own experience so far?",
   },
   {
     themeId: 'living-together',
