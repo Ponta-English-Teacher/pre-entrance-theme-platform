@@ -23,8 +23,8 @@ export const THEME_VOCAB_SETS: Record<string, ThemeVocabSet> = {
   },
   'designing-my-future': {
     themeId: 'designing-my-future',
-    foundation: ['km-f-03', 'km-f-05', 'us-f-07', 'df-f-01', 'df-f-02', 'df-f-03', 'km-f-09'],
-    advanced:   [],
+    foundation: ['df-f-01', 'df-f-02', 'df-f-03', 'df-f-04', 'df-f-05', 'df-f-06', 'df-f-07', 'df-f-08'],
+    advanced:   ['df-s-01', 'df-s-02', 'df-s-03', 'df-s-04', 'df-s-05', 'df-s-06', 'df-s-07', 'df-s-08'],
   },
   'living-together': {
     themeId: 'living-together',

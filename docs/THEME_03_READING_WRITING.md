@@ -1,7 +1,7 @@
 # Theme 3 Reading & Writing Plan
 ## Designing My Future — Foundation
 
-Status: **Approved — design complete, not yet implemented in code.**
+Status: **Superseded (2026-08-09).** This pre-redevelopment design (the "Ren" narrative, old three-level structure) is reference material only, per the full-rebuild-not-revision policy. The canonical Theme 3 Reading & Writing content (Foundation + Advanced, two-level architecture) is now `docs/THEME_03_MANUSCRIPT.md`, implemented in `src/data/reading/masterReadings.ts`.
 
 ---
 

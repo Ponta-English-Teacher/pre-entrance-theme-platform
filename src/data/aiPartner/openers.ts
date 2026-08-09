@@ -36,7 +36,9 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'designing-my-future',
     foundation:
-      "Hi! I read about Ren — he didn't have a clear dream, until one small moment of helping his sister gave him a real sense of direction. Has anything small ever made you think differently about your own future?",
+      "Hi! Today's reading talked about how most people don't find their future in one big decision — instead, ordinary things like a new subject or a difficult task can quietly reveal a preference, a tendency, or a potential you didn't know about. Has something ordinary ever revealed something about yourself that surprised you?",
+    advanced:
+      "Hi! Today's reading explored a real debate — is your future something already inside you, waiting to be discovered, or something you construct gradually through effort, with enjoyment arriving after competence rather than before it? Which of those two feels closer to your own experience so far?",
   },
   {
     themeId: 'living-together',

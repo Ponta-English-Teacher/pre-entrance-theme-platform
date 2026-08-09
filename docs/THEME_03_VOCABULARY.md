@@ -1,7 +1,7 @@
 # Theme 3 Vocabulary Plan
 ## Designing My Future
 
-Status: **Foundation, Standard, and Challenge finalized — Theme 3 vocabulary is structurally complete.** As with Theme 2, "structurally complete" means the word lists are decided; full entries (part of speech, CEFR tag, Japanese meaning, example sentence, etc. per `docs/VOCABULARY_ARCHITECTURE.md` §7) are not yet written.
+Status: **Superseded (2026-08-09).** This pre-redevelopment plan (old three-level word lists) is reference material only, per the full-rebuild-not-revision policy. The canonical Theme 3 vocabulary (Foundation + Advanced, two-level architecture) is now `docs/THEME_03_MANUSCRIPT.md`, implemented in `src/data/vocabulary/masterVocabulary.ts`.
 
 Lexical sets (shared across all three levels, designed together rather than incrementally): Goals & Dreams · Career & Work · Decision-Making · Planning & Achievement · Values & Priorities.
 

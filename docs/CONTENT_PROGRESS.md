@@ -27,7 +27,7 @@ This does **not** require that later themes' reinforcement of this theme's new w
 |---|---|---|---|---|---|
 | 1. Knowing Myself | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 2. What Does It Mean to Be a University Student? | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 3. Designing My Future | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
+| 3. Designing My Future | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 4. Living Together | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 5. Facts or Fake? | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
 | 6. Peace and War | ⬜ | ⬜ | ⬜ | ⬜ | ⬜ |
@@ -42,6 +42,8 @@ This does **not** require that later themes' reinforcement of this theme's new w
 
 **Theme 2 (What Does It Mean to Be a University Student?) — ✅ Complete, approved and frozen 2026-08-09.** Manuscript frozen in `docs/THEME_02_MANUSCRIPT.md`; full Foundation + Advanced vocabulary (with spiral reinforcement from Theme 1), reading passages, writing tasks, and AI Talk openers implemented and live. This is the platform's reference implementation for how a theme's *content* should be structured — see `docs/THEME_EXPERIENCE_TEMPLATE.md`'s status block. The old `docs/THEME_02_READING_WRITING.md` and `docs/THEME_02_VOCABULARY.md` are superseded pre-redevelopment drafts, kept only as historical reference.
 
-**Themes 3–10**: not yet started. Old per-theme planning docs (`docs/THEME_03_*.md` through `THEME_10_*.md`, if present) predate the concept-first redevelopment workflow and the two-level architecture — treat them as reference material only, not a baseline to revise, per the full-rebuild-not-revision policy each theme follows when its turn comes.
+**Theme 3 (Designing My Future) — ✅ Complete, approved and frozen 2026-08-09.** Manuscript frozen in `docs/THEME_03_MANUSCRIPT.md`; full Foundation + Advanced vocabulary (8 new words each level, no spiral reinforcement — none of Theme 1/2's active vocabulary was central enough to this manuscript to justify reuse over a more precisely-fitting new word), reading passages, writing tasks, and AI Talk openers implemented and live, following the exact same process and architecture as Theme 2. The old `docs/THEME_03_READING_WRITING.md` and `docs/THEME_03_VOCABULARY.md` are superseded pre-redevelopment drafts (the "Ren" narrative, three-level word lists), kept only as historical reference — none of their content was reused.
 
-**Next step**: Theme 3 (Designing My Future) is the next active development target. Per the standing policy in `docs/THEME_EXPERIENCE_TEMPLATE.md`, no platform/architecture work is expected — only new educational content, authored through the same manuscript-first process used for Theme 2.
+**Themes 4–10**: not yet started. Old per-theme planning docs (`docs/THEME_04_*.md` through `THEME_10_*.md`, if present) predate the concept-first redevelopment workflow and the two-level architecture — treat them as reference material only, not a baseline to revise, per the full-rebuild-not-revision policy each theme follows when its turn comes.
+
+**Next step**: Theme 4 (Living Together) is the next active development target. Per the standing policy in `docs/THEME_EXPERIENCE_TEMPLATE.md`, no platform/architecture work is expected — only new educational content, authored through the same manuscript-first process used for Theme 2 and Theme 3.

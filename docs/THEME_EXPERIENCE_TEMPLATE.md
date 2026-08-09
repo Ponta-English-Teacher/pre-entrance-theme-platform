@@ -8,7 +8,7 @@ implementation used to discover and validate these decisions, and is cited
 throughout as a concrete example, but the specification itself is
 platform-wide.
 
-**Two frozen reference implementations (as of 2026-08-09):**
+**Three frozen reference implementations (as of 2026-08-09):**
 
 - **Theme 1 (Knowing Myself)** — the **platform template**: architecture,
   UI layout, interaction patterns, Selection Assistant behavior (including
@@ -17,24 +17,27 @@ platform-wide.
   flow and visual hierarchy, progress tracking, completion logic,
   mobile/desktop behavior, and educational philosophy. This is *how* every
   theme works.
-- **Theme 2 (What Does It Mean to Be a University Student?)** — the
-  **content template**: how a theme's educational content — manuscript
-  (Educational Goal, Essential Question, Foundation + Advanced passages,
-  frozen in `docs/THEME_02_MANUSCRIPT.md`), vocabulary (including spiral
-  reinforcement from Theme 1), Notice Language, Mission Check, Writing,
-  and AI Talk opener — should be authored and structured once the platform
-  itself already exists. This is *what* a finished theme's content looks
-  like.
+- **Theme 2 (What Does It Mean to Be a University Student?)** and
+  **Theme 3 (Designing My Future)** — the **content template**: how a
+  theme's educational content — manuscript (Educational Goal, Essential
+  Question, Foundation + Advanced passages, frozen in
+  `docs/THEME_02_MANUSCRIPT.md` and `docs/THEME_03_MANUSCRIPT.md`
+  respectively), vocabulary (Theme 2 reinforces a word from Theme 1; Theme
+  3 introduces 16 genuinely new words across both levels rather than
+  forcing a reinforcement that wasn't central to its own manuscript),
+  Notice Language, Mission Check, Writing, and AI Talk opener — should be
+  authored and structured once the platform itself already exists. This is
+  *what* a finished theme's content looks like.
 
-**From Theme 3 onward**, the default assumption is that no platform work is
+**From Theme 4 onward**, the default assumption is that no platform work is
 needed: do not redesign, do not improve the UI, do not invent new
-interactions. Reuse Theme 1's architecture and Theme 2's content shape
+interactions. Reuse Theme 1's architecture and Theme 2/3's content shape
 exactly; only the educational content itself — vocabulary, passages,
 questions, prompts, openers — changes per theme. If a future theme appears
 to genuinely need a different interaction or architecture, stop and explain
 why *before* making any implementation changes — never redesign silently,
 and never treat "this would be an improvement" as sufficient justification
-on its own. Neither Theme 1 nor Theme 2 should be redesigned or modified in
+on its own. None of Theme 1, 2, or 3 should be redesigned or modified in
 future work unless explicitly requested.
 
 No application code was changed to produce this revision — specification
@@ -660,6 +663,15 @@ application.
   manuscript (`docs/THEME_02_MANUSCRIPT.md`), vocabulary with spiral
   reinforcement from Theme 1, Reading, Writing, and AI Talk. Not to be
   redesigned or modified without explicit request.
+- **Theme 3 (Designing My Future) — approved and frozen 2026-08-09**, the
+  platform's third reference implementation (the content template, same
+  status as Theme 2 — see the status block at the top of this document).
+  Full four-activity sequence for both Foundation and Advanced: frozen
+  manuscript (`docs/THEME_03_MANUSCRIPT.md`), 16 new vocabulary words (8
+  Foundation, 8 Advanced) with no forced reinforcement from Theme 1 or 2,
+  Reading, Writing, and AI Talk. Built exactly as Theme 2 was built, with
+  zero UI or architecture changes. Not to be redesigned or modified without
+  explicit request.
 
 ### Approved, not yet implemented
 

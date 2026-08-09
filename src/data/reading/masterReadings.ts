@@ -775,24 +775,27 @@ export const MASTER_READINGS: ReadingLesson[] = [
   },
 
   // ── Designing My Future — Foundation ────────────────────────────────────────
-  // Ported from docs/THEME_03_READING_WRITING.md (approved design).
+  // Rebuilt 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
+  // English fields are verbatim from the frozen manuscript — do not edit the
+  // wording here without revising the source manuscript first.
 
   {
     id: 'df-f-reading-01',
     themeId: 'designing-my-future',
     level: 'foundation',
-    title: 'A Small Step Toward Something Real',
-    titleJapanese: '本物の目標への小さな一歩',
+    title: 'Designing My Future',
+    titleJapanese: '未来を描く',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who did not have a clear dream — and how one small moment changed that.',
-    mission: 'As you read, notice the small moment that gave Ren an idea about his future. At the end, think about a small moment of your own.',
+    experienceVersion: 2,
+    welcome: 'Today, you will think about how a future is actually built — not by already knowing the right answer, but by paying attention to what your own experience reveals about you.',
+    mission: 'As you read, notice the small, ordinary moments the passage says can reveal something about your future. Think about a class, a project, or a task that has already told you something about yourself.',
 
     preReadingSurvey: {
-      question: 'How clear does your own future path feel right now?',
+      question: 'Which statement is closest to how you feel about your own future right now?',
       options: [
-        { id: 'clear', label: 'Pretty clear — I have a direction.' },
-        { id: 'unclear', label: "Not clear at all — I don't know yet." },
-        { id: 'some', label: 'Somewhere in between.' },
+        { id: 'know', label: 'I feel like I should already know exactly what I want to become.' },
+        { id: 'discovering', label: "I feel okay not knowing yet — I'm still discovering it." },
+        { id: 'unsure', label: "I'm not sure how I feel about it." },
       ],
     },
 
@@ -800,111 +803,267 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'df-f-reading-01-p1',
         english:
-          'Ren had never been the kind of student with one clear dream. Ask him what he wanted to become, and he would just shrug. Choosing a path felt like an impossible decision — how could anyone know the right answer this early? Some of his classmates already seemed so sure of themselves, and that only made him feel further behind.',
+          "Many people start university believing they should already know exactly what they want to become. When they don't, it can feel like something is missing — as though everyone else has already found an answer they haven't. But designing a future is rarely that simple, and it is almost never just one decision.",
         japanese:
-          'レンは、これといってはっきりした夢を持つタイプの生徒ではありませんでした。将来何になりたいか聞かれても、肩をすくめるだけでした。進路を選ぶことは、不可能な決断のように感じられました——こんなに早い段階で、誰が正しい答えを知っていられるでしょうか。クラスメートの中にはすでに自分の道にとても自信を持っているように見える人もいて、それが彼をさらに遅れているように感じさせました。',
+          '多くの人は、大学に入る時点で、自分が将来何になりたいかをすでにはっきり分かっているべきだと思って大学生活を始めます。もしそうでなければ、まるで自分だけ答えを見つけられていないかのように、何かが欠けているように感じることがあります。しかし、将来を思い描くことは、めったにそれほど単純ではありませんし、たった一つの決断で決まることも、ほとんどありません。',
         plainEnglish:
-          "Ren didn't have one clear dream like some other students did. When people asked what he wanted to become, he just shrugged. Choosing a path felt impossible, especially since some classmates already seemed so sure of their own future.",
-        checkQuestion: 'According to this paragraph, how did Ren feel about choosing his future path?',
+          "Many people start university thinking they should already know exactly what they want to become. If they don't, it can feel like something is missing — as if everyone else already has an answer they don't have. But designing a future is rarely that simple, and it is almost never just one decision.",
+        checkQuestion: "According to this paragraph, what can it feel like when a new student doesn't already know what they want to become?",
       },
       {
         id: 'df-f-reading-01-p2',
         english:
-          'Then, one weekend, his little sister asked him to help her build a small robot for a school project. Ren spent hours explaining each step, and he realized he loved watching her understand something new. It was a small moment, but it made him wonder if teaching others could become part of his future.',
+          'In reality, most people discover their future gradually, through ordinary experience rather than one moment of clarity. A new subject can reveal a preference. A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking. A difficult task can reveal a strength, or a potential, you had no reason to test before.',
         japanese:
-          'それからある週末、レンの妹が学校の課題で小さなロボットを作るのを手伝ってほしいと頼んできました。レンは何時間もかけて一つひとつのステップを説明し、妹が新しいことを理解していく様子を見るのが好きだと気づきました。それは小さな出来事でしたが、人に教えることが自分の将来の一部になるかもしれないと考えるきっかけになりました。',
+          '実際には、ほとんどの人は、劇的なひらめきの瞬間からではなく、ごく普通の経験を通して、少しずつ自分の将来を見つけていきます。新しい科目が、自分の好みに気づかせてくれることもあります。グループプロジェクトが、自分の傾向——たとえばリーダーシップを取る癖や、話す前によく考える癖——を明らかにしてくれることもあります。難しい課題が、それまで試す理由のなかった強みや可能性を明らかにしてくれることもあります。',
         plainEnglish:
-          "One weekend, Ren's little sister asked him to help her build a small robot for school. Ren explained each step carefully, and he noticed how much he enjoyed watching her learn. That small moment made him wonder if teaching could be part of his future.",
-        checkQuestion: 'What did Ren realize he enjoyed while helping his sister?',
+          'In reality, most people find their future step by step, through everyday experience rather than one dramatic moment. A new subject might show you a preference. A group project might show you a tendency — maybe a habit of leading, or of thinking carefully before you speak. A difficult task might show you a strength, or a potential, that you never had a reason to test before.',
+        checkQuestion: 'According to this paragraph, what three things can ordinary experience — a subject, a project, a task — reveal about a person?',
       },
       {
         id: 'df-f-reading-01-p3',
         english:
-          'That night, Ren made a small choice: he looked up what it would take to teach or design things for a living. He did not have a full plan yet, but for the first time, he had something that felt like a real goal. It felt important to have even one small direction to move toward, even if the rest of the path was still unclear. For now, that was enough — a single step in a direction that finally felt like his own.',
+          'It is easy to assume that only finding the right path counts as progress, and that ruling things out simply means falling behind. This is a mistake. A class that feels wrong, or a task that drains your energy, is not wasted time. Choosing against something, once genuinely tried, is often just as valuable as choosing for something.',
         japanese:
-          'その夜、レンは小さな決断をしました。教えることや、ものを設計する仕事に就くには何が必要かを調べてみたのです。まだ完全な計画があるわけではありませんでしたが、初めて、本物の目標のように感じられるものを手に入れました。この先の道がまだはっきりしていなくても、進むべき方向を一つでも持てていることが大切に感じられました。今はそれで十分でした——ようやく自分自身のものだと感じられる方向への、一つの一歩でした。',
+          '正しい道を見つけることだけが前進だと思い込み、何かを候補から外すことは単に遅れを取ることだと考えてしまいがちです。しかし、それは間違いです。合わないと感じる授業や、エネルギーを消耗させる課題は、決して無駄な時間ではありません。何かを本当に試したうえで、それに対して「ノー」を選ぶことは、多くの場合、何かに対して「イエス」を選ぶのと同じくらい価値があります。',
         plainEnglish:
-          "That night, Ren made a small choice: he looked up what it would take to teach or design things as a job. He didn't have a full plan, but for the first time he had something that felt like a real goal. Even without knowing the whole path, having one small direction felt important — and that was enough for now.",
-        checkQuestion: "According to this paragraph, what did Ren do after his moment with his sister?",
+          "It's easy to think that only finding the right path counts as real progress, and that ruling things out just means falling behind. That's a mistake. A class that feels wrong, or a task that drains your energy, is not wasted time. Choosing against something — once you've really tried it — is often just as valuable as choosing for something.",
+        checkQuestion: 'According to this paragraph, why is choosing against something not a waste of time?',
+      },
+      {
+        id: 'df-f-reading-01-p4',
+        english:
+          'Designing a future, then, is less a single decision than an ongoing process of noticing what interests you, what you are good at, and what does not suit you. You do not need to know your future yet — only to keep paying attention to what your own experience tells you.',
+        japanese:
+          'つまり将来を思い描くということは、たった一つの決断というよりも、自分が何に興味を持ち、何が得意で、そして何が自分に合わないのかに、絶えず気づき続けていく過程なのです。あなたはまだ自分の将来を知っている必要はありません——ただ、自分自身の経験が教えてくれることに、注意を払い続ければいいのです。',
+        plainEnglish:
+          "So designing a future is less about one single decision, and more about an ongoing process of noticing what interests you, what you're good at, and what doesn't suit you. You don't need to know your future yet — you only need to keep paying attention to what your own experience tells you.",
+        checkQuestion: 'According to this final paragraph, what is designing a future actually described as, instead of a single decision?',
       },
     ],
 
-    targetVocabIds: ['km-f-03', 'km-f-05', 'us-f-07', 'df-f-01', 'df-f-02', 'df-f-03', 'km-f-09'],
-
-    noticeLanguage: [
-      {
-        type: 'target-vocab',
-        prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['goal', 'dream', 'decide', 'choice', 'plan', 'step', 'important'],
-      },
-      {
-        type: 'recycled-vocab',
-        prompt: 'Find recycled vocabulary from previous themes — goal, dream, and important reappear from Theme 1, and decide reappears from Theme 2.',
-        items: ['goal', 'dream', 'important', 'decide'],
-      },
-      {
-        type: 'grammar-pattern',
-        prompt: 'Notice this pattern in paragraph 1 — a common way to describe someone’s typical, repeated reaction.',
-        items: ['Ask him what he wanted to become, and he would just shrug.'],
-      },
-      {
-        type: 'paragraph-organization',
-        prompt: 'Consider how the passage is organized.',
-        note: 'Paragraph 1 shows Ren’s uncertainty, paragraph 2 shows a small discovery, and paragraph 3 shows his first sense of direction — uncertainty → discovery → first direction.',
-      },
+    targetVocabIds: [
+      'df-f-01', // discover
+      'df-f-02', // preference
+      'df-f-03', // tendency
+      'df-f-04', // potential
+      'df-f-05', // choose
+      'df-f-06', // suit
+      'df-f-07', // notice
+      'df-f-08', // reveal
     ],
+
+    // Deferred, matching Theme 1 and Theme 2's own current state — not part
+    // of this task's scope.
+    noticeLanguage: [],
 
     missionCheck: {
-      question: 'According to the passage, why did Ren finally feel like he had a goal?',
-      explainer: 'In simple words: what made Ren finally feel like he had a real goal?',
-      explainerJa: 'この質問は、「レンがついに本物の目標を持てたと感じたきっかけは何か」を聞いています。',
-      hint: 'Look at what happens in paragraph 2, when Ren helps his sister.',
-      hintJa: '第2段落で、レンが妹を手伝う場面に注目してみましょう。',
+      question: 'According to the passage, how do most people actually discover their future?',
+      explainer: 'In simple words — does the passage say people usually find their future in one big moment, or bit by bit through everyday experience?',
+      explainerJa: '簡単に言うと、この文章は、人は将来を一度の大きな瞬間で見つけると言っているのか、それとも日々の経験を通して少しずつ見つけると言っているのか、という質問です。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'Ren found his goal after seeing that his classmates already knew what they wanted to do.', correct: false },
-        { id: 'b', label: 'A small moment of helping his sister made him think about his future differently.', correct: true },
-        { id: 'c', label: 'His parents told him what he should study at university.', correct: false },
+        { id: 'a', label: 'Most people discover their future in one sudden moment of clarity.', correct: false },
+        { id: 'b', label: 'Most people discover their future gradually, through ordinary, everyday experience.', correct: true },
+        { id: 'c', label: 'Most people discover their future only after they finish university.', correct: false },
       ],
       answerParagraphId: 'df-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading shows the specific event that first gave Ren an idea about his future?',
+      evidencePrompt: 'Which idea from the reading best shows that choosing against something can still be valuable?',
       evidenceOptions: [
-        { id: 'e1', label: 'Choosing a path felt like an impossible decision — how could anyone know the right answer this early?', paragraphId: 'df-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'It was a small moment, but it made him wonder if teaching others could become part of his future.', paragraphId: 'df-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'He did not have a full plan yet, but for the first time, he had something that felt like a real goal.', paragraphId: 'df-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'A new subject can reveal a preference.', paragraphId: 'df-f-reading-01-p2', correct: false },
+        { id: 'e2', label: 'Choosing against something, once genuinely tried, is often just as valuable as choosing for something.', paragraphId: 'df-f-reading-01-p3', correct: true },
+        { id: 'e3', label: 'You do not need to know your future yet — only to keep paying attention to what your own experience tells you.', paragraphId: 'df-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'a single step in a direction that finally felt like his own',
-        question: 'What does "step" mean here?',
+        quote: 'A group project can reveal a tendency — perhaps a habit of taking the lead, or of thinking carefully before speaking.',
+        question: 'What does "tendency" mean here?',
         options: [
-          { id: 'a', label: 'Moving one foot in front of the other while walking.', correct: false },
-          { id: 'b', label: 'One small action or stage toward a bigger goal.', correct: true },
-          { id: 'c', label: 'A stair you climb to go up to a higher floor.', correct: false },
+          { id: 'a', label: 'A pattern in how someone naturally tends to act or react.', correct: true },
+          { id: 'b', label: 'A strict rule that a group must follow.', correct: false },
+          { id: 'c', label: 'A mistake that only happens one time.', correct: false },
         ],
       },
     },
 
+    // Foundation Writing — per docs/WRITING_PHILOSOPHY.md, a short personal
+    // "Answer a question" task (READING_WRITING_ARCHITECTURE.md §6).
     writing: {
-      prompt: 'Has a small moment ever made you think differently about your future? If so, what happened? If not, describe a small experience that might help you discover your future one day.',
-      promptJapanese: '小さな出来事がきっかけで、自分の将来について違う見方をしたことはありますか。もしあれば、何が起きたか教えてください。もしなければ、いつか自分の将来を見つける助けになりそうな小さな経験を描いてみましょう。',
+      prompt: "Think about a class, club activity, or task you have tried. What did it reveal about you — a preference, a tendency, or a potential you didn't expect? Explain what happened and what you noticed about yourself.",
+      promptJapanese: 'あなたがこれまでに経験した授業や部活動、あるいは何かの課題について考えてみましょう。それは、あなたについて何を明らかにしてくれましたか——好み、傾向、それとも予想していなかった可能性でしょうか。何が起きたか、そして自分自身について何に気づいたかを説明してください。',
       minSentences: 2,
-      sentenceStarters: ['One time, I...', 'It made me think about...', "I haven't found it yet, but maybe..."],
+      sentenceStarters: ['One thing I discovered about myself was', 'I noticed a tendency to', 'It revealed that I', "I didn't expect to find that I"],
       wordBank: [
-        { vocabId: 'km-f-03', examplePhrase: 'My goal is to...' },
-        { vocabId: 'df-f-02', examplePhrase: "I don't have a full plan, but..." },
-        { vocabId: 'df-f-03', examplePhrase: 'It felt like a small step toward...' },
-        { vocabId: 'us-f-07', examplePhrase: 'I decided to...' },
-        { vocabId: 'df-f-01', examplePhrase: 'It made me think about my choices.' },
-        { vocabId: 'km-f-09', examplePhrase: 'It felt important because...' },
+        { vocabId: 'df-f-01', examplePhrase: 'I discovered that I actually enjoy public speaking.' },
+        { vocabId: 'df-f-02', examplePhrase: 'It showed me a clear preference for working with my hands.' },
+        { vocabId: 'df-f-03', examplePhrase: 'I noticed a tendency in myself to take the lead.' },
+        { vocabId: 'df-f-04', examplePhrase: 'The teacher told me I had potential I hadn\'t noticed.' },
+        { vocabId: 'df-f-05', examplePhrase: 'I chose to try it again, even though it was hard.' },
+        { vocabId: 'df-f-06', examplePhrase: "In the end, that class just didn't suit me." },
+        { vocabId: 'df-f-07', examplePhrase: 'I started to notice how much I enjoyed helping others.' },
+        { vocabId: 'df-f-08', examplePhrase: "The experience revealed something I didn't expect about myself." },
       ],
       usefulExpressions: [
-        { phrase: 'One time, I...', japanese: 'ある時、私は...' },
-        { phrase: 'It made me think about...', japanese: 'それは...について考えさせてくれました' },
-        { phrase: "I haven't found it yet, but maybe...", japanese: 'まだ見つけていませんが、もしかしたら...' },
-        { phrase: 'For now, that is enough.', japanese: '今のところ、それで十分です。' },
+        { phrase: 'It revealed that I...', japanese: 'それは私が...ということを明らかにしてくれました' },
+        { phrase: 'I noticed a tendency to...', japanese: '私は...する傾向があることに気づきました' },
+        { phrase: 'This experience showed me that...', japanese: 'この経験は、私に...ということを教えてくれました' },
+        { phrase: "I didn't expect to discover...", japanese: '私は...を発見するとは思っていませんでした' },
+        { phrase: 'For now, I just want to keep paying attention to...', japanese: '今のところ、私はただ...に注意を払い続けたいです' },
       ],
     },
 
-    takeaway: 'It felt important to have even one small direction to move toward, even if the rest of the path was still unclear.',
+    takeaway: 'You do not need to know your future yet — only to keep paying attention to what your own experience tells you.',
+  },
+
+  // ── Designing My Future — Advanced ──────────────────────────────────────────
+  // Built 2026-08-09 from the frozen manuscript (docs/THEME_03_MANUSCRIPT.md).
+  // Genuinely separate manuscript from Foundation, not an extension of it
+  // (READING_WRITING_ARCHITECTURE.md §2) — Foundation stays concrete/personal
+  // (a class, a group project, a difficult task); Advanced explores the
+  // philosophical debate underneath: is a future discovered or constructed?
+
+  {
+    id: 'df-s-reading-01',
+    themeId: 'designing-my-future',
+    level: 'advanced',
+    title: 'Is a Future Discovered, or Built?',
+    titleJapanese: '将来は「発見」されるのか、それとも「築かれる」のか？',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a real debate about how a future actually forms: is it something already inside you, waiting to be discovered — or something you build gradually, through effort, whether or not you feel passionate about it at first?',
+    mission: 'As you read, notice how the passage builds two opposing accounts before bringing them together. Think about which parts of your own experience feel like "discovery" and which feel more like something you are actively constructing.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'discovery', label: 'Your future is mostly something already inside you, waiting to be discovered.' },
+        { id: 'construction', label: 'Your future is mostly something you build gradually, through effort and action.' },
+        { id: 'both', label: 'Your future comes from both — early tendencies and effort working together.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'df-s-reading-01-p1',
+        english:
+          'Ask someone who feels lost about their future what they are looking for, and they will often describe it the same way: a moment of realization, a sudden clarity about who they really are and what they were always meant to do. This idea has real appeal. It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered — a career, a passion, a purpose — and that the anxiety so many young adults feel is simply the discomfort of not yet having found it. If this is true, then designing a future is really a task of searching: paying close enough attention to yourself, eventually, to locate what was there all along.',
+        japanese:
+          '自分の将来を見失っていると感じている人に、何を探しているのか尋ねてみると、たいてい同じように答えます——ある「気づきの瞬間」、自分が本当は何者で、何をするために生まれてきたのかが突然はっきり分かる瞬間、というものです。この考え方には、たしかに大きな魅力があります。それは、すべての人の内側にはすでに「正解」が存在していて、それが発見されるのを待っているのだ——ある職業、ある情熱、ある目的として——そして、多くの若者が感じる不安は、単にまだそれを見つけていないことの不快感に過ぎないのだ、と示唆してくれるからです。もしこれが本当なら、将来を思い描くことは、本質的には「探す」という作業になります——十分に自分自身に注意を向け続けることで、いずれ、ずっとそこにあったものを見つけ出すのです。',
+        plainEnglish:
+          "Ask someone who feels lost about their future what they're looking for, and they usually describe it the same way: a sudden moment of realization, a sudden clear understanding of who they really are and what they were always meant to do. This idea is very appealing. It suggests that inside every person there is already a correct answer, just waiting to be discovered — a career, a passion, a purpose — and that the anxiety so many young adults feel is simply the discomfort of not having found it yet. If this is true, then designing a future is really just a matter of searching: paying close enough attention to yourself, eventually, to find what was there all along.",
+        checkQuestion: "According to this paragraph, what does the 'self-discovery' view suggest already exists inside every person?",
+      },
+      {
+        id: 'df-s-reading-01-p2',
+        english:
+          'Some people find this account convincing. They point out that certain tendencies — a comfort with ambiguity, a pull toward people rather than toward ideas, a lasting curiosity about how things work — do seem to appear early and remain remarkably stable over time. A child who spends hours taking things apart to see how they function often grows into an adult whose work looks recognizably similar in shape. On this view, self-discovery is not simply a comforting myth. Something does seem to exist before a person consciously notices it, shaping which experiences feel effortless and which feel like friction.',
+        japanese:
+          'この考え方を説得力があると感じる人たちもいます。彼らは、ある種の傾向——あいまいさを心地よく感じる性質、アイデアよりも人に引かれる性質、物事の仕組みへの尽きることのない好奇心——が早い時期から現れ、驚くほど長い間安定して続くように見える、と指摘します。何時間もかけてものを分解して仕組みを調べていた子どもが、成長して、形はどうであれよく似た仕事に就くことは珍しくありません。この見方に立てば、自己発見は単なる心地よい神話ではありません。人が意識的に気づくよりも前から、何かがすでに存在していて、それがどの経験を「楽で自然」に感じさせ、どの経験を「摩擦」のように感じさせるかを形作っているように見えるのです。',
+        plainEnglish:
+          "Some people find this idea convincing. They point out that certain tendencies — being comfortable with unclear situations, being drawn to people rather than ideas, a lasting curiosity about how things work — do seem to appear early and stay remarkably stable over time. A child who spends hours taking things apart to see how they work often grows into an adult whose job looks surprisingly similar in shape. From this view, self-discovery isn't just a comforting myth. Something does seem to exist before a person consciously notices it, shaping which experiences feel easy and which feel like friction.",
+        checkQuestion: "According to this paragraph, what evidence do supporters of the 'self-discovery' view point to?",
+      },
+      {
+        id: 'df-s-reading-01-p3',
+        english:
+          'Others argue the opposite: that most people do not discover what suits them by looking inward at all, but construct it, gradually, through action taken for reasons that have little to do with passion — a required course, a part-time job taken for the money, a club joined because a friend asked. On this view, the common assumption that enjoyment comes first and effort follows is exactly backward. What actually happens, more often, is the reverse: effort leads to competence, and competence, in turn, produces enjoyment. People do not usually choose to practice something because they already love it. They come to love it because sustained effort made them good at it, and being good at something most people find genuinely satisfying. To put it plainly: enjoyment does not usually come before effort and lead to it. It comes after effort, by way of competence. If this is correct, waiting to feel a spark before committing to anything gets the sequence exactly backward — the spark is not the cause of effort, but one of its effects.',
+        japanese:
+          '一方で、まったく逆の主張をする人たちもいます——ほとんどの人は、自分の内側を見つめることによって自分に合うものを見つけるのではなく、情熱とはほとんど関係のない理由で取った行動——必修科目、お金のために始めたアルバイト、友達に誘われて入った部活動——を通して、少しずつそれを「作り上げていく」のだ、という主張です。この見方に立てば、「楽しさが先にあり、努力がそれに続く」という一般的な思い込みは、まったく逆なのです。実際に多く起きているのは、その正反対のこと——努力が能力を生み、その能力が今度は楽しさを生み出す、ということです。人は、すでにそれを愛しているから練習を始めるわけではありません。地道な努力によってそれが上手になり、何かが上手にできること自体を、多くの人は心から満足に感じるからこそ、それを愛するようになるのです。はっきり言えば、楽しさは、努力より先に来て努力を導くものではありません。それは努力のあとに、能力を経由してやって来るのです。もしこれが正しいなら、何かに取り組み始める前に「ひらめき」を感じるのを待つことは、順序をまったく逆にしてしまっています——ひらめきは努力の原因ではなく、努力がもたらす結果の一つなのです。',
+        plainEnglish:
+          "Others argue the opposite: that most people don't find what suits them by looking inward at all, but build it gradually, through actions taken for reasons that have little to do with passion — a required course, a part-time job taken for the money, a club joined because a friend asked. From this view, the common belief that enjoyment comes first and effort follows is exactly backward. What actually happens, more often, is the reverse: effort leads to competence, and competence, in turn, produces enjoyment. People don't usually start practicing something because they already love it. They come to love it because steady effort made them good at it, and being good at something feels genuinely satisfying to most people. Simply put: enjoyment usually doesn't come before effort and lead to it. It comes after effort, through competence. If this is correct, waiting to feel a spark before committing to something gets the order exactly backward — the spark isn't the cause of effort, it's one of its results.",
+        checkQuestion: 'According to this paragraph, what is the actual order of effort, competence, and enjoyment, according to the opposing view?',
+      },
+      {
+        id: 'df-s-reading-01-p4',
+        english:
+          'Taken together, these two accounts suggest that designing a future is neither pure discovery nor pure invention, but something closer to an ongoing negotiation between the two. A person\'s early tendencies do matter — they make certain paths feel more natural and sustainable than others, and ignoring them entirely is its own kind of mistake. But those tendencies are only a starting condition, not a finished answer, and they rarely announce themselves clearly enough to be identified by reflection alone. They surface through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed, the group project that revealed, uncomfortably, that this was not it. Understanding your future, then, may require less patience for private self-examination and more willingness to act before you are certain — because certainty, for most people, turns out to be something a future produces, not something that precedes it.',
+        japanese:
+          'この二つの見方を合わせて考えると、将来を思い描くということは、純粋な「発見」でも純粋な「発明」でもなく、その両方の間で絶えず続く「交渉」のようなものだと言えるでしょう。人が早いうちから持つ傾向は、たしかに重要です——それらは、ある種の道を他の道よりも自然で長く続けやすいものに感じさせてくれますし、それらを完全に無視することもまた一種の間違いです。しかし、それらの傾向は、あくまで「出発点」であって「最終的な答え」ではなく、内省だけでは十分にはっきりと自分から名乗り出てくれることは、めったにありません。それらは「摩擦」を通して姿を現します——予想外に夢中になれたあの授業、他のみんなが文句を言っていたのに自分だけはほとんど気にならなかったあの課題、気まずいけれど「これは違う」と明らかにしてくれたあのグループプロジェクト。だとすれば、自分の将来を理解するために本当に必要なのは、一人で静かに自己分析を続ける忍耐力よりもむしろ、確信が持てないうちから行動する意志の強さなのかもしれません——なぜなら、ほとんどの人にとって、確信というものは、将来に先立って存在するものではなく、将来が作り出す「結果」だからです。',
+        plainEnglish:
+          "Taken together, these two views suggest that designing a future is neither pure discovery nor pure invention, but something closer to an ongoing negotiation between the two. A person's early tendencies do matter — they make certain paths feel more natural and easier to continue than others, and completely ignoring them is its own kind of mistake. But those tendencies are only a starting point, not a finished answer, and they rarely make themselves clear enough through reflection alone. They show up through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed, the group project that showed you, uncomfortably, that this wasn't it. Understanding your future, then, may require less patience for quiet self-examination and more willingness to act before you're certain — because for most people, certainty turns out to be something a future produces, not something that comes before it.",
+        checkQuestion: "According to this final paragraph, where do a person's early tendencies mainly 'surface,' or become visible?",
+      },
+    ],
+
+    targetVocabIds: [
+      'df-s-01', // construct
+      'df-s-02', // competence
+      'df-s-03', // assumption
+      'df-s-04', // ambiguity
+      'df-s-05', // satisfaction
+      'df-s-06', // anxiety
+      'df-s-07', // purpose
+      'df-s-08', // passion
+    ],
+
+    noticeLanguage: [],
+
+    // Mission Check's three fixed slots, mirroring Theme 2 Advanced's
+    // pattern: the main question requires synthesis across paragraphs, the
+    // evidence task draws distractors from more than one side of the
+    // passage, and vocabulary-in-context targets one official target word.
+    missionCheck: {
+      question: 'Based on the passage as a whole, which statement would the author most likely agree with?',
+      explainer: 'In simple words — after reading the whole passage, does the author think a future is only discovered, only built, or some mix of both?',
+      explainerJa: '簡単に言うと、文章全体を読んだ後、筆者は将来というものが「発見されるだけ」なのか、「作られるだけ」なのか、それとも両方が組み合わさったものなのか、どう考えているか、という質問です。',
+      hint: 'Look especially at paragraph 4, but think about how paragraphs 2 and 3 work together too.',
+      hintJa: '特に第4段落に注目してください。ただし、第2段落と第3段落がどのように関係し合っているかも考えてみましょう。',
+      options: [
+        { id: 'a', label: 'A future is purely something waiting inside you to be discovered through self-reflection.', correct: false },
+        { id: 'b', label: 'Designing a future is an ongoing negotiation between early tendencies and effort-built competence, not pure discovery or pure invention.', correct: true },
+        { id: 'c', label: "Early tendencies do not matter at all — only effort determines a person's future.", correct: false },
+      ],
+      answerParagraphId: 'df-s-reading-01-p4',
+      evidencePrompt: 'Which quotation from the passage best shows evidence that enjoyment usually comes after effort, not before it?',
+      evidenceOptions: [
+        { id: 'e1', label: 'It suggests that somewhere inside every person there is already a correct answer, waiting to be uncovered.', paragraphId: 'df-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Effort leads to competence, and competence, in turn, produces enjoyment.', paragraphId: 'df-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'They surface through friction: the class that felt unexpectedly engaging, the task everyone else complained about but you barely noticed.', paragraphId: 'df-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'On this view, the common assumption that enjoyment comes first and effort follows is exactly backward.',
+        question: 'What does "assumption" mean in this sentence?',
+        options: [
+          { id: 'a', label: 'Something accepted as true without being directly proven.', correct: true },
+          { id: 'b', label: 'A scientific fact that has already been tested and confirmed.', correct: false },
+          { id: 'c', label: 'A formal promise made between two people.', correct: false },
+        ],
+      },
+    },
+
+    // Advanced Writing — per docs/WRITING_PHILOSOPHY.md, "Explain your
+    // opinion" (READING_WRITING_ARCHITECTURE.md §6, 80–120 words); the
+    // reading's discovery-versus-construction framework is used only as a
+    // lens for the student to examine their own experience, never as
+    // something to evaluate or summarize.
+    writing: {
+      prompt:
+        'This passage presents two views: that a future is mostly discovered (early tendencies reveal themselves) or mostly constructed (effort leads to competence, which leads to enjoyment). Which view feels closer to your own experience so far? Explain your ideas with reasons or examples. Aim for about 80–120 words.',
+      promptJapanese:
+        'この文章では、将来についての二つの見方が示されています——将来はほとんど「発見」されるもの（早くからある傾向が姿を現す）なのか、それとも「構築」されるもの（努力が能力を生み、その能力が楽しさを生む）なのか。あなた自身のこれまでの経験には、どちらの見方が近いと感じますか。理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
+      minSentences: 5,
+      sentenceStarters: ['I think my future is more', 'One tendency I noticed early was', 'One skill I built through effort was', 'This connects to my own experience because', 'In the end, I believe'],
+      wordBank: [
+        { vocabId: 'df-s-01', examplePhrase: 'I think I construct my interests through effort, more than I discover them.' },
+        { vocabId: 'df-s-02', examplePhrase: 'Once I gained real competence in something, I started to enjoy it much more.' },
+        { vocabId: 'df-s-03', examplePhrase: 'I used to share the assumption that passion has to come first.' },
+        { vocabId: 'df-s-04', examplePhrase: "I'm still learning to feel comfortable with ambiguity about my own future." },
+        { vocabId: 'df-s-05', examplePhrase: 'The satisfaction I feel after finishing something difficult is hard to describe.' },
+        { vocabId: 'df-s-06', examplePhrase: 'Some of my anxiety about the future comes from expecting a single clear answer.' },
+        { vocabId: 'df-s-07', examplePhrase: "I don't think I've found my purpose yet, and I'm starting to think that's fine." },
+        { vocabId: 'df-s-08', examplePhrase: "For me, passion usually arrives after I've already put in real effort." },
+      ],
+      usefulExpressions: [
+        { phrase: 'I think my future is more...', japanese: '私は、自分の将来はより...だと思います' },
+        { phrase: 'This connects to my own experience because...', japanese: 'これは、...という理由で私自身の経験とつながっています' },
+        { phrase: 'Unlike the passage suggests,', japanese: '文章が示唆していることとは違って' },
+        { phrase: 'In the end, I believe...', japanese: '最終的に、私は...だと思います' },
+        { phrase: 'One thing I have noticed about myself is...', japanese: '私が自分自身について気づいたことの一つは...です' },
+      ],
+    },
+
+    takeaway: 'Understanding your future, then, may require less patience for private self-examination and more willingness to act before you are certain — because certainty, for most people, turns out to be something a future produces, not something that precedes it.',
   },
 
   // ── Living Together — Foundation ────────────────────────────────────────────
