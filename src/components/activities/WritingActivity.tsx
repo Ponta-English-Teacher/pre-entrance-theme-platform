@@ -16,6 +16,7 @@ import WritingExpressPanel from '@/components/activities/WritingExpressPanel';
 import ProgressBar from '@/components/ProgressBar';
 import WritingTutor, { type WritingTutorHandle } from '@/components/writing-tutor/WritingTutor';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import { countSentences } from '@/lib/textStats';
 import type { Level } from '@/types';
 
 /**
@@ -28,10 +29,6 @@ import type { Level } from '@/types';
  * Reuses the same lesson object Reading uses (getReadingsByTheme) rather than
  * a new data source, per "do not redesign yet, simply relocate."
  */
-
-function countSentences(text: string): number {
-  return text.split(/[.!?]+/).map(s => s.trim()).filter(Boolean).length;
-}
 
 // Whole-word match, not substring — otherwise short target words like "AI" or
 // "war" would false-match inside unrelated words like "explain" or "toward".
@@ -99,7 +96,8 @@ export default function WritingActivity({
     writingTutorRef.current?.insertText(fragment);
   }
 
-  const writingSubmitted = countSentences(writingText) >= lesson.writing.minSentences;
+  const currentSentenceCount = countSentences(writingText);
+  const writingSubmitted = currentSentenceCount >= lesson.writing.minSentences;
   const backHref = `/themes/${themeId}/${level}`;
 
   function handleFinish() {
@@ -146,6 +144,7 @@ export default function WritingActivity({
           writingPrompt={lesson.writing.prompt}
           writingPromptJapanese={lesson.writing.promptJapanese}
           minSentences={lesson.writing.minSentences}
+          recommendedWordRange={lesson.writing.recommendedWordRange}
           initialDraft={writingText}
           onDraftChange={setWritingText}
         />
@@ -241,7 +240,7 @@ export default function WritingActivity({
       <div>
         {showIncompleteNote && !writingSubmitted && (
           <p className="text-base text-amber-700 bg-amber-50 border border-amber-200 rounded-xl px-4 py-3 mb-3 text-center">
-            Write at least {lesson.writing.minSentences} sentences, and then complete the activity.
+            You&rsquo;ve written {currentSentenceCount} sentence{currentSentenceCount === 1 ? '' : 's'} so far — write at least {lesson.writing.minSentences} to complete this activity. (The word count above is just a guide — sentences are what count here.)
           </p>
         )}
         <button

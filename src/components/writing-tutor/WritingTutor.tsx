@@ -10,6 +10,8 @@ import type {
   WritingTutorResponse,
 } from '@/lib/ai/writingTutor/types';
 import { diffWords } from '@/lib/textDiff';
+import { countSentences, countWords } from '@/lib/textStats';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
 
 /**
@@ -38,6 +40,8 @@ export interface WritingTutorProps {
   writingPrompt: string;
   writingPromptJapanese: string;
   minSentences: number;
+  /** Advisory only — see WritingTask.recommendedWordRange. Never gates completion. */
+  recommendedWordRange?: [number, number];
   initialDraft?: string;
   onDraftChange?: (text: string) => void;
 }
@@ -57,6 +61,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
     writingPrompt,
     writingPromptJapanese,
     minSentences,
+    recommendedWordRange,
     initialDraft,
     onDraftChange,
   },
@@ -69,6 +74,31 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
   const [loading, setLoading] = useState(false);
   const [revisionNumber, setRevisionNumber] = useState(1);
   const [previouslyFlaggedIssues, setPreviouslyFlaggedIssues] = useState<FlaggedIssue[]>([]);
+  const [savedKeys, setSavedKeys] = useState<Set<string>>(new Set());
+
+  // A new feedback response (first request or "Get Feedback Again") replaces
+  // `feedback` with a new object — reset save state then, so re-requesting
+  // feedback doesn't leave stale "✓ Saved" badges on a since-changed draft.
+  useEffect(() => {
+    setSavedKeys(new Set());
+  }, [feedback]);
+
+  function handleSaveWritingItem(key: string, label: string, content: string, explanation: string) {
+    if (savedKeys.has(key)) return;
+    if (!isInNotebook('writing', content, themeId)) {
+      addNotebookItem({
+        category: 'writing',
+        themeId,
+        level,
+        favorite: false,
+        label,
+        content,
+        explanation,
+        context: draftText,
+      });
+    }
+    setSavedKeys(prev => new Set(prev).add(key));
+  }
 
   function setDraftText(text: string) {
     setDraftTextState(text);
@@ -147,6 +177,14 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
     }
   }
 
+  // Live, per-keystroke — draftText already re-renders on every change, so
+  // no extra state/effect is needed. Sentence count uses the exact same
+  // countSentences() the completion gate in WritingActivity.tsx checks, so
+  // this number is never out of sync with what "Complete Writing" requires.
+  const sentenceCount = countSentences(draftText);
+  const wordCount = countWords(draftText);
+  const sentencesMet = sentenceCount >= minSentences;
+
   return (
     <div className="max-w-2xl mx-auto">
       <textarea
@@ -157,6 +195,21 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
         placeholder="Write your answer here..."
         className="w-full bg-white rounded-md border border-slate-300 p-5 text-base text-slate-900 leading-relaxed mb-3 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
       />
+
+      {/* Live progress — THEME_EXPERIENCE_TEMPLATE.md §9 permanent rule.
+          Sentences is the only actual completion requirement (checkmark,
+          pass/fail styling); words is advisory only, shown neutrally, and
+          never blocks completion — this pairing is what disambiguates
+          "which requirement isn't met yet" for the student. */}
+      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mb-3 text-sm">
+        <span className={sentencesMet ? 'font-semibold text-emerald-700' : 'font-medium text-slate-500'}>
+          {sentencesMet ? '✓ ' : ''}Sentences: {sentenceCount}{!sentencesMet ? ` / ${minSentences} needed` : ''}
+        </span>
+        <span className="text-slate-500">
+          Words: {wordCount}
+          {recommendedWordRange ? ` (aim for ${recommendedWordRange[0]}–${recommendedWordRange[1]})` : ''}
+        </span>
+      </div>
 
       <button
         type="button"
@@ -219,12 +272,19 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
             {feedback.naturalAlternatives.length > 0 && (
               <FeedbackSection title="Natural English">
                 <ul className="flex flex-col gap-3">
-                  {feedback.naturalAlternatives.map((a, i) => (
-                    <li key={i}>
-                      <p className="font-serif italic text-slate-900">{a.phrase}</p>
-                      <p className="text-slate-600">{a.whyJa}</p>
-                    </li>
-                  ))}
+                  {feedback.naturalAlternatives.map((a, i) => {
+                    const key = `alt-${i}`;
+                    return (
+                      <li key={i}>
+                        <p className="font-serif italic text-slate-900">{a.phrase}</p>
+                        <p className="text-slate-600">{a.whyJa}</p>
+                        <NotebookSaveButton
+                          saved={savedKeys.has(key)}
+                          onSave={() => handleSaveWritingItem(key, 'Natural Alternative', a.phrase, a.whyJa)}
+                        />
+                      </li>
+                    );
+                  })}
                 </ul>
               </FeedbackSection>
             )}
@@ -233,6 +293,10 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
               <FeedbackSection title="Improved Version" variant="primary">
                 <p className="font-serif text-lg text-slate-900">{feedback.improvedVersion}</p>
                 <p className="text-sm text-slate-600 mt-2">{feedback.improvedVersionNoteJa}</p>
+                <NotebookSaveButton
+                  saved={savedKeys.has('improved')}
+                  onSave={() => handleSaveWritingItem('improved', 'Improved Version', feedback.improvedVersion, feedback.improvedVersionNoteJa)}
+                />
               </FeedbackSection>
             )}
 
@@ -272,6 +336,24 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
 WritingTutor.displayName = 'WritingTutor';
 
 export default WritingTutor;
+
+function NotebookSaveButton({ saved, onSave }: { saved: boolean; onSave: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onSave}
+      disabled={saved}
+      aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+      className={`mt-2 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
+        saved
+          ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
+          : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
+      }`}
+    >
+      {saved ? '✓ Saved to My English Notebook' : '📓 Save to My English Notebook'}
+    </button>
+  );
+}
 
 function FeedbackSection({
   title,

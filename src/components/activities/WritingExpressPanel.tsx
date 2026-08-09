@@ -4,6 +4,7 @@ import type { Level } from '@/types';
 import type { WritingExpressRequest, WritingExpressResponse } from '@/lib/ai/writingTutor/types';
 import type { ExpressChatTurn } from '@/lib/ai/expressCoach/types';
 import ExpressCoachPanel from '@/components/express-coach/ExpressCoachPanel';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
 
 /**
  * "💡 Help me say it" — Writing's expression-support tool. Thin wrapper
@@ -48,11 +49,25 @@ export default function WritingExpressPanel({
     return data;
   }
 
+  function handleSaveSuggestion(suggestion: string, context: string) {
+    if (isInNotebook('help-me-say-it', suggestion, themeId)) return;
+    addNotebookItem({
+      category: 'help-me-say-it',
+      themeId,
+      level,
+      favorite: false,
+      label: 'Natural phrasing suggestion',
+      content: suggestion,
+      explanation: context,
+    });
+  }
+
   return (
     <ExpressCoachPanel
       placeholder="例：自分の性格について考えたことを書きたい"
       onClose={onClose}
       onInsert={onInsertSuggestion}
+      onSaveSuggestion={handleSaveSuggestion}
       sendMessage={sendMessage}
     />
   );

@@ -2,6 +2,8 @@
 
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { AITalkActiveSelection, AITalkSelectionAction } from './AITalkSelectionToolbar';
+import type { Level } from '@/types';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
 
 export interface AITalkSelectionPanelState {
   open: boolean;
@@ -29,13 +31,26 @@ const ACTION_META: Record<AITalkSelectionAction, { icon: string; label: string }
  */
 export default function AITalkExplanationPanel({
   panel,
+  themeId,
+  level,
   onClose,
 }: {
   panel: AITalkSelectionPanelState;
+  /** Only used to populate NotebookItem.themeId/level on save — not part of the Translate/explain requests themselves. */
+  themeId: string;
+  level: Level;
   onClose: () => void;
 }) {
   const ref = useRef<HTMLDivElement>(null);
   const [desktopPosition, setDesktopPosition] = useState<{ top: number; left: number } | null>(null);
+  const [saved, setSaved] = useState(false);
+
+  // A genuinely new selection gets a new panel.selection reference (see
+  // Reading's SelectionExplanationPanel for the identical pattern) — reset
+  // save state then, not on every loading→result transition within it.
+  useEffect(() => {
+    setSaved(false);
+  }, [panel.selection]);
 
   useLayoutEffect(() => {
     if (!panel.open || !panel.selection || !ref.current || window.innerWidth < DESKTOP_BREAKPOINT) {
@@ -62,6 +77,31 @@ export default function AITalkExplanationPanel({
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
   }, [panel.open, onClose]);
+
+  // Save is offered only when a real text result exists — Translate and
+  // "What does it mean?" ('explain'), never How to Read, which plays audio
+  // directly and only ever populates `panel.text` on failure (see this
+  // file's own header comment). Scoped to this component entirely, so it
+  // can never affect Reading's separate SelectionExplanationPanel.
+  const canSave = !!panel.selection && !!panel.text && !panel.loading;
+
+  function handleSave() {
+    if (!canSave || saved || !panel.selection || !panel.text) return;
+    if (!isInNotebook('ai-talk', panel.selection.text, themeId)) {
+      addNotebookItem({
+        category: 'ai-talk',
+        themeId,
+        level,
+        favorite: false,
+        label: panel.action ? ACTION_META[panel.action].label : 'Explanation',
+        content: panel.selection.text,
+        explanation: panel.text,
+        context: panel.selection.fullTurnText,
+        metadata: panel.action ? { action: panel.action } : undefined,
+      });
+    }
+    setSaved(true);
+  }
 
   if (!panel.open) return null;
 
@@ -106,6 +146,21 @@ export default function AITalkExplanationPanel({
         )}
         {panel.text && !panel.loading && (
           <p className="text-lg leading-relaxed text-slate-800">{panel.text}</p>
+        )}
+        {canSave && (
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saved}
+            aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+            className={`mt-4 w-full text-sm font-semibold py-2 rounded-xl border transition-colors ${
+              saved
+                ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
+                : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
+            }`}
+          >
+            {saved ? '✓ Saved to My English Notebook' : '📓 Save to My English Notebook'}
+          </button>
         )}
       </div>
     </div>

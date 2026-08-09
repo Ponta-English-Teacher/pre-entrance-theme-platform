@@ -25,6 +25,7 @@ export default function ExpressCoachPanel({
   placeholder,
   onClose,
   onInsert,
+  onSaveSuggestion,
   sendMessage,
 }: {
   /** Localized input placeholder, e.g. "例：自分の性格について考えたことを書きたい". */
@@ -32,6 +33,10 @@ export default function ExpressCoachPanel({
   onClose: () => void;
   /** Inserts a suggested expression into whatever the host activity is producing (a draft, a reply box). */
   onInsert: (text: string) => void;
+  /** Saves a suggested expression to My English Notebook (category: 'help-me-say-it'). Optional so
+   *  a future host can adopt this panel without wiring Notebook support immediately; both current
+   *  hosts (Writing, AI Talk) provide it. `context` is the coach's reply the suggestion came from. */
+  onSaveSuggestion?: (suggestion: string, context: string) => void;
   /** Sends the student's new message plus this chat's own history so far (not including the new message) and resolves to the coach's reply. */
   sendMessage: (studentInput: string, history: ExpressChatTurn[]) => Promise<ExpressChatResponse>;
 }) {
@@ -40,6 +45,7 @@ export default function ExpressCoachPanel({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [justInserted, setJustInserted] = useState<string | null>(null);
+  const [savedKeys, setSavedKeys] = useState<Set<string>>(new Set());
 
   const threadRef = useRef<HTMLDivElement>(null);
   // Guards Enter-to-send against Japanese/Chinese/Korean IME composition, so
@@ -88,6 +94,12 @@ export default function ExpressCoachPanel({
     window.setTimeout(() => setJustInserted(prev => (prev === key ? null : prev)), 1400);
   }
 
+  function handleSaveSuggestion(key: string, suggestion: string, context: string) {
+    if (savedKeys.has(key)) return;
+    onSaveSuggestion?.(suggestion, context);
+    setSavedKeys(prev => new Set(prev).add(key));
+  }
+
   const hasTurns = turns.length > 0;
 
   return (
@@ -117,6 +129,8 @@ export default function ExpressCoachPanel({
               turnIndex={i}
               justInserted={justInserted}
               onInsert={handleInsert}
+              savedKeys={savedKeys}
+              onSaveSuggestion={onSaveSuggestion ? handleSaveSuggestion : undefined}
             />
           ))}
           {loading && (
@@ -177,11 +191,16 @@ function ChatBubble({
   turnIndex,
   justInserted,
   onInsert,
+  savedKeys,
+  onSaveSuggestion,
 }: {
   turn: ExpressChatTurn;
   turnIndex: number;
   justInserted: string | null;
   onInsert: (key: string, text: string) => void;
+  savedKeys: Set<string>;
+  /** Absent entirely when the host didn't provide onSaveSuggestion — the Save button doesn't render at all, rather than rendering disabled. */
+  onSaveSuggestion?: (key: string, suggestion: string, context: string) => void;
 }) {
   const isStudent = turn.role === 'student';
 
@@ -203,22 +222,40 @@ function ChatBubble({
           {turn.suggestions.map((s, i) => {
             const key = `${turnIndex}-${i}`;
             const inserted = justInserted === key;
+            const saved = savedKeys.has(key);
             return (
-              <button
-                key={key}
-                type="button"
-                onClick={() => onInsert(key, s)}
-                className="text-left px-3 py-2 rounded-lg border border-indigo-200 bg-white hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-sm text-slate-800"
-              >
-                {inserted ? (
-                  <span className="font-bold text-emerald-600">✓ Inserted!</span>
-                ) : (
-                  <>
-                    <span className="text-indigo-500 mr-1" aria-hidden="true">+</span>
-                    {s}
-                  </>
+              <div key={key} className="flex items-stretch gap-1.5">
+                <button
+                  type="button"
+                  onClick={() => onInsert(key, s)}
+                  className="flex-1 text-left px-3 py-2 rounded-lg border border-indigo-200 bg-white hover:border-indigo-400 hover:bg-indigo-50 transition-colors text-sm text-slate-800"
+                >
+                  {inserted ? (
+                    <span className="font-bold text-emerald-600">✓ Inserted!</span>
+                  ) : (
+                    <>
+                      <span className="text-indigo-500 mr-1" aria-hidden="true">+</span>
+                      {s}
+                    </>
+                  )}
+                </button>
+                {onSaveSuggestion && (
+                  <button
+                    type="button"
+                    onClick={() => onSaveSuggestion(key, s, turn.text)}
+                    disabled={saved}
+                    aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+                    title={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+                    className={`shrink-0 w-9 flex items-center justify-center rounded-lg border transition-colors text-sm ${
+                      saved
+                        ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
+                        : 'border-indigo-200 bg-white text-indigo-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50'
+                    }`}
+                  >
+                    {saved ? '✓' : '📓'}
+                  </button>
                 )}
-              </button>
+              </div>
             );
           })}
         </div>

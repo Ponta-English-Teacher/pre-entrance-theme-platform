@@ -98,6 +98,13 @@ export interface WritingTask {
   prompt: string;
   promptJapanese: string;
   minSentences: number;
+  /** Advisory only — never gates completion (minSentences remains the only
+   *  completion requirement, per THEME_EXPERIENCE_TEMPLATE.md §9). Shown
+   *  alongside a live word count so students can see how their draft
+   *  compares to the target mentioned in the prompt text (e.g. "Aim for
+   *  about 80–120 words."). Omit when the prompt gives no word-count
+   *  guidance — the live word count still displays without a target. */
+  recommendedWordRange?: [number, number];
   sentenceStarters?: string[];
   wordBank: WordBankEntry[];
   usefulExpressions: UsefulExpression[];
@@ -439,6 +446,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
       promptJapanese:
         '自分自身の性格について考えてみましょう。生まれつき持っていると思う資質はどれですか？経験を通して身につけてきた資質はどれですか？自分自身について、まだ変えたいと思うところはありますか？理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
       minSentences: 5,
+      recommendedWordRange: [80, 120],
       sentenceStarters: [
         'I think I was born with',
         'Through my experiences, I have developed',
@@ -751,6 +759,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
       promptJapanese:
         'この文章が描いている変化——誰かに与えられていた構造から、自分自身でそれを築くことへの変化——について考えてみましょう。あなたの習慣の中で、すでに自己規律や自発性を示しているものはどれですか？誰にも確認されなくなったときのために、これから身につける必要があると思うものはどれですか？理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
       minSentences: 5,
+      recommendedWordRange: [80, 120],
       sentenceStarters: ['One habit that already shows self-discipline is', 'I have taken initiative before by', 'One priority I will need to manage is', 'This is something I will need to develop because', 'I think real independence means'],
       wordBank: [
         { vocabId: 'us-s-01', examplePhrase: 'To me, real independence means building my own structure, not just having freedom from rules.' },
@@ -1057,6 +1066,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
       promptJapanese:
         'この文章では、将来についての二つの見方が示されています——将来はすでに存在している目的地を見つけることから始まるという見方と、行動や調整、積み重ねた経験を通して少しずつ発達していくという見方です。あなた自身のこれまでの経験には、どちらの見方が近いと感じますか。理由や例を挙げながら、自分の考えを説明してください。目安は80〜120語です。',
       minSentences: 5,
+      recommendedWordRange: [80, 120],
       sentenceStarters: ['I think my own experience is closer to', 'One assumption I used to have was', 'Through continuous adjustment, I have', 'This connects to my own experience because', 'In the end, I believe'],
       wordBank: [
         { vocabId: 'df-s-01', examplePhrase: 'I think I construct my sense of direction through effort, more than I discover it all at once.' },

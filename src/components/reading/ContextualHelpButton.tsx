@@ -3,6 +3,15 @@
 import { useEffect, useRef, useState } from 'react';
 import type { HelpContext, HelpOption } from '@/lib/aiAssistant';
 import { requestAIHelp } from '@/lib/aiAssistant';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
+
+/** The single excerpt worth keeping alongside an AI Help answer, whichever
+ *  location produced it — the paragraph being read, the mission check
+ *  question, or the writing prompt. Absent/undefined falls through to no
+ *  context, which NotebookItem already treats as optional. */
+function contextExcerpt(ctx: HelpContext): string | undefined {
+  return ctx.paragraph?.english ?? ctx.missionCheckQuestion ?? ctx.writingPrompt;
+}
 
 export default function ContextualHelpButton({
   helpId,
@@ -22,6 +31,12 @@ export default function ContextualHelpButton({
   const isOpen = activeId === helpId;
   const [loading, setLoading] = useState(false);
   const [response, setResponse] = useState<string | null>(null);
+  // Captured alongside `response` at the moment it arrives, so Save has
+  // everything it needs (themeId/level come from the same HelpContext the
+  // request itself used) without ContextualHelpButton needing its own
+  // themeId/level props — every call site already builds a full HelpContext.
+  const [responseMeta, setResponseMeta] = useState<{ themeId: string; level: HelpContext['level']; optionLabel: string; excerpt: string | undefined; helpType: string } | null>(null);
+  const [saved, setSaved] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
 
   // Normal popover behavior: dismiss on an outside click. Opening a different
@@ -41,8 +56,18 @@ export default function ContextualHelpButton({
   async function handleSelect(optionId: string) {
     setLoading(true);
     setResponse(null);
-    const result = await requestAIHelp(buildContext(optionId));
+    setSaved(false);
+    const ctx = buildContext(optionId);
+    const result = await requestAIHelp(ctx);
     setResponse(result.text);
+    const opt = options.find(o => o.id === optionId);
+    setResponseMeta({
+      themeId: ctx.themeId,
+      level: ctx.level,
+      optionLabel: opt?.label ?? label,
+      excerpt: contextExcerpt(ctx),
+      helpType: optionId,
+    });
     setLoading(false);
   }
 
@@ -51,8 +76,27 @@ export default function ContextualHelpButton({
       onToggle(null);
     } else {
       setResponse(null);
+      setResponseMeta(null);
+      setSaved(false);
       onToggle(helpId);
     }
+  }
+
+  function handleSave() {
+    if (!response || !responseMeta || saved) return;
+    if (!isInNotebook('ai-help', response, responseMeta.themeId)) {
+      addNotebookItem({
+        category: 'ai-help',
+        themeId: responseMeta.themeId,
+        level: responseMeta.level,
+        favorite: false,
+        label: responseMeta.optionLabel,
+        content: response,
+        context: responseMeta.excerpt,
+        metadata: { helpType: responseMeta.helpType },
+      });
+    }
+    setSaved(true);
   }
 
   return (
@@ -91,9 +135,24 @@ export default function ContextualHelpButton({
           {loading && <p className="text-xs text-slate-400 italic">考え中...</p>}
 
           {response && !loading && (
-            <div className="text-sm text-slate-700 leading-relaxed bg-indigo-50 rounded-xl p-3 whitespace-pre-line">
-              {response}
-            </div>
+            <>
+              <div className="text-sm text-slate-700 leading-relaxed bg-indigo-50 rounded-xl p-3 whitespace-pre-line">
+                {response}
+              </div>
+              <button
+                type="button"
+                onClick={handleSave}
+                disabled={saved}
+                aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+                className={`mt-2 w-full text-xs font-semibold py-1.5 rounded-lg border transition-colors ${
+                  saved
+                    ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
+                    : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
+                }`}
+              >
+                {saved ? '✓ My English Notebookに保存しました' : '📓 My English Notebookに保存する'}
+              </button>
+            </>
           )}
         </div>
       )}

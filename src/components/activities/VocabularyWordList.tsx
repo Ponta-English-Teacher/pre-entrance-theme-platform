@@ -104,6 +104,7 @@ export default function VocabularyWordList({
         <VocabDictionaryModal
           entry={selected}
           themeId={themeId}
+          level={level}
           anchorRect={anchorRect}
           onClose={() => setSelected(null)}
         />

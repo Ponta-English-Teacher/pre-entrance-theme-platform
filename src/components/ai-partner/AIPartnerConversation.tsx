@@ -406,7 +406,7 @@ export default function AIPartnerConversation({
       </div>
 
       <AITalkSelectionToolbar selection={activeSelection} onAction={handleSelectionAction} />
-      <AITalkExplanationPanel panel={selectionPanel} onClose={closeSelectionPanel} />
+      <AITalkExplanationPanel panel={selectionPanel} themeId={themeId} level={level} onClose={closeSelectionPanel} />
 
       {submitError && (
         <div className="border-l-4 border-rose-400 pl-4 py-2 mb-4 flex items-center justify-between gap-3">
@@ -441,6 +441,7 @@ export default function AIPartnerConversation({
       {showExpressPanel && (
         <ConversationSupportPanel
           level={level}
+          themeId={themeId}
           themeDescription={themeDescription}
           recentHistory={turns.slice(-4).map(t => ({ role: t.role, text: t.text }))}
           onClose={() => setShowExpressPanel(false)}

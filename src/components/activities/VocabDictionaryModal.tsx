@@ -3,10 +3,11 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { VocabEntry } from '@/data/vocabulary/masterVocabulary';
 import { findVocabEntryByWord } from '@/data/vocabulary/masterVocabulary';
-import { addGlossaryItem, isWordInGlossary } from '@/lib/store';
+import { addGlossaryItem, isWordInGlossary, addNotebookItem, isInNotebook } from '@/lib/store';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
 import type { VocabLookupResponse } from '@/lib/ai/vocabLookup/types';
 import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
+import type { Level } from '@/types';
 
 const POS_STYLE: Record<string, string> = {
   noun:      'bg-blue-100 text-blue-700',
@@ -48,11 +49,15 @@ type DisplayState =
 export default function VocabDictionaryModal({
   entry,
   themeId,
+  level,
   anchorRect,
   onClose,
 }: {
   entry: VocabEntry;
   themeId: string;
+  /** Optional so existing callers keep compiling unchanged; only used to
+   *  populate NotebookItem.level on save (Phase 2 — see src/lib/store.ts). */
+  level?: Level;
   anchorRect: VocabAnchorRect | null;
   onClose: () => void;
 }) {
@@ -193,6 +198,19 @@ export default function VocabDictionaryModal({
   function handleSave() {
     if (display.status !== 'ready') return;
     const current = display.entry;
+    // Checked BEFORE addGlossaryItem below, deliberately — isInNotebook's
+    // first call ever in a session settles the lazy Glossary→Notebook
+    // migration (src/lib/store.ts) as a side effect. If that migration ran
+    // AFTER addGlossaryItem instead, it would read a Glossary that already
+    // contains this exact word and migrate it as a level-less item first,
+    // which would then make the addNotebookItem call below wrongly no-op
+    // via its own dedup check — silently losing `level` on every student's
+    // very first save. Checking first means migration only ever sees
+    // Glossary state from before this save.
+    const alreadyInNotebook = isInNotebook('vocabulary', current.word, themeId);
+
+    // Legacy Glossary — unchanged, still the source of truth for the
+    // existing "Save to Glossary" button's own saved/unsaved state.
     addGlossaryItem({
       word: current.word,
       japanese: current.japanese,
@@ -201,6 +219,21 @@ export default function VocabDictionaryModal({
       themeId,
       savedDate: new Date().toISOString(),
     });
+    // Phase 2: also save to the new Notebook, alongside the legacy
+    // Glossary above — never instead of it.
+    if (!alreadyInNotebook) {
+      addNotebookItem({
+        category: 'vocabulary',
+        themeId,
+        level,
+        favorite: false,
+        label: 'Word',
+        content: current.word,
+        explanation: current.coreMeaning,
+        japanese: current.japanese,
+        context: current.examples[0],
+      });
+    }
     setSaved(true);
   }
 

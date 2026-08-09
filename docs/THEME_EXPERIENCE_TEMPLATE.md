@@ -321,6 +321,24 @@ Reading ends here. No Writing, no Review, no Continue screen inside Reading
   alternatives, an improved version, offered as options rather than
   replacements).
 - The Continue-to-AI-Talk bridge screen.
+- **Live progress display (permanent rule, added 2026-08-09).** While the
+  student types, show their current sentence count and word count,
+  updating on every keystroke — no separate "check" step. Sentence count is
+  the *only* completion requirement (`minSentences`) and is shown with
+  pass/fail styling (a checkmark once met); word count is always advisory
+  only, shown neutrally, and optionally paired with the prompt's own
+  recommended range (`WritingTask.recommendedWordRange`) when the theme's
+  writing prompt states one (e.g. "Aim for about 80–120 words."). Word
+  count must never gate completion — it exists only so a student can see,
+  at a glance, whether an unmet requirement is about sentences or about
+  length, since the two are independent and previously only the sentence
+  requirement was surfaced anywhere. If the student tries to finish before
+  meeting the sentence requirement, the resulting message must state their
+  *current* sentence count next to the requirement (not just the raw
+  threshold), and must make clear that word count is guidance, not a gate.
+  Every future theme inherits this automatically — it needs no per-theme
+  implementation, only an optional `recommendedWordRange` on its
+  `WritingTask` if the prompt states a word-count target.
 
 **Approved, not yet implemented (planned):**
 - Multiple writing topics with an explicit topic-selection step — Writing

@@ -2,6 +2,7 @@ import type { Level, ActivityType, ThemeProgress } from '@/types';
 
 const STORAGE_KEY  = 'etp-progress';
 const GLOSSARY_KEY = 'etp-glossary';
+const NOTEBOOK_KEY = 'etp-notebook';
 
 export interface GlossaryItem {
   word: string;
@@ -277,4 +278,107 @@ export function isWordInGlossary(word: string): boolean {
 export function addGlossaryItem(item: GlossaryItem): void {
   if (isWordInGlossary(item.word)) return;
   writeGlossary([...readGlossary(), item]);
+}
+
+// ── Notebook ("My English Notebook") ────────────────────────────────────────
+//
+// Phase 1 (infrastructure only, 2026-08-09): this store layer and the
+// migration below are live, but no existing feature writes to it yet —
+// VocabDictionaryModal and every other producer still call the Glossary
+// functions above, unchanged. GLOSSARY_KEY is never written to or deleted by
+// anything in this section; migration only ever reads it.
+
+export interface NotebookItem {
+  id: string;
+  /** 'vocabulary' | 'reading' | 'ai-help' | 'help-me-say-it' | 'ai-talk' | 'writing' | any future
+   *  value — deliberately a plain string, not a closed union, so a new category never requires a
+   *  type change here, only a new entry in NOTEBOOK_SECTIONS (src/data/notebook/sections.ts). */
+  category: string;
+  themeId: string;
+  level?: Level;
+  savedAt: string;
+  favorite?: boolean;
+
+  label?: string;
+  content: string;
+  explanation?: string;
+  japanese?: string;
+  context?: string;
+
+  metadata?: Record<string, unknown>;
+}
+
+function readNotebookRaw(): NotebookItem[] {
+  if (typeof window === 'undefined') return [];
+  try {
+    const raw = localStorage.getItem(NOTEBOOK_KEY);
+    return raw ? (JSON.parse(raw) as NotebookItem[]) : [];
+  } catch {
+    return [];
+  }
+}
+
+function writeNotebook(items: NotebookItem[]): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(NOTEBOOK_KEY, JSON.stringify(items));
+  } catch {}
+}
+
+function generateNotebookId(): string {
+  if (typeof crypto !== 'undefined' && 'randomUUID' in crypto) return crypto.randomUUID();
+  return `nb-${Date.now()}-${Math.random().toString(36).slice(2)}`;
+}
+
+/** One-time, lazy, non-destructive: runs only while NOTEBOOK_KEY has never
+ *  been written (distinguished from "written but empty" via a null check on
+ *  the raw string, not on the parsed array's length, so an empty Notebook a
+ *  student has manually emptied is never re-migrated into). GLOSSARY_KEY is
+ *  left fully intact either way — this only ever reads it. */
+function migrateGlossaryToNotebook(): void {
+  if (typeof window === 'undefined') return;
+  try {
+    if (localStorage.getItem(NOTEBOOK_KEY) !== null) return;
+    const glossaryItems = readGlossary();
+    const migrated: NotebookItem[] = glossaryItems.map(item => ({
+      id: generateNotebookId(),
+      category: 'vocabulary',
+      themeId: item.themeId,
+      level: undefined,
+      savedAt: item.savedDate,
+      favorite: false,
+      label: 'Word',
+      content: item.word,
+      explanation: item.definition,
+      japanese: item.japanese,
+      context: item.example,
+    }));
+    writeNotebook(migrated);
+  } catch {}
+}
+
+export function getNotebookItems(): NotebookItem[] {
+  migrateGlossaryToNotebook();
+  return readNotebookRaw();
+}
+
+export function getNotebookItemsByCategory(category: string): NotebookItem[] {
+  return getNotebookItems().filter(item => item.category === category);
+}
+
+/** Simple, opt-in dedup check for callers that want one (e.g. Vocabulary,
+ *  mirroring isWordInGlossary's own case-insensitive word match) — not
+ *  enforced inside addNotebookItem itself, since not every category should
+ *  dedupe the same way (a Writing save of the same sentence twice, in two
+ *  different revisions, is legitimate; a Vocabulary word saved twice isn't). */
+export function isInNotebook(category: string, content: string, themeId: string): boolean {
+  return getNotebookItems().some(
+    item => item.category === category && item.themeId === themeId && item.content.toLowerCase() === content.toLowerCase(),
+  );
+}
+
+export function addNotebookItem(item: Omit<NotebookItem, 'id' | 'savedAt'>): NotebookItem {
+  const full: NotebookItem = { ...item, id: generateNotebookId(), savedAt: new Date().toISOString() };
+  writeNotebook([...getNotebookItems(), full]);
+  return full;
 }

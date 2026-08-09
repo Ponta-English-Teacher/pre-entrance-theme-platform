@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { SELECTION_ACTIONS } from '@/lib/selectionAssistant/types';
 import type { ActiveSelection, SelectionActionId } from '@/lib/selectionAssistant/types';
 import SelectableContent from './SelectableContent';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
 
 export interface SelectionPanelState {
   open: boolean;
@@ -32,6 +33,14 @@ export default function SelectionExplanationPanel({
   const [desktopPosition, setDesktopPosition] = useState<{ top: number; left: number } | null>(null);
   const [dragging, setDragging] = useState(false);
   const dragStartRef = useRef<{ pointerX: number; pointerY: number; top: number; left: number } | null>(null);
+  const [saved, setSaved] = useState(false);
+
+  // A genuinely new selection gets a new panel.selection reference (see the
+  // comment on the anchoring effect above) — reset the save state then, not
+  // on every loading→result transition within the same selection.
+  useEffect(() => {
+    setSaved(false);
+  }, [panel.selection]);
 
   // A genuinely new selection opens a new panel (new `panel.selection`
   // reference) and gets re-anchored; transitions within the same panel
@@ -117,6 +126,39 @@ export default function SelectionExplanationPanel({
     e.preventDefault();
   }
 
+  // Save is offered only for reading-passage selections with a real text
+  // result — never for How to Read (audio only, no `explanation`) and never
+  // for selections made elsewhere (Vocabulary, Writing, Mission Check, ...)
+  // via this same shared panel, since those aren't "the Reading Selection
+  // Assistant" this phase connects. themeId/level come straight from the
+  // scope SelectableContent already attached to the reading passage wrapper
+  // (ReadingLessonView(V2)) — no new props needed on this component.
+  const selection = panel.selection;
+  const canSave =
+    !!selection && !!panel.explanation && !panel.loading &&
+    selection.scope.activityType === 'reading' &&
+    !!selection.scope.themeId;
+
+  function handleSave() {
+    if (!canSave || saved || !selection || !panel.explanation) return;
+    const { themeId, level } = selection.scope;
+    if (!themeId) return;
+    if (!isInNotebook('reading', selection.text, themeId)) {
+      addNotebookItem({
+        category: 'reading',
+        themeId,
+        level,
+        favorite: false,
+        label: SELECTION_ACTIONS.find(a => a.id === panel.action)?.label ?? 'Explanation',
+        content: selection.text,
+        explanation: panel.explanation,
+        context: selection.surroundingSentence,
+        metadata: panel.action ? { action: panel.action } : undefined,
+      });
+    }
+    setSaved(true);
+  }
+
   if (!panel.open) return null;
 
   const actionMeta = SELECTION_ACTIONS.find(a => a.id === panel.action);
@@ -167,6 +209,21 @@ export default function SelectionExplanationPanel({
           <SelectableContent activityType="selection-explanation" label={`${actionMeta?.label ?? 'Explanation'} — result`}>
             <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
           </SelectableContent>
+        )}
+        {canSave && (
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saved}
+            aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
+            className={`mt-4 w-full text-sm font-semibold py-2 rounded-xl border transition-colors ${
+              saved
+                ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
+                : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
+            }`}
+          >
+            {saved ? '✓ Saved to My English Notebook' : '📓 Save to My English Notebook'}
+          </button>
         )}
       </div>
     </div>

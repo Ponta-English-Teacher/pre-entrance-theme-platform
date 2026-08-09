@@ -4,6 +4,7 @@ import type { Level } from '@/types';
 import type { ConversationSupportRequest, ConversationSupportResponse, ConversationTurn } from '@/lib/ai/aiPartner/types';
 import type { ExpressChatTurn, ExpressChatResponse } from '@/lib/ai/expressCoach/types';
 import ExpressCoachPanel from '@/components/express-coach/ExpressCoachPanel';
+import { addNotebookItem, isInNotebook } from '@/lib/store';
 
 /**
  * "💡 Help me say it" — AI Talk's expression-support tool. Thin wrapper
@@ -23,12 +24,15 @@ import ExpressCoachPanel from '@/components/express-coach/ExpressCoachPanel';
  */
 export default function ConversationSupportPanel({
   level,
+  themeId,
   themeDescription,
   recentHistory,
   onClose,
   onInsertSuggestion,
 }: {
   level: Level;
+  /** Only used to populate NotebookItem.themeId on save — not part of the coaching request itself. */
+  themeId: string;
   /** The AI Talk theme's description, for grounding. */
   themeDescription: string;
   /** A few recent turns of the MAIN AI Talk conversation, so the coach can ground follow-ups ("which sounds better here?") in what's actually being discussed. */
@@ -57,11 +61,25 @@ export default function ConversationSupportPanel({
     return { ok: false, error: data.error ?? 'Something went wrong.' };
   }
 
+  function handleSaveSuggestion(suggestion: string, context: string) {
+    if (isInNotebook('help-me-say-it', suggestion, themeId)) return;
+    addNotebookItem({
+      category: 'help-me-say-it',
+      themeId,
+      level,
+      favorite: false,
+      label: 'Natural phrasing suggestion',
+      content: suggestion,
+      explanation: context,
+    });
+  }
+
   return (
     <ExpressCoachPanel
       placeholder="例：やる気が出ない"
       onClose={onClose}
       onInsert={onInsertSuggestion}
+      onSaveSuggestion={handleSaveSuggestion}
       sendMessage={sendMessage}
     />
   );
