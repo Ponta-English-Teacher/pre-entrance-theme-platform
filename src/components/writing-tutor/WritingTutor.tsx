@@ -13,6 +13,7 @@ import { diffWords } from '@/lib/textDiff';
 import { countSentences, countWords } from '@/lib/textStats';
 import { addNotebookItem, isInNotebook } from '@/lib/store';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import NotebookSaveButton from '@/components/notebook/NotebookSaveButton';
 
 /**
  * Standalone, reusable Writing Tutor. Sends a student's draft to
@@ -336,24 +337,6 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
 WritingTutor.displayName = 'WritingTutor';
 
 export default WritingTutor;
-
-function NotebookSaveButton({ saved, onSave }: { saved: boolean; onSave: () => void }) {
-  return (
-    <button
-      type="button"
-      onClick={onSave}
-      disabled={saved}
-      aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
-      className={`mt-2 text-xs font-semibold px-2.5 py-1 rounded-lg border transition-colors ${
-        saved
-          ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
-          : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
-      }`}
-    >
-      {saved ? '✓ Saved to My English Notebook' : '📓 Save to My English Notebook'}
-    </button>
-  );
-}
 
 function FeedbackSection({
   title,

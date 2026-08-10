@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import type { AITalkActiveSelection, AITalkSelectionAction } from './AITalkSelectionToolbar';
 import type { Level } from '@/types';
 import { addNotebookItem, isInNotebook } from '@/lib/store';
+import NotebookSaveButton from '@/components/notebook/NotebookSaveButton';
 
 export interface AITalkSelectionPanelState {
   open: boolean;
@@ -148,19 +149,9 @@ export default function AITalkExplanationPanel({
           <p className="text-lg leading-relaxed text-slate-800">{panel.text}</p>
         )}
         {canSave && (
-          <button
-            type="button"
-            onClick={handleSave}
-            disabled={saved}
-            aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
-            className={`mt-4 w-full text-sm font-semibold py-2 rounded-xl border transition-colors ${
-              saved
-                ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
-                : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
-            }`}
-          >
-            {saved ? '✓ Saved to My English Notebook' : '📓 Save to My English Notebook'}
-          </button>
+          <div className="mt-3 flex justify-end">
+            <NotebookSaveButton saved={saved} onSave={handleSave} />
+          </div>
         )}
       </div>
     </div>

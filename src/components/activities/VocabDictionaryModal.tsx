@@ -8,6 +8,7 @@ import SelectableContent from '@/components/selection-assistant/SelectableConten
 import type { VocabLookupResponse } from '@/lib/ai/vocabLookup/types';
 import { SELECTION_ASSISTANT_MAX_TEXT_LENGTH, SELECTION_TEXT_TOO_LONG_MESSAGE } from '@/lib/ai/selectionAssistant/types';
 import type { Level } from '@/types';
+import NotebookSaveButton from '@/components/notebook/NotebookSaveButton';
 
 const POS_STYLE: Record<string, string> = {
   noun:      'bg-blue-100 text-blue-700',
@@ -478,19 +479,17 @@ export default function VocabDictionaryModal({
               )}
             </div>
 
-            {/* 6. Save to Glossary */}
-            <div className="px-5 pb-5">
-              <button
-                onClick={handleSave}
-                disabled={saved}
-                className={`w-full py-2.5 rounded-xl font-semibold text-sm transition-colors ${
-                  saved
-                    ? 'bg-emerald-100 text-emerald-700 cursor-default'
-                    : 'bg-indigo-600 hover:bg-indigo-700 text-white'
-                }`}
-              >
-                {saved ? '✓ Saved to Glossary' : 'Save to Glossary'}
-              </button>
+            {/* 6. Save to Glossary — compact/neutral per THEME_EXPERIENCE_TEMPLATE.md §12
+                "Notebook Save Action visual hierarchy": saving a word is secondary to
+                actually reading the card, so this is no longer styled as the card's
+                primary CTA. */}
+            <div className="px-5 pb-5 flex justify-end">
+              <NotebookSaveButton
+                saved={saved}
+                onSave={handleSave}
+                label="📓 Save to Glossary"
+                savedLabel="✓ Saved to Glossary"
+              />
             </div>
           </>
         )}

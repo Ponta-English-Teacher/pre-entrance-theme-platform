@@ -530,6 +530,35 @@ not:
   Selection Assistant; UI controls → clickable → perform actions.** This
   is the standing rule for every future vocabulary enhancement, not only
   the sections that exist today.
+- **Notebook Save Action visual hierarchy (frozen 2026-08-10).** My
+  English Notebook lets a student save something from Vocabulary, Reading,
+  AI Help, Help Me Say It, AI Talk, and Writing — but saving is always a
+  secondary, archival action, never the primary workflow. The primary
+  workflow is learning: reading an explanation, continuing to explore it
+  recursively (see the Recursive Selection Assistant rule above), reading
+  feedback, inserting a suggestion. A Save control must never visually
+  compete with that. Concretely:
+  1. Saving is a secondary action, not the goal of the interaction.
+  2. Learning content is always visually prioritized over the save
+     control — larger, higher-contrast, or otherwise more prominent.
+  3. Save controls must never look like primary CTAs (no solid brand-color
+     fill, no border styled like a button, no bold call-to-action tone).
+  4. Never use a full-width button for a Notebook action, anywhere. Full
+     width visually claims the entire row as the obvious next step, which
+     is exactly backward for an archival action.
+  5. Use one compact, low-emphasis pattern consistently everywhere the
+     Notebook can be saved to — small, icon-led, neutral (slate) by
+     default, not the brand accent color — rather than a bespoke style per
+     activity.
+  6. The emerald "✓ Saved" confirmation after a successful save is the one
+     exception to the neutral-color rule — it's feedback about something
+     that already happened, not a call to action, so it's allowed to stand
+     out briefly.
+  Implemented as one shared `NotebookSaveButton` component
+  (`src/components/notebook/NotebookSaveButton.tsx`), reused by every
+  integration rather than each one styling its own button. Do not
+  reintroduce a full-width or brand-colored Save control anywhere in the
+  platform without explicit approval.
 
 ---
 

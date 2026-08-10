@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import type { HelpContext, HelpOption } from '@/lib/aiAssistant';
 import { requestAIHelp } from '@/lib/aiAssistant';
 import { addNotebookItem, isInNotebook } from '@/lib/store';
+import NotebookSaveButton from '@/components/notebook/NotebookSaveButton';
 
 /** The single excerpt worth keeping alongside an AI Help answer, whichever
  *  location produced it — the paragraph being read, the mission check
@@ -139,19 +140,14 @@ export default function ContextualHelpButton({
               <div className="text-sm text-slate-700 leading-relaxed bg-indigo-50 rounded-xl p-3 whitespace-pre-line">
                 {response}
               </div>
-              <button
-                type="button"
-                onClick={handleSave}
-                disabled={saved}
-                aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
-                className={`mt-2 w-full text-xs font-semibold py-1.5 rounded-lg border transition-colors ${
-                  saved
-                    ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
-                    : 'border-indigo-200 bg-white text-indigo-600 hover:bg-indigo-50 hover:border-indigo-400'
-                }`}
-              >
-                {saved ? '✓ My English Notebookに保存しました' : '📓 My English Notebookに保存する'}
-              </button>
+              <div className="mt-2 flex justify-end">
+                <NotebookSaveButton
+                  saved={saved}
+                  onSave={handleSave}
+                  label="📓 保存"
+                  savedLabel="✓ 保存済み"
+                />
+              </div>
             </>
           )}
         </div>

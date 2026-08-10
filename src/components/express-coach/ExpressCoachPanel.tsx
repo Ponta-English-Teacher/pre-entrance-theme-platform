@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from 'react';
 import type { ExpressChatResponse, ExpressChatTurn } from '@/lib/ai/expressCoach/types';
+import NotebookSaveButton from '@/components/notebook/NotebookSaveButton';
 
 /**
  * Shared "💡 Help me say it" coaching-chat UI — one interaction model reused
@@ -240,20 +241,13 @@ function ChatBubble({
                   )}
                 </button>
                 {onSaveSuggestion && (
-                  <button
-                    type="button"
-                    onClick={() => onSaveSuggestion(key, s, turn.text)}
-                    disabled={saved}
-                    aria-label={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
-                    title={saved ? 'Saved to My English Notebook' : 'Save to My English Notebook'}
-                    className={`shrink-0 w-9 flex items-center justify-center rounded-lg border transition-colors text-sm ${
-                      saved
-                        ? 'border-emerald-200 bg-emerald-50 text-emerald-600 cursor-default'
-                        : 'border-indigo-200 bg-white text-indigo-400 hover:border-indigo-400 hover:text-indigo-600 hover:bg-indigo-50'
-                    }`}
-                  >
-                    {saved ? '✓' : '📓'}
-                  </button>
+                  <NotebookSaveButton
+                    saved={saved}
+                    onSave={() => onSaveSuggestion(key, s, turn.text)}
+                    label="📓"
+                    savedLabel="✓"
+                    className="shrink-0 justify-center"
+                  />
                 )}
               </div>
             );
