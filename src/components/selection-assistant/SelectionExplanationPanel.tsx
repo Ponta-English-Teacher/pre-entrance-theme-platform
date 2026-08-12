@@ -207,7 +207,22 @@ export default function SelectionExplanationPanel({
           <p className="text-base text-rose-600 leading-relaxed whitespace-pre-line">{panel.error}</p>
         )}
         {panel.explanation && !panel.loading && (
-          <SelectableContent activityType="selection-explanation" label={`${actionMeta?.label ?? 'Explanation'} — result`}>
+          // Inherits activityType/themeId/level from whatever selection
+          // opened this panel, rather than a fixed "selection-explanation"
+          // identifier — so a selection made inside this explanation (i.e.
+          // recursive exploration) is still recognized as part of the same
+          // originating activity, at any recursion depth, with Save and the
+          // AI's own prompt context ("Activity: ...") behaving identically
+          // to the very first selection. A hardcoded activityType here was
+          // the reason Save silently disappeared after one level of
+          // recursion — canSave (below) gates on activityType === 'reading',
+          // which a disconnected literal could never satisfy.
+          <SelectableContent
+            activityType={selection?.scope.activityType ?? 'reading'}
+            themeId={selection?.scope.themeId}
+            level={selection?.scope.level}
+            label={`${actionMeta?.label ?? 'Explanation'} — result`}
+          >
             <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
           </SelectableContent>
         )}

@@ -14,7 +14,7 @@
 export default function NotebookSaveButton({
   saved,
   onSave,
-  label = '📓 Save',
+  label = '📓 Save to My English Notebook',
   savedLabel = '✓ Saved',
   className = '',
 }: {

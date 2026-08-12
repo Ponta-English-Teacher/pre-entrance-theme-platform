@@ -479,17 +479,15 @@ export default function VocabDictionaryModal({
               )}
             </div>
 
-            {/* 6. Save to Glossary — compact/neutral per THEME_EXPERIENCE_TEMPLATE.md §12
+            {/* 6. Save — compact/neutral per THEME_EXPERIENCE_TEMPLATE.md §12
                 "Notebook Save Action visual hierarchy": saving a word is secondary to
                 actually reading the card, so this is no longer styled as the card's
-                primary CTA. */}
+                primary CTA. Uses the component's default label (names My English
+                Notebook explicitly) rather than "Save to Glossary" — the legacy
+                Glossary write this still also does is an internal detail, not a
+                second destination the student needs to track. */}
             <div className="px-5 pb-5 flex justify-end">
-              <NotebookSaveButton
-                saved={saved}
-                onSave={handleSave}
-                label="📓 Save to Glossary"
-                savedLabel="✓ Saved to Glossary"
-              />
+              <NotebookSaveButton saved={saved} onSave={handleSave} />
             </div>
           </>
         )}

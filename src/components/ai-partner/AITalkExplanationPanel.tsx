@@ -73,7 +73,13 @@ export default function AITalkExplanationPanel({
   useEffect(() => {
     if (!panel.open) return;
     function handleOutsideClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) onClose();
+      if (!ref.current || ref.current.contains(e.target as Node)) return;
+      // A text-selection drag started inside the panel (e.g. selecting a
+      // word inside the result to look it up again) must never close it,
+      // even if the selection extends past the panel's edge by the time
+      // this fires. Same guard used by Reading's SelectionExplanationPanel.
+      if (window.getSelection()?.toString()) return;
+      onClose();
     }
     document.addEventListener('mousedown', handleOutsideClick);
     return () => document.removeEventListener('mousedown', handleOutsideClick);
@@ -146,7 +152,10 @@ export default function AITalkExplanationPanel({
           <p className="text-base text-rose-600 leading-relaxed whitespace-pre-line">{panel.error}</p>
         )}
         {panel.text && !panel.loading && (
-          <p className="text-lg leading-relaxed text-slate-800">{panel.text}</p>
+          // data-ai-talk-selectable: read by AIPartnerConversation's selection
+          // listener so selecting text in here (not just in a partner turn)
+          // still invokes the toolbar — enables recursive lookups.
+          <p data-ai-talk-selectable className="text-lg leading-relaxed text-slate-800">{panel.text}</p>
         )}
         {canSave && (
           <div className="mt-3 flex justify-end">

@@ -108,20 +108,26 @@ export default function AIPartnerConversation({
     onStudentTurnCountChange?.(studentTurnCount);
   }, [studentTurnCount, onStudentTurnCountChange]);
 
-  // Track text selection, scoped to partner turns inside the transcript only
-  // (never the student's own turns, never the draft textarea).
+  // Track text selection, scoped to partner turns inside the transcript, or
+  // to the explanation panel's own result text (never the student's own
+  // turns, never the draft textarea). The panel case is what makes lookups
+  // recursive: selecting a word inside an explanation (e.g. "frightening"
+  // inside a "What does it mean?" result) re-opens the toolbar for that
+  // word too, instead of only ever working on the original partner turn.
   useEffect(() => {
     function handleSelectionChange() {
       const selection = window.getSelection();
       const anchorNode = selection?.anchorNode;
-      if (!selection || !anchorNode || !transcriptRef.current || !transcriptRef.current.contains(anchorNode)) {
+      if (!selection || !anchorNode) {
         setActiveSelection(null);
         return;
       }
 
       const el = anchorNode.nodeType === Node.ELEMENT_NODE ? (anchorNode as HTMLElement) : anchorNode.parentElement;
-      const partnerTurnEl = el?.closest('[data-turn-role="partner"]');
-      if (!partnerTurnEl) {
+      const inTranscriptPartnerTurn =
+        !!transcriptRef.current && transcriptRef.current.contains(anchorNode) && !!el?.closest('[data-turn-role="partner"]');
+      const inExplanationPanel = !!el?.closest('[data-ai-talk-selectable]');
+      if (!inTranscriptPartnerTurn && !inExplanationPanel) {
         setActiveSelection(null);
         return;
       }

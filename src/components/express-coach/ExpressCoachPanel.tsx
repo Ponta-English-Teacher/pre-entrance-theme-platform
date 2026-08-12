@@ -244,7 +244,7 @@ function ChatBubble({
                   <NotebookSaveButton
                     saved={saved}
                     onSave={() => onSaveSuggestion(key, s, turn.text)}
-                    label="📓"
+                    label="📓 ノートへ"
                     savedLabel="✓"
                     className="shrink-0 justify-center"
                   />

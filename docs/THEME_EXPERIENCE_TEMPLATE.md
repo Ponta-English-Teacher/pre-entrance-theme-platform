@@ -554,6 +554,12 @@ not:
      exception to the neutral-color rule — it's feedback about something
      that already happened, not a call to action, so it's allowed to stand
      out briefly.
+  7. A bare "📓 Save" is not enough — the unsaved label must always name
+     the destination ("Save to My English Notebook" / "マイ英語ノートに保存",
+     shortened to "ノートへ" only where horizontal space is genuinely tight,
+     e.g. an inline suggestion row) so the student always knows where the
+     save is going before they click it. The saved-state label may shorten
+     to a bare "✓ Saved" / "✓" once that's already been communicated.
   Implemented as one shared `NotebookSaveButton` component
   (`src/components/notebook/NotebookSaveButton.tsx`), reused by every
   integration rather than each one styling its own button. Do not

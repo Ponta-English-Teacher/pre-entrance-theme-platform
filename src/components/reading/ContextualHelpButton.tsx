@@ -144,7 +144,7 @@ export default function ContextualHelpButton({
                 <NotebookSaveButton
                   saved={saved}
                   onSave={handleSave}
-                  label="📓 保存"
+                  label="📓 マイ英語ノートに保存"
                   savedLabel="✓ 保存済み"
                 />
               </div>

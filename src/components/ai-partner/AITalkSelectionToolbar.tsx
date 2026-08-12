@@ -62,7 +62,11 @@ export default function AITalkSelectionToolbar({
       ref={ref}
       role="toolbar"
       aria-label="AI Talk selection tools"
-      className="fixed z-50 flex items-center gap-1 rounded-full border border-slate-200 bg-white px-1.5 py-1 shadow-lg"
+      // z-[60], one step above AITalkExplanationPanel's z-50: this toolbar
+      // must always render above an already-open explanation panel,
+      // including when the new selection is made inside that same panel
+      // (recursive exploration) — same rule as Reading's SelectionToolbar.
+      className="fixed z-[60] flex items-center gap-1 rounded-full border border-slate-200 bg-white px-1.5 py-1 shadow-lg"
       style={position ? { top: position.top, left: position.left } : { top: -9999, left: -9999 }}
     >
       {ACTIONS.map(action => (
