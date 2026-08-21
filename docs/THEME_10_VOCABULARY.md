@@ -1,7 +1,14 @@
 # Theme 10 Vocabulary Plan
 ## Science in Everyday Life
 
-Status: **Foundation, Standard, and Challenge finalized — Theme 10 vocabulary is structurally complete.** Built under the corrected Foundation definition in `docs/VOCABULARY_PHILOSOPHY.md` §3. This completes Phase 1 vocabulary planning for all ten themes.
+Status: **Superseded 2026 — see `docs/THEME_10_MANUSCRIPT.md`.** This
+plan used the old three-tier Foundation/Standard/Challenge structure
+(Challenge was later removed platform-wide) and its word list (science,
+observation, hypothesis, phenomenon, experiment, curiosity, ...) was
+built for the retired anecdotal reading. Kept for historical reference
+only; do not implement from this file.
+
+Status (original, retained for reference): **Foundation, Standard, and Challenge finalized — Theme 10 vocabulary is structurally complete.** Built under the corrected Foundation definition in `docs/VOCABULARY_PHILOSOPHY.md` §3. This completes Phase 1 vocabulary planning for all ten themes.
 
 Lexical sets: Scientific Thinking · Evidence & Experimentation · Everyday Phenomena · Curiosity & Discovery.
 

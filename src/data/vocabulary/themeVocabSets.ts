@@ -58,8 +58,8 @@ export const THEME_VOCAB_SETS: Record<string, ThemeVocabSet> = {
   },
   'science-in-everyday-life': {
     themeId: 'science-in-everyday-life',
-    foundation: ['se-f-01', 'se-f-02', 'se-f-03', 'se-f-04', 'se-f-05', 'se-f-06'],
-    advanced:   [],
+    foundation: ['se-f-01', 'se-f-02', 'se-f-03', 'se-f-04', 'se-f-05', 'se-f-06', 'se-f-07', 'se-f-08', 'se-f-09', 'se-f-10'],
+    advanced:   ['se-s-01', 'se-s-02', 'se-s-03', 'se-s-04', 'se-s-05', 'se-s-06', 'se-s-07', 'se-s-08', 'se-s-09', 'se-s-10'],
   },
 };
 

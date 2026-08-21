@@ -1,8 +1,10 @@
 # Theme 10 Reading & Writing Plan
 ## Science in Everyday Life — Foundation
 
-Status: **Approved — design complete, not yet implemented in code.**
-Final theme of the Foundation curriculum.
+Status: **Superseded 2026 — see `docs/THEME_10_MANUSCRIPT.md`.** This
+anecdotal design ("The Mystery of the Wet Can") was fully replaced by
+the "Science Is Part of Our Lives" passage. Kept for historical
+reference only; do not implement from this file.
 
 ---
 

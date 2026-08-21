@@ -2810,24 +2810,28 @@ export const MASTER_READINGS: ReadingLesson[] = [
   },
 
   // ── Science in Everyday Life — Foundation ────────────────────────────────────
-  // Ported from docs/THEME_10_READING_WRITING.md (approved design).
+  // Fully rebuilt 2026 — replaces the old anecdotal reading ("The Mystery
+  // of the Wet Can") with the approved "Science Is Part of Our Lives"
+  // passage. See docs/THEME_10_MANUSCRIPT.md.
 
   {
     id: 'se-f-reading-01',
     themeId: 'science-in-everyday-life',
     level: 'foundation',
-    title: 'The Mystery of the Wet Can',
-    titleJapanese: '濡れた缶のなぞ',
+    title: 'Science Is Part of Our Lives',
+    titleJapanese: '科学は私たちの生活の一部',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who got curious about something very ordinary — a wet can of juice — and investigated it like a scientist.',
-    mission: 'As you read, notice how Yuto tests his idea about the water on the can. At the end, think about something in your own everyday life you\'re curious about.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about where science actually is in everyday life — not only in laboratories, but behind the weather forecast, your medicine, and the food in your fridge.',
+    mission: 'As you read, notice how the passage moves from a common idea about science to concrete, everyday examples, and then to a broader claim about what science actually does.',
 
     preReadingSurvey: {
-      question: 'Is there something in everyday life you\'ve wondered "why does this happen"?',
+      question: 'Before you read, which statement is closest to your own thinking?',
       options: [
-        { id: 'yes', label: 'Yes, definitely.' },
-        { id: 'no', label: "Not that I've noticed." },
-        { id: 'maybe', label: 'Maybe, but I never looked into it.' },
+        { id: 'labs-only', label: 'Science mainly happens in laboratories, among scientists and experts.' },
+        { id: 'everyday', label: 'Science is already behind many ordinary things in daily life.' },
+        { id: 'school-only', label: 'Science is mostly a school subject, not something in everyday life.' },
+        { id: 'unsure', label: "I'm not sure." },
       ],
     },
 
@@ -2835,108 +2839,250 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'se-f-reading-01-p1',
         english:
-          'Yuto pulled a cold can of juice from the fridge on a hot afternoon, and within a minute, the outside was covered in tiny drops of water. The can was sealed — nothing could be leaking out. He became curious: where was all that water coming from? He turned the can over, checking for a crack, but found nothing.',
+          'Science is sometimes seen as something that happens in laboratories or is studied by experts. However, science begins with something much simpler: people observe the world, ask questions, and try to find out how things work. Through this process, people have gained knowledge that is now used in many parts of our everyday lives.',
         japanese:
-          'ユトは暑い午後、冷蔵庫から冷たいジュースの缶を取り出しました。すると一分もしないうちに、缶の外側には小さな水滴がびっしりとつきました。缶は密閉されていて、何かが漏れているはずはありませんでした。彼は好奇心を感じました——あの水はいったいどこから来たのだろう?彼はひびが入っていないか確かめようと缶をひっくり返してみましたが、何も見つかりませんでした。',
+          '科学は、実験室で行われるものや、専門家が研究するものだと思われることがあります。しかし、科学はもっと単純なことから始まります。人々は世界を観察し、疑問を持ち、物事がどのように働いているのかを見つけようとするのです。このような過程を通して、人々は知識を得てきました。そしてその知識は、今では私たちの日常生活の多くの場面で使われています。',
         plainEnglish:
-          'Yuto took a cold can of juice from the fridge on a hot afternoon. Within a minute, the outside was covered in tiny drops of water. The can was sealed, so nothing could be leaking. He wondered where the water was coming from, and checked the can for a crack, but found none.',
-        checkQuestion: 'According to this paragraph, what did Yuto notice about the can, and what did he check for?',
+          'Science is sometimes seen as something that happens in laboratories. People may think only experts study it. But science begins with something much simpler. People observe the world. They ask questions. They try to find out how things work. Through this process, people have gained knowledge. This knowledge is now used in many parts of our everyday lives.',
+        checkQuestion: 'According to this paragraph, how does the passage say science actually begins?',
       },
       {
         id: 'se-f-reading-01-p2',
         english:
-          'At first, he guessed it might be a tiny hole in the can — a simple hypothesis, but one he could test. He grabbed a dry glass, filled it with ice, and set it beside the can as a small experiment. Within minutes, the glass was just as wet as the can, even though it had never touched any liquid outside.',
+          'For example, weather forecasts are based on observations of the atmosphere and large amounts of data. Medicine uses scientific knowledge about the human body and diseases. The food we eat can be kept safe for longer because people have studied how temperature and bacteria affect it. We may not think about science when we check the weather, take medicine, or keep food in a refrigerator, but scientific knowledge is behind all of these things.',
         japanese:
-          '最初、彼は缶に小さな穴が開いているのではないかと考えました——単純な仮説でしたが、確かめることができるものでした。彼は乾いたグラスを用意し、氷を入れて、缶の隣に置いてみました。これは小さな実験でした。数分後には、外の液体に一度も触れていないはずのグラスも、缶と同じくらい濡れていました。',
+          '例えば、天気予報は大気の観測と大量のデータに基づいています。医学は、人体や病気についての科学的知識を利用しています。私たちが食べる食品は、温度や細菌がどのように影響を与えるかが研究されてきたおかげで、より長く安全に保存できるようになりました。天気を確認したり、薬を飲んだり、食品を冷蔵庫に入れたりするとき、私たちは科学について考えることはないかもしれませんが、これらすべての背後には科学的知識があるのです。',
         plainEnglish:
-          'At first, Yuto guessed there might be a tiny hole in the can — a simple hypothesis he could test. He filled a dry glass with ice and placed it next to the can as a small experiment. Within minutes, the glass was just as wet as the can, even though it had never touched any liquid.',
-        checkQuestion: 'What experiment did Yuto set up to test his hypothesis?',
+          'For example, weather forecasts are based on observations of the atmosphere and large amounts of data. Medicine uses scientific knowledge about the human body and diseases. We can keep food safe for longer, too. This is because people have studied how temperature and bacteria affect food. We may not think about science when we check the weather, take medicine, or keep food in a refrigerator. But scientific knowledge is behind all of these things.',
+        checkQuestion: 'According to this paragraph, what everyday examples show scientific knowledge at work?',
       },
       {
         id: 'se-f-reading-01-p3',
         english:
-          "His hypothesis was wrong — the water wasn't leaking from inside at all. Through careful observation, Yuto realized the water was coming from the warm air itself: when warm air touched something cold, it cooled down and turned into tiny drops of liquid. It was a small, everyday phenomenon, but knowing the science behind it made an ordinary summer afternoon feel a little more interesting.",
+          'Science also helps people develop new technology and solve problems. Scientists study materials, energy, plants, animals, the human body, and many other things. What they discover can later be used by engineers, doctors, farmers, companies, and ordinary people.',
         japanese:
-          '彼の仮説は間違っていました——水は缶の内部から漏れていたわけではなかったのです。注意深く観察した結果、ユトはその水が暖かい空気そのものから来ていることに気づきました。暖かい空気が冷たいものに触れると、冷やされて小さな水滴に変わるのです。それはささやかな、日常的な現象でしたが、その裏にある科学を知ることで、ありふれた夏の午後が少しだけ面白く感じられるようになりました。',
+          '科学はまた、人々が新しい技術を開発し、問題を解決する助けにもなります。科学者は材料やエネルギー、植物、動物、人体など、さまざまなものを研究しています。彼らが発見したことは、後にエンジニアや医師、農家、企業、そして一般の人々によって利用されることがあります。',
         plainEnglish:
-          "His hypothesis was wrong — the water wasn't leaking from inside the can. Through careful observation, Yuto realized the water was coming from the warm air itself: when warm air touches something cold, it cools down and turns into tiny drops. It was a small, everyday phenomenon, but knowing the science behind it made an ordinary afternoon feel more interesting.",
-        checkQuestion: 'According to this paragraph, where did the water on the can actually come from?',
+          'Science also helps people develop new technology and solve problems. Scientists study materials, energy, plants, animals, the human body, and many other things. They discover new information. Later, this information can be used by engineers, doctors, farmers, companies, and ordinary people.',
+        checkQuestion: 'According to this paragraph, who can use what scientists discover?',
+      },
+      {
+        id: 'se-f-reading-01-p4',
+        english:
+          'Science, then, is not separate from everyday life. It is one way people try to understand the world through observation and investigation. What we learn through science can then be used to improve our lives and find new ways to deal with problems.',
+        japanese:
+          'つまり、科学は日常生活と切り離されたものではありません。それは、人々が観察と調査を通して世界を理解しようとする一つの方法なのです。科学を通して学んだことは、私たちの生活を向上させ、問題に対処する新しい方法を見つけるために使うことができます。',
+        plainEnglish:
+          'So science is not separate from everyday life. It is one way people try to understand the world. They do this through observation and investigation. What we learn through science can be used in another way, too. It can help us improve our lives. It can help us find new ways to deal with problems.',
+        checkQuestion: 'According to this final paragraph, what can we do with what we learn through science?',
       },
     ],
 
-    targetVocabIds: ['se-f-01', 'se-f-02', 'se-f-03', 'se-f-04', 'se-f-05', 'se-f-06'],
+    targetVocabIds: ['se-f-01', 'se-f-02', 'se-f-03', 'se-f-04', 'se-f-05', 'se-f-06', 'se-f-07', 'se-f-08', 'se-f-09', 'se-f-10'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['science', 'observation', 'hypothesis', 'phenomenon', 'experiment', 'curiosity'],
+        items: ['observe', 'expert', 'forecast', 'atmosphere', 'disease', 'affect', 'material', 'discover', 'ordinary', 'investigation'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['checking for a crack', 'set it beside the can', 'cooled down'],
+        items: ['is sometimes seen as', 'behind all of these things', 'not separate from everyday life'],
       },
       {
         type: 'paragraph-organization',
         prompt: 'Consider how the passage is organized.',
-        note: 'The passage models the scientific method concretely: an observed puzzle (paragraph 1) → a hypothesis and a test (paragraph 2) → a corrected conclusion through observation (paragraph 3).',
-      },
-      {
-        type: 'tone-purpose',
-        prompt: "Consider the author's purpose.",
-        note: 'The passage shows a wrong first hypothesis being revised through testing, modeling that being wrong is a normal, productive part of scientific thinking rather than a failure.',
+        note: 'Notice that paragraph 1 opens by naming a common assumption ("science... happens in laboratories or is studied by experts") only to immediately complicate it. The rest of the passage — everyday examples in paragraph 2, technology and problem-solving in paragraph 3 — builds the case against that opening assumption before the conclusion states it directly.',
       },
     ],
 
     missionCheck: {
-      question: 'According to the passage, what did Yuto discover about the water on the outside of the can?',
-      explainer: 'In simple words: where did Yuto discover the water on the can was really coming from?',
-      explainerJa: 'この質問は、「缶についていた水は、実際にはどこから来ていたのか」を聞いています。',
-      hint: 'Look at what happens in paragraph 3, when Yuto makes his observation.',
-      hintJa: '第3段落で、ユトが観察をする場面に注目してみましょう。',
+      question: 'According to the passage, why is science not something that happens only in laboratories?',
+      explainer: 'In simple words: where does the passage say science actually begins, and where does it end up being used?',
+      explainerJa: 'この質問は、「科学は実際にはどこから始まり、どこで使われているのか」を聞いています。',
+      hint: 'Look at paragraph 1.',
+      hintJa: '第1段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'The can had a tiny hole that was leaking juice.', correct: false },
-        { id: 'b', label: 'The water came from the warm air, not from inside the can.', correct: true },
-        { id: 'c', label: 'Someone had spilled water on the can earlier.', correct: false },
+        { id: 'a', label: 'Because ordinary people can become experts simply by studying in a laboratory.', correct: false },
+        { id: 'b', label: 'Because science begins with observing the world and asking questions, and the knowledge gained is used throughout everyday life.', correct: true },
+        { id: 'c', label: 'Because most scientific discoveries happen by accident, not in laboratories.', correct: false },
       ],
-      answerParagraphId: 'se-f-reading-01-p3',
-      evidencePrompt: 'Which idea from the reading shows Yuto testing his first hypothesis with an experiment?',
+      answerParagraphId: 'se-f-reading-01-p1',
+      evidencePrompt: 'Which sentence best shows everyday examples where scientific knowledge is already behind ordinary life?',
       evidenceOptions: [
-        { id: 'e1', label: 'He turned the can over, checking for a crack, but found nothing.', paragraphId: 'se-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'He grabbed a dry glass, filled it with ice, and set it beside the can as a small experiment.', paragraphId: 'se-f-reading-01-p2', correct: true },
-        { id: 'e3', label: "His hypothesis was wrong — the water wasn't leaking from inside at all.", paragraphId: 'se-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'Science begins with something much simpler: people observe the world, ask questions, and try to find out how things work.', paragraphId: 'se-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'We may not think about science when we check the weather, take medicine, or keep food in a refrigerator, but scientific knowledge is behind all of these things.', paragraphId: 'se-f-reading-01-p2', correct: true },
+        { id: 'e3', label: 'What they discover can later be used by engineers, doctors, farmers, companies, and ordinary people.', paragraphId: 'se-f-reading-01-p3', correct: false },
       ],
       vocabInContext: {
-        quote: 'a simple hypothesis, but one he could test',
-        question: 'What does "hypothesis" mean here?',
+        quote: 'Science, then, is not separate from everyday life. It is one way people try to understand the world through observation and investigation. What we learn through science can then be used to improve our lives and find new ways to deal with problems.',
+        question: 'What is this conclusion suggesting about the relationship between science and daily life?',
         options: [
-          { id: 'a', label: 'A fact that has already been proven true.', correct: false },
-          { id: 'b', label: 'A first guess or possible explanation that can be tested.', correct: true },
-          { id: 'c', label: 'A tool used to measure temperature.', correct: false },
+          { id: 'a', label: 'Science is only useful for solving big global problems, not small everyday ones.', correct: false },
+          { id: 'b', label: 'Science is a way of understanding the world that already shapes ordinary daily life and can keep helping us improve it.', correct: true },
+          { id: 'c', label: 'Everyday life would be exactly the same with or without scientific knowledge.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: "Yuto's curiosity about a simple wet can led him to think and test like a scientist. Is there something in your everyday life that makes you wonder \"why does this happen?\" What is it? If nothing comes to mind right now, describe one everyday thing you would like to understand better.",
-      promptJapanese: 'ユトは、水滴がついた缶へのちょっとした好奇心から、科学者のように考え、確かめてみることになりました。あなたの日常生活の中で、「なぜこうなるのだろう?」と思うことはありますか。それは何ですか。もし今すぐ思いつかない場合は、もっとよく理解したい日常的なことを一つ描いてみましょう。',
-      minSentences: 2,
-      sentenceStarters: ["I've always wondered why...", "One everyday thing I'm curious about is...", 'I would like to understand...'],
+      prompt: 'What is something science cannot explain? Why do you think so?',
+      promptJapanese: '科学が説明できないことは何だと思いますか。なぜそう思うのですか。',
+      minSentences: 3,
+      sentenceStarters: ['I think science cannot explain...', 'This is because...', 'Maybe someday, but for now...'],
       wordBank: [
-        { vocabId: 'se-f-06', examplePhrase: "I've always been curious about..." },
-        { vocabId: 'se-f-03', examplePhrase: 'My hypothesis is...' },
-        { vocabId: 'se-f-05', examplePhrase: 'I could test this with a small experiment.' },
-        { vocabId: 'se-f-02', examplePhrase: 'Through observation, I noticed...' },
+        { vocabId: 'se-f-02', examplePhrase: "Even experts don't seem to know why..." },
+        { vocabId: 'se-f-08', examplePhrase: "Maybe scientists haven't discovered enough about this yet." },
+        { vocabId: 'se-f-10', examplePhrase: "I don't think investigation alone can explain this." },
       ],
       usefulExpressions: [
-        { phrase: "I've always wondered why...", japanese: '私はずっと...なのか不思議に思っていました' },
-        { phrase: "One everyday thing I'm curious about is...", japanese: '私が興味を持っている日常的なことの一つは...です' },
-        { phrase: 'I would like to understand...', japanese: '私は...を理解したいです' },
+        { phrase: 'I think science cannot explain...', japanese: '私は科学は...を説明できないと思います' },
+        { phrase: 'This is because...', japanese: 'これは...だからです' },
+        { phrase: 'Maybe someday science will explain this, but for now...', japanese: 'いつか科学がこれを説明するかもしれませんが、今のところは...' },
       ],
     },
 
-    takeaway: 'Science begins with curiosity about ordinary things.',
+    takeaway: 'Science is already part of ordinary life — behind the weather forecast, the medicine we take, and the food we keep safe, is knowledge people gained through observation and investigation.',
+  },
+
+  // ── Science in Everyday Life — Advanced ──────────────────────────────────────
+  // New — Theme 10 previously had no Advanced level. Built against the
+  // approved "What Makes an Approach Scientific?" passage. See
+  // docs/THEME_10_MANUSCRIPT.md.
+
+  {
+    id: 'se-s-reading-01',
+    themeId: 'science-in-everyday-life',
+    level: 'advanced',
+    title: 'What Makes an Approach Scientific?',
+    titleJapanese: '科学的なアプローチとは何か',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a genuine problem: two things happening together does not prove that one caused the other — so how does a scientific approach actually judge whether a conclusion is supported?',
+    mission: 'As you read, notice how the passage builds its argument through one concrete example — a drink and exam scores — and pay attention to the distinction between correlation and causation.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own thinking?',
+      options: [
+        { id: 'together-means-caused', label: 'If two things happen together, one probably caused the other.' },
+        { id: 'need-more', label: 'Two things happening together is not enough on its own — you need more evidence.' },
+        { id: 'science-final', label: 'Once science reaches a conclusion, that conclusion should not need to change.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'se-s-reading-01-p1',
+        english:
+          'Science is not only a collection of knowledge. It is also a systematic way of testing whether an explanation is supported by evidence. Scientific investigation often begins with an observation and a question. Researchers may then form a hypothesis and design an experiment to test it. They collect data, compare results, and consider whether other variables could have affected what they observed.',
+        japanese:
+          '科学は単なる知識の集まりではありません。それはまた、ある説明が証拠によって裏付けられているかどうかを検証する、体系的な方法でもあります。科学的な調査は、多くの場合、観察と疑問から始まります。研究者はその後、仮説を立て、それを検証するための実験を計画するかもしれません。彼らはデータを集め、結果を比較し、観察した結果に他の変数が影響を与えていなかったかどうかを検討します。',
+        plainEnglish:
+          'Science is not only a collection of knowledge. It is also a systematic way of testing an explanation. It checks whether the explanation is supported by evidence. Scientific investigation often begins with an observation and a question. Researchers may then form a hypothesis. They design an experiment to test it. They collect data. They compare results. They also ask: could other variables have affected what they observed?',
+        checkQuestion: 'According to this paragraph, what does a systematic scientific investigation actually involve?',
+      },
+      {
+        id: 'se-s-reading-01-p2',
+        english:
+          'Suppose some students drink a certain drink before an exam and get higher scores. We might think that the drink improved their performance. But perhaps those students studied more, slept longer, or were already stronger students. The drink and the higher scores may show a correlation, but correlation alone does not prove causation. The result might even be a coincidence. A scientific experiment therefore tries to control other variables and make a fair comparison.',
+        japanese:
+          'ある生徒たちが試験の前に特定の飲み物を飲み、より高い点数を取ったとしましょう。私たちは、その飲み物が成績を向上させたのだと考えるかもしれません。しかし、もしかするとその生徒たちはより多く勉強していたり、より長く睡眠を取っていたり、あるいはもともと成績が良い生徒たちだったのかもしれません。その飲み物とより高い点数の間には相関関係が見られるかもしれませんが、相関関係があるからといって、それだけでは因果関係を証明したことにはなりません。その結果は、単なる偶然の一致かもしれないのです。そのため、科学的な実験では、他の変数を制御し、公平な比較を行おうとします。',
+        plainEnglish:
+          'Suppose some students drink a certain drink before an exam. They get higher scores. We might think the drink improved their performance. But maybe those students studied more. Maybe they slept longer. Maybe they were already stronger students. The drink and the higher scores may show a correlation. But correlation alone does not prove causation. The result might even be a coincidence. So a scientific experiment tries to control other variables. It tries to make a fair comparison.',
+        checkQuestion: 'According to this paragraph, why can we not conclude that the drink caused the higher scores?',
+      },
+      {
+        id: 'se-s-reading-01-p3',
+        english:
+          'Scientists must also be careful about bias. If we already believe an idea is correct, we may notice evidence that supports it and ignore evidence that does not. A scientific approach requires researchers to consider both. They also repeat experiments and ask whether other researchers can produce consistent results. Evidence becomes more reliable when similar results are found repeatedly under careful conditions.',
+        japanese:
+          '科学者はまた、偏りについても注意しなければなりません。もし私たちがすでにある考えが正しいと信じていると、それを裏付ける証拠には気づきやすく、そうでない証拠は見過ごしてしまうかもしれません。科学的なアプローチでは、研究者は両方の証拠を検討することが求められます。彼らはまた実験を繰り返し、他の研究者も一貫した結果を出せるかどうかを確かめます。似たような結果が、注意深く整えられた条件のもとで繰り返し得られるとき、その証拠はより信頼できるものになります。',
+        plainEnglish:
+          'Scientists must also be careful about bias. If we already believe an idea is correct, we may notice evidence that supports it. We may ignore evidence that does not support it. A scientific approach requires researchers to consider both kinds of evidence. Scientists also repeat experiments. They ask: can other researchers get consistent results, too? Evidence becomes more reliable when similar results appear again and again, under careful conditions.',
+        checkQuestion: 'According to this paragraph, what does a scientific approach require researchers to do about bias?',
+      },
+      {
+        id: 'se-s-reading-01-p4',
+        english:
+          'Even strong scientific conclusions can change when new evidence becomes available. Better experiments, new data, or improved methods may show that an earlier explanation needs to be corrected. This is not necessarily a weakness of science. Science does not promise that every answer is final. Its strength is that explanations can be tested, questioned, and changed when better evidence is found.',
+        japanese:
+          'たとえ強力な科学的結論であっても、新しい証拠が得られたときには変わることがあります。より優れた実験や新しいデータ、改良された方法によって、以前の説明を修正する必要があることが示されるかもしれません。これは必ずしも科学の弱点というわけではありません。科学は、すべての答えが最終的なものであるとは約束していません。科学の強みは、説明が検証され、問い直され、より良い証拠が見つかったときには変えられるという点にあるのです。',
+        plainEnglish:
+          'Even strong scientific conclusions can change. This happens when new evidence becomes available. Better experiments, new data, or improved methods may show that an earlier explanation needs to be corrected. This is not necessarily a weakness of science. Science does not promise that every answer is final. Its strength is different: explanations can be tested, questioned, and changed when better evidence is found.',
+        checkQuestion: 'According to this final paragraph, why is a scientific conclusion changing not necessarily a weakness?',
+      },
+    ],
+
+    targetVocabIds: ['se-s-01', 'se-s-02', 'se-s-03', 'se-s-04', 'se-s-05', 'se-s-06', 'se-s-07', 'se-s-08', 'se-s-09', 'se-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['systematic', 'evidence', 'hypothesis', 'variable', 'correlation', 'causation', 'coincidence', 'bias', 'consistent', 'reliable'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['correlation alone does not prove causation', 'even strong... conclusions can change', 'not necessarily a weakness'],
+      },
+      {
+        type: 'paragraph-organization',
+        prompt: 'Consider how the passage is organized.',
+        note: 'Notice the hedging language ("might," "perhaps," "may") the passage uses while raising alternative explanations in the drink/exam example — it deliberately never asserts what actually caused the higher scores, modeling the same caution a scientific approach requires. Notice too the concessive structure in the final paragraph ("This is not necessarily a weakness... Its strength is that...") — reframing something that might sound like a flaw into the passage\'s actual argument.',
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, in the example of students drinking a certain drink before an exam and getting higher scores, why can we not conclude that the drink caused the higher scores?',
+      explainer: 'In simple words: why is it not enough that the drink and the higher scores happened together?',
+      explainerJa: 'この質問は、「飲み物と高い点数が同時に起きただけでは、なぜ不十分なのか」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'Because the students might have lied about their scores.', correct: false },
+        { id: 'b', label: 'Because other factors, such as studying more or sleeping longer, could also explain the result — correlation alone does not prove causation.', correct: true },
+        { id: 'c', label: 'Because drinks can never have any effect on exam performance.', correct: false },
+      ],
+      answerParagraphId: 'se-s-reading-01-p2',
+      evidencePrompt: 'Which sentence best shows how a scientific approach protects against bias?',
+      evidenceOptions: [
+        { id: 'e1', label: 'Researchers may then form a hypothesis and design an experiment to test it.', paragraphId: 'se-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'A scientific approach requires researchers to consider both [evidence that supports an idea and evidence that does not].', paragraphId: 'se-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'Its strength is that explanations can be tested, questioned, and changed when better evidence is found.', paragraphId: 'se-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'Science does not promise that every answer is final. Its strength is that explanations can be tested, questioned, and changed when better evidence is found.',
+        question: 'What is this conclusion suggesting about why a scientific conclusion changing is not a failure?',
+        options: [
+          { id: 'a', label: 'Scientific conclusions change randomly, so none of them can really be trusted.', correct: false },
+          { id: 'b', label: 'The ability to test, question, and correct explanations when better evidence appears is what makes science reliable, not a sign of weakness.', correct: true },
+          { id: 'c', label: 'Only conclusions that never change under any circumstances count as truly scientific.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'What is something you would like science to solve? Why is it important to you?',
+      promptJapanese: 'あなたが科学に解決してほしいと思うことは何ですか。それはなぜあなたにとって重要なのですか。',
+      minSentences: 4,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'se-s-02', examplePhrase: "Right now, there isn't much evidence about how to solve this." },
+        { vocabId: 'se-s-01', examplePhrase: 'I think this needs more systematic research because...' },
+        { vocabId: 'se-s-10', examplePhrase: "There isn't a reliable way to... yet." },
+      ],
+      usefulExpressions: [
+        { phrase: 'I would like science to solve...', japanese: '私は科学に...を解決してほしいです' },
+        { phrase: 'This matters to me because...', japanese: 'これが私にとって重要なのは...だからです' },
+        { phrase: 'If this were solved,...', japanese: 'もしこれが解決されれば、...' },
+      ],
+    },
+
+    takeaway: "A scientific approach doesn't just collect knowledge — it tests explanations against evidence, questions its own conclusions, and stays open to changing them when better evidence appears; that openness to correction is its strength, not its weakness.",
   },
 
 ];

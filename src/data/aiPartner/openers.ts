@@ -85,7 +85,9 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'science-in-everyday-life',
     foundation:
-      "Hi! I read about Yuto — he got curious about something ordinary, a wet can of juice, and investigated it like a scientist. Is there something in your everyday life you're curious about?",
+      'Hi! What does science mean to you?',
+    advanced:
+      'Hi! Is there anything you think is difficult to explain through science?',
   },
 ];
 
