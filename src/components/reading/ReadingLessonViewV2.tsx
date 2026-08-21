@@ -15,6 +15,7 @@ import {
 } from '@/lib/store';
 import NoticeLanguageSection from '@/components/reading/NoticeLanguageSection';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import LevelBadge from '@/components/LevelBadge';
 
 /**
  * V2 of the Reading lesson view — used only by Theme 1 Foundation during this
@@ -140,13 +141,14 @@ export default function ReadingLessonViewV2({
   return (
     <div className="bg-gradient-to-b from-indigo-50/50 via-white to-white">
       {/* Header, Mission, Before You Read — comfortable reading measure */}
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-10">
-        <div className="flex items-start justify-between gap-4 mb-10">
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 pt-6 sm:pt-10">
+        <div className="flex items-start justify-between gap-4 mb-5 sm:mb-6">
           <div>
-            <h1 className="text-3xl sm:text-[36px] font-bold text-slate-900 tracking-tight leading-tight">{lesson.title}</h1>
-            <p className="text-[22px] font-medium text-indigo-600 mt-1">{lesson.titleJapanese}</p>
+            <LevelBadge level={lesson.level} />
+            <h1 className="text-2xl sm:text-[36px] font-bold text-slate-900 tracking-tight leading-tight mt-2">{lesson.title}</h1>
+            <p className="text-base sm:text-[22px] font-medium text-indigo-500 mt-1">{lesson.titleJapanese}</p>
             <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Introduction">
-              <p className="text-[22px] text-slate-600 mt-4 leading-relaxed max-w-2xl">{lesson.welcome}</p>
+              <p className="text-base sm:text-lg text-slate-600 mt-2 sm:mt-3 leading-relaxed max-w-2xl">{lesson.welcome}</p>
             </SelectableContent>
           </div>
           <Link
@@ -157,35 +159,43 @@ export default function ReadingLessonViewV2({
           </Link>
         </div>
 
-        <Card tone="violet" className="mb-10">
-          <CardHeading icon="🚩" tone="violet" title="Your Mission" />
-          <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Your Mission">
-            <p className="text-[22px] text-slate-800 leading-relaxed">{lesson.mission}</p>
-          </SelectableContent>
-        </Card>
-
-        <Card tone="sky" className="mb-10">
-          <CardHeading icon="🤔" tone="sky" title="Before You Read" />
-          <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Before You Read">
-            <p className="text-[22px] text-slate-700 mb-5 leading-snug">{lesson.preReadingSurvey.question}</p>
-          </SelectableContent>
-          <div className="flex flex-col gap-3">
-            {lesson.preReadingSurvey.options.map(opt => (
-              <button
-                key={opt.id}
-                type="button"
-                onClick={() => handlePreReadingChoice(opt.id)}
-                className={`text-left px-5 py-4 rounded-2xl border text-[22px] leading-snug font-medium transition-colors ${
-                  preReadingChoice === opt.id
-                    ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
-                    : 'bg-white border-slate-200 text-slate-700 hover:border-sky-300'
-                }`}
-              >
-                {opt.label}
-              </button>
-            ))}
+        {/* Compact pre-reading preparation panel — Mission and Before You Read
+            share one light container (no gradient, minimal chrome) instead of
+            two large independent cards, so the Reading itself remains the
+            visually dominant element on the page. */}
+        <div className="mb-8 rounded-2xl border border-slate-200 bg-slate-50/70 px-5 py-5 sm:px-6 sm:py-6">
+          <div>
+            <SectionLabel icon="🚩" tone="violet" title="Your Mission" />
+            <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Your Mission">
+              <p className="text-base sm:text-lg text-slate-800 leading-relaxed mt-2">{lesson.mission}</p>
+            </SelectableContent>
           </div>
-        </Card>
+
+          <div className="my-5 border-t border-slate-200" aria-hidden="true" />
+
+          <div>
+            <SectionLabel icon="🤔" tone="sky" title="Before You Read" />
+            <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Before You Read">
+              <p className="text-base sm:text-lg text-slate-700 leading-relaxed mt-2 mb-3">{lesson.preReadingSurvey.question}</p>
+            </SelectableContent>
+            <div className="flex flex-col gap-2">
+              {lesson.preReadingSurvey.options.map(opt => (
+                <button
+                  key={opt.id}
+                  type="button"
+                  onClick={() => handlePreReadingChoice(opt.id)}
+                  className={`text-left px-4 py-3 rounded-xl border text-base sm:text-lg leading-relaxed font-medium transition-colors ${
+                    preReadingChoice === opt.id
+                      ? 'bg-sky-600 border-sky-600 text-white shadow-sm'
+                      : 'bg-white border-slate-200 text-slate-700 hover:border-sky-300'
+                  }`}
+                >
+                  {opt.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Reading — the widest band on the page, a magazine-style column */}
@@ -216,18 +226,18 @@ export default function ReadingLessonViewV2({
           </div>
         </div>
 
-        <div className="bg-amber-50/80 border border-amber-100 rounded-3xl p-3 sm:p-5 shadow-sm">
-          <div className="bg-[#FFFCF4] rounded-2xl border border-amber-100/70 shadow-sm shadow-inner px-6 py-10 sm:px-10 sm:py-14">
+        <div className="bg-amber-50/80 border border-amber-100 rounded-3xl p-2 sm:p-5 shadow-sm">
+          <div className="bg-[#FFFCF4] rounded-2xl border border-amber-100/70 shadow-sm shadow-inner px-4 py-8 sm:px-10 sm:py-14">
             <div className="flex flex-col">
               {lesson.paragraphs.map((paragraph, i) => (
                 <div
                   key={paragraph.id}
                   ref={i === lesson.paragraphs.length - 1 ? lastParagraphRef : undefined}
-                  className={`grid grid-cols-[3rem_1fr] sm:grid-cols-[4rem_1fr] gap-4 sm:gap-6 ${i > 0 ? 'mt-10 sm:mt-12' : ''}`}
+                  className={`grid grid-cols-[2.25rem_1fr] sm:grid-cols-[4rem_1fr] gap-3 sm:gap-6 ${i > 0 ? 'mt-10 sm:mt-12' : ''}`}
                 >
                   {/* Paragraph number — integrated as a quiet circle badge */}
                   <div className="pt-1" aria-hidden="true">
-                    <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-amber-200 text-amber-700 font-semibold text-lg">
+                    <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-amber-200 text-amber-700 font-semibold text-base sm:text-lg">
                       {i + 1}
                     </span>
                   </div>
@@ -240,7 +250,11 @@ export default function ReadingLessonViewV2({
                       </span>
                     </div>
                     <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Reading Passage">
-                      <p className="font-serif text-[27px] leading-[1.75] text-stone-800">
+                      {/* text-justify is a deliberate test, requested for this
+                          passage specifically — not applied anywhere else on
+                          the page (Mission, Before You Read, choices, etc.
+                          all stay left-aligned). */}
+                      <p className="font-serif text-[27px] leading-[1.75] text-stone-800 text-justify">
                         {readingMode === 'original' ? paragraph.english : paragraph.plainEnglish}
                       </p>
                     </SelectableContent>
@@ -451,10 +465,9 @@ export default function ReadingLessonViewV2({
   );
 }
 
-/** A soft-tinted card wrapper for non-gating sections (Mission, Before You Read, Notice Language). */
+/** A soft-tinted card wrapper for non-gating sections (Notice Language). Mission
+ *  and Before You Read moved to the compact SectionLabel treatment below. */
 const CARD_TONE: Record<string, string> = {
-  violet: 'bg-violet-50/80 border-violet-100',
-  sky: 'bg-sky-50/80 border-sky-100',
   yellow: 'bg-yellow-50/80 border-yellow-100',
 };
 
@@ -474,8 +487,6 @@ function MissionCheckFeedback({ correct }: { correct: boolean }) {
 }
 
 const HEADING_TONE: Record<string, string> = {
-  violet: 'bg-violet-100 text-violet-700',
-  sky: 'bg-sky-100 text-sky-700',
   yellow: 'bg-yellow-100 text-yellow-800',
 };
 
@@ -486,6 +497,23 @@ function CardHeading({ icon, tone, title }: { icon: string; tone: keyof typeof H
         {icon}
       </span>
       <h2 className="text-[32px] font-bold text-slate-900 tracking-tight leading-tight">{title}</h2>
+    </div>
+  );
+}
+
+/** Compact label for the pre-reading panel's two zones (Mission, Before You
+ *  Read) — an icon + small-caps heading, matching the scale already used for
+ *  the Mission Check task pills rather than a full page-level heading. */
+const SECTION_LABEL_TONE: Record<string, string> = {
+  violet: 'text-violet-700',
+  sky: 'text-sky-700',
+};
+
+function SectionLabel({ icon, tone, title }: { icon: string; tone: keyof typeof SECTION_LABEL_TONE; title: string }) {
+  return (
+    <div className="flex items-center gap-2">
+      <span aria-hidden="true">{icon}</span>
+      <h2 className={`text-[13px] font-bold uppercase tracking-wider ${SECTION_LABEL_TONE[tone]}`}>{title}</h2>
     </div>
   );
 }
@@ -513,13 +541,17 @@ function StepBadge({
   title: string;
 }) {
   return (
-    <div className="mb-5 flex items-center justify-center gap-4">
+    <div className="mb-5 flex items-center justify-center gap-3 sm:gap-4">
       <span className="h-px flex-1 bg-slate-200" />
-      <div className="text-center shrink-0 px-1">
+      {/* min-w-0 (not shrink-0) is required here: without it, a flex item
+          refuses to shrink below its unwrapped content width, which forced
+          long bilingual titles like "Comprehension Check（理解チェック）" to
+          overflow the viewport on narrow phones instead of wrapping. */}
+      <div className="text-center min-w-0 px-1">
         <span className={`inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[0.1em] mb-2 ${STEP_BADGE_TONE[tone]}`}>
           {step}
         </span>
-        <h2 className="text-[32px] font-bold text-slate-900 tracking-tight leading-tight">
+        <h2 className="text-2xl sm:text-[32px] font-bold text-slate-900 tracking-tight leading-tight text-balance">
           <span aria-hidden="true">{icon} </span>
           {title}
         </h2>
