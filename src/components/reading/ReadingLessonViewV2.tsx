@@ -163,7 +163,7 @@ export default function ReadingLessonViewV2({
             share one light container (no gradient, minimal chrome) instead of
             two large independent cards, so the Reading itself remains the
             visually dominant element on the page. */}
-        <div className="mb-8 rounded-2xl border border-slate-200 bg-slate-50/70 px-5 py-5 sm:px-6 sm:py-6">
+        <div className="mb-6 sm:mb-8 rounded-2xl border border-slate-200 bg-slate-50/70 px-5 py-5 sm:px-6 sm:py-6">
           <div>
             <SectionLabel icon="🚩" tone="violet" title="Your Mission" />
             <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Your Mission">
@@ -203,12 +203,12 @@ export default function ReadingLessonViewV2({
         <StepBadge tone="amber" step="Step 1" icon="📖" title="Reading" />
 
         {/* Original / Simplified toggle */}
-        <div className="flex items-center justify-center gap-2 mb-5">
+        <div className="flex items-center justify-center gap-2 mb-3 sm:mb-5">
           <div className="inline-flex rounded-full border border-amber-200 bg-white p-1 shadow-sm">
             <button
               type="button"
               onClick={() => setReadingMode('original')}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
+              className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
                 readingMode === 'original' ? 'bg-amber-600 text-white' : 'text-amber-700 hover:bg-amber-50'
               }`}
             >
@@ -217,7 +217,7 @@ export default function ReadingLessonViewV2({
             <button
               type="button"
               onClick={() => setReadingMode('simplified')}
-              className={`px-4 py-1.5 rounded-full text-sm font-semibold transition-colors ${
+              className={`px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
                 readingMode === 'simplified' ? 'bg-amber-600 text-white' : 'text-amber-700 hover:bg-amber-50'
               }`}
             >
@@ -226,35 +226,52 @@ export default function ReadingLessonViewV2({
           </div>
         </div>
 
-        <div className="bg-amber-50/80 border border-amber-100 rounded-3xl p-2 sm:p-5 shadow-sm">
-          <div className="bg-[#FFFCF4] rounded-2xl border border-amber-100/70 shadow-sm shadow-inner px-4 py-8 sm:px-10 sm:py-14">
+        <div className="bg-amber-50/80 border border-amber-100 rounded-3xl p-1.5 sm:p-5 shadow-sm">
+          <div className="bg-[#FFFCF4] rounded-2xl border border-amber-100/70 shadow-sm shadow-inner px-3 py-6 sm:px-10 sm:py-14">
             <div className="flex flex-col">
               {lesson.paragraphs.map((paragraph, i) => (
                 <div
                   key={paragraph.id}
                   ref={i === lesson.paragraphs.length - 1 ? lastParagraphRef : undefined}
-                  className={`grid grid-cols-[2.25rem_1fr] sm:grid-cols-[4rem_1fr] gap-3 sm:gap-6 ${i > 0 ? 'mt-10 sm:mt-12' : ''}`}
+                  // Mobile: a plain stack — no reserved left column for the
+                  // number badge, so the passage text gets the full card
+                  // width. Desktop (sm:) restores the original two-column
+                  // grid with the badge in its own column.
+                  className={`flex flex-col sm:grid sm:grid-cols-[4rem_1fr] sm:gap-6 ${i > 0 ? 'mt-8 sm:mt-12' : ''}`}
                 >
-                  {/* Paragraph number — integrated as a quiet circle badge */}
-                  <div className="pt-1" aria-hidden="true">
-                    <span className="flex h-9 w-9 sm:h-10 sm:w-10 items-center justify-center rounded-full border-2 border-amber-200 text-amber-700 font-semibold text-base sm:text-lg">
+                  {/* Paragraph number — desktop only; its own column. */}
+                  <div className="hidden sm:block pt-1" aria-hidden="true">
+                    <span className="flex h-10 w-10 items-center justify-center rounded-full border-2 border-amber-200 text-amber-700 font-semibold text-lg">
                       {i + 1}
                     </span>
                   </div>
 
                   {/* Passage text — the visual centerpiece of the page */}
                   <div>
-                    <div className="mb-3">
+                    {/* Mobile: compact number + label on one row, no reserved
+                        column. Desktop: number lives in its own column above,
+                        so only the label appears here. */}
+                    <div className="flex sm:hidden items-center gap-2 mb-2">
+                      <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border-2 border-amber-200 text-amber-700 font-semibold text-xs" aria-hidden="true">
+                        {i + 1}
+                      </span>
+                      <span className="text-xs font-bold text-amber-700/70 uppercase tracking-wider">
+                        Paragraph {i + 1}
+                      </span>
+                    </div>
+                    <div className="hidden sm:block mb-3">
                       <span className="text-xs font-bold text-amber-700/70 uppercase tracking-wider">
                         Paragraph {i + 1}
                       </span>
                     </div>
                     <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Reading Passage">
-                      {/* text-justify is a deliberate test, requested for this
-                          passage specifically — not applied anywhere else on
-                          the page (Mission, Before You Read, choices, etc.
-                          all stay left-aligned). */}
-                      <p className="font-serif text-[27px] leading-[1.75] text-stone-800 text-justify">
+                      {/* Justification is desktop-only: tested on real mobile
+                          devices, the passage column is too narrow at any
+                          reasonable phone width for justified text to look
+                          good — it produces large, uneven word gaps. Left-
+                          aligned (ragged right) on mobile, justified from the
+                          sm: breakpoint up, where the column is wide enough. */}
+                      <p className="font-serif text-xl sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-left sm:text-justify">
                         {readingMode === 'original' ? paragraph.english : paragraph.plainEnglish}
                       </p>
                     </SelectableContent>
@@ -541,17 +558,17 @@ function StepBadge({
   title: string;
 }) {
   return (
-    <div className="mb-5 flex items-center justify-center gap-3 sm:gap-4">
+    <div className="mb-3 sm:mb-5 flex items-center justify-center gap-3 sm:gap-4">
       <span className="h-px flex-1 bg-slate-200" />
       {/* min-w-0 (not shrink-0) is required here: without it, a flex item
           refuses to shrink below its unwrapped content width, which forced
           long bilingual titles like "Comprehension Check（理解チェック）" to
           overflow the viewport on narrow phones instead of wrapping. */}
       <div className="text-center min-w-0 px-1">
-        <span className={`inline-block px-4 py-1.5 rounded-full text-[18px] font-bold uppercase tracking-[0.1em] mb-2 ${STEP_BADGE_TONE[tone]}`}>
+        <span className={`inline-block px-3 py-1 sm:px-4 sm:py-1.5 rounded-full text-sm sm:text-[18px] font-bold uppercase tracking-[0.1em] mb-1.5 sm:mb-2 ${STEP_BADGE_TONE[tone]}`}>
           {step}
         </span>
-        <h2 className="text-2xl sm:text-[32px] font-bold text-slate-900 tracking-tight leading-tight text-balance">
+        <h2 className="text-xl sm:text-[32px] font-bold text-slate-900 tracking-tight leading-tight text-balance">
           <span aria-hidden="true">{icon} </span>
           {title}
         </h2>
