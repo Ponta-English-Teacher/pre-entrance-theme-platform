@@ -19,10 +19,38 @@ export interface SelectionPanelState {
 const GAP = 12;
 const DESKTOP_BREAKPOINT = 640; // matches Tailwind's `sm`
 
-/** The response panel — a floating card near the selection on desktop, a
- *  bottom sheet on mobile (plain responsive CSS, not JS device detection).
- *  Built for reading: one short explanation, generous spacing, no chat
- *  history. The original content stays visible underneath. */
+// Manual resize (desktop only — the mobile bottom sheet stays full-width,
+// which already solves the "too narrow for a paragraph" problem there).
+// Kept small enough that the header (drag handle + close button) and the
+// Save button are never squeezed out.
+const MIN_WIDTH = 300;
+const MIN_HEIGHT = 240;
+
+/** Section header shown above the AI's actual result, distinct from the
+ *  toolbar/button label — a noun ("Translation") reads better as a result
+ *  heading than the button's verb ("Translate"). Falls back to the
+ *  toolbar label for any action not listed here. */
+const RESULT_SECTION_LABELS: Partial<Record<SelectionActionId, string>> = {
+  translate: 'Translation',
+  easy: 'Easy English',
+};
+
+interface ResizeStart {
+  axis: 'x' | 'y' | 'both';
+  pointerX: number;
+  pointerY: number;
+  width: number;
+  height: number;
+  left: number;
+  top: number;
+}
+
+/** The response panel — a floating, draggable, resizable card near the
+ *  selection on desktop, a bottom sheet on mobile (plain responsive CSS,
+ *  not JS device detection). Built for reading: the student's original
+ *  selection and the AI's result are always shown as two clearly labeled,
+ *  visually distinct sections, never blended together. The original
+ *  content stays visible underneath. */
 export default function SelectionExplanationPanel({
   panel,
   onClose,
@@ -34,13 +62,18 @@ export default function SelectionExplanationPanel({
   const [desktopPosition, setDesktopPosition] = useState<{ top: number; left: number } | null>(null);
   const [dragging, setDragging] = useState(false);
   const dragStartRef = useRef<{ pointerX: number; pointerY: number; top: number; left: number } | null>(null);
+  const [size, setSize] = useState<{ width: number; height: number } | null>(null);
+  const [resizing, setResizing] = useState(false);
+  const resizeStartRef = useRef<ResizeStart | null>(null);
   const [saved, setSaved] = useState(false);
 
   // A genuinely new selection gets a new panel.selection reference (see the
-  // comment on the anchoring effect above) — reset the save state then, not
-  // on every loading→result transition within the same selection.
+  // comment on the anchoring effect above) — reset save state and any
+  // manual resize then, not on every loading→result transition within the
+  // same selection.
   useEffect(() => {
     setSaved(false);
+    setSize(null);
   }, [panel.selection]);
 
   // A genuinely new selection opens a new panel (new `panel.selection`
@@ -69,10 +102,10 @@ export default function SelectionExplanationPanel({
     function handleOutsideClick(e: MouseEvent) {
       if (!ref.current || ref.current.contains(e.target as Node)) return;
       // A text-selection drag started inside the panel (e.g. selecting a
-      // word inside the explanation to look it up again) must never close
-      // it, even if the selection extends past the panel's edge by the
-      // time this fires. Same guard used for the Vocabulary Card's
-      // backdrop and the Writing Toolbox.
+      // word inside the original quote or the result to look it up again)
+      // must never close it, even if the selection extends past the
+      // panel's edge by the time this fires. Same guard used for the
+      // Vocabulary Card's backdrop and the Writing Toolbox.
       if (window.getSelection()?.toString()) return;
       onClose();
     }
@@ -108,23 +141,68 @@ export default function SelectionExplanationPanel({
     };
   }, [dragging]);
 
+  // Resizing (desktop only, three independent handles) — entirely separate
+  // state/effect from dragging above, so the two gestures can never fight
+  // over the same mousemove/mouseup listeners. Clamped against the
+  // panel's *current* position (captured at resize-start) so growing the
+  // box can never push its right/bottom edge past the viewport, and
+  // against MIN_WIDTH/MIN_HEIGHT so it can never shrink small enough to
+  // hide the header or the Save button.
+  useEffect(() => {
+    if (!resizing) return;
+
+    function handleMouseMove(e: MouseEvent) {
+      const start = resizeStartRef.current;
+      if (!start) return;
+      const maxWidth = window.innerWidth - start.left - GAP;
+      const maxHeight = window.innerHeight - start.top - GAP;
+
+      setSize(prev => {
+        const next = { width: prev?.width ?? start.width, height: prev?.height ?? start.height };
+        if (start.axis === 'x' || start.axis === 'both') {
+          next.width = Math.max(MIN_WIDTH, Math.min(start.width + (e.clientX - start.pointerX), maxWidth));
+        }
+        if (start.axis === 'y' || start.axis === 'both') {
+          next.height = Math.max(MIN_HEIGHT, Math.min(start.height + (e.clientY - start.pointerY), maxHeight));
+        }
+        return next;
+      });
+    }
+    function handleMouseUp() {
+      setResizing(false);
+      resizeStartRef.current = null;
+    }
+
+    document.addEventListener('mousemove', handleMouseMove);
+    document.addEventListener('mouseup', handleMouseUp);
+    return () => {
+      document.removeEventListener('mousemove', handleMouseMove);
+      document.removeEventListener('mouseup', handleMouseUp);
+    };
+  }, [resizing]);
+
   function handleHeaderMouseDown(e: React.MouseEvent<HTMLDivElement>) {
     if (window.innerWidth < DESKTOP_BREAKPOINT) return; // mobile bottom sheet doesn't drag
     const target = e.target as HTMLElement;
     if (target.closest('button')) return; // let the close button handle its own click
-    // A mousedown that starts on the header's own text (the action label or
-    // the quoted original selection) must not arm a drag — that text sits
-    // directly above the explanation with no gap, so a gesture meant to
-    // begin selecting the explanation easily lands here first. This text is
-    // already sm:select-none, so it isn't selectable either way; the drag
-    // handle is the header's background/padding only.
-    if (target.closest('p')) return;
     if (!ref.current) return;
     const rect = ref.current.getBoundingClientRect();
     dragStartRef.current = { pointerX: e.clientX, pointerY: e.clientY, top: rect.top, left: rect.left };
     setDesktopPosition({ top: rect.top, left: rect.left });
     setDragging(true);
     e.preventDefault();
+  }
+
+  function handleResizeMouseDown(axis: ResizeStart['axis']) {
+    return (e: React.MouseEvent) => {
+      if (window.innerWidth < DESKTOP_BREAKPOINT) return; // no resize handles on mobile
+      if (!ref.current) return;
+      e.preventDefault();
+      e.stopPropagation();
+      const rect = ref.current.getBoundingClientRect();
+      resizeStartRef.current = { axis, pointerX: e.clientX, pointerY: e.clientY, width: rect.width, height: rect.height, left: rect.left, top: rect.top };
+      setResizing(true);
+    };
   }
 
   // Save is offered only for reading-passage selections with a real text
@@ -163,29 +241,42 @@ export default function SelectionExplanationPanel({
   if (!panel.open) return null;
 
   const actionMeta = SELECTION_ACTIONS.find(a => a.id === panel.action);
+  const resultLabel = (panel.action && RESULT_SECTION_LABELS[panel.action]) ?? actionMeta?.label ?? 'Result';
 
   return (
     <div
       ref={ref}
       role="dialog"
       aria-label="Selection explanation"
-      className="fixed z-50 inset-x-0 bottom-0 sm:inset-x-auto sm:bottom-auto sm:w-96 sm:max-w-[calc(100vw-2rem)] rounded-t-3xl sm:rounded-3xl border border-indigo-100 bg-white shadow-2xl max-h-[70vh] sm:max-h-[28rem] overflow-y-auto"
-      style={desktopPosition ? { top: desktopPosition.top, left: desktopPosition.left } : undefined}
+      // overflow-hidden (not overflow-y-auto) here deliberately — this
+      // outer box is only ever the resize frame now; if IT scrolled, its
+      // own native scrollbar would render in the exact same right-edge
+      // strip as the horizontal resize handle below and steal every
+      // pointer event meant for that handle. Scrolling instead happens on
+      // the inner content div, which has no resize handles competing for
+      // its edges.
+      className={`fixed z-50 inset-x-0 bottom-0 sm:inset-x-auto sm:bottom-auto sm:w-[32rem] sm:max-w-[calc(100vw-2rem)] flex flex-col rounded-t-3xl sm:rounded-3xl border border-indigo-100 bg-white shadow-2xl max-h-[70vh] sm:max-h-[34rem] overflow-hidden ${
+        resizing ? 'select-none' : ''
+      }`}
+      style={{
+        ...(desktopPosition ? { top: desktopPosition.top, left: desktopPosition.left } : {}),
+        ...(size ? { width: size.width, height: size.height, maxWidth: 'none', maxHeight: 'none' } : {}),
+      }}
     >
       <div
         onMouseDown={handleHeaderMouseDown}
-        className={`sticky top-0 bg-white/95 backdrop-blur-sm border-b border-slate-100 px-5 py-4 flex items-start justify-between gap-3 sm:select-none ${
+        className={`shrink-0 bg-white/95 backdrop-blur-sm border-b border-slate-100 px-5 py-3 flex items-center justify-between gap-3 sm:select-none ${
           dragging ? 'sm:cursor-grabbing' : 'sm:cursor-grab'
         }`}
       >
-        <div className="min-w-0">
-          <p className="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-1.5">
-            {actionMeta ? `${actionMeta.icon} ${actionMeta.label}` : 'Explanation'}
-          </p>
-          <p className="font-serif italic text-slate-800 text-base leading-snug">
-            &ldquo;{panel.selection?.text}&rdquo;
-          </p>
-        </div>
+        {/* Deliberately generic, not the action's own label ("Easy
+            English", "Translation") — that label belongs solely to the
+            result section below, right above the actual result text. A
+            second, decorative copy of it up here (right above the
+            ORIGINAL quote that follows) would recreate exactly the
+            "which part is the AI's answer?" ambiguity this panel exists
+            to resolve. */}
+        <p className="text-xs font-bold uppercase tracking-wide text-slate-400">Selection Assistant</p>
         <button
           type="button"
           onClick={onClose}
@@ -196,7 +287,26 @@ export default function SelectionExplanationPanel({
         </button>
       </div>
 
-      <div className="px-5 py-6">
+      {/* The one scrollable region — always visible header above it, so
+          the close button (and drag handle) are reachable no matter how
+          long the AI's result is. min-h-0 is required here: without it a
+          flex child won't shrink below its content's intrinsic height,
+          which would silently defeat this div's own overflow-y-auto. */}
+      <div className="min-h-0 flex-1 overflow-y-auto px-5 py-6 space-y-4">
+        {selection && (
+          <div>
+            <p className="text-xs font-bold uppercase tracking-wide text-slate-400 mb-1.5">Original</p>
+            <SelectableContent
+              activityType={selection.scope.activityType}
+              themeId={selection.scope.themeId}
+              level={selection.scope.level}
+              label="Original — recursive"
+            >
+              <p className="font-serif italic text-slate-700 text-base leading-snug">&ldquo;{selection.text}&rdquo;</p>
+            </SelectableContent>
+          </div>
+        )}
+
         {panel.loading && (
           <div className="flex items-center gap-2 text-slate-400 text-base">
             <span className="inline-block h-2 w-2 rounded-full bg-indigo-300 animate-pulse" aria-hidden="true" />
@@ -217,20 +327,50 @@ export default function SelectionExplanationPanel({
           // the reason Save silently disappeared after one level of
           // recursion — canSave (below) gates on activityType === 'reading',
           // which a disconnected literal could never satisfy.
-          <SelectableContent
-            activityType={selection?.scope.activityType ?? 'reading'}
-            themeId={selection?.scope.themeId}
-            level={selection?.scope.level}
-            label={`${actionMeta?.label ?? 'Explanation'} — result`}
-          >
-            <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
-          </SelectableContent>
+          <div className="rounded-2xl border border-indigo-100 bg-indigo-50/60 p-4">
+            <p className="text-xs font-bold uppercase tracking-wide text-indigo-600 mb-1.5">{resultLabel}</p>
+            <SelectableContent
+              activityType={selection?.scope.activityType ?? 'reading'}
+              themeId={selection?.scope.themeId}
+              level={selection?.scope.level}
+              label={`${actionMeta?.label ?? 'Explanation'} — result`}
+            >
+              <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
+            </SelectableContent>
+          </div>
         )}
         {canSave && (
-          <div className="mt-3 flex justify-end">
+          <div className="flex justify-end">
             <NotebookSaveButton saved={saved} onSave={handleSave} />
           </div>
         )}
+      </div>
+
+      {/* Resize handles — desktop only, hidden on the mobile bottom sheet.
+          Three independent hit targets (right edge / bottom edge / corner)
+          so horizontal-only, vertical-only, and diagonal resizing are all
+          directly reachable, matching the native OS affordance students
+          already expect. Small hit areas positioned at the panel's own
+          edges, well clear of the text content, so they never interfere
+          with selecting/copying text inside the panel. */}
+      <div
+        onMouseDown={handleResizeMouseDown('x')}
+        className="hidden sm:block absolute top-0 right-0 bottom-0 w-2 cursor-ew-resize"
+        aria-hidden="true"
+      />
+      <div
+        onMouseDown={handleResizeMouseDown('y')}
+        className="hidden sm:block absolute left-0 right-0 bottom-0 h-2 cursor-ns-resize"
+        aria-hidden="true"
+      />
+      <div
+        onMouseDown={handleResizeMouseDown('both')}
+        className="hidden sm:flex absolute bottom-0 right-0 h-4 w-4 cursor-nwse-resize items-end justify-end p-0.5 text-slate-300 hover:text-slate-400"
+        aria-hidden="true"
+      >
+        <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 1L1 7M7 4.5L4.5 7M7 7L7 7" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+        </svg>
       </div>
     </div>
   );

@@ -20,14 +20,32 @@ const LEVEL_GUIDANCE: Record<Level, string> = {
   advanced: 'This student is at Advanced level — normal, clear English in your explanation is fine.',
 };
 
-export function buildSelectionAssistantSystemInstructions(level: Level): string {
+/** Both current actions (translate, easy) are full-text transformations of
+ *  whatever the student selected — a one-sentence selection and a
+ *  whole-paragraph selection are the same action, just at different
+ *  scales, and the response must cover 100% of the selection either way.
+ *  This is CORE RULE 1 below, and it deliberately overrides the generic
+ *  "keep it short" instinct that's correct for a lookup/explanation-style
+ *  action (e.g. a future "what does this word mean?" action) but wrong
+ *  here: without an explicit override, the model was observed treating a
+ *  short-response norm as license to translate/rewrite only the
+ *  selection's first sentence and silently drop the rest on
+ *  paragraph-length selections. */
+const RESPONSE_COVERAGE_INSTRUCTIONS: Record<ExplanationActionId, string> = {
+  translate:
+    'Translate the ENTIRE selected text, from start to finish — every sentence, not only the first one. Do not omit, summarize, or compress any sentence or idea. Your response length should scale naturally with the length of the selection: one sentence selected gets one translated sentence back; a full multi-sentence paragraph gets a full multi-sentence translation covering all of it. Do not cap this response to a fixed number of sentences, and never pad it with anything beyond what is needed to fully translate the selection.',
+  easy:
+    'Rewrite the ENTIRE selected text, from start to finish — every sentence, not only the first one. Do not omit, summarize, or compress any sentence or idea; every idea present in the original must still be present in the rewrite. Your response length should scale naturally with the length of the selection: one sentence selected gets one rewritten sentence back; a full multi-sentence paragraph gets a full multi-sentence rewrite covering all of it. Do not cap this response to a fixed number of sentences, and never pad it with anything beyond what is needed to fully rewrite the selection.',
+};
+
+export function buildSelectionAssistantSystemInstructions(level: Level, action: ExplanationActionId): string {
   return `You are a quick, inline dictionary/tutor built into an English-learning app for a Japanese high school student preparing for university. The student just highlighted a piece of text inside a learning activity and asked for help understanding it.
 
 CORE RULES:
 
-1. Respond with a SHORT, focused explanation — 1 to 3 sentences is the norm, a 4th only if genuinely necessary. Never write a long essay or restate the whole surrounding passage back to them.
+1. ${RESPONSE_COVERAGE_INSTRUCTIONS[action]}
 
-2. Ground your answer in how the selected text is actually being used in its surrounding sentence and paragraph — not just an abstract, out-of-context dictionary definition. The exact same words can mean different things in different contexts, and the student needs the meaning that fits here.
+2. Ground your answer in how the selected text is actually being used in its surrounding sentence and paragraph — not just an abstract, out-of-context dictionary definition. The exact same words can mean different things in different contexts, and the student needs the meaning that fits here. That surrounding sentence and paragraph are context only, never something to restate or include in your response — your response is about the selected text itself.
 
 3. ${LEVEL_GUIDANCE[level]}
 
@@ -54,7 +72,7 @@ export function buildSelectionAssistantTaskInput(request: SelectionAssistantRequ
 
 export function buildSelectionAssistantPrompt(request: SelectionAssistantRequest) {
   return {
-    systemInstructions: buildSelectionAssistantSystemInstructions(request.level),
+    systemInstructions: buildSelectionAssistantSystemInstructions(request.level, request.action),
     input: buildSelectionAssistantTaskInput(request),
   };
 }

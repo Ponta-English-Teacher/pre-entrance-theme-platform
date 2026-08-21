@@ -1,7 +1,14 @@
 # Theme 9 Vocabulary Plan
 ## Learning from History
 
-Status: **Foundation, Standard, and Challenge finalized — Theme 9 vocabulary is structurally complete.** Built under the corrected Foundation definition in `docs/VOCABULARY_PHILOSOPHY.md` §3.
+Status: **Superseded 2026 — see `docs/THEME_09_MANUSCRIPT.md`.** This
+plan used the old three-tier Foundation/Standard/Challenge structure
+(Challenge was later removed platform-wide) and its word list (history,
+legacy, event, era, cause, effect, ancestor, ...) was built for the
+retired anecdotal reading. Kept for historical reference only; do not
+implement from this file.
+
+Status (original, retained for reference): **Foundation, Standard, and Challenge finalized — Theme 9 vocabulary is structurally complete.** Built under the corrected Foundation definition in `docs/VOCABULARY_PHILOSOPHY.md` §3.
 
 Lexical sets: Past & Present · Cause & Effect · Historical Events · Lessons & Legacy.
 

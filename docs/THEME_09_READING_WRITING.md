@@ -1,7 +1,10 @@
 # Theme 9 Reading & Writing Plan
 ## Learning from History — Foundation
 
-Status: **Approved — design complete, not yet implemented in code.**
+Status: **Superseded 2026 — see `docs/THEME_09_MANUSCRIPT.md`.** This
+anecdotal design ("The Photograph in the Drawer") was fully replaced by
+the "The Present Is Built on the Past" passage. Kept for historical
+reference only; do not implement from this file.
 
 ---
 

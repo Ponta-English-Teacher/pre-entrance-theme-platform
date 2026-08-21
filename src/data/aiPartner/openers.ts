@@ -43,32 +43,44 @@ const AI_TALK_OPENERS: AITalkOpenerSet[] = [
   {
     themeId: 'living-together',
     foundation:
-      "Hi! I read about Mio and her roommate — they didn't agree on much at first, but talking honestly helped them find a compromise and grow closer. Is there someone you get along well with, or someone you've learned to get along with over time?",
+      "Hi! Do you have friends who are pretty different from you?",
+    advanced:
+      "Hi! Have you ever joined a new group where you didn't really know anyone at first?",
   },
   {
     themeId: 'facts-or-fake',
     foundation:
-      "Hi! I read about Haruto — he almost believed a scary message in a group chat, until he checked the source and found out it wasn't true. Have you ever seen information online that turned out to be false?",
+      "Hi! When you see something surprising online, do you usually believe it right away, or do you check it first?",
+    advanced:
+      "Hi! Do you ever come across information online that makes you stop and think, 'Is this actually true?'",
   },
   {
     themeId: 'peace-and-war',
     foundation:
-      "Hi! I read about Yuna — she finally asked her grandmother about the war, and learned about a piece of her family's history. Is there something from an older family member's life you'd like to know more about?",
+      'Hi! When you and a friend disagree about something, what usually helps you two get past it?',
+    advanced:
+      "Hi! Do you think it's possible to fully 'make up' with someone after a serious disagreement, or does something always stay a little different afterward?",
   },
   {
     themeId: 'caring-for-our-planet',
     foundation:
-      "Hi! I read about Aoi — she noticed her favorite beach changing, and started small by carrying a reusable bottle and joining a beach cleanup. Is there a small environmental habit you already have, or one you'd like to start?",
+      'Hi! Do you ever think about where your trash goes after you throw it away?',
+    advanced:
+      'Hi! Have you ever disagreed with someone about how serious a problem is, even though you both agreed on the basic facts?',
   },
   {
     themeId: 'living-with-ai',
     foundation:
-      "Hi! I read about Kenta — he learned that AI could help him start an essay, but the thinking had to be his. How do you make sure your own thinking stays part of the process when you use AI?",
+      'Hi! Can you remember the first time you used an AI tool, like ChatGPT or something similar? What was that like?',
+    advanced:
+      'Hi! When you imagine AI in twenty years, do you feel curious, worried, or a mix of both? What makes you feel that way?',
   },
   {
     themeId: 'learning-from-history',
     foundation:
-      "Hi! I read about Rin — she found an old photograph of her ancestor and discovered a piece of her family's history. Is there something from your own family's past that you'd like to know more about?",
+      "Hi! Has anyone older than you — a parent, grandparent, or teacher — ever taught you something they learned a long time ago, like a skill, a recipe, or a saying? What was it?",
+    advanced:
+      'Hi! What do you think people need to learn from history?',
   },
   {
     themeId: 'science-in-everyday-life',

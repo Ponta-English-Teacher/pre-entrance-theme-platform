@@ -1091,24 +1091,27 @@ export const MASTER_READINGS: ReadingLesson[] = [
   },
 
   // ── Living Together — Foundation ────────────────────────────────────────────
-  // Ported from docs/THEME_04_READING_WRITING.md (approved design).
+  // Rebuilt against docs/THEME_04_MANUSCRIPT.md (frozen) — supersedes the old
+  // Mio/roommate placeholder entirely. english/plainEnglish below are the
+  // manuscript's Foundation Original/Simplified renderings verbatim.
 
   {
     id: 'lt-f-reading-01',
     themeId: 'living-together',
     level: 'foundation',
-    title: 'Sharing a Small Space',
-    titleJapanese: '小さな空間を分かち合う',
+    title: 'Living Together',
+    titleJapanese: '共に生きる',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about two roommates who did not agree on almost anything — and how they learned to get along.',
-    mission: 'As you read, notice how Mio and her roommate handle their disagreement. At the end, think about what helps you get along with people who are different from you.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about what actually makes a community strong.',
+    mission: 'As you read, think about whether a community\'s strength comes from people being similar, or from how they handle being different.',
 
     preReadingSurvey: {
-      question: 'When you disagree with someone, what do you usually do first?',
+      question: 'What do you think makes a community strong?',
       options: [
-        { id: 'talk', label: 'Talk about it honestly.' },
-        { id: 'avoid', label: 'Try to avoid the topic.' },
-        { id: 'depends', label: 'It depends on the person.' },
+        { id: 'similar', label: 'People who are similar and agree easily.' },
+        { id: 'different', label: 'People who stay connected even when they are different.' },
+        { id: 'unsure', label: "I'm not sure." },
       ],
     },
 
@@ -1116,125 +1119,273 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'lt-f-reading-01-p1',
         english:
-          'Mio and her new roommate did not agree on almost anything. Mio liked a quiet room for studying, while her roommate liked to invite friends over and talk late into the night. By the end of their first week together, they had already argued about it more than once, and neither one knew how to bring it up calmly.',
+          'People naturally feel most comfortable around others who are similar to them. They often share the same interests, experiences, or ways of thinking. As a result, many people assume that a strong community is built on agreement.',
         japanese:
-          'ミオと新しいルームメイトは、ほとんど何に対しても意見が合いませんでした。ミオは勉強のために静かな部屋を好みましたが、ルームメイトは友達を呼んで夜遅くまで話すのが好きでした。最初の週が終わる頃には、二人はすでに何度もそのことでぶつかっており、どちらもそれを穏やかに切り出す方法が分かりませんでした。',
+          '人は自然と、自分と似ている人と一緒にいると最も心地よく感じるものです。彼らはしばしば同じ興味や経験、考え方を共有しています。そのため、多くの人は、強いコミュニティとは意見が一致することから作られるものだと考えています。',
         plainEnglish:
-          'Mio and her new roommate liked very different things. Mio wanted quiet time to study, but her roommate liked having friends over late at night. By the end of the first week, they had already argued about it, and neither knew how to talk about it calmly.',
-        checkQuestion: "According to this paragraph, what was the main problem between Mio and her roommate?",
+          'People naturally feel most comfortable with others who are similar to them. They often like the same things, or think in similar ways. Because of this, many people think a strong community comes from agreement.',
+        checkQuestion: 'According to this paragraph, why do many people believe a strong community depends on agreement?',
       },
       {
         id: 'lt-f-reading-01-p2',
         english:
-          'One evening, Mio decided to talk honestly with her roommate instead of staying upset. She explained that she needed quiet time to focus, and her roommate explained that she felt lonely without company. Neither of them was wrong — they simply had different needs. They agreed to try something new: quiet hours in the evening, and a shared night out once a week.',
+          'However, no real community is made up of identical people. Every family, school, workplace, and neighborhood includes people with different personalities, ideas, and backgrounds. If everyone were the same, living together might be easier, but communities would have fewer opportunities to learn and grow.',
         japanese:
-          'ある晩、ミオは不満をため込む代わりに、ルームメイトと率直に話すことにしました。彼女は集中するために静かな時間が必要だと説明し、ルームメイトは一人でいると寂しく感じると説明しました。どちらも間違っていたわけではなく、ただ必要としているものが違っただけでした。二人は新しいことを試してみることにしました——夜は静かにする時間を作り、週に一度は一緒に出かける時間を作ることにしたのです。',
+          'しかし、実際には、全く同じ人ばかりで作られているコミュニティは存在しません。どの家族も、学校も、職場も、近所も、異なる性格、考え方、背景を持つ人々を含んでいます。もし全員が同じであれば、共に生きることはより簡単かもしれませんが、コミュニティが学び、成長する機会は少なくなるでしょう。',
         plainEnglish:
-          "One evening, Mio decided to talk honestly with her roommate instead of feeling upset. Mio needed quiet time, and her roommate felt lonely without company. Neither was wrong — they just had different needs. They agreed to try quiet hours in the evening, plus one shared night out each week.",
-        checkQuestion: 'What did Mio and her roommate agree to try?',
+          'However, no real community is made up of exactly the same kind of people. Every family, school, workplace, and neighborhood has people with different personalities, ideas, and backgrounds. If everyone were the same, living together might be easier. But communities would have fewer chances to learn and grow.',
+        checkQuestion: 'According to this paragraph, why does no real community include only identical people?',
       },
       {
         id: 'lt-f-reading-01-p3',
         english:
-          "It was not always easy, and they still disagreed sometimes about small things. But they learned to respect each other's differences, like good neighbors sharing the same small space. Slowly, they began to trust each other more, and their relationship grew closer. By the end of the semester, Mio realized that getting along with someone did not mean always agreeing — it meant being kind, showing respect, and trying to see things from the other person's side.",
+          'Living together does not mean that people always agree. Differences often lead to disagreement, but that does not always damage a community. When people respect one another, cooperate to solve problems, and accept different opinions, trust can gradually develop. These relationships help people feel they belong to the same community even when they do not think in the same way.',
         japanese:
-          'いつも簡単だったわけではなく、二人はその後も小さなことで意見が合わないことがありました。それでも、二人はまるで同じ狭い空間を共有する良き隣人のように、お互いの違いを尊重することを学んでいきました。少しずつ、お互いを信頼するようになり、二人の関係はより親密になっていきました。学期の終わりまでに、ミオは、誰かとうまくやっていくということは、いつも意見が一致することではないと気づきました——それは、優しくあること、相手を尊重すること、そして相手の立場から物事を見ようとすることなのだと。',
+          '共に生きるということは、人々が常に意見が一致するという意味ではありません。違いはしばしば意見の対立を生みますが、それが必ずしもコミュニティを傷つけるわけではありません。人々が互いを尊重し、問題を解決するために協力し、異なる意見を受け入れるとき、信頼は少しずつ育っていきます。こうした関係は、たとえ考え方が同じでなくても、人々が同じコミュニティに属していると感じる助けとなります。',
         plainEnglish:
-          "It wasn't always easy, and they still disagreed about small things sometimes. But they learned to respect each other's differences, like good neighbors sharing the same space. Slowly, they trusted each other more and grew closer. By the end of the semester, Mio realized that getting along doesn't mean always agreeing — it means being kind, respectful, and willing to see the other person's side.",
-        checkQuestion: 'According to this paragraph, what did Mio realize about getting along with someone?',
+          'Living together does not mean people always agree. Differences often lead to disagreement, but that does not always hurt a community. When people respect each other, cooperate to solve problems, and accept different opinions, trust can slowly grow. These relationships help people feel they belong to the same community, even when they do not think in the same way.',
+        checkQuestion: 'According to this paragraph, what helps trust develop between people who are different?',
+      },
+      {
+        id: 'lt-f-reading-01-p4',
+        english:
+          'Perhaps the strength of a community is not measured by how little disagreement it has, but by how well people continue living and working together despite their differences. Harmony is not created because everyone is the same. It is created when different people choose to build trust and continue cooperating.',
+        japanese:
+          'コミュニティの強さは、意見の対立がどれだけ少ないかで測られるのではなく、違いがあっても人々がどれだけうまく共に生き、働き続けられるかによって測られるのかもしれません。調和は、全員が同じだから生まれるのではありません。異なる人々が信頼を築き、協力し続けることを選ぶときに生まれるのです。',
+        plainEnglish:
+          'Perhaps the strength of a community is not shown by how little disagreement it has. It is shown by how well people keep living and working together, even with their differences. Harmony is not created because everyone is the same. It is created when different people choose to build trust and keep cooperating.',
+        checkQuestion: 'According to this final paragraph, where does harmony actually come from?',
       },
     ],
 
-    targetVocabIds: ['lt-f-01', 'lt-f-02', 'lt-f-03', 'lt-f-04', 'lt-f-05', 'lt-f-06', 'lt-f-07', 'lt-f-08', 'lt-f-09', 'lt-f-10'],
+    targetVocabIds: ['lt-f-01', 'lt-f-02', 'lt-f-03', 'lt-f-04', 'lt-f-05', 'lt-f-06', 'lt-f-07', 'lt-f-08', 'lt-f-09', 'lt-f-10', 'lt-f-11'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['relationship', 'trust', 'close', 'neighbor', 'kind', 'respect', 'agree', 'disagree', 'get along', 'share'],
+        items: ['community', 'trust', 'respect', 'belong', 'cooperate', 'accept', 'similar', 'different', 'agree', 'disagree', 'harmony'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['bring it up calmly', 'quiet hours', 'getting along with someone'],
-      },
-      {
-        type: 'reference-words',
-        prompt: 'Notice the reference word "each other\'s" in paragraph 3 — it refers back to both Mio and her roommate together.',
-        items: ["they learned to respect each other's differences"],
+        items: ['build trust', 'keep working together', 'different opinions'],
       },
       {
         type: 'tone-purpose',
         prompt: 'Consider the author\'s tone.',
-        note: 'Both roommates\' needs are presented as equally valid ("Neither of them was wrong") — the passage models fair-minded conflict-handling rather than taking one side.',
+        note: 'The passage takes the comfort of being around similar people seriously before showing why it isn\'t, by itself, what makes a community strong.',
       },
     ],
 
     missionCheck: {
-      question: 'According to the passage, how did Mio and her roommate finally solve their problem?',
-      explainer: 'In simple words: how did Mio and her roommate finally deal with their problem?',
-      explainerJa: 'この質問は、「ミオとルームメイトは、最終的にどうやって問題に対処したのか」を聞いています。',
-      hint: 'Look at what happens in paragraph 2, when Mio talks honestly with her roommate.',
-      hintJa: '第2段落で、ミオがルームメイトと率直に話す場面に注目してみましょう。',
+      question: 'According to the passage, why do many people assume that a strong community depends on agreement?',
+      explainer: 'In simple words — why do people often think a community needs everyone to agree?',
+      explainerJa: '簡単に言うと、なぜ人々はコミュニティには全員の意見が一致する必要があると考えがちなのか、という質問です。',
+      hint: 'Look at paragraph 1.',
+      hintJa: '第1段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'They stopped spending time together so they would not argue.', correct: false },
-        { id: 'b', label: 'They talked honestly about their different needs and found a compromise.', correct: true },
-        { id: 'c', label: "Mio's roommate agreed to always do things Mio's way.", correct: false },
+        { id: 'a', label: 'Because people who are similar often think in similar ways and agree more easily.', correct: true },
+        { id: 'b', label: 'Because agreement is the only way a community can function.', correct: false },
+        { id: 'c', label: 'Because disagreement always destroys a community.', correct: false },
       ],
-      answerParagraphId: 'lt-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading shows the specific moment when Mio and her roommate found a solution together?',
+      answerParagraphId: 'lt-f-reading-01-p1',
+      evidencePrompt: 'Which idea from the reading best shows that disagreement does not always harm a community?',
       evidenceOptions: [
-        { id: 'e1', label: 'By the end of their first week together, they had already argued about it more than once.', paragraphId: 'lt-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'They agreed to try something new: quiet hours in the evening, and a shared night out once a week.', paragraphId: 'lt-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'Slowly, they began to trust each other more, and their relationship grew closer.', paragraphId: 'lt-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'No real community is made up of exactly the same kind of people.', paragraphId: 'lt-f-reading-01-p2', correct: false },
+        { id: 'e2', label: 'Differences often lead to disagreement, but that does not always hurt a community.', paragraphId: 'lt-f-reading-01-p3', correct: true },
+        { id: 'e3', label: 'Harmony is not created because everyone is the same.', paragraphId: 'lt-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'their relationship grew closer',
-        question: 'What does "closer" mean here?',
+        quote: 'Harmony is not created because everyone is the same.',
+        question: 'What does "harmony" mean in this passage?',
         options: [
-          { id: 'a', label: 'Physically nearer in distance, like standing close together.', correct: false },
-          { id: 'b', label: 'More emotionally connected to each other.', correct: true },
-          { id: 'c', label: 'Having less free time available.', correct: false },
+          { id: 'a', label: 'A situation where everyone agrees about everything.', correct: false },
+          { id: 'b', label: 'A peaceful connection between people, even when they are different.', correct: true },
+          { id: 'c', label: 'A type of music that sounds pleasant.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: 'Think about someone you get along well with. What helps your relationship? Or, if you disagree with someone sometimes, what helps you solve the problem?',
-      promptJapanese: 'うまくやっていける人のことを思い浮かべてください。その関係を支えているものは何ですか。あるいは、時々意見が合わない人がいる場合、その問題を解決するのに役立っていることは何ですか。',
+      prompt: 'Think of a time you were part of a group with people who were different from you in some way — different interests, ideas, or habits. What helped the group keep working or getting along together?',
+      promptJapanese: 'あなたと何らかの点で違う人たち——興味、考え方、習慣が違う人たち——と一緒のグループにいたときのことを考えてみましょう。そのグループがうまく続いたり、仲良くやっていけたりした理由は何でしたか。',
       minSentences: 2,
-      sentenceStarters: ['I get along well with...', 'Sometimes we disagree, but...', 'I think it is important to...'],
+      sentenceStarters: ['One group I was part of...', 'We were different because...', 'What helped us continue was...'],
       wordBank: [
-        { vocabId: 'lt-f-01', examplePhrase: 'I have a close relationship with...' },
-        { vocabId: 'lt-f-06', examplePhrase: 'I respect that...' },
-        { vocabId: 'lt-f-07', examplePhrase: 'We agree that...' },
-        { vocabId: 'lt-f-08', examplePhrase: 'Sometimes we disagree about...' },
-        { vocabId: 'lt-f-09', examplePhrase: 'We get along because...' },
-        { vocabId: 'lt-f-05', examplePhrase: 'Being kind helps us...' },
+        { vocabId: 'lt-f-01', examplePhrase: 'Our community was...' },
+        { vocabId: 'lt-f-06', examplePhrase: 'We respected each other by...' },
+        { vocabId: 'lt-f-04', examplePhrase: 'We cooperated by...' },
+        { vocabId: 'lt-f-05', examplePhrase: 'It helped that we accepted...' },
+        { vocabId: 'lt-f-10', examplePhrase: 'We were different because...' },
+        { vocabId: 'lt-f-02', examplePhrase: 'Over time, we built trust by...' },
       ],
       usefulExpressions: [
-        { phrase: 'I get along well with...', japanese: '私は...とうまくやっています' },
-        { phrase: 'Sometimes we disagree, but...', japanese: '時々意見が合いませんが、...' },
-        { phrase: 'I think it is important to...', japanese: '私は...することが大切だと思います' },
-        { phrase: 'What helps us is...', japanese: '私たちを助けているのは...です' },
+        { phrase: 'One group I was part of...', japanese: '私が所属していたグループの一つは...' },
+        { phrase: 'We were different because...', japanese: '私たちが違っていたのは...という点でした' },
+        { phrase: 'What helped us continue was...', japanese: '私たちが続けられた理由は...でした' },
       ],
     },
 
-    takeaway: "Getting along with someone doesn't mean always agreeing — it means being kind enough to listen.",
+    takeaway: 'Harmony does not come from everyone being the same. It comes from different people choosing to stay connected and keep cooperating.',
+  },
+
+  // ── Living Together — Advanced ──────────────────────────────────────────────
+  // New for this theme — the old placeholder had no Advanced content at all.
+  // english/plainEnglish below are the manuscript's Advanced Original/
+  // Simplified renderings verbatim.
+
+  {
+    id: 'lt-s-reading-01',
+    themeId: 'living-together',
+    level: 'advanced',
+    title: 'Living Together',
+    titleJapanese: '共に生きる',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a deeper question about what actually makes a community strong.',
+    mission: 'As you read, notice how the passage treats both similarity and real difference fairly before reaching its own conclusion.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'similarity', label: 'A community is strongest when its members are similar and agree easily.' },
+        { id: 'difference', label: 'A community is strongest when it has worked through real differences.' },
+        { id: 'both', label: 'Both matter, depending on the situation.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'lt-s-reading-01-p1',
+        english:
+          'A community is more than a group of people who happen to share the same place. It forms when people build relationships over time. Some communities are made up of people with similar backgrounds or experiences, while others bring together people who are quite different. No matter how they begin, every community must find a way to live and work together.',
+        japanese:
+          'コミュニティとは、単にたまたま同じ場所を共有している人々の集まり以上のものです。それは、人々が時間をかけて関係を築いていく中で形成されます。似たような背景や経験を持つ人々によって作られるコミュニティもあれば、かなり異なる人々を結びつけるコミュニティもあります。どのように始まったとしても、あらゆるコミュニティは、共に生き、働いていく方法を見つけなければなりません。',
+        plainEnglish:
+          'A community is more than a group of people who share the same place. It forms when people build relationships over time. Some communities are made up of people with similar backgrounds or experiences. Others bring together people who are quite different. No matter how they begin, every community must find a way to live and work together.',
+        checkQuestion: 'According to this paragraph, what must every community find a way to do, no matter how it begins?',
+      },
+      {
+        id: 'lt-s-reading-01-p2',
+        english:
+          'A common assumption is that a successful community depends on agreement. If people think in similar ways, they may agree more often and face less conflict. At first, this seems to make life easier. However, communities cannot avoid change forever. New ideas, new people, and new situations naturally create differences that sometimes lead to disagreement.',
+        japanese:
+          '成功するコミュニティは意見の一致に支えられているというのは、よくある思い込みです。人々が似たような考え方をしていれば、より頻繁に意見が一致し、対立も少なくなるかもしれません。一見すると、これは生活を楽にするように思えます。しかし、コミュニティはいつまでも変化を避け続けることはできません。新しい考え、新しい人々、新しい状況は、自然と違いを生み出し、それが時に意見の対立につながります。',
+        plainEnglish:
+          'A common assumption is that a successful community depends on agreement. If people think in similar ways, they may agree more often and face less conflict. At first, this seems to make life easier. But communities cannot avoid change forever. New ideas, new people, and new situations naturally create differences. Sometimes these differences lead to disagreement.',
+        checkQuestion: 'According to this paragraph, why can communities not rely on agreement forever?',
+      },
+      {
+        id: 'lt-s-reading-01-p3',
+        english:
+          'For this reason, a lasting community requires more than agreement. People need respect for different opinions, empathy to understand another person\'s perspective, and a willingness to accept that not everyone will think in the same way. They also need to cooperate, finding solutions that let people keep working together despite their differences. Sometimes this means learning to accommodate another person\'s needs without giving up one\'s own values.',
+        japanese:
+          'そのため、長続きするコミュニティには、意見の一致以上のものが必要です。人々には、異なる意見への尊重、相手の視点を理解するための共感、そして誰もが同じように考えるわけではないと受け入れる心構えが必要です。また、違いがあっても人々が共に働き続けられるような解決策を見つけるために、協力することも必要です。時にはそれは、自分自身の価値観を手放すことなく、相手のニーズに配慮することを学ぶという意味でもあります。',
+        plainEnglish:
+          'For this reason, a lasting community needs more than agreement. People need respect for different opinions. They need empathy to understand another person\'s perspective. They need to accept that not everyone will think in the same way. They also need to cooperate and find ways to keep working together despite their differences. Sometimes this means learning to accommodate another person\'s needs without giving up one\'s own values.',
+        checkQuestion: 'According to this paragraph, what does a lasting community need beyond agreement?',
+      },
+      {
+        id: 'lt-s-reading-01-p4',
+        english:
+          'Over time, these experiences gradually build trust. People begin to feel they belong because they know they are accepted, even when they are different from others. In this way, diversity does not simply become a challenge to overcome. It becomes one of the reasons a community grows stronger. Communities that practice tolerance and keep working together after disagreement often develop greater resilience than those that have never faced difficulties. Perhaps true harmony is not the absence of differences, but the ability to remain connected despite them.',
+        japanese:
+          '時間が経つにつれて、こうした経験は少しずつ信頼を築いていきます。人々は、たとえ他の人と違っていても、自分が受け入れられていると分かっているからこそ、自分がその一員であると感じ始めます。このようにして、多様性は単に乗り越えるべき課題ではなくなります。それは、コミュニティがより強くなる理由の一つになるのです。寛容さを実践し、対立の後も共に働き続けるコミュニティは、困難に一度も直面したことのないコミュニティよりも、しばしばより大きな回復力を身につけます。本当の調和とは、違いが存在しないことではなく、違いがあってもつながり続けられる力のことなのかもしれません。',
+        plainEnglish:
+          'Over time, these experiences slowly build trust. People begin to feel they belong because they know they are accepted, even when they are different from others. In this way, diversity does not simply become a challenge to overcome. It becomes one of the reasons a community grows stronger. Communities that practice tolerance and keep working together after disagreement often develop greater resilience than communities that have never faced problems. Perhaps true harmony does not mean having no differences. It means staying connected even with them.',
+        checkQuestion: 'According to this final paragraph, what might true harmony actually mean?',
+      },
+    ],
+
+    targetVocabIds: ['lt-s-01', 'lt-s-02', 'lt-s-03', 'lt-s-04', 'lt-s-05', 'lt-s-06', 'lt-s-07', 'lt-s-08'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['diversity', 'tolerance', 'empathy', 'perspective', 'conflict', 'resilience', 'accommodate', 'assumption'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['build trust', 'keep working together', 'a common assumption'],
+      },
+      {
+        type: 'tone-purpose',
+        prompt: 'Consider the author\'s tone.',
+        note: 'The passage gives real, sympathetic weight to the comfort of similarity (Paragraph 2) before it argues past it — it never dismisses that comfort, even while showing its limits.',
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, what does a lasting community need once it can no longer rely on simple agreement?',
+      explainer: 'In simple words — once people can\'t just agree all the time, what does a community actually need to stay strong?',
+      explainerJa: '簡単に言うと、いつも意見が一致するわけにはいかなくなったとき、コミュニティが強くあり続けるために本当に必要なものは何か、という質問です。',
+      hint: 'Look at paragraph 3.',
+      hintJa: '第3段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'It must remove members who cause conflict.', correct: false },
+        { id: 'b', label: 'It needs respect, empathy, acceptance, and cooperation to keep working together despite real differences.', correct: true },
+        { id: 'c', label: 'It must wait for disagreement to disappear naturally.', correct: false },
+      ],
+      answerParagraphId: 'lt-s-reading-01-p3',
+      evidencePrompt: 'Which part of the passage most directly explains why communities cannot rely on agreement forever?',
+      evidenceOptions: [
+        { id: 'e1', label: 'A community is more than a group of people who share the same place.', paragraphId: 'lt-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Communities cannot avoid change forever. New ideas, new people, and new situations naturally create differences.', paragraphId: 'lt-s-reading-01-p2', correct: true },
+        { id: 'e3', label: 'Diversity does not simply become a challenge to overcome.', paragraphId: 'lt-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'A common assumption is that a successful community depends on agreement.',
+        question: 'What does "assumption" mean here?',
+        options: [
+          { id: 'a', label: 'A fact that has already been proven true.', correct: false },
+          { id: 'b', label: 'A belief people accept as true without questioning it.', correct: true },
+          { id: 'c', label: 'A rule that a community must follow.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'Communities are often described as harmonious when people rarely disagree. But another possibility is that a community\'s real strength comes from working through disagreement rather than avoiding it. Think of a community, team, or group you know — from your own life, school, work, or observation. Does its strength come more from similarity, or from how it has handled real differences? Explain your view with a specific example.',
+      promptJapanese: 'コミュニティは、人々があまり意見の対立をしないとき「調和がとれている」と表現されることがよくあります。しかし、コミュニティの本当の強さは、対立を避けることではなく、対立を乗り越えて働くことから生まれるという考え方もあります。あなたが知っているコミュニティ、チーム、グループ——自分自身の生活、学校、職場、あるいは見聞きしたものの中から——を思い浮かべてください。その強さは、似ていることから来ていますか、それとも実際の違いにどう対応してきたかから来ていますか。具体例を挙げて、あなたの考えを説明してください。',
+      minSentences: 3,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'lt-s-01', examplePhrase: 'Our diversity actually helped us...' },
+        { vocabId: 'lt-s-02', examplePhrase: 'We practiced tolerance by...' },
+        { vocabId: 'lt-s-03', examplePhrase: 'It took empathy to understand...' },
+        { vocabId: 'lt-s-05', examplePhrase: 'The conflict actually helped us...' },
+        { vocabId: 'lt-s-06', examplePhrase: 'Our resilience grew after...' },
+        { vocabId: 'lt-s-07', examplePhrase: 'We learned to accommodate...' },
+      ],
+      usefulExpressions: [
+        { phrase: 'In my experience,', japanese: '私の経験では、' },
+        { phrase: 'What made the difference was...', japanese: '違いを生んだのは...でした' },
+        { phrase: 'Looking back, I think...', japanese: '振り返ってみると、私は...だと思います' },
+      ],
+    },
+
+    takeaway: 'Perhaps true harmony is not the absence of differences, but the ability to remain connected despite them.',
   },
 
   // ── Facts or Fake? — Foundation ─────────────────────────────────────────────
-  // Ported from docs/THEME_05_READING_WRITING.md (approved design).
+  // Rebuilt against docs/THEME_05_MANUSCRIPT.md (frozen) — supersedes the old
+  // Haruto/"drinking cold water" placeholder entirely. english/plainEnglish
+  // below are the manuscript's Foundation Original/Simplified verbatim.
 
   {
     id: 'ff-f-reading-01',
     themeId: 'facts-or-fake',
     level: 'foundation',
-    title: 'A Second Look',
-    titleJapanese: 'もう一度確かめる',
+    title: 'Facts or Fake?',
+    titleJapanese: '情報を見きわめる',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who almost believed something that was not true — and what he learned from it.',
-    mission: 'As you read, notice what Haruto does before deciding whether to trust the message. At the end, think about how you decide what to believe online.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about how to tell trustworthy information from information that only looks trustworthy.',
+    mission: 'As you read, think about whether trustworthy information is mainly about how convincing it looks, or about whether it can actually be verified.',
 
     preReadingSurvey: {
       question: 'When you see surprising information online, what do you usually do?',
@@ -1249,32 +1400,42 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'ff-f-reading-01-p1',
         english:
-          '"Drinking cold water right after a meal causes cancer." Haruto saw the message in a group chat one evening, shared by a friend with three exclamation points. It sounded serious, and it was already getting dozens of replies. Part of him wanted to believe it immediately and share it with his family before checking whether it was true.',
+          'Every day, people receive information from many different sources. They may answer a telephone call, read a message online, watch a short video, see an advertisement, or ask an AI for information. Much of this information is useful, but not all of it is equally reliable. Sometimes false information can look surprisingly authentic.',
         japanese:
-          '「食後すぐに冷たい水を飲むとがんになる。」ハルトはある晩、友人が三つの感嘆符をつけて共有したグループチャットでこのメッセージを目にしました。それは深刻そうに聞こえ、すでに何十件もの返信がついていました。彼の心の一部は、それが本当かどうか確かめる前に、すぐにそれを信じて家族と共有したいと思っていました。',
+          '人は毎日、さまざまな情報源から情報を受け取っています。電話に出たり、オンラインでメッセージを読んだり、短い動画を見たり、広告を目にしたり、AIに情報を尋ねたりすることもあるでしょう。こうした情報の多くは役に立ちますが、そのすべてが同じように信頼できるわけではありません。時には、誤った情報が驚くほど本物らしく見えることもあります。',
         plainEnglish:
-          'Haruto saw a scary-sounding message in a group chat, shared by a friend with lots of exclamation points. It already had many replies. Part of him wanted to believe it and share it with his family right away, without checking if it was true.',
-        checkQuestion: 'According to this paragraph, what did part of Haruto want to do before checking the message?',
+          'Every day, people get information from many different sources. They may answer a phone call, read a message online, watch a short video, see an advertisement, or ask an AI for information. Much of this information is useful, but not all of it is equally reliable. Sometimes false information can look very real.',
+        checkQuestion: 'According to this paragraph, what does the passage say about how reliable everyday information is?',
       },
       {
         id: 'ff-f-reading-01-p2',
         english:
-          'Instead of sharing it right away, Haruto decided to check where the claim came from. He searched for the source and found that no real doctor or hospital had ever said this. The message was not true — it was just something someone had made up and passed along. Haruto felt a little embarrassed that he had almost believed it so quickly.',
+          'Because information is easy to create and share, appearance is not always a good guide to truth. A confident voice, a professional-looking website, or an impressive picture does not guarantee that a claim is supported by evidence. Before trusting important information, people need to examine where it came from and whether it can be verified.',
         japanese:
-          'すぐに共有する代わりに、ハルトはその主張がどこから来たのかを確かめることにしました。彼は情報源を調べ、本物の医師や病院がこのようなことを言ったことは一度もないと分かりました。そのメッセージは真実ではなく、誰かが作り上げて広めただけのものでした。ハルトは、自分がそれをそんなに早く信じかけたことに少し恥ずかしさを感じました。',
+          '情報は簡単に作られ、共有されるため、見た目だけでは真実かどうかを正しく判断できるとは限りません。自信に満ちた話し方や、プロフェッショナルに見えるウェブサイト、印象的な写真があるからといって、その主張が証拠によって裏付けられているとは限らないのです。重要な情報を信頼する前に、人はそれがどこから来たのか、そして確認できるかどうかを詳しく調べる必要があります。',
         plainEnglish:
-          "Instead of sharing it right away, Haruto checked where the message came from. He searched and found that no real doctor or hospital had ever said this. It wasn't true — someone had just made it up. Haruto felt a little embarrassed that he almost believed it.",
-        checkQuestion: 'What did Haruto discover when he checked the source of the message?',
+          'Because information is easy to create and share, how something looks is not always a good sign of the truth. A confident voice, a professional-looking website, or an impressive picture does not mean that a claim is supported by evidence. Before trusting important information, people need to examine where it came from and whether it can be verified.',
+        checkQuestion: 'According to this paragraph, what should people do before trusting important information?',
       },
       {
         id: 'ff-f-reading-01-p3',
         english:
-          "After that, Haruto started asking one simple question before believing anything online: is this a fact, or just someone's opinion dressed up to look real? He learned to doubt messages that sounded too dramatic, and to trust sources that were honest about where their information came from. Not everything online is fake, but it is always worth a second look before you believe it and pass it on to someone else.",
+          'Making good decisions requires more than simply finding information. It requires asking questions. Is the source reliable? Is this fact or opinion? Is there enough evidence? Looking carefully before accepting information helps people avoid being misled.',
         japanese:
-          'それ以来、ハルトはオンラインで何かを信じる前に、一つのシンプルな質問をするようになりました——これは事実だろうか、それとも本物らしく見せかけた誰かの意見だろうか。彼は、大げさに聞こえるメッセージを疑うことを学び、情報がどこから来たのかについて正直な情報源を信頼することを学びました。オンラインのすべてが偽物というわけではありませんが、信じて誰かに伝える前に、もう一度よく確かめる価値は常にあるのです。',
+          '良い決断をするには、単に情報を見つけるだけでは十分ではありません。それには、問いを立てることが必要です。その情報源は信頼できるだろうか。これは事実だろうか、それとも意見だろうか。十分な証拠はあるだろうか。情報を受け入れる前に注意深く見ることは、人が誤解させられることを防ぐ助けになります。',
         plainEnglish:
-          "After that, Haruto started asking one question before believing anything online: is this a fact, or just an opinion dressed up to look real? He learned to doubt dramatic-sounding messages and trust sources that were honest about where their information came from. Not everything online is fake, but it's always worth checking before you believe and share it.",
-        checkQuestion: 'According to this paragraph, what question did Haruto start asking before believing something online?',
+          'Making good decisions needs more than just finding information. It means asking questions. Is the source reliable? Is this fact or opinion? Is there enough evidence? Looking carefully before accepting information helps people avoid being misled.',
+        checkQuestion: 'According to this paragraph, what questions help people avoid being misled?',
+      },
+      {
+        id: 'ff-f-reading-01-p4',
+        english:
+          'Perhaps the most valuable habit is not knowing every answer but developing the ability to examine information carefully. In a world where authentic and misleading information often look similar, careful thinking has become more important than ever.',
+        japanese:
+          'おそらく最も価値のある習慣とは、すべての答えを知っていることではなく、情報を注意深く詳しく調べる力を身につけることです。本物の情報と誤解を招く情報がしばしば似たように見える世界では、注意深く考えることがこれまで以上に重要になっています。',
+        plainEnglish:
+          'Perhaps the most valuable habit is not knowing every answer, but learning how to examine information carefully. In a world where real and misleading information often look the same, careful thinking has become more important than ever.',
+        checkQuestion: 'According to this final paragraph, what does the passage say is the most valuable habit?',
       },
     ],
 
@@ -1284,7 +1445,7 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['true', 'fake', 'believe', 'doubt', 'honest', 'source', 'check', 'trust', 'fact', 'opinion'],
+        items: ['claim', 'source', 'evidence', 'fact', 'opinion', 'trust', 'examine', 'verify', 'reliable', 'misleading'],
       },
       {
         type: 'recycled-vocab',
@@ -1294,87 +1455,243 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['dressed up to look real', 'worth a second look', 'passed along'],
+        items: ['supported by evidence', 'examine where it came from', 'avoid being misled'],
       },
       {
         type: 'tone-purpose',
-        prompt: "Consider the author's purpose.",
-        note: 'The passage opens with the false claim itself, in quotation marks, before any context — mirroring how misinformation actually reaches people, before anyone has a chance to check it.',
+        prompt: "Consider the author's tone.",
+        note: 'The passage never claims most information is false — it argues that appearance alone can\'t tell you which is which, which is a narrower, more defensible claim than "don\'t trust anything."',
       },
     ],
 
     missionCheck: {
-      question: 'According to the passage, what did Haruto do before deciding whether to trust the message?',
-      explainer: 'In simple words: what did Haruto do before he decided whether to believe the message?',
-      explainerJa: 'この質問は、「ハルトはそのメッセージを信じるかどうか決める前に、何をしたか」を聞いています。',
-      hint: 'Look at what happens in paragraph 2, when Haruto searches for the source.',
-      hintJa: '第2段落で、ハルトが情報源を調べる場面に注目してみましょう。',
+      question: 'According to the passage, why is a confident voice or a professional-looking website not enough to trust information?',
+      explainer: 'In simple words: why isn\'t looking confident or professional enough to make information trustworthy?',
+      explainerJa: 'この質問は、「自信に満ちた話し方やプロフェッショナルに見えることだけでは、なぜ情報を信頼するのに十分ではないのか」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'He asked all his friends if they had also seen it.', correct: false },
-        { id: 'b', label: 'He checked where the claim came from and looked for its source.', correct: true },
-        { id: 'c', label: 'He shared it with his family right away, just to be safe.', correct: false },
+        { id: 'a', label: 'Because appearance does not guarantee that a claim is supported by evidence.', correct: true },
+        { id: 'b', label: 'Because professional-looking websites are usually more likely to lie.', correct: false },
+        { id: 'c', label: 'Because only handwritten information can be trusted.', correct: false },
       ],
       answerParagraphId: 'ff-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading shows Haruto actually checking the information before believing it?',
+      evidencePrompt: 'Which sentence best shows that looking trustworthy is not the same as being trustworthy?',
       evidenceOptions: [
-        { id: 'e1', label: 'Part of him wanted to believe it immediately and share it with his family before checking whether it was true.', paragraphId: 'ff-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'He searched for the source and found that no real doctor or hospital had ever said this.', paragraphId: 'ff-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'He learned to doubt messages that sounded too dramatic, and to trust sources that were honest about where their information came from.', paragraphId: 'ff-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'Every day, people receive information from many different sources.', paragraphId: 'ff-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'A confident voice, a professional-looking website, or an impressive picture does not guarantee that a claim is supported by evidence.', paragraphId: 'ff-f-reading-01-p2', correct: true },
+        { id: 'e3', label: 'Perhaps the most valuable habit is not knowing every answer but developing the ability to examine information carefully.', paragraphId: 'ff-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'Haruto decided to check where the claim came from',
-        question: 'What does "check" mean here?',
+        quote: 'not all of it is equally reliable',
+        question: 'What does "reliable" mean here?',
         options: [
-          { id: 'a', label: 'To make a small mark like a ✓ on paper.', correct: false },
-          { id: 'b', label: 'To look into something carefully to see if it is true.', correct: true },
-          { id: 'c', label: 'To ask a restaurant for the bill.', correct: false },
+          { id: 'a', label: 'Interesting or entertaining.', correct: false },
+          { id: 'b', label: 'Trustworthy and consistently accurate.', correct: true },
+          { id: 'c', label: 'Easy to find online.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: 'Haruto almost believed a message that was not true. Have you ever seen information online that turned out to be false? What happened? If not, what would you do to check if something is true before you believe it?',
-      promptJapanese: 'ハルトは真実ではないメッセージを信じかけました。あなたは、後で嘘だと分かった情報をオンラインで見たことがありますか。何が起きましたか。もしなければ、何かを信じる前に、それが本当かどうかを確かめるためにどうしますか。',
+      prompt: 'Have you ever posted or shared something online that later turned out to be untrue? Or have you ever seen information online that was not true? Describe what happened. How did you realize the information was incorrect?',
+      promptJapanese: 'あなたは、後で真実ではないと分かったことをオンラインで投稿したり共有したりしたことがありますか。あるいは、真実ではない情報をオンラインで見たことがありますか。何が起きたか説明してください。その情報が間違っていると、どうやって気づきましたか。',
       minSentences: 2,
-      sentenceStarters: ['One time, I saw...', 'I checked by...', 'Before I believe something, I...'],
+      sentenceStarters: ['One time, I...', 'I later found out that...', 'I realized it was not true when...'],
       wordBank: [
-        { vocabId: 'ff-f-07', examplePhrase: 'I checked by...' },
-        { vocabId: 'ff-f-04', examplePhrase: 'At first I doubted it, but...' },
-        { vocabId: 'lt-f-02', examplePhrase: 'I trust sources that...' },
-        { vocabId: 'ff-f-01', examplePhrase: 'It turned out to be true.' },
-        { vocabId: 'ff-f-08', examplePhrase: 'It was just an opinion, not a fact.' },
-        { vocabId: 'ff-f-03', examplePhrase: 'I almost believed it because...' },
+        { vocabId: 'ff-f-01', examplePhrase: 'The claim I shared turned out to be...' },
+        { vocabId: 'ff-f-06', examplePhrase: 'When I checked the source, I found...' },
+        { vocabId: 'ff-f-02', examplePhrase: 'There was no real evidence for it, so...' },
+        { vocabId: 'ff-f-04', examplePhrase: "I hadn't verified it before I shared it." },
+        { vocabId: 'ff-f-05', examplePhrase: "It didn't come from a reliable source." },
+        { vocabId: 'ff-f-07', examplePhrase: 'I realized the information was misleading when...' },
       ],
       usefulExpressions: [
-        { phrase: 'One time, I saw...', japanese: 'ある時、私は...を見ました' },
-        { phrase: 'I checked by...', japanese: '私は...することで確認しました' },
-        { phrase: 'Before I believe something, I...', japanese: '何かを信じる前に、私は...' },
-        { phrase: 'It turned out that...', japanese: '結局...ということが分かりました' },
+        { phrase: 'One time, I...', japanese: 'ある時、私は...' },
+        { phrase: 'I later found out that...', japanese: '後になって、私は...ということが分かりました' },
+        { phrase: 'I realized it was not true when...', japanese: '...のとき、それが真実ではないと気づきました' },
       ],
     },
 
-    takeaway: 'Not everything online is fake, but it is always worth a second look before you believe it.',
+    takeaway: 'In a world where authentic and misleading information often look similar, careful thinking — not knowing every answer — is the more valuable habit.',
+  },
+
+  // ── Facts or Fake? — Advanced ────────────────────────────────────────────────
+  // Rebuilt 2026-08-14 against the manuscript's revised Advanced Reading —
+  // supersedes the earlier "AI makes fakes easier" version. english/
+  // plainEnglish below are the manuscript's current Advanced Original/
+  // Simplified renderings verbatim.
+
+  {
+    id: 'ff-s-reading-01',
+    themeId: 'facts-or-fake',
+    level: 'advanced',
+    title: 'Facts or Fake?',
+    titleJapanese: '情報を見きわめる',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a deeper question about what actually makes information trustworthy.',
+    mission: 'As you read, notice how the passage treats persuasion and widely shared information fairly, without assuming that everything convincing or repeated must be dishonest.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'looks', label: 'If information looks credible, it usually is credible.' },
+        { id: 'verified', label: 'Information is only trustworthy once it has actually been verified.' },
+        { id: 'both', label: 'Both matter, depending on the situation.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'ff-s-reading-01-p1',
+        english:
+          'Learning to examine a single claim carefully — checking its source, looking at the evidence, and separating fact from opinion — is a useful skill. But this skill matters for a bigger reason. Modern life is full of information that someone has tried hard to make believable, not just information that happens to be true or false by accident. Behind many of the claims a person sees every day, someone has worked to make that claim look credible, whether or not it actually is. Understanding this effort, not just checking each claim on its own, is what helps someone see information more clearly. Three areas make this especially clear: advertising, financial crime, and political or social influence.',
+        japanese:
+          '一つの主張を注意深く詳しく調べること——情報源を確認し、証拠を検討し、事実と意見を分けて考えること——は役に立つ技能です。しかし、この技能が重要なのには、もっと大きな理由があります。現代の生活は、誰かが信じてもらえるように懸命に努力して作った情報であふれています——単に偶然真実だったり誤りだったりする情報だけではありません。人が毎日目にする多くの主張の背後には、それが実際にそうであるかどうかにかかわらず、その主張を信頼できるように見せようと努力してきた誰かがいます。一つ一つの主張を確認するだけでなく、この努力を理解することが、情報をより深く見る助けとなります。これが特にはっきりと分かる分野が三つあります——広告、金融犯罪、そして政治的・社会的な影響力です。',
+        plainEnglish:
+          'Learning to examine a claim carefully — checking its source, looking at the evidence, and separating fact from opinion — is a useful skill. But this skill matters for a bigger reason. Modern life is full of information that someone has tried hard to make believable. It is not just information that happens to be true or false by accident. Behind many of the claims a person sees every day, someone has worked to make that claim look credible, whether or not it actually is. Understanding this effort, not just checking each claim alone, helps someone see information more clearly. Three areas make this especially clear: advertising, financial crime, and political or social influence.',
+        checkQuestion: 'According to this paragraph, why does understanding the effort behind information matter more than just checking individual claims?',
+      },
+      {
+        id: 'ff-s-reading-01-p2',
+        english:
+          'Advertising is a clear example. An advertisement rarely needs to prove that a product actually works. Repeating a message, connecting it with positive images, or simply showing that a product is already popular can be enough to make people trust it. This trust is not built on evidence — it is built on familiarity. A message heard often enough can start to feel credible even when nothing about it has actually been checked. This is one reason an exaggerated claim in an advertisement can still work: repetition makes it sound less suspicious, even if it has never actually been checked.',
+        japanese:
+          '広告はその分かりやすい例です。広告は、ある商品が実際に効果があることを証明する必要はほとんどありません。メッセージを繰り返したり、良いイメージと結びつけたり、あるいはその商品がすでに人気があることを示したりするだけで、人々にそれを信頼させるのに十分な場合があります。この信頼は証拠の上に築かれているのではなく、慣れ親しんでいることの上に築かれています。十分に何度も聞いたメッセージは、実際には何も確認されていなくても、信頼できるように感じられ始めることがあります。これが、広告の誇張された主張が今でも通用する理由の一つです——繰り返すことで、それが一度も確認されたことがなくても、疑わしく聞こえにくくなるのです。',
+        plainEnglish:
+          'Advertising is a clear example. An advertisement rarely needs to prove that a product really works. Repeating a message, connecting it with nice images, or showing that a product is already popular can be enough to make people trust it. This trust is not built on evidence. It is built on familiarity. A message heard often enough can start to feel credible, even when nobody has actually checked it. This is one reason an exaggerated claim in an advertisement can still work. Repetition makes it sound less suspicious, even if it has never been checked.',
+        checkQuestion: 'According to this paragraph, why does an advertisement rarely need to prove that a product actually works?',
+      },
+      {
+        id: 'ff-s-reading-01-p3',
+        english:
+          'Financial crime shows this problem even more clearly. People who lose money in a fake investment are often not careless. Many looked for information, found what seemed like real evidence, and made a careful decision based on it. The mistake was not that they trusted blindly — it was that the evidence itself had been manipulated. Fake documents, false numbers, and invented success stories can be made so that a normal check will not catch them. A financial scheme that would seem dubious to an expert can still pass an ordinary examination, which is exactly why it succeeds.',
+        japanese:
+          '金融犯罪は、この問題をさらにはっきりと示しています。偽の投資でお金を失う人々は、多くの場合、不注意だったわけではありません。多くの人は情報を探し、本物の証拠のように見えるものを見つけ、それに基づいて慎重に判断しました。彼らの間違いは、盲目的に信頼したことではなく、その証拠自体が操作されていたことでした。偽の書類、偽の数字、作り話の成功物語は、通常のチェックでは見抜けないように、意図的に作られることがあります。専門家には疑わしく見えるはずの金融スキームでも、通常の検討には十分通ってしまうことがあります——それこそが、それが成功する理由なのです。',
+        plainEnglish:
+          'Financial crime shows this problem even more clearly. People who lose money in a fake investment are often not careless. Many looked for information, found what seemed like real evidence, and made a careful decision based on it. Their mistake was not that they trusted blindly. It was that the evidence itself had been manipulated. Fake documents, false numbers, and invented success stories can be made so that a normal check will not catch them. A financial scheme that would seem dubious to an expert can still pass an ordinary check. This is exactly why it succeeds.',
+        checkQuestion: 'According to this paragraph, why are people who lose money to fake investments often not simply careless?',
+      },
+      {
+        id: 'ff-s-reading-01-p4',
+        english:
+          'Political and social influence often works differently again. Instead of making one false claim, it can work by choosing which true information gets repeated and which gets left out. This kind of bias does not require a single lie — it only requires choosing what people see and hear most often. This does not mean that repeated or widely shared information is always a form of manipulation. Often, many people simply reach the same true conclusion for good reasons. The difficulty is that repetition alone cannot tell us which situation we are in. When the same message is repeated by many different voices, it can start to feel true simply because it feels shared, even if no one involved has actually checked it. This is one reason misinformation spreads so easily in groups: a claim does not need real authenticity to feel authentic. It only needs to be repeated by enough people who all share the same assumption — that someone else must have already checked it.',
+        japanese:
+          '政治的・社会的な影響力は、また違ったやり方で働くことがよくあります。一つの嘘をつく代わりに、それはどの真実の情報を繰り返し、どれを省くかを選ぶことによって働くことがあります。この種の偏り（バイアス）には、一つの嘘は必要ありません——人々が最も頻繁に目にし耳にするものを選ぶだけでよいのです。だからといって、繰り返されたり広く共有されたりする情報が、常に操作の一種であるという意味ではありません。多くの場合、多くの人々は、正当な理由からたまたま同じ正しい結論に達しているだけです。難しいのは、繰り返しだけでは、私たちがどちらの状況にいるのかが分からないということです。同じメッセージが多くの異なる声によって繰り返されると、実際には誰もそれを確認していなくても、共有されているように感じられるというだけの理由で、真実のように感じられ始めることがあります。これが、誤情報が集団の中でこれほど簡単に広まる理由の一つです——ある主張は、本物らしく感じられるために、本物の真正性を必要としないのです。それはただ、十分な数の人々によって繰り返されればよいだけです——誰か他の人がすでに確認したはずだという、同じ思い込みを、みなが共有しているからです。',
+        plainEnglish:
+          'Political and social influence often works in a different way. Instead of making one false claim, it can work by choosing which true information gets repeated and which gets left out. This kind of bias does not need a single lie. It only needs someone to choose what people see and hear most often. This does not mean that repeated or widely shared information is always a form of manipulation. Often, many people simply reach the same true conclusion for good reasons. The problem is that repetition alone cannot tell us which situation we are in. When the same message is repeated by many different voices, it can start to feel true simply because it feels shared, even if no one has actually checked it. This is one reason misinformation spreads so easily in groups. A claim does not need real authenticity to feel authentic. It only needs to be repeated by enough people who all share the same assumption — that someone else must have already checked it.',
+        checkQuestion: "According to this paragraph, why doesn't political and social influence always require telling a lie?",
+      },
+      {
+        id: 'ff-s-reading-01-p5',
+        english:
+          'Advertising, financial crime, and political influence are different in almost every way, but together they show the same thing: information itself has become powerful in ways it was not before. It is no longer only a record of what is true — it can be built, chosen, and repeated specifically to create trust or credibility, whether or not it is deserved. Many other areas of modern life, from public health messages to everyday social media, show this same pattern. What connects them all is not any single lie, but the growing power of information to shape what people believe, whether or not they have good reason to. Perhaps the clearest lesson is not about any one claim, but about the world these examples describe: a world in which believing something and having good reason to believe it are no longer automatically the same thing.',
+        japanese:
+          '広告、金融犯罪、政治的な影響力は、ほとんどあらゆる点で異なっていますが、それらは共に同じことを示しています——情報そのものが、かつてなかったほどの力を持つようになったということです。それはもはや、単に何が真実であるかを記録するだけのものではありません——それがふさわしいかどうかにかかわらず、信頼や信頼性を生み出すために、作られ、選ばれ、繰り返されることがあるのです。公衆衛生に関するメッセージから日常のソーシャルメディアの投稿まで、現代生活の他の多くの分野も、この同じパターンを示しています。それらすべてに共通しているのは、一つの嘘ではなく、人々が信じるべき理由があるかどうかにかかわらず人々が何を信じるかを形作る、情報の増大する力です。おそらく最もはっきりとした教訓は、どれか一つの主張についてのものではなく、これらの例が描き出す世界についてのものです——何かを信じることと、それを信じるための十分な理由を持つことが、もはや自動的に同じことではなくなった世界についてなのです。',
+        plainEnglish:
+          'Advertising, financial crime, and political influence are different in almost every way. But together they show the same thing: information itself has become powerful in ways it was not before. It is no longer only a record of what is true. It can be built, chosen, and repeated to create trust or credibility, whether or not it is deserved. Many other areas of modern life, from public health messages to everyday social media, show this same pattern. What connects them all is not any single lie, but the growing power of information to shape what people believe, whether or not they have good reason to. Perhaps the clearest lesson is not about any one claim, but about the world these examples describe — a world where believing something and having good reason to believe it are no longer automatically the same thing.',
+        checkQuestion: 'According to this final paragraph, what do advertising, financial crime, and political influence all show about information in modern society?',
+      },
+    ],
+
+    targetVocabIds: ['ff-s-01', 'ff-s-02', 'ff-s-03', 'ff-s-04', 'ff-s-05', 'ff-s-06', 'ff-s-07', 'ff-s-08', 'ff-s-09', 'ff-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['dubious', 'authenticity', 'suspicious', 'blindly', 'credibility', 'manipulate', 'exaggerate', 'misinformation', 'assumption', 'bias'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['make that claim look credible', 'trusted blindly', 'a form of manipulation', 'the growing power of information'],
+      },
+      {
+        type: 'tone-purpose',
+        prompt: "Consider the author's tone.",
+        note: 'The passage is explicit that repetition and wide sharing are not automatically signs of manipulation — "Often, many people simply reach the same true conclusion for good reasons" — the same fairness-to-the-other-side move used throughout Theme 4, now applied across all three domains rather than to technology alone.',
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, why does an advertisement rarely need to prove that a product actually works?',
+      explainer: 'In simple words: why can an advertisement make people trust a product without actually proving anything?',
+      explainerJa: 'この質問は、「広告はなぜ、実際には何も証明しなくても、人々にその商品を信頼させることができるのか」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'Because repetition and familiarity alone can be enough to make people trust it.', correct: true },
+        { id: 'b', label: 'Because most products already have plenty of scientific evidence.', correct: false },
+        { id: 'c', label: 'Because advertisements are required by law to be completely honest.', correct: false },
+      ],
+      answerParagraphId: 'ff-s-reading-01-p2',
+      evidencePrompt: 'Which sentence best shows that people who are fooled by fake information are not necessarily careless?',
+      evidenceOptions: [
+        { id: 'e1', label: 'The mistake was not that they trusted blindly — it was that the evidence itself had been manipulated.', paragraphId: 'ff-s-reading-01-p3', correct: true },
+        { id: 'e2', label: 'This kind of bias does not require a single lie — it only requires choosing what people see and hear most often.', paragraphId: 'ff-s-reading-01-p4', correct: false },
+        { id: 'e3', label: 'Information itself has become powerful in ways it was not before.', paragraphId: 'ff-s-reading-01-p5', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'This kind of bias does not require a single lie — it only requires choosing what people see and hear most often.',
+        question: 'What does "bias" mean here?',
+        options: [
+          { id: 'a', label: 'Choosing which true information to show or hide, in a way that favors one side.', correct: true },
+          { id: 'b', label: 'Telling a lie about a specific fact.', correct: false },
+          { id: 'c', label: 'A mistake made by accident.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'How can you avoid being fooled by fake news or misleading information online? Explain your ideas and give two or three practical ways people can decide whether information is trustworthy.',
+      promptJapanese: 'フェイクニュースや誤解を招く情報にだまされないためには、どうすればよいでしょうか。あなたの考えを説明し、情報が信頼できるかどうかを判断するための、実践的な方法を2つか3つ挙げてください。',
+      minSentences: 3,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'ff-s-01', examplePhrase: 'A claim that seems dubious is worth double-checking before you share it.' },
+        { vocabId: 'ff-s-03', examplePhrase: 'Being suspicious of a story is a good first step.' },
+        { vocabId: 'ff-s-04', examplePhrase: 'One way to avoid being fooled is to stop accepting information blindly.' },
+        { vocabId: 'ff-s-05', examplePhrase: "Checking a source's credibility only takes a few minutes." },
+        { vocabId: 'ff-s-06', examplePhrase: 'Learning to recognize manipulated evidence is now essential.' },
+        { vocabId: 'ff-s-08', examplePhrase: 'Slowing down before sharing is a simple defense against misinformation.' },
+      ],
+      usefulExpressions: [
+        { phrase: 'One practical way is to...', japanese: '実践的な方法の一つは...することです' },
+        { phrase: 'Before believing something, it helps to...', japanese: '何かを信じる前に、...することが役立ちます' },
+        { phrase: 'Another way to protect yourself is...', japanese: 'もう一つ自分を守る方法は...です' },
+      ],
+    },
+
+    takeaway: 'Believing something and having good reason to believe it are no longer automatically the same thing.',
   },
 
   // ── Peace and War — Foundation ───────────────────────────────────────────────
-  // Ported from docs/THEME_06_READING_WRITING.md (approved design).
+  // Rebuilt 2026-08-20 against docs/THEME_06_MANUSCRIPT.md — replaces the old
+  // Yuna/grandmother narrative entirely with an expository Foundation piece
+  // that establishes basic concepts, paired with a new Advanced reading
+  // (below) that deepens "ending a war ≠ creating lasting peace."
 
   {
     id: 'pw-f-reading-01',
     themeId: 'peace-and-war',
     level: 'foundation',
-    title: 'Grandma, What Was It Like?',
-    titleJapanese: 'おばあちゃん、それはどんな感じだったの？',
+    title: 'Peace and War',
+    titleJapanese: '平和と戦争',
     estimatedMinutes: 15,
-    welcome: "Today, you will read about a student who finally asked her grandmother about the war she lived through.",
-    mission: 'As you read, notice what Yuna learns about her grandmother\'s experience. At the end, think about a story from your own family history.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about what war and peace actually mean — and why peace is more than just the fighting stopping.',
+    mission: 'As you read, notice how the passage builds from what war does to people, to how wars end, to what real peace actually requires.',
 
     preReadingSurvey: {
-      question: 'Have you ever asked an older family member about something difficult they lived through?',
+      question: 'Before you read, what do you think peace actually means?',
       options: [
-        { id: 'yes', label: 'Yes, I have asked before.' },
-        { id: 'no', label: "No, but I'd like to." },
-        { id: 'unsure', label: "I'm not sure I would know how to ask." },
+        { id: 'no-fighting', label: 'Peace means there is no fighting.' },
+        { id: 'trust', label: 'Peace means people trust and get along with each other.' },
+        { id: 'both', label: 'Peace means both of these, and more.' },
+        { id: 'unsure', label: "I'm not sure." },
       ],
     },
 
@@ -1382,128 +1699,291 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'pw-f-reading-01-p1',
         english:
-          'Yuna had heard her grandmother mention the war before, but she had never really asked about it. One quiet afternoon, while they were drinking tea together, she finally did: "Grandma, what was it like?" Her grandmother paused for a long moment, looking out the window, before she began to speak.',
+          'War and peace are often understood as opposites. War means fighting between countries or groups, while peace means that the fighting has stopped. However, both ideas are more complicated than these simple definitions. War changes people\'s lives in many ways, and peace requires more than simply putting down weapons.',
         japanese:
-          'ユナは以前から祖母が戦争について口にするのを聞いたことがありましたが、それについてきちんと尋ねたことは一度もありませんでした。ある静かな午後、二人でお茶を飲んでいるときに、ユナはついに尋ねました。「おばあちゃん、それはどんな感じだったの?」祖母は長い間、窓の外を見つめながら黙り込み、それから話し始めました。',
+          '戦争と平和は、しばしば正反対のものとして理解されています。戦争とは国や集団の間の戦いを意味し、平和とはその戦いが終わったことを意味します。しかし、どちらの考え方も、こうした単純な定義よりもずっと複雑です。戦争は人々の生活を様々な形で変えてしまいますし、平和とは単に武器を置くこと以上のものを必要とします。',
         plainEnglish:
-          'Yuna had heard her grandmother mention the war before, but never really asked about it. One afternoon, over tea, she finally asked what it was like. Her grandmother paused for a long time, looking out the window, before she began to speak.',
-        checkQuestion: 'According to this paragraph, what did Yuna finally ask her grandmother?',
+          'People often think war and peace are opposites. War means fighting between countries or groups. Peace means the fighting has stopped. But both ideas are more complicated than that. War changes people\'s lives in many ways. And peace means more than just putting down weapons.',
+        checkQuestion: 'According to this paragraph, why are war and peace more complicated than simple opposite definitions?',
       },
       {
         id: 'pw-f-reading-01-p2',
         english:
-          'When she was young, her grandmother said, her family had to leave their home because of the fighting nearby. They became refugees for almost a year, moving from place to place with only what they could carry, never quite feeling safe. As a civilian, she was never a soldier, but the war still changed everything about her daily life, from what she ate to where she slept.',
+          'During a war, soldiers take part in the fighting, but civilians are also deeply affected. People may lose their homes, jobs, family members, or access to food and education. Some become victims of violence, while others leave their homes and become refugees in search of safety. Even people who live far from the fighting may experience fear, economic problems, or major changes in their daily lives.',
         japanese:
-          '祖母が若かった頃、近くでの戦闘のために家族は家を離れなければならなかったと祖母は話しました。彼らはほぼ一年もの間、避難民として、持てるものだけを持ってあちこちを移動し、決して本当の安心を感じることはありませんでした。民間人として、祖母は兵士になったことは一度もありませんでしたが、それでも戦争は、何を食べるかから、どこで眠るかまで、日常生活のすべてを変えてしまいました。',
+          '戦争の間、兵士たちは戦闘に参加しますが、民間人も深刻な影響を受けます。人々は家、仕事、家族を失ったり、食料や教育を受ける機会を失ったりすることがあります。暴力の犠牲者になる人もいれば、家を離れ、安全を求めて難民になる人もいます。戦闘から遠く離れた場所に住んでいる人々でさえ、恐怖や経済的な問題、日常生活の大きな変化を経験することがあります。',
         plainEnglish:
-          "When she was young, her grandmother's family had to leave home because of nearby fighting. They became refugees for almost a year, carrying only what they could, never feeling truly safe. She was a civilian, never a soldier, but the war changed her entire daily life.",
-        checkQuestion: 'According to this paragraph, how did the war affect Yuna\'s grandmother\'s daily life, even though she was never a soldier?',
+          'During a war, soldiers fight, but civilians are affected too. People may lose their homes, jobs, or family members. They may not be able to get food or go to school. Some become victims of violence. Others leave home and become refugees, looking for safety. Even people who live far from the fighting may feel afraid, have money problems, or see big changes in daily life.',
+        checkQuestion: 'According to this paragraph, how are civilians affected by war, even those far from the actual fighting?',
       },
       {
         id: 'pw-f-reading-01-p3',
         english:
-          'Her grandmother said that the war created many victims, even among people who never fought. When the fighting finally ended and the two sides signed a peace treaty, her family could return home. Now, she wanted Yuna to know this piece of family history — not as something sad to carry, but as a legacy of surviving something very hard and choosing peace afterward.',
+          'Wars eventually end in different ways. Sometimes one side wins, while in other cases both sides agree to stop fighting. A ceasefire may stop the violence for a period of time, and negotiation can lead to an agreement or a treaty. These steps are important, but stopping a war does not immediately create peace. Homes and communities may need to be rebuilt, and people who have lost trust in one another may find it difficult to live together again.',
         japanese:
-          '祖母は、戦争は戦わなかった人々の間にも多くの犠牲者を生んだと話しました。戦闘がついに終わり、両者が和平条約に署名すると、家族は家に戻ることができました。今、祖母はユナにこの家族の歴史を知ってほしいと思っていました——それは悲しみとして背負うものではなく、とても辛いことを乗り越え、その後に平和を選んだ証として。',
+          '戦争は最終的に様々な形で終わります。一方が勝利することもあれば、両者が戦いをやめることに合意する場合もあります。停戦によって、一定期間、暴力が止まることがあり、交渉によって合意や条約が結ばれることもあります。こうした段階は重要ですが、戦争が終わったからといって、すぐに平和が生まれるわけではありません。家や地域社会は再建される必要があるかもしれませんし、互いへの信頼を失った人々は、再び一緒に暮らすことを難しく感じるかもしれません。',
         plainEnglish:
-          'Her grandmother said the war created many victims, even people who never fought. When the fighting ended and both sides signed a peace treaty, the family could return home. She wanted Yuna to know this family history — not as something sad, but as proof of surviving something hard and choosing peace afterward.',
-        checkQuestion: "According to this paragraph, how did the war finally end for Yuna's grandmother's family?",
+          'Wars end in different ways. Sometimes one side wins. Other times, both sides agree to stop fighting. A ceasefire can stop the violence for a while, and negotiation can lead to an agreement or a treaty. These steps matter, but stopping a war does not immediately create peace. Homes and communities may need to be rebuilt. And people who have lost trust in each other may find it hard to live together again.',
+        checkQuestion: 'According to this paragraph, what can stop a war, and why isn\'t that the same as creating peace?',
+      },
+      {
+        id: 'pw-f-reading-01-p4',
+        english:
+          'For this reason, peace means more than the absence of war. A peaceful society needs safety, cooperation, and ways to solve disagreements without violence. The legacy of a war may remain for many years, but people and communities can gradually rebuild their lives. Understanding both war and peace means understanding not only how fighting begins and ends, but also what happens to people before, during, and after it.',
+        japanese:
+          'こうした理由から、平和とは単に戦争がない状態以上のものを意味します。平和な社会には、安全、協力、そして暴力に頼らずに意見の対立を解決する方法が必要です。戦争の遺産は何年にもわたって残ることがありますが、人々や地域社会は少しずつ自分たちの生活を再建していくことができます。戦争と平和の両方を理解するということは、戦いがどのように始まり、どのように終わるかだけでなく、その前、最中、そして後に人々に何が起こるのかを理解することでもあるのです。',
+        plainEnglish:
+          'So peace means more than just having no war. A peaceful society needs safety, cooperation, and ways to solve disagreements without violence. The legacy of a war can remain for many years. But people and communities can slowly rebuild their lives. To understand war and peace, we need to understand not only how fighting starts and stops, but also what happens to people before, during, and after it.',
+        checkQuestion: 'According to this paragraph, what does a peaceful society need beyond the absence of war?',
       },
     ],
 
-    targetVocabIds: ['pw-f-01', 'pw-f-02', 'pw-f-03', 'pw-f-04', 'pw-f-05', 'pw-f-06', 'pw-f-07', 'pw-f-08'],
+    targetVocabIds: ['pw-f-01', 'pw-f-02', 'pw-f-03', 'pw-f-04', 'pw-f-05', 'pw-f-06', 'pw-f-08', 'pw-f-09', 'pw-f-10', 'pw-f-11'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['peace', 'war', 'victim', 'refugee', 'civilian', 'treaty', 'history', 'legacy'],
+        items: ['victim', 'refugee', 'civilian', 'trust', 'ceasefire', 'negotiation', 'treaty', 'cooperation', 'rebuild', 'legacy'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['paused for a long moment', 'never quite feeling safe'],
+        items: ['putting down weapons', 'in search of safety', 'lost trust in one another'],
       },
       {
         type: 'paragraph-organization',
         prompt: 'Consider how the passage is organized.',
-        note: 'This is a frame narrative: a question (paragraph 1) leads to a personal account (paragraph 2), which leads to reflection (paragraph 3).',
+        note: 'The passage moves from definition (paragraph 1) to human impact (paragraph 2) to how wars end (paragraph 3) to what peace actually requires (paragraph 4) — each paragraph builds toward the final redefinition of peace.',
       },
       {
         type: 'tone-purpose',
         prompt: "Consider the author's purpose.",
-        note: "Telling this through a grandmother's own words, rather than a general historical description, personalizes history rather than presenting it as distant or abstract.",
+        note: 'The passage stays deliberately general — no country, war, or side is ever named — so it teaches the underlying ideas rather than one specific history.',
       },
     ],
 
     missionCheck: {
-      question: "According to the passage, why did Yuna's grandmother and her family have to leave their home?",
-      explainer: "In simple words: why did Yuna's grandmother's family have to leave home?",
-      explainerJa: 'この質問は、「なぜユナの祖母の家族は家を離れなければならなかったのか」を聞いています。',
-      hint: 'Look at what happens at the beginning of paragraph 2.',
-      hintJa: '第2段落の始まりの部分に注目してみましょう。',
+      question: 'According to the passage, besides soldiers, who else is deeply affected by a war?',
+      explainer: 'In simple words: who else, besides soldiers, does the passage say a war affects?',
+      explainerJa: 'この質問は、「兵士以外に、戦争によって深刻な影響を受けるのは誰か」を聞いています。',
+      hint: 'Look at the beginning of paragraph 2.',
+      hintJa: '第2段落の始まりに注目してみましょう。',
       options: [
-        { id: 'a', label: 'They wanted to visit a different city for a vacation.', correct: false },
-        { id: 'b', label: 'Fighting nearby made it unsafe for them to stay.', correct: true },
-        { id: 'c', label: 'Yuna\'s grandmother decided to become a soldier.', correct: false },
+        { id: 'a', label: 'Only people serving in the military.', correct: false },
+        { id: 'b', label: 'Civilians are also deeply affected, even if they never fought.', correct: true },
+        { id: 'c', label: "Only people living in the country's capital city.", correct: false },
       ],
       answerParagraphId: 'pw-f-reading-01-p2',
-      evidencePrompt: "Which idea from the reading explains what daily life was like for Yuna's grandmother during the war?",
+      evidencePrompt: 'Which sentence best shows that people far from the actual fighting can still be affected by a war?',
       evidenceOptions: [
-        { id: 'e1', label: 'Her grandmother paused for a long moment, looking out the window, before she began to speak.', paragraphId: 'pw-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'They became refugees for almost a year, moving from place to place with only what they could carry, never quite feeling safe.', paragraphId: 'pw-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'When the fighting finally ended and the two sides signed a peace treaty, her family could return home.', paragraphId: 'pw-f-reading-01-p3', correct: false },
+        { id: 'e1', label: "War changes people's lives in many ways, and peace requires more than simply putting down weapons.", paragraphId: 'pw-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Even people who live far from the fighting may experience fear, economic problems, or major changes in their daily lives.', paragraphId: 'pw-f-reading-01-p2', correct: true },
+        { id: 'e3', label: 'Homes and communities may need to be rebuilt, and people who have lost trust in one another may find it difficult to live together again.', paragraphId: 'pw-f-reading-01-p3', correct: false },
       ],
       vocabInContext: {
-        quote: 'a legacy of surviving something very hard',
-        question: 'What does "legacy" mean here?',
+        quote: 'people who have lost trust in one another may find it difficult to live together again',
+        question: 'What does "trust" mean here?',
         options: [
-          { id: 'a', label: 'Money or property left to someone after a person dies.', correct: false },
-          { id: 'b', label: 'Something meaningful passed down from the past that still matters now.', correct: true },
-          { id: 'c', label: 'A type of official government document.', correct: false },
+          { id: 'a', label: 'A legal agreement between countries.', correct: false },
+          { id: 'b', label: 'A feeling of confidence that someone is honest or reliable.', correct: true },
+          { id: 'c', label: 'A large amount of money saved for the future.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: 'Yuna learned something important by asking her grandmother about the past. Is there a story or lesson from an older family member that you know, or would like to ask about? What is it, or what would you like to know?',
-      promptJapanese: 'ユナは祖母に過去について尋ねることで、大切なことを学びました。あなたには、知っている家族の年上の人からの物語や教訓、あるいは尋ねてみたいことがありますか。それは何ですか、あるいは何を知りたいですか。',
-      minSentences: 2,
-      sentenceStarters: ['My grandmother/grandfather once told me...', 'I would like to ask about...', 'One important lesson in my family is...'],
+      prompt: 'What do you think people can do when they have a serious disagreement with someone? Write about your ideas or your own experience.',
+      promptJapanese: '深刻な対立を抱えたとき、人はどうすればよいと思いますか。あなたの考え、またはあなた自身の経験について書いてください。',
+      minSentences: 3,
+      sentenceStarters: ['I think people can...', 'One time, I...', 'In my opinion, the most important thing is...'],
       wordBank: [
-        { vocabId: 'pw-f-07', examplePhrase: 'One important part of my family history is...' },
-        { vocabId: 'pw-f-08', examplePhrase: 'It felt like a legacy of...' },
-        { vocabId: 'pw-f-01', examplePhrase: 'My family found peace when...' },
+        { vocabId: 'pw-f-01', examplePhrase: 'It can take time to build trust again after...' },
+        { vocabId: 'pw-f-09', examplePhrase: 'Sometimes negotiation helps two people find a solution.' },
+        { vocabId: 'pw-f-10', examplePhrase: 'We had to cooperate to solve the problem.' },
+        { vocabId: 'pw-f-11', examplePhrase: 'We slowly rebuilt our friendship.' },
       ],
       usefulExpressions: [
-        { phrase: 'My grandmother/grandfather once told me...', japanese: '私の祖母/祖父はかつて私に...と話してくれました' },
-        { phrase: 'I would like to ask about...', japanese: '私は...について尋ねてみたいです' },
-        { phrase: 'One important lesson in my family is...', japanese: '私の家族にとって大切な教訓の一つは...です' },
+        { phrase: 'I think people can...', japanese: '人は...できると思います' },
+        { phrase: 'One time, I...', japanese: 'あるとき、私は...' },
+        { phrase: 'In my opinion, the most important thing is...', japanese: '私の意見では、最も大切なことは...です' },
       ],
     },
 
-    takeaway: 'The war created many victims, even among people who never fought.',
+    takeaway: 'Peace means more than the fighting stopping — it also means rebuilding trust and community.',
+  },
+
+  // ── Peace and War — Advanced ─────────────────────────────────────────────────
+  // New for this theme — the old placeholder had no Advanced content at all.
+  // english/plainEnglish below are the manuscript's Advanced Original/
+  // Simplified renderings verbatim (P3/P4 revised per educational review).
+
+  {
+    id: 'pw-s-reading-01',
+    themeId: 'peace-and-war',
+    level: 'advanced',
+    title: 'Peace and War',
+    titleJapanese: '平和と戦争',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: "Today, you will explore a deeper question: why doesn't ending a war automatically create lasting peace?",
+    mission: 'As you read, notice how the passage separates political agreements, like treaties, from the slower, harder work of rebuilding trust between people.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'achieved', label: 'Once a war officially ends, peace has basically been achieved.' },
+        { id: 'far-away', label: 'A war can officially end while real peace is still far away.' },
+        { id: 'depends', label: 'It depends on how the war ended.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'pw-s-reading-01-p1',
+        english:
+          'A war can end on a particular day. The fighting stops, soldiers put down their weapons, and an agreement may be signed. It is tempting to think that peace begins at that moment. In reality, however, ending a war and building lasting peace are two different things. A ceasefire can stop violence, but it cannot immediately remove the reasons people fought or the distrust that developed during the conflict.',
+        japanese:
+          '戦争は、ある特定の日に終わることがあります。戦闘がやみ、兵士たちは武器を置き、合意文書に署名がなされるかもしれません。平和はその瞬間に始まると考えたくなります。しかし実際には、戦争を終わらせることと、長続きする平和を築くことは、まったく別のことです。停戦は暴力を止めることができますが、人々が戦った理由や、対立の中で生まれた不信感を、すぐに取り除くことはできません。',
+        plainEnglish:
+          'A war can end on one particular day. The fighting stops, soldiers put down their weapons, and both sides may sign an agreement. It is easy to think peace begins at that moment. But ending a war and building lasting peace are actually two different things. A ceasefire can stop the violence, but it cannot immediately remove the reasons people fought, or the distrust that grew during the conflict.',
+        checkQuestion: 'According to this paragraph, why are ending a war and building lasting peace not the same thing?',
+      },
+      {
+        id: 'pw-s-reading-01-p2',
+        english:
+          'One difficulty is that the two sides may understand the same conflict very differently. Each side may believe that its actions were necessary and that the other side was responsible for the war. People may also remember different events, losses, and injustices. For this reason, negotiation is not simply a matter of deciding who is right and who is wrong. It often requires both sides to understand another perspective and accept that no agreement will give everyone everything they want.',
+        japanese:
+          '難しさの一つは、両者が同じ対立をまったく異なる形で理解している場合があることです。それぞれの側が、自分たちの行動は必要だったのであり、戦争の責任は相手側にあると考えているかもしれません。人々はまた、それぞれ異なる出来事、損失、不正を記憶しているかもしれません。そのため、交渉とは単純にどちらが正しくどちらが間違っているかを決めることではありません。多くの場合、双方が互いの視点を理解し、どのような合意も全員の望みをすべて満たすわけではないと受け入れることが必要になります。',
+        plainEnglish:
+          'One difficulty is that the two sides often understand the same conflict very differently. Each side may believe its own actions were necessary, and that the other side caused the war. People on each side may also remember different events, losses, and injustices. Because of this, negotiation is not simply about deciding who is right and who is wrong. It usually requires both sides to understand another perspective, and to accept that no agreement will give everyone everything they want.',
+        checkQuestion: 'According to this paragraph, why is negotiation not simply a matter of deciding who is right and who is wrong?',
+      },
+      {
+        id: 'pw-s-reading-01-p3',
+        english:
+          'Another difficulty is the damage left behind by war. Civilians may have lost their homes or family members, refugees may be unable or unwilling to return, and communities may remain divided. A political agreement can solve one kind of problem without repairing another: a treaty can settle political questions, while distrust, fear, anger, displacement, and divided communities may remain. Even after physical damage has been repaired, painful memories may continue. These consequences can become part of the legacy passed from one generation to another.',
+        japanese:
+          'もう一つの難しさは、戦争が残す損害です。民間人は家や家族を失っているかもしれず、難民は戻ることができない、あるいは戻りたくないと感じているかもしれず、地域社会は分断されたままかもしれません。政治的な合意は、ある種の問題を解決しても、別の問題を修復するとは限りません。条約は政治的な問題を解決することができますが、不信感、恐怖、怒り、住む場所を失った状態、そして分断された地域社会は、そのまま残ることがあります。物理的な被害が修復された後でさえ、辛い記憶は続くことがあります。こうした結果は、ある世代から次の世代へと受け継がれる遺産の一部になることがあります。',
+        plainEnglish:
+          'Another difficulty is the damage left behind by war. Civilians may have lost their homes or family members. Refugees may be unable, or unwilling, to return. Communities may remain divided. A political agreement can solve one kind of problem without solving another: a treaty can settle political questions, while distrust, fear, anger, displacement, and divided communities may remain. Even after the physical damage has been repaired, painful memories can continue. These effects can become part of the legacy passed from one generation to the next.',
+        checkQuestion: 'According to this paragraph, what is the difference between what a treaty can settle and what it cannot repair?',
+      },
+      {
+        id: 'pw-s-reading-01-p4',
+        english:
+          'Lasting peace therefore often requires compromise and reconciliation as well as an end to violence. Diplomacy is the broader process through which negotiation, compromise, and agreements between former enemies can gradually take place, one difficult step at a time. Through this process, former enemies try to solve their disagreements and work toward reconciliation rather than a return to violence. This does not mean forgetting what happened or pretending that serious disagreements no longer exist. Reconciliation means finding a way for people who have experienced conflict to live together despite everything that came before. This process may take years or even generations, and sometimes it fails.',
+        japanese:
+          'そのため、長続きする平和には、暴力の終結だけでなく、妥協と和解もしばしば必要になります。外交とは、かつての敵同士の間で交渉や妥協、合意が、一歩ずつ困難を伴いながら少しずつ実現していく、より大きな過程のことです。この過程を通じて、かつての敵同士は暴力に戻るのではなく、意見の対立を解決し、和解に向けて努力しようとします。これは、起こったことを忘れることでも、深刻な対立がもう存在しないふりをすることでもありません。和解とは、対立を経験した人々が、それ以前に起きたすべてのことを抱えながらも、共に生きていく方法を見つけることを意味します。この過程には何年も、あるいは何世代もかかることがあり、時には失敗することもあります。',
+        plainEnglish:
+          'For this reason, lasting peace usually needs compromise and reconciliation, not only an end to violence. Diplomacy is the larger process that allows negotiation, compromise, and agreements between former enemies to happen gradually, one difficult step at a time. Through this process, former enemies try to solve their disagreements and work toward reconciliation instead of returning to violence. This does not mean forgetting what happened, or pretending serious disagreements no longer exist. Reconciliation means finding a way for people who have experienced conflict to live together despite everything that happened before. This process can take years, or even generations, and sometimes it fails.',
+        checkQuestion: 'According to this paragraph, what is diplomacy, and what does reconciliation actually mean?',
+      },
+      {
+        id: 'pw-s-reading-01-p5',
+        english:
+          'Perhaps this is why peace is better understood as a process than as a single event. A ceasefire may end the fighting, and a treaty may officially end a war, but neither can guarantee what happens afterward. Lasting peace depends on whether former enemies can gradually replace violence with negotiation, rebuild trust, and find ways to live with disagreements that may never completely disappear.',
+        japanese:
+          'おそらくこれが、平和が一つの出来事としてよりも、一つの過程として理解される方がふさわしい理由でしょう。停戦は戦闘を終わらせるかもしれず、条約は戦争を正式に終わらせるかもしれませんが、そのどちらも、その後に何が起こるかを保証することはできません。長続きする平和は、かつての敵同士が暴力を少しずつ交渉に置き換え、信頼を再建し、決して完全には消えないかもしれない対立と共に生きる方法を見つけられるかどうかにかかっています。',
+        plainEnglish:
+          'Perhaps this is why peace is better understood as a process, not a single event. A ceasefire may stop the fighting, and a treaty may officially end a war, but neither one can guarantee what happens next. Lasting peace depends on whether former enemies can gradually replace violence with negotiation, rebuild trust, and find ways to live with disagreements that may never completely go away.',
+        checkQuestion: 'According to this final paragraph, why is peace better understood as a process than as a single event?',
+      },
+    ],
+
+    targetVocabIds: ['pw-s-01', 'pw-s-02', 'pw-s-03', 'pw-s-04', 'pw-s-05', 'pw-s-06', 'pw-s-07', 'pw-s-08', 'pw-s-09', 'pw-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['conflict', 'perspective', 'injustice', 'consequence', 'diplomacy', 'compromise', 'reconciliation', 'distrust', 'lasting', 'guarantee'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['It is tempting to think that...', 'one difficult step at a time', 'peace is better understood as a process than as a single event'],
+      },
+      {
+        type: 'tone-purpose',
+        prompt: "Consider the author's tone.",
+        note: 'The passage is careful to describe both sides\' beliefs as sincerely held, without asserting that all wartime actions are equally justified — it separates "people see this differently" from "therefore no one is responsible."',
+      },
+    ],
+
+    missionCheck: {
+      question: "According to the passage, why can't a ceasefire alone create lasting peace?",
+      explainer: 'In simple words: why is a ceasefire not enough by itself to create lasting peace?',
+      explainerJa: 'この質問は、「なぜ停戦だけでは長続きする平和を生み出すのに十分ではないのか」を聞いています。',
+      hint: 'Look at paragraph 1.',
+      hintJa: '第1段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'Because ceasefires are rarely written down.', correct: false },
+        { id: 'b', label: 'Because a ceasefire can stop the violence but cannot remove the reasons people fought or the distrust between them.', correct: true },
+        { id: 'c', label: 'Because most ceasefires are broken within a few days.', correct: false },
+      ],
+      answerParagraphId: 'pw-s-reading-01-p1',
+      evidencePrompt: 'Which sentence best shows that a political agreement can solve one kind of problem while leaving another problem unresolved?',
+      evidenceOptions: [
+        { id: 'e1', label: 'For this reason, negotiation is not simply a matter of deciding who is right and who is wrong.', paragraphId: 'pw-s-reading-01-p2', correct: false },
+        { id: 'e2', label: 'A political agreement can solve one kind of problem without repairing another: a treaty can settle political questions, while distrust, fear, anger, displacement, and divided communities may remain.', paragraphId: 'pw-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'This does not mean forgetting what happened or pretending that serious disagreements no longer exist.', paragraphId: 'pw-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'peace is better understood as a process than as a single event',
+        question: 'What is this sentence suggesting about how peace actually happens?',
+        options: [
+          { id: 'a', label: 'Peace happens instantly, the moment a treaty is signed.', correct: false },
+          { id: 'b', label: 'Peace develops gradually, through many ongoing efforts, not all at once.', correct: true },
+          { id: 'c', label: 'Peace and war are essentially the same thing.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'Wars today are different from wars in the past. How do you think the way wars are fought has changed? What do you think about these changes?',
+      promptJapanese: '今日の戦争は、過去の戦争とは異なります。戦争の戦われ方はどのように変化してきたと思いますか。また、そうした変化についてあなたはどう思いますか。',
+      minSentences: 4,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'pw-s-04', examplePhrase: 'This change could have serious consequences for...' },
+        { vocabId: 'pw-s-10', examplePhrase: 'New technology cannot guarantee...' },
+        { vocabId: 'pw-s-09', examplePhrase: 'It is hard to know what the lasting effects of this change will be.' },
+      ],
+      usefulExpressions: [
+        { phrase: 'One change is that...', japanese: '一つの変化は...ということです' },
+        { phrase: 'This could be good because..., but it could also be a problem because...', japanese: 'これは...という理由で良いかもしれませんが、...という理由で問題にもなり得ます' },
+        { phrase: 'In my opinion,...', japanese: '私の意見では、...' },
+      ],
+    },
+
+    takeaway: 'Peace is better understood as a process than as a single event.',
   },
 
   // ── Caring for Our Planet — Foundation ──────────────────────────────────────
-  // Ported from docs/THEME_07_READING_WRITING.md (approved design).
+  // Rebuilt 2026-08-20 against docs/THEME_07_MANUSCRIPT.md — replaces the old
+  // Aoi/beach narrative entirely with an expository, global-scale Foundation
+  // piece, paired with a new Advanced reading (below).
 
   {
     id: 'cp-f-reading-01',
     themeId: 'caring-for-our-planet',
     level: 'foundation',
-    title: 'The Beach She Used to Know',
-    titleJapanese: '彼女が知っていた頃の海岸',
+    title: 'Caring for Our Planet',
+    titleJapanese: '地球を守る',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who noticed her favorite beach was changing — and decided to do something small about it.',
-    mission: 'As you read, notice what Aoi learns about why the beach is changing. At the end, think about one small environmental habit of your own.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about how pollution, climate, and ecosystems around the world are connected — and why the speed of today\'s climate change matters.',
+    mission: "As you read, notice how the passage explains that Earth's climate has always changed naturally, but that today's problem is something different.",
 
     preReadingSurvey: {
-      question: 'Have you ever noticed a place you know well change over time?',
+      question: 'Before you read, which statement is closest to your own thinking?',
       options: [
-        { id: 'yes', label: 'Yes, I have noticed a change.' },
-        { id: 'no', label: 'Not that I can think of.' },
-        { id: 'unsure', label: "I'm not sure I've paid attention." },
+        { id: 'new', label: 'Climate change is a new problem that never happened before.' },
+        { id: 'not-concern', label: "Climate has always changed naturally, so today's warming isn't a special concern." },
+        { id: 'still-serious', label: "Climate has always changed naturally, but today's warming is still a serious problem." },
+        { id: 'unsure', label: "I'm not sure." },
       ],
     },
 
@@ -1511,130 +1991,290 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'cp-f-reading-01-p1',
         english:
-          'Aoi had been visiting the same beach with her family every summer since she was five years old. This year, she noticed something different: less sand, more plastic bottles, and far fewer of the small crabs she used to chase as a child.',
+          'Environmental problems affect people and nature around the world. Pollution, climate change, and damage to ecosystems may seem like separate problems, but they are often connected. What happens in one part of the environment can affect many other parts.',
         japanese:
-          'アオイは五歳の頃から、毎年夏に家族と同じ海岸を訪れていました。今年、彼女は何かが違うことに気づきました——砂は少なくなり、プラスチックのボトルは増え、子どもの頃に追いかけていた小さなカニの数もずっと減っていたのです。',
+          '環境問題は、世界中の人々や自然に影響を与えます。汚染、気候変動、そして生態系への被害は、別々の問題のように見えるかもしれませんが、それらはしばしば互いに関連しています。環境のある一部で起きたことが、他の多くの部分に影響を与えることがあります。',
         plainEnglish:
-          'Aoi had visited the same beach with her family every summer since she was five. This year, she noticed changes: less sand, more plastic bottles, and far fewer of the small crabs she used to chase as a child.',
-        checkQuestion: 'According to this paragraph, what three changes did Aoi notice at the beach this year?',
+          'Environmental problems affect people and nature all over the world. Pollution, climate change, and damage to ecosystems may seem like separate problems. But they are often connected. Something that happens in one part of the environment can affect many other parts.',
+        checkQuestion: 'According to this paragraph, why can environmental problems that seem separate actually be connected?',
       },
       {
         id: 'cp-f-reading-01-p2',
         english:
-          'She asked her uncle, who had lived near the beach his whole life, what had happened. He explained that pollution from nearby towns was affecting the local environment, and that the ecosystem — all the plants and animals connected to this one small beach — was slowly changing because of it. He also explained that a warmer climate was affecting the whole coastline.',
+          'Pollution comes from many sources. Cars and factories pollute the air, while chemicals, waste, and plastic can enter rivers and oceans. This pollution can damage habitats and affect the plants, animals, and people that depend on them.',
         japanese:
-          '彼女は、その海岸の近くにずっと住んでいた叔父に、何が起きたのか尋ねました。叔父は、近くの町からの汚染が地域の環境に影響を与えており、この小さな海岸とつながっているすべての植物や動物からなる生態系が、それによって少しずつ変化していると説明しました。また、温暖化する気候が海岸線全体に影響を与えていることも説明してくれました。',
+          '汚染は多くの原因から生じます。車や工場は大気を汚染し、化学物質やごみ、プラスチックは川や海に流れ込むことがあります。この汚染は生息地を損なうことがあり、それに依存している植物、動物、そして人々に影響を与えることがあります。',
         plainEnglish:
-          "Aoi asked her uncle, who had lived near the beach his whole life, what had happened. He explained that pollution from nearby towns was affecting the environment, and that the ecosystem — all the plants and animals connected to the beach — was slowly changing. A warmer climate was affecting the whole coastline too.",
-        checkQuestion: "According to this paragraph, what two things did Aoi's uncle say were affecting the beach?",
+          'Pollution comes from many sources. Cars and factories pollute the air. Chemicals, waste, and plastic can enter rivers and oceans. This pollution can damage habitats. It can affect the plants, animals, and people that depend on them.',
+        checkQuestion: 'According to this paragraph, what are two ways pollution can enter the environment?',
       },
       {
         id: 'cp-f-reading-01-p3',
         english:
-          'Aoi did not know how to fix something so big, but she decided to start small. She began carrying a reusable bottle instead of buying new plastic ones, and she joined a weekend group that collected trash from the beach. She learned that even one species, like the crabs she loved, depended on people using resources like water and plastic more carefully. It was not a perfect solution, but it was something she could actually do.',
+          "Earth's climate has always changed. It is true that there have been warmer and colder periods in the past. However, the problem today is that the Earth is becoming warmer very quickly, mainly because of human activities. Burning coal, oil, and gas releases greenhouse gases into the atmosphere. When the climate changes quickly, plants, animals, and people have less time to adjust. Places where we grow food or build cities may also change. This is one reason why today's climate change is a serious global problem.",
         japanese:
-          'アオイは、これほど大きな問題をどう解決すればいいのか分かりませんでしたが、小さなことから始めることにしました。彼女は新しいプラスチックボトルを買う代わりに繰り返し使えるボトルを持ち歩くようになり、海岸のゴミを集める週末のグループにも参加しました。彼女は、大好きなカニのような一つの種でさえ、人々が水やプラスチックのような資源をより注意深く使うことにかかっていると学びました。完璧な解決策ではありませんでしたが、それは彼女が実際に行動できることでした。',
+          '地球の気候はこれまでも常に変化してきました。過去には、暖かい時期や寒い時期があったのは事実です。しかし今日の問題は、地球が非常に速いスピードで温暖化していることであり、その主な原因は人間の活動です。石炭、石油、ガスを燃やすことで、温室効果ガスが大気中に放出されます。気候が急速に変化すると、植物、動物、そして人々が適応する時間は少なくなります。私たちが食料を育てたり都市を築いたりする場所も変わるかもしれません。これが、今日の気候変動が深刻な地球規模の問題である理由の一つです。',
         plainEnglish:
-          "Aoi didn't know how to fix something so big, but she decided to start small. She began carrying a reusable bottle and joined a weekend beach cleanup group. She learned that even one species, like the crabs she loved, depended on people using resources like water and plastic more carefully. It wasn't a perfect solution, but it was something she could actually do.",
-        checkQuestion: 'According to this paragraph, what two small actions did Aoi start doing?',
+          "Earth's climate has always changed. It is true that there were warmer and colder periods in the past. But the problem today is different: the Earth is becoming warmer very quickly, mainly because of human activities. Burning coal, oil, and gas puts greenhouse gases into the atmosphere. When the climate changes this quickly, plants, animals, and people have less time to adjust. Places where we grow food or build cities may also change. This is one reason why today's climate change is such a serious global problem.",
+        checkQuestion: "According to this paragraph, what is the real concern about today's climate change, if climate has always changed naturally?",
+      },
+      {
+        id: 'cp-f-reading-01-p4',
+        english:
+          'People depend on the environment for food, water, energy, and other natural resources. This means that environmental problems are not only problems for nature; they are also problems for people. Understanding how pollution, climate, ecosystems, and human life are connected is an important first step toward protecting our planet.',
+        japanese:
+          '人々は、食料、水、エネルギー、そのほかの天然資源を環境に依存しています。つまり、環境問題は自然だけの問題ではなく、人々にとっての問題でもあるのです。汚染、気候、生態系、そして人間の生活がどのようにつながっているかを理解することは、私たちの地球を守るための重要な第一歩です。',
+        plainEnglish:
+          'People depend on the environment for food, water, energy, and other natural resources. This means environmental problems are not only problems for nature. They are also problems for people. Understanding how pollution, climate, ecosystems, and human life are all connected is an important first step toward protecting our planet.',
+        checkQuestion: 'According to this paragraph, why are environmental problems also problems for people, not just for nature?',
       },
     ],
 
-    targetVocabIds: ['cp-f-01', 'cp-f-02', 'cp-f-03', 'cp-f-04', 'cp-f-05', 'cp-f-06'],
+    targetVocabIds: ['cp-f-01', 'cp-f-02', 'cp-f-03', 'cp-f-04', 'cp-f-05', 'cp-f-06', 'cp-f-07', 'cp-f-08', 'cp-f-09', 'cp-f-10'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['environment', 'species', 'ecosystem', 'climate', 'pollution', 'resource'],
+        items: ['environment', 'damage', 'ecosystem', 'climate', 'pollution', 'resource', 'atmosphere', 'greenhouse gas', 'habitat', 'adjust'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['start small', 'not a perfect solution'],
+        items: ['may seem like separate problems, but...', 'less time to adjust'],
       },
       {
-        type: 'discourse-marker',
-        prompt: 'Notice how "ecosystem" is defined right inside the sentence that introduces it, using a dash-set-off phrase.',
-        items: ['the ecosystem — all the plants and animals connected to this one small beach — was slowly changing'],
-      },
-      {
-        type: 'paragraph-organization',
-        prompt: 'Consider how the passage is organized.',
-        note: 'Paragraph 1 is observation, paragraph 2 explains the cause, and paragraph 3 shows Aoi\'s personal response and action.',
+        type: 'tone-purpose',
+        prompt: "Consider the author's purpose.",
+        note: "The passage makes a careful, deliberate distinction — Earth's climate has always changed naturally, and that fact does not make today's rapid warming less serious. The concern is the speed of change, not the mere fact that change is happening.",
       },
     ],
 
     missionCheck: {
-      question: 'According to the passage, why did Aoi notice a change at the beach this year?',
-      explainer: 'In simple words: what three changes did Aoi see at the beach this year?',
-      explainerJa: 'この質問は、「アオイが今年、海岸で気づいた変化とは何か」を聞いています。',
-      hint: 'Look at what happens at the end of paragraph 1.',
-      hintJa: '第1段落の終わりの部分に注目してみましょう。',
+      question: "According to the passage, what is the real concern about today's climate change?",
+      explainer: 'In simple words: why is today\'s climate change a serious problem, if climate has always changed before?',
+      explainerJa: 'この質問は、「気候はこれまでも変化してきたのに、なぜ今日の気候変動は深刻な問題なのか」を聞いています。',
+      hint: 'Look at paragraph 3.',
+      hintJa: '第3段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'She had never visited the beach before this year.', correct: false },
-        { id: 'b', label: 'She saw less sand, more plastic, and fewer crabs than before.', correct: true },
-        { id: 'c', label: 'Her uncle told her the beach had closed permanently.', correct: false },
+        { id: 'a', label: 'That the climate is changing at all, which has never happened before.', correct: false },
+        { id: 'b', label: 'That the Earth is warming much faster than in the past, giving less time to adjust.', correct: true },
+        { id: 'c', label: 'That scientists cannot agree on whether the climate is changing.', correct: false },
       ],
-      answerParagraphId: 'cp-f-reading-01-p1',
-      evidencePrompt: 'Which idea from the reading explains the reasons behind the changes Aoi noticed at the beach?',
+      answerParagraphId: 'cp-f-reading-01-p3',
+      evidencePrompt: 'Which sentence best shows that environmental problems are not only problems for nature, but also for people?',
       evidenceOptions: [
-        { id: 'e1', label: 'This year, she noticed something different: less sand, more plastic bottles, and far fewer of the small crabs she used to chase as a child.', paragraphId: 'cp-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'He explained that pollution from nearby towns was affecting the local environment, and that the ecosystem... was slowly changing because of it.', paragraphId: 'cp-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'She began carrying a reusable bottle instead of buying new plastic ones, and she joined a weekend group that collected trash from the beach.', paragraphId: 'cp-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'Pollution, climate change, and damage to ecosystems may seem like separate problems, but they are often connected.', paragraphId: 'cp-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'This pollution can damage habitats and affect the plants, animals, and people that depend on them.', paragraphId: 'cp-f-reading-01-p2', correct: false },
+        { id: 'e3', label: 'People depend on the environment for food, water, energy, and other natural resources. This means that environmental problems are not only problems for nature; they are also problems for people.', paragraphId: 'cp-f-reading-01-p4', correct: true },
       ],
       vocabInContext: {
-        quote: 'people using resources like water and plastic more carefully',
-        question: 'What does "resources" mean here?',
+        quote: 'plants, animals, and people have less time to adjust',
+        question: 'What does "adjust" mean here?',
         options: [
-          { id: 'a', label: 'Money that a person saves in a bank.', correct: false },
-          { id: 'b', label: 'Natural materials, like water, that people use in daily life.', correct: true },
-          { id: 'c', label: 'Special skills that a person has learned.', correct: false },
+          { id: 'a', label: 'To completely stop changing.', correct: false },
+          { id: 'b', label: 'To change gradually in response to new conditions.', correct: true },
+          { id: 'c', label: 'To move to a new location.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: 'Aoi decided to start small by carrying a reusable bottle and joining a beach cleanup. Is there a small environmental habit you already have, or one you would like to start? What is it?',
-      promptJapanese: 'アオイは、繰り返し使えるボトルを持ち歩き、海岸清掃に参加することで、小さなことから始めることにしました。あなたにはすでに行っている小さな環境への習慣がありますか、それともこれから始めてみたい習慣がありますか。それは何ですか。',
-      minSentences: 2,
-      sentenceStarters: ['I already try to...', 'One small thing I could do is...', 'I noticed that...'],
+      prompt: 'Have you noticed any environmental changes in a place you know well? What is one thing you think people — including you — can do about environmental problems?',
+      promptJapanese: 'あなたがよく知っている場所で、何か環境の変化に気づいたことはありますか。環境問題について、人々——あなた自身を含め——にできることは何だと思いますか。',
+      minSentences: 3,
+      sentenceStarters: ['I have noticed...', 'One thing I think people can do is...', 'I already try to...'],
       wordBank: [
-        { vocabId: 'cp-f-01', examplePhrase: 'I try to help the environment by...' },
-        { vocabId: 'cp-f-06', examplePhrase: 'I try to use resources like water more carefully.' },
+        { vocabId: 'cp-f-01', examplePhrase: "It's important to protect the environment by..." },
         { vocabId: 'cp-f-05', examplePhrase: 'I noticed pollution when...' },
-        { vocabId: 'cp-f-02', examplePhrase: 'One species I care about is...' },
+        { vocabId: 'cp-f-06', examplePhrase: 'We can use resources like water more carefully.' },
+        { vocabId: 'cp-f-02', examplePhrase: 'Even small actions can help reduce damage to nature.' },
       ],
       usefulExpressions: [
+        { phrase: 'I have noticed...', japanese: '私は...ということに気づきました' },
+        { phrase: 'One thing I think people can do is...', japanese: '人々にできることの一つは...だと思います' },
         { phrase: 'I already try to...', japanese: '私はすでに...するようにしています' },
-        { phrase: 'One small thing I could do is...', japanese: '私にできる小さなことの一つは...です' },
-        { phrase: 'I noticed that...', japanese: '私は...ということに気づきました' },
-        { phrase: 'It is not perfect, but...', japanese: '完璧ではありませんが、...' },
       ],
     },
 
-    takeaway: 'It was not a perfect solution, but it was something she could actually do.',
+    takeaway: "Climate has always changed naturally — but the speed of today's warming is what makes it a serious problem.",
+  },
+
+  // ── Caring for Our Planet — Advanced ─────────────────────────────────────────
+  // New for this theme — the old placeholder had no Advanced content at all.
+  // english/plainEnglish below are the manuscript's Advanced Original/
+  // Simplified renderings verbatim.
+
+  {
+    id: 'cp-s-reading-01',
+    themeId: 'caring-for-our-planet',
+    level: 'advanced',
+    title: 'Caring for Our Planet',
+    titleJapanese: '地球を守る',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a deeper question: even when we understand environmental problems scientifically, why is solving them internationally so difficult?',
+    mission: 'As you read, notice how the passage separates what science can tell us from what science alone cannot decide — questions of responsibility and fairness.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own opinion?',
+      options: [
+        { id: 'equal', label: 'Every country should reduce emissions by the same amount.' },
+        { id: 'historical', label: 'Countries that caused more of the problem should do more to fix it.' },
+        { id: 'complicated', label: "It's complicated — historical responsibility and current needs both matter." },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'cp-s-reading-01-p1',
+        english:
+          'Environmental problems do not stop at national borders. In other words, their effects can go beyond the country where they begin. Air and water pollution can move from one country to another, plastic waste can travel through the oceans, and greenhouse gases released in one country can affect the global climate. This means that many environmental problems cannot be solved by one country alone. International cooperation is necessary, but agreeing on what each country should do is not easy.',
+        japanese:
+          '環境問題は国境で止まりません。つまり、その影響は問題が始まった国を越えて広がることがあるのです。大気や水の汚染は一つの国から別の国へと移動することがあり、プラスチックごみは海を渡って運ばれることがあり、ある国で排出された温室効果ガスは地球全体の気候に影響を与えることがあります。これは、多くの環境問題が一つの国だけでは解決できないことを意味します。国際協力が必要ですが、それぞれの国が何をすべきかについて合意することは簡単ではありません。',
+        plainEnglish:
+          'Environmental problems do not stop at national borders. In other words, their effects can reach beyond the country where they start. Air and water pollution can move from one country to another. Plastic waste can travel through the oceans. Greenhouse gases released in one country can affect the whole world\'s climate. This means many environmental problems cannot be solved by just one country. International cooperation is necessary, but agreeing on what each country should do is not easy.',
+        checkQuestion: "According to this paragraph, why can't environmental problems always be solved by one country alone?",
+      },
+      {
+        id: 'cp-s-reading-01-p2',
+        english:
+          "One reason is that countries have not contributed equally to today's environmental problems. Many wealthy countries used large amounts of coal, oil, and other natural resources while developing their economies. Other countries developed later and have contributed less in the past. They may therefore argue that countries that contributed more to the problem should take more responsibility for solving it. This raises a difficult question of fairness: should every country be expected to do the same amount?",
+        japanese:
+          'その理由の一つは、今日の環境問題に対して各国が平等に関わってきたわけではないということです。多くの裕福な国々は、経済を発展させる過程で、石炭、石油、そのほかの天然資源を大量に使用してきました。他の国々はより遅れて発展し、これまでのところ、それほど多くの原因を作ってきませんでした。そのため、より多くこの問題の原因を作った国が、より多くの責任を負うべきだと主張する人もいます。これは公平性についての難しい問題を提起します——すべての国が同じ量を求められるべきなのでしょうか。',
+        plainEnglish:
+          "One reason is that countries have not contributed equally to today's environmental problems. Many wealthy countries used large amounts of coal, oil, and other natural resources while their economies were growing. Other countries developed later and have contributed less so far. So some people argue that countries that contributed more to the problem should take more responsibility for solving it. This raises a difficult question of fairness: should every country be expected to do the same amount?",
+        checkQuestion: 'According to this paragraph, why do some countries argue that they should take on more responsibility than others?',
+      },
+      {
+        id: 'cp-s-reading-01-p3',
+        english:
+          'Economic development makes the problem even more complicated. Developing countries need energy, transportation, factories, and jobs to improve people\'s lives. Asking them to greatly reduce their use of fossil fuels may slow their economic growth. At the same time, if every country continues to increase its use of fossil fuels, global warming will become more serious. Environmental protection and economic development can therefore come into conflict, and different countries may have different priorities.',
+        japanese:
+          '経済発展は、この問題をさらに複雑にします。発展途上国は、人々の生活を向上させるために、エネルギー、交通機関、工場、そして雇用を必要としています。化石燃料の使用を大幅に減らすよう求めることは、彼らの経済成長を遅らせるかもしれません。同時に、すべての国が化石燃料の使用を増やし続ければ、地球温暖化はより深刻になるでしょう。そのため、環境保護と経済発展は対立することがあり、国によって優先順位が異なることもあります。',
+        plainEnglish:
+          "Economic development makes the problem even more complicated. Developing countries need energy, transportation, factories, and jobs to improve people's lives. Asking them to greatly cut their use of fossil fuels could slow their economic growth. But if every country keeps increasing its use of fossil fuels, global warming will become more serious. So environmental protection and economic development can come into conflict, and different countries can have different priorities.",
+        checkQuestion: 'According to this paragraph, why can environmental protection and economic development come into conflict?',
+      },
+      {
+        id: 'cp-s-reading-01-p4',
+        english:
+          'International agreements are one way to deal with this problem. Countries can agree to reduce emissions, develop cleaner energy, protect natural resources, or provide financial support to countries that need it. However, an agreement does not guarantee that every country will reach its goals. Governments may change, economic conditions may change, and countries may disagree about how quickly they should act or how the costs should be shared.',
+        japanese:
+          '国際協定は、この問題に取り組む一つの方法です。各国は、排出量を削減すること、よりクリーンなエネルギーを開発すること、天然資源を保護すること、あるいは必要としている国々に資金援助を行うことに合意することができます。しかし、協定を結んだからといって、すべての国が目標を達成することが保証されるわけではありません。政府は変わることがあり、経済状況も変わることがあり、そして各国は、どれくらいの速さで行動すべきか、あるいは費用をどのように分担すべきかについて意見が対立することもあります。',
+        plainEnglish:
+          'International agreements are one way to deal with this problem. Countries can agree to reduce emissions, develop cleaner energy, protect natural resources, or give financial support to countries that need it. But an agreement does not guarantee that every country will reach its goals. Governments can change, economic conditions can change, and countries can disagree about how fast they should act or how the costs should be shared.',
+        checkQuestion: "According to this paragraph, why doesn't an international agreement guarantee that every country will reach its goals?",
+      },
+      {
+        id: 'cp-s-reading-01-p5',
+        english:
+          'Protecting the global environment is therefore not only a scientific problem. Science can help us understand what is happening to the planet, but it cannot decide how responsibility and costs should be shared among countries. These are also economic, political, and ethical questions. The environment is shared by everyone, but countries have different histories, needs, and interests. Finding a solution therefore requires not only new technology, but also cooperation and difficult decisions about what is fair.',
+        japanese:
+          'したがって、地球環境を守ることは、単なる科学の問題ではありません。科学は、地球に何が起きているのかを理解する助けにはなりますが、責任や費用が国々の間でどのように分担されるべきかを決めることはできません。これらは、経済的、政治的、そして倫理的な問題でもあるのです。環境はすべての人々によって共有されていますが、国々にはそれぞれ異なる歴史、ニーズ、そして利害があります。したがって解決策を見つけるには、新しい技術だけでなく、協力と、何が公平であるかについての難しい決断も必要なのです。',
+        plainEnglish:
+          'So protecting the global environment is not only a scientific problem. Science can help us understand what is happening to the planet. But science cannot decide how responsibility and costs should be shared among countries. These are also economic, political, and ethical questions. The environment is shared by everyone, but countries have different histories, needs, and interests. Finding a solution needs not only new technology, but also cooperation and difficult decisions about what is fair.',
+        checkQuestion: 'According to this final paragraph, why is protecting the environment not only a scientific problem?',
+      },
+    ],
+
+    targetVocabIds: ['cp-s-01', 'cp-s-02', 'cp-s-03', 'cp-s-04', 'cp-s-05', 'cp-s-06', 'cp-s-07', 'cp-s-08', 'cp-s-09', 'cp-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['contribute', 'wealthy', 'developing countries', 'fossil fuel', 'emissions', 'fairness', 'responsibility', 'priority', 'ethical', 'border'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['do not stop at national borders', 'come into conflict', 'not only a scientific problem'],
+      },
+      {
+        type: 'tone-purpose',
+        prompt: "Consider the author's tone.",
+        note: "The passage presents the historical-responsibility argument (paragraph 2) and developing countries' growth needs (paragraph 3) with equal sympathy, framing both as legitimate positions rather than declaring one side right.",
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, why do some people argue that wealthy countries should take on more responsibility for solving environmental problems?',
+      explainer: 'In simple words: why do some people think wealthy countries should do more to fix environmental problems?',
+      explainerJa: 'この質問は、「なぜ裕福な国々がより多くの責任を負うべきだと考える人がいるのか」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'Because wealthy countries have more money to spend on anything.', correct: false },
+        { id: 'b', label: 'Because wealthy countries contributed more to the problem while developing their economies in the past.', correct: true },
+        { id: 'c', label: 'Because wealthy countries have more scientists studying the environment.', correct: false },
+      ],
+      answerParagraphId: 'cp-s-reading-01-p2',
+      evidencePrompt: 'Which sentence best shows that solving this problem is not simply a matter of every country reducing fossil fuel use equally?',
+      evidenceOptions: [
+        { id: 'e1', label: 'International cooperation is necessary, but agreeing on what each country should do is not easy.', paragraphId: 'cp-s-reading-01-p1', correct: false },
+        { id: 'e2', label: "Developing countries need energy, transportation, factories, and jobs to improve people's lives. Asking them to greatly reduce their use of fossil fuels may slow their economic growth.", paragraphId: 'cp-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'Governments may change, economic conditions may change, and countries may disagree about how quickly they should act or how the costs should be shared.', paragraphId: 'cp-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'Science can help us understand what is happening to the planet, but it cannot decide how responsibility and costs should be shared among countries.',
+        question: 'What is this sentence suggesting about the limits of science in solving this problem?',
+        options: [
+          { id: 'a', label: 'Science is not useful for understanding environmental problems at all.', correct: false },
+          { id: 'b', label: 'Science can explain what is happening, but deciding what is fair is a different kind of question.', correct: true },
+          { id: 'c', label: 'Science and fairness are actually the same thing.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'Who should do more to solve environmental problems: individuals, governments, or companies? What do you think? Give reasons for your opinion.',
+      promptJapanese: '環境問題を解決するために、より多くのことをすべきなのは誰でしょうか——個人、政府、それとも企業でしょうか。あなたはどう思いますか。あなたの意見の理由を挙げてください。',
+      minSentences: 4,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'cp-s-07', examplePhrase: 'I think governments have more responsibility than individuals because...' },
+        { vocabId: 'cp-s-08', examplePhrase: 'This should be a bigger priority for...' },
+        { vocabId: 'cp-s-09', examplePhrase: 'This is also an ethical question, because...' },
+      ],
+      usefulExpressions: [
+        { phrase: 'In my opinion,...', japanese: '私の意見では、...' },
+        { phrase: 'One reason I think this is...', japanese: 'そう思う理由の一つは...です' },
+        { phrase: 'This is important because...', japanese: 'これが重要なのは...だからです' },
+      ],
+    },
+
+    takeaway: 'Science can explain what is happening to the planet, but it cannot decide what is fair.',
   },
 
   // ── Living with AI — Foundation ──────────────────────────────────────────────
-  // Ported from docs/THEME_08_READING_WRITING.md (approved design).
+  // Revised 2026-08-27: replaced with a plainer, less detailed approved
+  // passage. Dropped the 1950s-research framing and the "generative AI"
+  // technical label entirely — the chatbot is now described concretely
+  // ("used what it had learned from a huge amount of data to respond...")
+  // instead of being named with jargon. Vocabulary rebuilt to match; see
+  // docs/THEME_08_MANUSCRIPT.md for the full rationale. Advanced (below)
+  // is unchanged and still pairs with this Foundation.
 
   {
     id: 'la-f-reading-01',
     themeId: 'living-with-ai',
     level: 'foundation',
-    title: 'Whose Thinking Is It?',
-    titleJapanese: 'それは誰の考えなのか',
+    title: 'Artificial Intelligence',
+    titleJapanese: '人工知能',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who used AI to help with an essay — and what he learned about where the thinking has to come from.',
-    mission: 'As you read, notice how Kenta changes the way he uses AI. At the end, think about how you make sure your own thinking stays part of your work.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about how AI moved from working quietly behind technology to something ordinary people could talk to directly.',
+    mission: 'As you read, notice how the passage describes this change step by step — from AI working behind computers and online services, to ChatGPT, to AI being used everywhere today.',
 
     preReadingSurvey: {
-      question: 'When you use AI for schoolwork, how do you usually check its ideas?',
+      question: 'Before you read, which statement is closest to your own thinking?',
       options: [
-        { id: 'always', label: 'I always check carefully.' },
-        { id: 'sometimes', label: 'I check sometimes.' },
-        { id: 'rarely', label: "I don't use AI for schoolwork." },
+        { id: 'new', label: 'AI is a completely new technology that only appeared in the last few years.' },
+        { id: 'access', label: "AI has existed for a long time, but most people couldn't use it directly until recently." },
+        { id: 'same', label: 'AI and ChatGPT are basically the same thing.' },
+        { id: 'unsure', label: "I'm not sure." },
       ],
     },
 
@@ -1642,128 +2282,279 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'la-f-reading-01-p1',
         english:
-          'Kenta typed his essay question into an AI tool and watched as a full paragraph appeared in seconds. It was so convenient — no searching, no staring at a blank page — that he almost forgot to think about whether it was actually good. His goal had been to finish quickly, and this felt like exactly what he needed.',
+          'Artificial intelligence, or AI, did not begin with ChatGPT. AI had already been used for many years in computers, machines, and online services, usually working behind them without people communicating directly with it. Most people therefore used AI without thinking much about the AI itself.',
         japanese:
-          'ケンタはAIツールに作文の質問を入力すると、数秒で段落全体が現れるのを見ました。それはとても便利で——調べる必要も、白紙のページを見つめる必要もなく——彼はそれが本当に良いものかどうか考えることをほとんど忘れてしまうほどでした。彼の目標は早く終わらせることであり、これはまさに彼が必要としていたもののように感じられました。',
+          '人工知能、つまりAIは、ChatGPTから始まったわけではありません。AIはすでに何年も前から、コンピュータや機械、オンラインサービスの中で使われてきましたが、たいていはその背後で働いており、人々がAIと直接やり取りすることはありませんでした。そのため、ほとんどの人は、AIそのものについてあまり深く考えることなくAIを使っていました。',
         plainEnglish:
-          'Kenta typed his essay question into an AI tool, and a full paragraph appeared in seconds. It was so convenient that he almost forgot to think about whether it was actually good. He just wanted to finish quickly, and this seemed perfect for that.',
-        checkQuestion: 'According to this paragraph, what did Kenta almost forget to do?',
+          'Artificial intelligence, or AI, did not begin with ChatGPT. AI had already been used for many years. It worked inside computers, machines, and online services. Usually, people did not communicate with AI directly — it just worked quietly behind these things. Because of this, most people used AI without thinking much about it.',
+        checkQuestion: 'According to this paragraph, how did most people typically use AI before ChatGPT?',
       },
       {
         id: 'la-f-reading-01-p2',
         english:
-          'But when his teacher asked him to explain his own opinion out loud the next day, Kenta realized he could not remember why the essay said what it said. He had not checked whether the ideas were even true — he had simply copied them. This kind of technology could save time, but automation could not do his thinking for him. Taking responsibility for his own work suddenly felt much harder than it should have.',
+          "This began to change quickly when OpenAI released ChatGPT to the public in late 2022. It was a chatbot that could use what it had learned from a huge amount of data to respond to people's questions and produce new content. For the first time, millions of ordinary people began communicating directly with this kind of AI simply by typing what they wanted to know or do.",
         japanese:
-          'しかし翌日、先生が自分の意見を声に出して説明するように求めると、ケンタはなぜその作文がそのような内容になっているのか思い出せないことに気づきました。彼はそのアイデアが本当かどうか確認しておらず、ただそれをそのままコピーしただけでした。この種のテクノロジーは時間を節約してくれるかもしれませんが、オートメーションが彼の代わりに考えてくれるわけではありませんでした。自分の課題に責任を持つことが、突然、そうあるべき以上に難しく感じられました。',
+          'これは、OpenAIが2022年後半にChatGPTを一般公開したことで急速に変わり始めました。それは、膨大な量のデータから学んだことを使って、人々の質問に答えたり、新しいコンテンツを作り出したりできるチャットボットでした。初めて、何百万人もの一般の人々が、知りたいことやしてほしいことをただ入力するだけで、この種のAIと直接やり取りをするようになったのです。',
         plainEnglish:
-          "But when his teacher asked him to explain his own opinion out loud the next day, Kenta couldn't remember why the essay said what it said. He hadn't checked if the ideas were true — he had just copied them. Technology could save time, but automation couldn't think for him. Taking responsibility for his own work suddenly felt hard.",
-        checkQuestion: 'What did Kenta realize he had not done before turning in his essay?',
+          "This began to change quickly when OpenAI released ChatGPT to the public in late 2022. ChatGPT was a chatbot. It could use what it had learned from a huge amount of data to answer people's questions and create new content. For the first time, millions of ordinary people began communicating directly with this kind of AI. They simply typed what they wanted to know or do.",
+        checkQuestion: 'According to this paragraph, what could people do with ChatGPT for the first time?',
       },
       {
         id: 'la-f-reading-01-p3',
         english:
-          'After that, Kenta decided to use AI differently. He still asked it for ideas sometimes, curious about how its algorithm could suggest angles he had not considered, but now he always checked those ideas carefully and wrote the final essay in his own words. AI could help him start, he realized, but the thinking — and the responsibility for it — still had to be his.',
+          'Since then, AI has become much more involved in everyday life. People can ask AI to explain something they do not understand, help them write or improve a text, translate languages, find and organize information, create images, or help solve problems. At work, AI can also help people analyze information, prepare documents, and develop ideas. The important change is that ordinary people can now ask AI for help directly and use it for many different purposes.',
         japanese:
-          'それ以来、ケンタはAIの使い方を変えることにしました。時々はまだアイデアを求めることもあり、そのアルゴリズムが考えもしなかった視点を提案してくれることに興味を持っていましたが、今では必ずそのアイデアを注意深く確認し、最終的な作文は自分自身の言葉で書くようにしていました。AIは始めるための助けにはなるが、考えること——そしてその責任——は、やはり自分自身のものでなければならないと、彼は気づいたのです。',
+          'それ以来、AIは日常生活にはるかに深く関わるようになりました。人々はAIに、理解できないことを説明してもらったり、文章を書いたり改善したりするのを手伝ってもらったり、言語を翻訳してもらったり、情報を見つけて整理してもらったり、画像を作ってもらったり、問題を解決する手助けをしてもらったりすることができます。職場でも、AIは人々が情報を分析したり、書類を準備したり、アイデアを練ったりするのを助けることができます。重要な変化は、一般の人々が今では直接AIに助けを求め、さまざまな目的のためにそれを使えるようになったということです。',
         plainEnglish:
-          "After that, Kenta decided to use AI differently. He still asked it for ideas sometimes, curious about how its algorithm could suggest angles he hadn't considered, but now he always checked those ideas carefully and wrote the final essay in his own words. AI could help him start, but the thinking — and the responsibility for it — still had to be his.",
-        checkQuestion: 'According to this paragraph, how did Kenta change the way he used AI?',
+          "Since then, AI has become much more involved in everyday life. People can ask AI to explain something they don't understand. AI can help them write or improve a text, translate languages, find and organize information, create images, or solve problems. At work, AI can also help people analyze information, prepare documents, and develop ideas. The important change is this: ordinary people can now ask AI for help directly, and use it for many different purposes.",
+        checkQuestion: 'According to this paragraph, what kinds of things can people now ask AI to help with?',
+      },
+      {
+        id: 'la-f-reading-01-p4',
+        english:
+          'The rapid spread of AI also changed how organizations used technology. Companies began adding AI to their products and services, and schools and workplaces began finding ways to use it. AI became something that more people could use in their daily activities, rather than something that mainly worked behind other technology. In only a few years, the relationship between people and AI changed greatly.',
+        japanese:
+          'AIの急速な広がりは、組織がテクノロジーをどう使うかも変えました。企業は自社の製品やサービスにAIを取り入れ始め、学校や職場もAIを活用する方法を見つけ始めました。AIは、それまでのように主に他のテクノロジーの背後で働くものではなく、より多くの人々が日常の活動の中で使えるものになりました。わずか数年のうちに、人々とAIの関係は大きく変わったのです。',
+        plainEnglish:
+          "The rapid spread of AI also changed how organizations used technology. Companies began adding AI to their products and services. Schools and workplaces began finding ways to use it too. AI became something more people could use in their daily activities. It was no longer just something that worked quietly behind other technology. In only a few years, the relationship between people and AI changed greatly.",
+        checkQuestion: "According to this final paragraph, how did the spread of AI affect organizations like companies and schools?",
       },
     ],
 
-    targetVocabIds: ['la-f-01', 'la-f-02', 'la-f-03', 'la-f-04', 'la-f-05'],
+    targetVocabIds: ['la-f-01', 'la-f-02', 'la-f-03', 'la-f-04', 'la-f-05', 'la-f-06', 'la-f-07', 'la-f-08', 'la-f-09', 'la-f-10'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['AI', 'technology', 'automation', 'convenience', 'algorithm'],
-      },
-      {
-        type: 'recycled-vocab',
-        prompt: 'Find recycled vocabulary from previous themes — goal, responsibility, checked, and true all reappear here in a new context.',
-        items: ['goal', 'responsibility', 'checked', 'true'],
+        items: ['AI', 'chatbot', 'data', 'translate', 'organize', 'respond', 'analyze', 'involved', 'organization', 'spread'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['staring at a blank page', 'do his thinking for him'],
+        items: ['working behind them', 'for the first time'],
       },
       {
         type: 'tone-purpose',
-        prompt: "Consider the author's tone.",
-        note: "The passage shows both AI's usefulness (suggesting angles Kenta hadn't considered) and its limits (it can't take responsibility for his thinking) — avoiding both the extreme that AI is dangerous and the extreme that AI solves everything.",
+        prompt: "Consider the author's purpose.",
+        note: 'Notice that the passage never uses a technical label like "generative AI" — instead, it explains concretely what the chatbot actually did ("used what it had learned from a huge amount of data to respond to people\'s questions and produce new content"). This keeps the historical idea clear without requiring jargon.',
       },
     ],
 
     missionCheck: {
-      question: 'According to the passage, why did Kenta struggle when his teacher asked him to explain his opinion?',
-      explainer: 'In simple words: why did Kenta have trouble explaining his own opinion in class?',
-      explainerJa: 'この質問は、「なぜケンタは授業で自分の意見をうまく説明できなかったのか」を聞いています。',
-      hint: 'Look at what happens at the start of paragraph 2.',
-      hintJa: '第2段落の始まりの部分に注目してみましょう。',
+      question: 'According to the passage, how did most people typically use AI before ChatGPT?',
+      explainer: 'In simple words: how did people usually experience AI before ChatGPT existed?',
+      explainerJa: 'この質問は、「ChatGPTが登場する前、人々は普段どのようにAIを利用していたか」を聞いています。',
+      hint: 'Look at paragraph 1.',
+      hintJa: '第1段落を見てみましょう。',
       options: [
-        { id: 'a', label: 'He had forgotten to bring his notebook to class.', correct: false },
-        { id: 'b', label: "He had copied the AI's ideas without checking or truly understanding them.", correct: true },
-        { id: 'c', label: 'His teacher had asked a question about a different topic.', correct: false },
+        { id: 'a', label: 'They talked to AI chatbots every day.', correct: false },
+        { id: 'b', label: 'AI usually worked quietly behind computers, machines, and online services, without people communicating with it directly.', correct: true },
+        { id: 'c', label: 'Most people had never heard of AI at all.', correct: false },
       ],
-      answerParagraphId: 'la-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading shows Kenta changing how he uses AI after his experience in class?',
+      answerParagraphId: 'la-f-reading-01-p1',
+      evidencePrompt: 'Which sentence best shows what was new about how people could use ChatGPT?',
       evidenceOptions: [
-        { id: 'e1', label: 'It was so convenient — no searching, no staring at a blank page — that he almost forgot to think about whether it was actually good.', paragraphId: 'la-f-reading-01-p1', correct: false },
-        { id: 'e2', label: 'Taking responsibility for his own work suddenly felt much harder than it should have.', paragraphId: 'la-f-reading-01-p2', correct: false },
-        { id: 'e3', label: 'Now he always checked those ideas carefully and wrote the final essay in his own words.', paragraphId: 'la-f-reading-01-p3', correct: true },
+        { id: 'e1', label: 'AI had already been used for many years in computers, machines, and online services.', paragraphId: 'la-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'For the first time, millions of ordinary people began communicating directly with this kind of AI simply by typing what they wanted to know or do.', paragraphId: 'la-f-reading-01-p2', correct: true },
+        { id: 'e3', label: 'Companies began adding AI to their products and services, and schools and workplaces began finding ways to use it.', paragraphId: 'la-f-reading-01-p4', correct: false },
       ],
       vocabInContext: {
-        quote: 'curious about how its algorithm could suggest angles',
-        question: 'What does "algorithm" mean here?',
+        quote: 'Since then, AI has become much more involved in everyday life.',
+        question: 'What does "involved" mean here?',
         options: [
-          { id: 'a', label: 'A robot that can talk and think like a human.', correct: false },
-          { id: 'b', label: 'A set of steps or rules a computer program follows to do something.', correct: true },
-          { id: 'c', label: 'A company that makes computers and phones.', correct: false },
+          { id: 'a', label: 'Taking part in or connected to something.', correct: true },
+          { id: 'b', label: 'Difficult to understand.', correct: false },
+          { id: 'c', label: 'Kept completely separate from something.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: "Kenta learned that AI could help him start, but the thinking had to be his. If you use AI to help with schoolwork, what is one thing you would do to make sure your ideas are really your own? If you don't use AI, describe one way you make sure your ideas are original when you write.",
-      promptJapanese: 'ケンタは、AIは始めるための助けになるが、考えることは自分自身のものでなければならないと学びました。もしあなたが学校の課題でAIを使うなら、自分の考えが本当に自分自身のものであることを確かめるために、どんなことをしますか。もしAIを使わないなら、書くときにアイデアがオリジナルであることを確かめる方法を一つ説明してください。',
-      minSentences: 2,
-      sentenceStarters: ['If I use AI, I would...', 'One way to make sure my thinking is my own is...', 'I always try to...'],
+      prompt: 'Do you use AI tools in your own life, such as for schoolwork or daily tasks? What do you find helpful about using AI, and what makes you want to check its answers carefully?',
+      promptJapanese: 'あなたは学校の課題や日常のタスクなど、自分自身の生活の中でAIツールを使っていますか。AIを使うことの何が役立つと感じますか。また、AIの答えを注意深く確認したくなるのはどんなときですか。',
+      minSentences: 3,
+      sentenceStarters: ['I use AI to...', 'I find it helpful when...', 'I try to check AI\'s answers by...'],
       wordBank: [
-        { vocabId: 'la-f-01', examplePhrase: 'If I use AI, I would...' },
-        { vocabId: 'la-f-05', examplePhrase: "I'm curious how the algorithm..." },
-        { vocabId: 'la-f-02', examplePhrase: 'This technology helps me...' },
-        { vocabId: 'la-f-03', examplePhrase: 'Automation can save time, but...' },
+        { vocabId: 'la-f-01', examplePhrase: 'I use AI to...' },
+        { vocabId: 'la-f-02', examplePhrase: 'I use a chatbot to...' },
+        { vocabId: 'la-f-06', examplePhrase: 'AI can respond quickly, but...' },
+        { vocabId: 'la-f-04', examplePhrase: 'I sometimes use AI to translate...' },
       ],
       usefulExpressions: [
-        { phrase: 'If I use AI, I would...', japanese: 'もしAIを使うなら、私は...するでしょう' },
-        { phrase: 'One way to make sure my thinking is my own is...', japanese: '自分の考えが自分自身のものであることを確かめる一つの方法は...です' },
-        { phrase: 'I always try to...', japanese: '私はいつも...するようにしています' },
+        { phrase: 'I use AI to...', japanese: '私はAIを...するために使います' },
+        { phrase: 'I find it helpful when...', japanese: '...なとき、役に立つと感じます' },
+        { phrase: "I try to check AI's answers by...", japanese: '私はAIの答えを...することで確認するようにしています' },
       ],
     },
 
-    takeaway: 'AI could help him start, but the thinking — and the responsibility for it — still had to be his.',
+    takeaway: 'In only a few years, the relationship between people and AI changed greatly.',
+  },
+
+  // ── Living with AI — Advanced ─────────────────────────────────────────────────
+  // Substantially revised 2026-08-21 — replaces the earlier 6-paragraph
+  // draft (excitement/concern → work → human ability → responsibility →
+  // control → enduring-question conclusion) with a tighter 4-paragraph
+  // passage centered on the division of work between people and AI and the
+  // moving boundary between human and machine work. Responsibility is
+  // deliberately no longer a major organizing topic. See
+  // docs/THEME_08_MANUSCRIPT.md for the full revision history.
+
+  {
+    id: 'la-s-reading-01',
+    themeId: 'living-with-ai',
+    level: 'advanced',
+    title: 'Living with AI',
+    titleJapanese: 'AIと生きる',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a deeper question: as AI becomes capable of a wider range of work, how might the division of work between people and machines change — and why does this create both hope and fear?',
+    mission: 'As you read, notice how the passage moves from a simple, common prediction to a more careful one — and how carefully it distinguishes a real concern from an established fact.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own thinking?',
+      options: [
+        { id: 'replace', label: 'AI will probably replace most jobs completely.' },
+        { id: 'divide', label: 'AI will probably take over parts of many jobs, while people do other parts.' },
+        { id: 'no-change', label: "AI won't really change how most jobs work." },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'la-s-reading-01-p1',
+        english:
+          'Since ChatGPT made direct interaction with AI widely available, AI has continued to develop quickly. It is becoming able to perform a wider range of tasks once thought to need human knowledge, judgment, or skill — moving beyond repetitive and systematic work toward analysis, planning, some management, and even intellectual or creative work. This does not mean AI can do these jobs alone, only that it is becoming part of work that used to depend entirely on people.',
+        japanese:
+          'ChatGPTがAIとの直接的なやり取りを広く可能にして以来、AIは急速に発展し続けています。AIは、これまで人間の知識や判断力、技能が必要だと考えられてきた、より幅広い作業をこなせるようになりつつあります——単純作業や定型的な作業にとどまらず、分析、計画、一部の管理業務、さらには知的・創造的な仕事にまで及んでいます。これは、AIがこうした仕事を単独で行えるという意味ではなく、これまで完全に人間に頼っていた仕事の一部に、AIが関わるようになってきているという意味です。',
+        plainEnglish:
+          "Since ChatGPT made it easy for people to talk directly with AI, AI has kept developing quickly. It is becoming able to do a wider range of tasks — tasks that used to need human knowledge, judgment, or skill. This includes not only repetitive and systematic work, but also analysis, planning, some management, and even intellectual or creative work. This doesn't mean AI can do these jobs completely by itself. It means AI is becoming part of work that used to depend entirely on people.",
+        checkQuestion: 'According to this paragraph, what kinds of work is AI increasingly becoming part of?',
+      },
+      {
+        id: 'la-s-reading-01-p2',
+        english:
+          'One common prediction is that AI will replace many jobs. A more important change, though, may be that the division of work between people and AI shifts. AI may take on more parts of a task while people focus on different parts — asking the right questions, judging results, or handling situations AI cannot manage. Some jobs may disappear, many may change, and new kinds of work may appear, including in professional and managerial roles.',
+        japanese:
+          'よくある予測の一つは、AIが多くの仕事を奪うというものです。しかし、それよりも重要な変化は、人とAIの間の仕事の分担が変わっていくことかもしれません。AIが一つの作業のより多くの部分を担うようになる一方で、人は別の部分に取り組むようになるかもしれません——適切な問いを立てること、結果を判断すること、あるいはAIには対応できない状況に対処することなどです。一部の仕事はなくなり、多くの仕事は変化し、専門職や管理職を含め、新しい種類の仕事が生まれるかもしれません。',
+        plainEnglish:
+          'One common prediction is that AI will replace many jobs. But a more important change may be this: the division of work between people and AI may shift. AI may do more parts of a task, while people focus on other parts — asking the right questions, judging the results, or handling situations AI cannot manage. Some jobs may disappear. Many jobs may change. And new kinds of work may appear, including in professional and managerial jobs.',
+        checkQuestion: "According to this paragraph, what more important change may happen, instead of AI simply replacing jobs?",
+      },
+      {
+        id: 'la-s-reading-01-p3',
+        english:
+          'AI may make work faster and help people process more information, freeing them to focus on harder problems. But if people regularly let AI perform certain tasks, they may practice those abilities less themselves. This raises a real question about which human abilities remain important as AI produces more answers on its own.',
+        japanese:
+          'AIは仕事を速くし、人々がより多くの情報を処理するのを助け、より難しい問題に集中する余裕を与えてくれるかもしれません。しかし、人々が特定の作業を日常的にAIに任せるようになると、自分自身ではそれらの能力をあまり使わなくなるかもしれません。これは、AIがますます自力で答えを出すようになる中で、どの人間の能力が重要であり続けるのかという、本当の問いを投げかけます。',
+        plainEnglish:
+          'AI may make work faster. It may help people process more information, so they can focus on harder problems. But if people regularly let AI do certain tasks, they may practice those same abilities less themselves. This raises a real question: which human abilities will still be important, as AI produces more answers by itself?',
+        checkQuestion: 'According to this paragraph, what are the two possible sides of AI helping people with tasks?',
+      },
+      {
+        id: 'la-s-reading-01-p4',
+        english:
+          'These changes also create fear. One is the more immediate fear of losing jobs, roles, or skills as AI takes on more of what people used to do. A more serious concern, raised by some experts, is that future AI could become capable enough that people find it difficult to understand or control — a real concern, not an established fact. Both point to the same underlying shift: the boundary between human work and machine work keeps moving, and as it does, work, education, and the value of human skill may change with it.',
+        japanese:
+          'こうした変化はまた、不安も生み出します。一つは、より差し迫った不安で、AIが人々のかつての仕事の多くを担うようになるにつれて、仕事や役割、技能を失うのではないかというものです。より深刻な懸念として、一部の専門家が指摘しているのは、将来のAIが十分に高性能になり、人々がそれを理解したり制御したりすることが難しくなるかもしれないというものです——これは本当の懸念ではありますが、確立された事実ではありません。この二つはどちらも、同じ根底にある変化を示しています。すなわち、人間の仕事と機械の仕事の境界は動き続けており、それとともに、仕事や教育、人間の技能の価値も変化していくかもしれないということです。',
+        plainEnglish:
+          'These changes also create fear. One fear is more immediate: people may lose jobs, roles, or skills as AI does more of what people used to do. A more serious concern, raised by some experts, is that future AI could become capable enough that people find it hard to understand or control. This is a real concern — but it is not an established fact. Both fears point to the same deeper change: the boundary between human work and machine work keeps moving. As it moves, work, education, and the value of human skill may change too.',
+        checkQuestion: 'According to this final paragraph, what deeper change do both fears point to?',
+      },
+    ],
+
+    targetVocabIds: ['la-s-01', 'la-s-02', 'la-s-03', 'la-s-04', 'la-s-05', 'la-s-06', 'la-s-07', 'la-s-08', 'la-s-09', 'la-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['concern', 'prediction', 'boundary', 'division', 'range', 'managerial', 'capable', 'process', 'established', 'underlying'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['moving beyond... toward...', 'not an established fact', 'the boundary... keeps moving'],
+      },
+      {
+        type: 'tone-purpose',
+        prompt: "Consider the author's tone.",
+        note: 'Notice how the passage names a common, simple prediction ("AI will replace many jobs") only to move past it toward a more careful one — and how explicitly it distinguishes a real concern from an established fact ("a real concern, not an established fact") rather than letting the two blur together.',
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, instead of simply predicting that AI will replace many jobs, what does the passage say may actually happen?',
+      explainer: 'In simple words: what does the passage think is a more important change than "AI will replace jobs"?',
+      explainerJa: 'この質問は、「『AIが仕事を奪う』という予測よりも重要だと文章が考えている変化とは何か」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'AI will completely take over every part of most jobs.', correct: false },
+        { id: 'b', label: 'The division of work between people and AI may shift, with people focusing on different parts of a task.', correct: true },
+        { id: 'c', label: 'Very few jobs will change at all.', correct: false },
+      ],
+      answerParagraphId: 'la-s-reading-01-p2',
+      evidencePrompt: 'Which sentence best shows that the passage treats the loss-of-control concern as a possibility, not a proven fact?',
+      evidenceOptions: [
+        { id: 'e1', label: 'This does not mean AI can do these jobs alone, only that it is becoming part of work that used to depend entirely on people.', paragraphId: 'la-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'This raises a real question about which human abilities remain important as AI produces more answers on its own.', paragraphId: 'la-s-reading-01-p3', correct: false },
+        { id: 'e3', label: 'A more serious concern, raised by some experts, is that future AI could become capable enough that people find it difficult to understand or control — a real concern, not an established fact.', paragraphId: 'la-s-reading-01-p4', correct: true },
+      ],
+      vocabInContext: {
+        quote: 'Both point to the same underlying shift: the boundary between human work and machine work keeps moving, and as it does, work, education, and the value of human skill may change with it.',
+        question: "What is this conclusion suggesting about how we should think about AI's future impact?",
+        options: [
+          { id: 'a', label: 'The most important change is simply that AI will eventually do more work than humans.', correct: false },
+          { id: 'b', label: 'The deeper pattern is a continually shifting line between what people do and what machines do, which may reshape work, education, and how human skill is valued.', correct: true },
+          { id: 'c', label: 'Human skill will become completely worthless once AI is capable enough.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'How do you think AI will change human life in the future? What changes do you think will be important? Explain your ideas.',
+      promptJapanese: 'AIは将来、人間の生活をどのように変えると思いますか。どのような変化が重要だと思いますか。あなたの考えを説明してください。',
+      minSentences: 4,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'la-s-05', examplePhrase: 'My prediction is that...' },
+        { vocabId: 'la-s-07', examplePhrase: 'As AI becomes more capable, I think...' },
+        { vocabId: 'la-s-10', examplePhrase: 'I think the underlying reason this matters is...' },
+      ],
+      usefulExpressions: [
+        { phrase: 'I think AI will change...', japanese: 'AIは...を変えると思います' },
+        { phrase: 'This change is important because...', japanese: 'この変化が重要なのは...だからです' },
+        { phrase: 'In the future, I think...', japanese: '将来、私は...と思います' },
+      ],
+    },
+
+    takeaway: 'The boundary between human work and machine work keeps moving — and as it does, work, education, and the value of human skill may change with it.',
   },
 
   // ── Learning from History — Foundation ───────────────────────────────────────
-  // Ported from docs/THEME_09_READING_WRITING.md (approved design).
+  // Fully rebuilt 2026 — replaces the old anecdotal reading ("The
+  // Photograph in the Drawer") with the approved "The Present Is Built on
+  // the Past" passage. See docs/THEME_09_MANUSCRIPT.md.
 
   {
     id: 'lh-f-reading-01',
     themeId: 'learning-from-history',
     level: 'foundation',
-    title: 'The Photograph in the Drawer',
-    titleJapanese: '引き出しの中の写真',
+    title: 'The Present Is Built on the Past',
+    titleJapanese: '現在は過去の上に築かれている',
     estimatedMinutes: 15,
-    welcome: 'Today, you will read about a student who found an old family photograph — and discovered a piece of history that was also her own story.',
-    mission: 'As you read, notice what Rin learns about her family through one old photograph. At the end, think about an object or story from your own family\'s past.',
+    experienceVersion: 2,
+    welcome: 'Today, you will read about why no generation starts from zero — and how the world around you today was built by countless people who came before you.',
+    mission: 'As you read, notice how the passage moves from one idea (no generation begins from zero) through one concrete example (a smartphone) and then broadens far beyond technology.',
 
     preReadingSurvey: {
-      question: 'Do you know a story or object from your own family\'s past?',
+      question: 'Before you read, which statement is closest to your own thinking?',
       options: [
-        { id: 'yes', label: 'Yes, I know one.' },
-        { id: 'no', label: 'Not really — I\'d like to learn one.' },
+        { id: 'from-scratch', label: 'Most things today were mainly invented from scratch by the people who use them now.' },
+        { id: 'built-on-past', label: 'Almost everything today depends on knowledge and discoveries from long before now.' },
+        { id: 'tech-only', label: 'This is mainly true for technology, not for things like schools or laws.' },
         { id: 'unsure', label: "I'm not sure." },
       ],
     },
@@ -1772,108 +2563,250 @@ export const MASTER_READINGS: ReadingLesson[] = [
       {
         id: 'lh-f-reading-01-p1',
         english:
-          'Rin found an old photograph tucked inside her grandmother\'s desk drawer — a young woman standing proudly in front of a small shop that no longer existed. "Who is this?" Rin asked. Her grandmother smiled and explained that the woman was Rin\'s own ancestor, who had run that little shop during a very different era, long before either of them was born.',
+          'No generation begins from zero. We are born into a world that people before us spent many years building and improving. We inherit their knowledge, ideas, and tools. We use what they created, improve it, and pass it to the next generation. In this way, human knowledge can continue to develop over a very long time.',
         japanese:
-          'リンは、祖母の机の引き出しの中にしまわれていた古い写真を見つけました——もう存在しない小さな店の前に誇らしげに立つ若い女性の写真でした。「これは誰?」とリンは尋ねました。祖母は微笑んで、その女性はリン自身の祖先であり、二人が生まれるずっと前、まったく違う時代にその小さな店を営んでいたのだと説明しました。',
+          'どの世代も、ゼロから始まるわけではありません。私たちは、私たちより前の人々が長い年月をかけて築き、改良してきた世界に生まれてきます。私たちは彼らの知識やアイデア、道具を受け継ぎます。彼らが作ったものを使い、それを改良し、次の世代へと引き継いでいくのです。こうして、人類の知識は非常に長い時間をかけて発展し続けることができるのです。',
         plainEnglish:
-          'Rin found an old photograph in her grandmother\'s desk drawer — a young woman standing in front of a small shop that no longer existed. Rin asked who it was. Her grandmother explained that the woman was Rin\'s own ancestor, who ran that shop in a very different era, long before either of them was born.',
-        checkQuestion: 'According to this paragraph, who was the woman in the old photograph?',
+          'No generation begins from zero. We are born into a world that people before us spent many years building and improving. We inherit their knowledge, ideas, and tools. We use what they created. We improve it, and we pass it to the next generation. In this way, human knowledge can keep developing for a very long time.',
+        checkQuestion: 'According to this paragraph, what happens to knowledge, ideas, and tools from one generation to the next?',
       },
       {
         id: 'lh-f-reading-01-p2',
         english:
-          'The shop had closed suddenly after one event: a fire that swept through the neighborhood one winter night. That single event changed the whole family\'s history — without the shop, Rin\'s ancestors had to find new work and move to a different part of the city. One cause, her grandmother said, had led to so many effects, some of which were still shaping the family even now.',
+          'Think about a smartphone. It may look like a completely modern invention, but it depends on many earlier discoveries. Electricity, mathematics, communication technology, and computers all had to develop before a smartphone could exist. Different kinds of knowledge were combined to create something new. Even the newest technology is built on developments that came before it.',
         japanese:
-          'その店は、ある冬の夜に近所を襲った火事という一つの出来事の後、突然閉店してしまいました。その一つの出来事が、家族全体の歴史を変えてしまいました——店を失ったことで、リンの祖先たちは新しい仕事を見つけ、街の別の場所へ引っ越さなければなりませんでした。祖母によれば、一つの原因が、今もなお家族に影響を与え続けている、実に多くの結果を生んだのだそうです。',
+          'スマートフォンについて考えてみましょう。それは完全に現代的な発明のように見えるかもしれませんが、実は数多くの過去の発見に支えられています。電気、数学、通信技術、コンピューターは、スマートフォンが存在する前に、それぞれ発展していなければなりませんでした。異なる種類の知識が組み合わさって、新しいものが生み出されたのです。最新の技術でさえ、それ以前にあった発展の上に築かれています。',
         plainEnglish:
-          'The shop closed suddenly after one event: a fire that swept through the neighborhood one winter night. That single event changed the whole family\'s history — without the shop, Rin\'s ancestors had to find new work and move to a different part of the city. One cause led to many effects, some still shaping the family today.',
-        checkQuestion: 'According to this paragraph, what event caused the shop to close?',
+          'Think about a smartphone. It may look like a completely modern invention. But it depends on many earlier discoveries. Electricity, mathematics, communication technology, and computers all had to develop first. Only then could a smartphone exist. Different kinds of knowledge were combined to create something new. Even the newest technology is built on developments that came before it.',
+        checkQuestion: 'According to this paragraph, what had to happen before a smartphone could exist?',
       },
       {
         id: 'lh-f-reading-01-p3',
         english:
-          'Rin looked at the photograph again, seeing it differently now. It was not just an old picture — it was a small piece of her family\'s legacy, one event from long ago still quietly shaping her life today. History, she realized, was not only something written in books; it was also her own story, waiting to be noticed.',
+          'The same is true beyond technology. Languages, schools, laws, governments, and ways of learning have also developed over generations. People keep some ideas, change others, and create new ones. The way we live today therefore reflects many choices and developments from the past.',
         japanese:
-          'リンはもう一度その写真を見つめ、今度は違って見えることに気づきました。それは単なる古い写真ではなく、家族の遺産の小さな一部——ずっと昔の一つの出来事が、今も静かに彼女の人生を形作り続けている証だったのです。歴史とは、本の中だけに書かれているものではなく、自分自身の物語でもあり、気づかれるのを待っているものなのだと、リンは気づきました。',
+          '同じことは、技術の分野を超えても当てはまります。言語や学校、法律、政府、学び方なども、何世代にもわたって発展してきました。人々はあるアイデアを残し、あるものを変え、新しいものを作り出します。したがって、私たちが今日生きているあり方は、過去の多くの選択や発展を反映しているのです。',
         plainEnglish:
-          'Rin looked at the photograph again, and it seemed different now. It wasn\'t just an old picture — it was a small piece of her family\'s legacy, one event from long ago still quietly shaping her life today. She realized history wasn\'t only something written in books; it was also her own story, waiting to be noticed.',
-        checkQuestion: 'According to this paragraph, what did Rin realize history really was?',
+          'The same is true beyond technology. Languages, schools, laws, governments, and ways of learning have also developed over generations. People keep some ideas. They change other ideas. They create new ones, too. The way we live today reflects many choices and developments from the past.',
+        checkQuestion: 'According to this paragraph, is this kind of development limited to technology?',
+      },
+      {
+        id: 'lh-f-reading-01-p4',
+        english:
+          'History is not only a record of things that happened long ago. The world around us contains the work and knowledge of countless people who lived before us. We can create new things because we do not have to begin again from zero. The present is built on the past.',
+        japanese:
+          '歴史とは、単に遠い昔に起こったことの記録ではありません。私たちの周りの世界には、私たちより前に生きていた数え切れないほど多くの人々の仕事と知識が詰まっています。私たちが新しいものを生み出せるのは、ゼロからやり直す必要がないからです。現在は、過去の上に築かれているのです。',
+        plainEnglish:
+          'History is not only a record of things that happened long ago. The world around us contains the work and knowledge of countless people. These people lived before us. We can create new things because we do not have to begin again from zero. The present is built on the past.',
+        checkQuestion: 'According to this final paragraph, why can we create new things without starting from zero?',
       },
     ],
 
-    targetVocabIds: ['pw-f-07', 'pw-f-08', 'lh-f-01', 'lh-f-02', 'lh-f-03', 'lh-f-04', 'lh-f-05'],
+    targetVocabIds: ['lh-f-01', 'lh-f-02', 'lh-f-03', 'lh-f-04', 'lh-f-05', 'lh-f-06', 'lh-f-07', 'lh-f-08', 'lh-f-09', 'lh-f-10'],
 
     noticeLanguage: [
       {
         type: 'target-vocab',
         prompt: 'Find today’s target vocabulary as you read the passage.',
-        items: ['history', 'legacy', 'event', 'era', 'cause', 'effect', 'ancestor'],
-      },
-      {
-        type: 'recycled-vocab',
-        prompt: 'Find recycled vocabulary from a previous theme — history and legacy both reappear from Theme 6, now becoming this theme\'s own central focus.',
-        items: ['history', 'legacy'],
+        items: ['generation', 'inherit', 'knowledge', 'develop', 'improve', 'depend on', 'discovery', 'combine', 'reflect', 'countless'],
       },
       {
         type: 'expressions',
         prompt: 'Notice these useful expressions.',
-        items: ['tucked inside', 'swept through the neighborhood', 'waiting to be noticed'],
+        items: ['begins from zero', 'built on', 'the same is true beyond technology'],
       },
       {
         type: 'paragraph-organization',
         prompt: 'Consider how the passage is organized.',
-        note: 'This is a frame narrative built around a discovered object (an old photograph): a present-day question opens into a past event, and closes with personal reflection.',
+        note: 'Notice the structural move in paragraph 3: "The same is true beyond technology" explicitly signals a shift from the smartphone example to a much bigger claim. The example is only there to make the general idea concrete — it is not the passage\'s real subject.',
       },
     ],
 
     missionCheck: {
-      question: "According to the passage, why did Rin's ancestor's shop close?",
-      explainer: "In simple words: what caused Rin's ancestor's shop to close?",
-      explainerJa: 'この質問は、「リンの祖先の店が閉店した原因は何だったのか」を聞いています。',
-      hint: 'Look at what happens at the start of paragraph 2.',
-      hintJa: '第2段落の始まりの部分に注目してみましょう。',
+      question: 'According to the passage, why can human knowledge continue to develop over a very long time?',
+      explainer: 'In simple words: what allows knowledge to keep growing from generation to generation?',
+      explainerJa: 'この質問は、「なぜ人類の知識は世代を超えて発展し続けることができるのか」を聞いています。',
+      hint: 'Look at paragraph 1.',
+      hintJa: '第1段落を見てみましょう。',
       options: [
-        { id: 'a', label: "Rin's ancestor decided to retire early.", correct: false },
-        { id: 'b', label: 'A fire swept through the neighborhood one winter night.', correct: true },
-        { id: 'c', label: 'The city asked the family to move to a new location.', correct: false },
+        { id: 'a', label: 'Each generation starts completely from zero and creates everything itself.', correct: false },
+        { id: 'b', label: 'Each generation inherits, uses, and improves what earlier generations created, then passes it on.', correct: true },
+        { id: 'c', label: 'Only scientists and inventors contribute to human knowledge.', correct: false },
       ],
-      answerParagraphId: 'lh-f-reading-01-p2',
-      evidencePrompt: 'Which idea from the reading explains what happened to the family after the shop closed?',
+      answerParagraphId: 'lh-f-reading-01-p1',
+      evidencePrompt: 'Which sentence best shows that a smartphone depends on much earlier development?',
       evidenceOptions: [
-        { id: 'e1', label: "Her grandmother smiled and explained that the woman was Rin's own ancestor, who had run that little shop during a very different era.", paragraphId: 'lh-f-reading-01-p1', correct: false },
-        { id: 'e2', label: "Without the shop, Rin's ancestors had to find new work and move to a different part of the city.", paragraphId: 'lh-f-reading-01-p2', correct: true },
-        { id: 'e3', label: 'It was not just an old picture — it was a small piece of her family\'s legacy.', paragraphId: 'lh-f-reading-01-p3', correct: false },
+        { id: 'e1', label: 'We inherit their knowledge, ideas, and tools.', paragraphId: 'lh-f-reading-01-p1', correct: false },
+        { id: 'e2', label: 'Electricity, mathematics, communication technology, and computers all had to develop before a smartphone could exist.', paragraphId: 'lh-f-reading-01-p2', correct: true },
+        { id: 'e3', label: 'People keep some ideas, change others, and create new ones.', paragraphId: 'lh-f-reading-01-p3', correct: false },
       ],
       vocabInContext: {
-        quote: "it was a small piece of her family's legacy",
-        question: 'What does "legacy" mean here?',
+        quote: 'The present is built on the past.',
+        question: 'What is this conclusion suggesting about the world we live in today?',
         options: [
-          { id: 'a', label: 'A type of old photograph.', correct: false },
-          { id: 'b', label: 'Something from the past that is passed down and still matters today.', correct: true },
-          { id: 'c', label: 'A store that sells family photos.', correct: false },
+          { id: 'a', label: 'Modern life has almost nothing to do with history.', correct: false },
+          { id: 'b', label: 'Today\'s world exists because of the accumulated work, knowledge, and choices of countless people before us.', correct: true },
+          { id: 'c', label: 'Only technology depends on the past — things like laws and languages do not.', correct: false },
         ],
       },
     },
 
     writing: {
-      prompt: 'Rin learned something important by looking at an old family photograph. Is there an old photo, object, or story in your family that is special to you? What is it, or what would you like to know about it?',
-      promptJapanese: 'リンは古い家族の写真を見ることで、大切なことを学びました。あなたの家族に、あなたにとって特別な古い写真や物、あるいは物語はありますか。それは何ですか、あるいはそれについて何を知りたいですか。',
-      minSentences: 2,
-      sentenceStarters: ['One old photo in my family...', 'I would like to know...', 'This is important because...'],
+      prompt: 'Think of something in your own life — a skill, a tool, a tradition, or even your school — that exists today because of work done by people before you. What is it, and what do you know about how it started or developed?',
+      promptJapanese: 'あなたの生活の中にあるもの——技能、道具、伝統、あるいはあなたの学校でもかまいません——で、あなたより前の人々の努力があったからこそ今存在しているものを一つ考えてください。それは何ですか。また、それがどのように始まった、あるいは発展してきたか、知っていることはありますか。',
+      minSentences: 3,
+      sentenceStarters: ['Something in my life that comes from the past is...', 'It started when...', 'People before me...'],
       wordBank: [
-        { vocabId: 'pw-f-07', examplePhrase: 'One part of my family history is...' },
-        { vocabId: 'pw-f-08', examplePhrase: 'It felt like a legacy of...' },
-        { vocabId: 'lh-f-05', examplePhrase: 'My ancestor once...' },
-        { vocabId: 'lh-f-01', examplePhrase: 'One event that shaped my family was...' },
+        { vocabId: 'lh-f-01', examplePhrase: 'This has been passed down for generations...' },
+        { vocabId: 'lh-f-02', examplePhrase: 'I inherited this from...' },
+        { vocabId: 'lh-f-05', examplePhrase: 'People have improved it by...' },
       ],
       usefulExpressions: [
-        { phrase: 'One old photo in my family...', japanese: '私の家族にある一枚の古い写真は...' },
-        { phrase: 'I would like to know...', japanese: '私は...を知りたいです' },
-        { phrase: 'This is important because...', japanese: 'これが大切なのは...だからです' },
+        { phrase: 'Something in my life that comes from the past is...', japanese: '私の生活の中で過去から続いているものは...' },
+        { phrase: 'It started when...', japanese: 'それは...のときに始まりました' },
+        { phrase: 'People before me...', japanese: '私より前の人々は...' },
       ],
     },
 
-    takeaway: 'History was not only something written in books; it was also her own story, waiting to be noticed.',
+    takeaway: 'The present is built on the past — every generation inherits, uses, and improves what came before, and passes something further along.',
+  },
+
+  // ── Learning from History — Advanced ─────────────────────────────────────────
+  // New — Theme 9 previously had no Advanced level. Built against the
+  // approved "Why Do People Repeat the Same Mistakes?" passage. See
+  // docs/THEME_09_MANUSCRIPT.md.
+
+  {
+    id: 'lh-s-reading-01',
+    themeId: 'learning-from-history',
+    level: 'advanced',
+    title: 'Why Do People Repeat the Same Mistakes?',
+    titleJapanese: 'なぜ人は同じ過ちを繰り返すのか',
+    estimatedMinutes: 20,
+    experienceVersion: 2,
+    welcome: 'Today, you will explore a real contradiction: humans are remarkably good at passing knowledge from one generation to the next — so why do similar mistakes keep happening?',
+    mission: 'As you read, notice how the passage separates knowing something from actually experiencing it, and how it connects historical mistakes to human motives that have not disappeared.',
+
+    preReadingSurvey: {
+      question: 'Which statement is closest to your own thinking?',
+      options: [
+        { id: 'not-enough-info', label: 'People repeat mistakes mainly because they do not know enough history.' },
+        { id: 'knowledge-not-enough', label: 'People can know history well and still repeat mistakes, for other reasons.' },
+        { id: 'no-repeat', label: 'People do not really repeat the same kinds of mistakes.' },
+        { id: 'unsure', label: "I'm not sure." },
+      ],
+    },
+
+    paragraphs: [
+      {
+        id: 'lh-s-reading-01-p1',
+        english:
+          'Human beings are very good at passing knowledge from one generation to another. We know about wars, conflicts, failed governments, and other mistakes from the past. We can study their causes and consequences. Yet similar mistakes continue to happen. If we know so much about the past, why is it so difficult to learn from it?',
+        japanese:
+          '人間は、知識をある世代から次の世代へと伝えることに非常に長けています。私たちは、過去の戦争や紛争、失敗した政府、その他の過ちについて知っています。それらの原因と結果を研究することもできます。それにもかかわらず、似たような過ちは今も起こり続けています。過去についてこれほど多くを知っているのに、なぜそこから学ぶことがこれほど難しいのでしょうか。',
+        plainEnglish:
+          'Human beings are very good at passing knowledge from one generation to another. We know about wars, conflicts, failed governments, and other mistakes from the past. We can study their causes and results. Yet similar mistakes keep happening. If we know so much about the past, why is it so hard to learn from it?',
+        checkQuestion: 'According to this paragraph, what is the puzzle the passage is about to explore?',
+      },
+      {
+        id: 'lh-s-reading-01-p2',
+        english:
+          'One reason may be that knowing something is not the same as experiencing it. People can read about suffering, fear, or loss, but they do not feel what people at that time actually felt. As generations pass, the experience disappears while the information remains. A lesson that seems clear when we look back at history may feel very different when we face a new situation ourselves.',
+        japanese:
+          'その理由の一つは、何かを知っていることと、それを実際に経験することは同じではない、という点にあるのかもしれません。人々は苦しみや恐怖、喪失について読むことはできますが、当時の人々が実際に感じたことそのものを感じることはできません。世代が移り変わるにつれて、経験そのものは失われていき、情報だけが残ります。歴史を振り返ったときには明白に思える教訓も、私たち自身が新しい状況に直面したときには、まったく違って感じられるかもしれません。',
+        plainEnglish:
+          'One reason may be this: knowing something is not the same as experiencing it. People can read about suffering, fear, or loss. But they do not feel what people at that time actually felt. As generations pass, the experience disappears. The information stays. A lesson may seem clear when we look back at history. But it may feel very different when we face a new situation ourselves.',
+        checkQuestion: 'According to this paragraph, what is the difference between knowing about the past and experiencing it?',
+      },
+      {
+        id: 'lh-s-reading-01-p3',
+        english:
+          'There is another problem. Many historical mistakes are connected to human motives and desires that have not disappeared. People still feel jealousy, fear, pride, hatred, and the desire for greater wealth or control. They may want revenge when they believe they have been harmed. Retaliation may then seem justified, even when people know that similar actions created more conflict in the past. The situation may be new, but some of the forces behind it are not.',
+        japanese:
+          'もう一つの問題があります。多くの歴史的な過ちは、消えることのなかった人間の動機や欲望と結びついています。人々は今でも、嫉妬、恐怖、プライド、憎しみ、そしてより大きな富や支配への欲望を感じます。人は自分が害を受けたと信じるとき、復讐を望むことがあります。そのとき、報復は正当なことのように思えるかもしれません——たとえ、似たような行動がかつてさらなる争いを生んだと知っていたとしても。状況は新しくても、その背後にある力の一部は新しくないのです。',
+        plainEnglish:
+          'There is another problem, too. Many historical mistakes are connected to human motives and desires. These motives and desires have not disappeared. People still feel jealousy, fear, pride, hatred, and the desire for greater wealth or control. They may want revenge when they believe they have been harmed. Then retaliation may seem justified. This happens even when people know that similar actions caused more conflict in the past. The situation may be new. But some of the forces behind it are not.',
+        checkQuestion: 'According to this paragraph, what kind of human motives does the passage say have not disappeared?',
+      },
+      {
+        id: 'lh-s-reading-01-p4',
+        english:
+          'Human knowledge has changed enormously, but human nature may have changed much less. History can preserve information about what happened, but it cannot remove the emotions and desires that influence human decisions. This does not mean that people never learn from history. Perhaps learning from history begins by recognizing that some of the forces that shaped the past still exist in ourselves today.',
+        japanese:
+          '人間の知識は非常に大きく変化してきましたが、人間の本性はそれほど変わっていないのかもしれません。歴史は何が起こったかという情報を残すことはできますが、人間の決定に影響を与える感情や欲望を取り除くことはできません。だからといって、人々が歴史から決して学ばないというわけではありません。歴史から学ぶということは、もしかすると、過去を形作った力の一部が今も私たちの中に存在していると気づくことから始まるのかもしれません。',
+        plainEnglish:
+          'Human knowledge has changed enormously. But human nature may have changed much less. History can preserve information about what happened. But it cannot remove the emotions and desires that influence human decisions. This does not mean that people never learn from history. Perhaps learning from history begins with recognizing something: some of the forces that shaped the past still exist in ourselves today.',
+        checkQuestion: 'According to this final paragraph, what does learning from history perhaps begin with?',
+      },
+    ],
+
+    targetVocabIds: ['lh-s-01', 'lh-s-02', 'lh-s-03', 'lh-s-04', 'lh-s-05', 'lh-s-06', 'lh-s-07', 'lh-s-08', 'lh-s-09', 'lh-s-10'],
+
+    noticeLanguage: [
+      {
+        type: 'target-vocab',
+        prompt: 'Find today’s target vocabulary as you read the passage.',
+        items: ['motive', 'desire', 'revenge', 'retaliation', 'justified', 'nature', 'preserve', 'recognize', 'experience', 'force'],
+      },
+      {
+        type: 'expressions',
+        prompt: 'Notice these useful expressions.',
+        items: ['not the same as', 'even when people know that...', 'begins by recognizing that...'],
+      },
+      {
+        type: 'paragraph-organization',
+        prompt: 'Consider how the passage is organized.',
+        note: 'Notice that the passage opens with a puzzle in paragraph 1 ("why is it so difficult to learn from it?") and does not answer it immediately — each following paragraph adds one more layer to the answer (experience vs. knowledge, then motives, then human nature) before the conclusion.',
+      },
+    ],
+
+    missionCheck: {
+      question: 'According to the passage, what is one reason it may be difficult to learn from history, even though we know so much about the past?',
+      explainer: 'In simple words: what does the passage say gets lost, even when historical information survives?',
+      explainerJa: 'この質問は、「過去についての情報が残っていても、失われてしまうものは何か」を聞いています。',
+      hint: 'Look at paragraph 2.',
+      hintJa: '第2段落を見てみましょう。',
+      options: [
+        { id: 'a', label: 'People do not have access to enough historical information.', correct: false },
+        { id: 'b', label: 'Knowing about something is not the same as experiencing it — the original experience disappears while the information remains.', correct: true },
+        { id: 'c', label: 'Historical records are usually inaccurate.', correct: false },
+      ],
+      answerParagraphId: 'lh-s-reading-01-p2',
+      evidencePrompt: 'Which sentence best shows that human motives connected to historical mistakes have not disappeared?',
+      evidenceOptions: [
+        { id: 'e1', label: 'We can study their causes and consequences.', paragraphId: 'lh-s-reading-01-p1', correct: false },
+        { id: 'e2', label: 'People still feel jealousy, fear, pride, hatred, and the desire for greater wealth or control.', paragraphId: 'lh-s-reading-01-p3', correct: true },
+        { id: 'e3', label: 'History can preserve information about what happened.', paragraphId: 'lh-s-reading-01-p4', correct: false },
+      ],
+      vocabInContext: {
+        quote: 'Perhaps learning from history begins by recognizing that some of the forces that shaped the past still exist in ourselves today.',
+        question: 'What is this conclusion suggesting about the relationship between historical knowledge and human nature?',
+        options: [
+          { id: 'a', label: 'Because human knowledge has grown so much, human nature has changed in the same way.', correct: false },
+          { id: 'b', label: 'Knowledge can be passed on more easily than human nature changes, so recognizing these forces in ourselves may be part of truly learning from history.', correct: true },
+          { id: 'c', label: 'People in the past were fundamentally different from people today.', correct: false },
+        ],
+      },
+    },
+
+    writing: {
+      prompt: 'Is there something you think people should not repeat in the future? Or is there something you have done in the past that you would not want to repeat? Explain what happened and what you learned from it.',
+      promptJapanese: '将来、人々が繰り返すべきではないと思うことはありますか。あるいは、あなた自身が過去に行ったことで、二度と繰り返したくないと思うことはありますか。何が起こったのか、そしてそこから何を学んだのかを説明してください。',
+      minSentences: 4,
+      recommendedWordRange: [80, 120],
+      wordBank: [
+        { vocabId: 'lh-s-01', examplePhrase: 'I think the main motive was...' },
+        { vocabId: 'lh-s-05', examplePhrase: 'At the time, it might have felt justified because...' },
+        { vocabId: 'lh-s-08', examplePhrase: 'Looking back, I can recognize that...' },
+      ],
+      usefulExpressions: [
+        { phrase: 'Something I would not want to repeat is...', japanese: '私が繰り返したくないことは...' },
+        { phrase: 'This happened because...', japanese: 'これが起こったのは...だからです' },
+        { phrase: 'What I learned from this is...', japanese: 'これから学んだことは...' },
+      ],
+    },
+
+    takeaway: 'Knowledge can be passed from one generation to the next far more easily than experience can — and because human motives like fear, pride, and the desire for revenge persist, knowing history does not automatically stop people from repeating it.',
   },
 
   // ── Science in Everyday Life — Foundation ────────────────────────────────────
