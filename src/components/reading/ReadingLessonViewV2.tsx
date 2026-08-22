@@ -265,13 +265,14 @@ export default function ReadingLessonViewV2({
                       </span>
                     </div>
                     <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Reading Passage">
-                      {/* Justification is desktop-only: tested on real mobile
-                          devices, the passage column is too narrow at any
-                          reasonable phone width for justified text to look
-                          good — it produces large, uneven word gaps. Left-
-                          aligned (ragged right) on mobile, justified from the
-                          sm: breakpoint up, where the column is wide enough. */}
-                      <p className="font-serif text-xl sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-left sm:text-justify">
+                      {/* Re-tested on real mobile devices at 17px (down from
+                          20px): with a narrower font and the existing wide
+                          column, enough words fit per line for justified text
+                          to look natural — re-enabled on mobile. (At the
+                          earlier 20px size this produced large, uneven word
+                          gaps and was mobile-only left-aligned; that is no
+                          longer the case at this size.) */}
+                      <p className="font-serif text-[17px] sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-justify">
                         {readingMode === 'original' ? paragraph.english : paragraph.plainEnglish}
                       </p>
                     </SelectableContent>

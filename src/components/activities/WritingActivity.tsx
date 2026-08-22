@@ -124,13 +124,13 @@ export default function WritingActivity({
       {/* 1–3: Topic, writing area, and Get Feedback all live inside the
           untouched WritingTutor component — kept together since they're one
           continuous task. Only the surrounding card/typography is new. */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-10">
-        <div className="flex items-center gap-3 mb-4 sm:mb-5">
+      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-4 sm:p-10">
+        <div className="flex items-center gap-3 mb-3 sm:mb-5">
           <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-lg sm:text-xl" aria-hidden="true">✏️</span>
           <p className="text-sm font-bold uppercase tracking-widest text-slate-600">Your Writing Topic</p>
         </div>
         <SelectableContent activityType="writing-prompt" themeId={themeId} level={level} label="Writing Prompt">
-          <p className="font-serif text-xl sm:text-[28px] text-slate-900 mb-5 sm:mb-8 leading-snug">{lesson.writing.prompt}</p>
+          <p className="font-serif text-[18px] sm:text-[28px] text-slate-900 mb-4 sm:mb-8 leading-relaxed sm:leading-snug">{lesson.writing.prompt}</p>
         </SelectableContent>
 
         <WritingTutor
