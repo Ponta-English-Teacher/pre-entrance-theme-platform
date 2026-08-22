@@ -192,9 +192,9 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
         ref={textareaRef}
         value={draftText}
         onChange={e => setDraftText(e.target.value)}
-        rows={8}
+        rows={5}
         placeholder="Write your answer here..."
-        className="w-full bg-white rounded-md border border-slate-300 p-5 text-base text-slate-900 leading-relaxed mb-3 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
+        className="w-full bg-white rounded-md border border-slate-300 p-4 sm:p-5 text-base text-slate-900 leading-relaxed mb-3 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-400"
       />
 
       {/* Live progress — THEME_EXPERIENCE_TEMPLATE.md §9 permanent rule.

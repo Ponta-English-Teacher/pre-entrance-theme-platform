@@ -27,9 +27,9 @@ export default function PortfolioPage() {
     .filter(g => g.items.length > 0);
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-      <h1 className="text-3xl font-bold text-slate-900 mb-2">My Portfolio</h1>
-      <p className="text-slate-500 text-sm mb-8">Your saved work across all themes and levels.</p>
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
+      <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 mb-2">My Portfolio</h1>
+      <p className="text-slate-500 text-sm mb-5 sm:mb-8">Your saved work across all themes and levels.</p>
 
       <div className="space-y-6">
 
@@ -39,7 +39,7 @@ export default function PortfolioPage() {
             separately, unchanged, so the two can be compared directly
             while both exist side by side). */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex items-center gap-3">
             <span className="text-xl">📓</span>
             <div>
               <h2 className="font-bold text-slate-900">My English Notebook</h2>
@@ -63,7 +63,7 @@ export default function PortfolioPage() {
                 .filter(g => g.items.length > 0);
 
               return (
-                <div key={section.id} className="px-6 py-4">
+                <div key={section.id} className="px-4 sm:px-6 py-4">
                   <div className="flex items-center gap-2 mb-3">
                     <span className="text-sm" aria-hidden="true">{section.icon}</span>
                     <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">
@@ -105,7 +105,7 @@ export default function PortfolioPage() {
             existing features; this keeps working exactly as it does today,
             still reading and writing its own separate storage key). */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex items-center gap-3">
             <span className="text-xl">📖</span>
             <div>
               <h2 className="font-bold text-slate-900">Vocabulary Glossary</h2>
@@ -119,7 +119,7 @@ export default function PortfolioPage() {
           </div>
 
           {glossary.length === 0 ? (
-            <div className="px-6 py-10 text-center">
+            <div className="px-4 sm:px-6 py-8 sm:py-10 text-center">
               <p className="text-sm text-slate-400">
                 Words you save during Vocabulary activities will appear here.
               </p>
@@ -127,7 +127,7 @@ export default function PortfolioPage() {
           ) : (
             <div className="divide-y divide-slate-100">
               {grouped.map(({ theme, items }) => (
-                <div key={theme.id} className="px-6 py-4">
+                <div key={theme.id} className="px-4 sm:px-6 py-4">
                   <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider mb-3">
                     {theme.title}
                   </h3>
@@ -155,28 +155,28 @@ export default function PortfolioPage() {
 
         {/* Writing Samples — placeholder */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex items-center gap-3">
             <span className="text-xl">✏️</span>
             <div>
               <h2 className="font-bold text-slate-900">Writing Samples</h2>
               <p className="text-xs text-slate-400">作文サンプル</p>
             </div>
           </div>
-          <div className="px-6 py-10 text-center">
+          <div className="px-4 sm:px-6 py-8 sm:py-10 text-center">
             <p className="text-sm text-slate-400">Writing samples you save will appear here.</p>
           </div>
         </div>
 
         {/* Speaking Records — placeholder */}
         <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-          <div className="px-6 py-4 border-b border-slate-100 flex items-center gap-3">
+          <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex items-center gap-3">
             <span className="text-xl">🎙️</span>
             <div>
               <h2 className="font-bold text-slate-900">Speaking Records</h2>
               <p className="text-xs text-slate-400">録音記録</p>
             </div>
           </div>
-          <div className="px-6 py-10 text-center">
+          <div className="px-4 sm:px-6 py-8 sm:py-10 text-center">
             <p className="text-sm text-slate-400">Your speaking recordings will appear here.</p>
           </div>
         </div>

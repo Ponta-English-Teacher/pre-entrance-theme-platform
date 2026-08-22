@@ -29,23 +29,29 @@ export default async function ThemeDetailPage({
 
   return (
     <div>
-      {/* Banner */}
-      <div className={`${c.bg} text-white`}>
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
-          <Link href="/themes" className="text-white/70 hover:text-white text-sm mb-5 inline-block transition-colors">
+      {/* Banner — a thin theme-color accent bar plus a light background,
+          not a saturated full-bleed color block. Matches ThemeCard's own
+          thin `h-2` color-bar treatment, so theme identity stays
+          recognizable via color used selectively (bar + badge) rather than
+          a large colored area consuming vertical space, especially on
+          mobile. */}
+      <div className={`h-1.5 ${c.bg}`} />
+      <div className="bg-white border-b border-slate-200">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-10">
+          <Link href="/themes" className="text-slate-400 hover:text-slate-600 text-xs sm:text-sm mb-2 sm:mb-5 inline-block transition-colors">
             ← All Themes
           </Link>
-          <span className={`block w-fit px-3 py-1 rounded-full text-sm font-semibold mb-3 ${c.tag}`}>
+          <span className={`block w-fit px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full text-xs sm:text-sm font-semibold mb-2 sm:mb-3 ${c.tag}`}>
             {theme.titleJapanese}
           </span>
-          <h1 className="text-3xl sm:text-4xl font-bold mb-3">{theme.title}</h1>
-          <p className="text-white/80 text-base leading-relaxed max-w-xl">{theme.description}</p>
-          <p className="text-white/60 text-sm mt-2 max-w-xl">{theme.descriptionJapanese}</p>
+          <h1 className="text-2xl sm:text-4xl font-bold text-slate-900 mb-1.5 sm:mb-3">{theme.title}</h1>
+          <p className="text-slate-600 text-sm sm:text-base leading-relaxed max-w-xl">{theme.description}</p>
+          <p className="text-slate-400 text-xs sm:text-sm mt-1 sm:mt-2 max-w-xl">{theme.descriptionJapanese}</p>
         </div>
       </div>
 
       {/* Level picker */}
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 py-6 sm:py-10">
         <LevelPicker themeId={theme.id} slug={slug} />
       </div>
     </div>

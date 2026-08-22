@@ -51,7 +51,7 @@ export default function LevelPicker({ themeId, slug }: { themeId: string; slug: 
             <button
               key={info.level}
               onClick={() => handleChoose(info.level)}
-              className={`group text-left bg-white rounded-2xl border-2 p-6 transition-all hover:shadow-md w-full ${
+              className={`group text-left bg-white rounded-2xl border-2 p-5 sm:p-6 transition-all hover:shadow-md w-full ${
                 isSelected ? SELECTED[info.level] : BORDER[info.level]
               }`}
             >

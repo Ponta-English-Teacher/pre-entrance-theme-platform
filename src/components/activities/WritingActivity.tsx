@@ -124,13 +124,13 @@ export default function WritingActivity({
       {/* 1–3: Topic, writing area, and Get Feedback all live inside the
           untouched WritingTutor component — kept together since they're one
           continuous task. Only the surrounding card/typography is new. */}
-      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10">
-        <div className="flex items-center gap-3 mb-5">
-          <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-xl" aria-hidden="true">✏️</span>
+      <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-10">
+        <div className="flex items-center gap-3 mb-4 sm:mb-5">
+          <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-lg sm:text-xl" aria-hidden="true">✏️</span>
           <p className="text-sm font-bold uppercase tracking-widest text-slate-600">Your Writing Topic</p>
         </div>
         <SelectableContent activityType="writing-prompt" themeId={themeId} level={level} label="Writing Prompt">
-          <p className="font-serif text-[26px] sm:text-[28px] text-slate-900 mb-8 leading-snug">{lesson.writing.prompt}</p>
+          <p className="font-serif text-xl sm:text-[28px] text-slate-900 mb-5 sm:mb-8 leading-snug">{lesson.writing.prompt}</p>
         </SelectableContent>
 
         <WritingTutor
@@ -195,7 +195,7 @@ export default function WritingActivity({
 
       {/* 5: Review / Progress — relocated intact from Reading, unchanged
           content, restyled to match the page's new visual language. */}
-      <div className="bg-white rounded-3xl border border-purple-100 shadow-sm p-6 sm:p-10">
+      <div className="bg-white rounded-3xl border border-purple-100 shadow-sm p-5 sm:p-10">
         <div className="flex items-center gap-2 mb-5">
           <span className="text-xl" aria-hidden="true">🏆</span>
           <h2 className="text-xl sm:text-2xl font-bold text-slate-900 tracking-tight">Review</h2>
@@ -231,7 +231,7 @@ export default function WritingActivity({
 
         <div className="mt-8 pt-6 border-t border-purple-100 text-center">
           <SelectableContent activityType="review" themeId={themeId} level={level} label="Takeaway">
-            <p className="font-serif text-[22px] text-slate-800 italic leading-relaxed">&ldquo;{lesson.takeaway}&rdquo;</p>
+            <p className="font-serif text-lg sm:text-[22px] text-slate-800 italic leading-relaxed">&ldquo;{lesson.takeaway}&rdquo;</p>
           </SelectableContent>
         </div>
       </div>
@@ -259,26 +259,26 @@ export default function WritingActivity({
  *  same behavior, just reached from Writing now instead of Reading. */
 function ContinueScreen({ themeId, level, backHref }: { themeId: string; level: string; backHref: string }) {
   return (
-    <div className="max-w-2xl mx-auto py-8 text-center">
-      <div className="bg-gradient-to-b from-indigo-50 to-white border border-indigo-100 rounded-3xl shadow-sm px-8 py-14 sm:py-16">
+    <div className="max-w-2xl mx-auto py-4 sm:py-8 text-center px-4">
+      <div className="bg-gradient-to-b from-indigo-50 to-white border border-indigo-100 rounded-3xl shadow-sm px-5 py-8 sm:px-8 sm:py-16">
         <div
-          className="mx-auto mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-emerald-100 text-3xl text-emerald-600"
+          className="mx-auto mb-4 sm:mb-6 flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-full bg-emerald-100 text-2xl sm:text-3xl text-emerald-600"
           aria-hidden="true"
         >
           ✓
         </div>
-        <p className="font-serif text-[28px] sm:text-[32px] text-slate-900 leading-relaxed mb-1">You&rsquo;ve thought about this topic.</p>
-        <p className="font-serif text-[28px] sm:text-[32px] text-slate-900 leading-relaxed mb-10">Now let&rsquo;s talk about it.</p>
+        <p className="font-serif text-xl sm:text-[32px] text-slate-900 leading-relaxed mb-1">You&rsquo;ve thought about this topic.</p>
+        <p className="font-serif text-xl sm:text-[32px] text-slate-900 leading-relaxed mb-6 sm:mb-10">Now let&rsquo;s talk about it.</p>
         <div className="flex flex-col sm:flex-row gap-3 justify-center">
           <Link
             href={`/themes/${themeId}/${level}/ai-talk`}
-            className="px-6 py-3.5 rounded-2xl font-bold text-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-colors"
+            className="px-6 py-3 sm:py-3.5 rounded-2xl font-bold text-base sm:text-lg bg-indigo-600 hover:bg-indigo-700 text-white shadow-sm transition-colors"
           >
             Continue to AI Talk
           </Link>
           <Link
             href={backHref}
-            className="px-6 py-3.5 rounded-2xl font-bold text-lg bg-white border border-slate-200 text-slate-700 hover:border-indigo-300 transition-colors"
+            className="px-6 py-3 sm:py-3.5 rounded-2xl font-bold text-base sm:text-lg bg-white border border-slate-200 text-slate-700 hover:border-indigo-300 transition-colors"
           >
             Back to Activities
           </Link>

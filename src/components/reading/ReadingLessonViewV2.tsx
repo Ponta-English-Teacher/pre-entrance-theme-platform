@@ -299,7 +299,7 @@ export default function ReadingLessonViewV2({
           <div className="bg-emerald-50/80 border border-emerald-100 rounded-3xl p-3 sm:p-5 shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 items-start">
               {/* Understanding (formerly "Task 1") */}
-              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex flex-col">
+              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-4 sm:p-5 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Step 1</span>
                   <span className="inline-block px-2.5 py-1 rounded-full text-[13px] font-bold bg-emerald-50 text-emerald-700">
@@ -308,9 +308,9 @@ export default function ReadingLessonViewV2({
                 </div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Choose the Answer">
-                  <p className="text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.question}</p>
+                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.question}</p>
                 </SelectableContent>
-                <p className="text-[15px] font-semibold text-emerald-700 mb-5">Choose ONE answer.</p>
+                <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose ONE answer.</p>
                 <div className="flex flex-col gap-2">
                   {lesson.missionCheck.options.map(opt => {
                     const isSelected = missionCheckAnswer === opt.id;
@@ -330,7 +330,7 @@ export default function ReadingLessonViewV2({
                           e.preventDefault();
                           handleMissionCheckAnswer(opt.id);
                         }}
-                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-base sm:text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-700 hover:border-emerald-300'
                             : opt.correct
@@ -349,7 +349,7 @@ export default function ReadingLessonViewV2({
               </div>
 
               {/* Supporting Evidence (formerly "Task 2") */}
-              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex flex-col">
+              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-4 sm:p-5 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Step 2</span>
                   <span className="inline-block px-2.5 py-1 rounded-full text-[13px] font-bold bg-emerald-50 text-emerald-700">
@@ -358,9 +358,9 @@ export default function ReadingLessonViewV2({
                 </div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Supporting Evidence">
-                  <p className="text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.evidencePrompt}</p>
+                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.evidencePrompt}</p>
                 </SelectableContent>
-                <p className="text-[15px] font-semibold text-emerald-700 mb-5">Choose the BEST supporting evidence.</p>
+                <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose the BEST supporting evidence.</p>
                 <div className="flex flex-col gap-2">
                   {lesson.missionCheck.evidenceOptions.map(opt => {
                     const paraNum = lesson.paragraphs.findIndex(p => p.id === opt.paragraphId) + 1;
@@ -381,7 +381,7 @@ export default function ReadingLessonViewV2({
                           e.preventDefault();
                           handleEvidenceChoice(opt.id);
                         }}
-                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-base sm:text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-600 hover:border-emerald-300'
                             : opt.correct
@@ -401,7 +401,7 @@ export default function ReadingLessonViewV2({
               </div>
 
               {/* Vocabulary in Context (formerly "Task 3") */}
-              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-5 flex flex-col">
+              <div className="bg-white rounded-2xl border border-emerald-100 shadow-sm p-4 sm:p-5 flex flex-col">
                 <div className="flex items-center gap-2 mb-4">
                   <span className="text-[10px] font-bold uppercase tracking-wider text-emerald-400">Step 3</span>
                   <span className="inline-block px-2.5 py-1 rounded-full text-[13px] font-bold bg-emerald-50 text-emerald-700">
@@ -415,9 +415,9 @@ export default function ReadingLessonViewV2({
                 </SelectableContent>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Vocabulary in Context">
-                  <p className="text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.vocabInContext.question}</p>
+                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.vocabInContext.question}</p>
                 </SelectableContent>
-                <p className="text-[15px] font-semibold text-emerald-700 mb-5">Choose the correct meaning.</p>
+                <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose the correct meaning.</p>
                 <div className="flex flex-col gap-2">
                   {lesson.missionCheck.vocabInContext.options.map(opt => {
                     const isSelected = vocabInContextAnswer === opt.id;
@@ -437,7 +437,7 @@ export default function ReadingLessonViewV2({
                           e.preventDefault();
                           handleVocabInContextAnswer(opt.id);
                         }}
-                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-[22px] leading-snug transition-colors ${
+                        className={`cursor-pointer text-left px-4 py-3 rounded-xl border text-base sm:text-[22px] leading-snug transition-colors ${
                           !isSelected
                             ? 'bg-white border-slate-200 text-slate-700 hover:border-emerald-300'
                             : opt.correct
@@ -489,7 +489,7 @@ const CARD_TONE: Record<string, string> = {
 };
 
 function Card({ tone, className = '', children }: { tone: keyof typeof CARD_TONE; className?: string; children: React.ReactNode }) {
-  return <div className={`${CARD_TONE[tone]} border rounded-3xl shadow-sm p-6 sm:p-8 ${className}`}>{children}</div>;
+  return <div className={`${CARD_TONE[tone]} border rounded-3xl shadow-sm p-4 sm:p-8 ${className}`}>{children}</div>;
 }
 
 /** Immediate correct/incorrect feedback for a Mission Check task, shown right under its
@@ -509,11 +509,11 @@ const HEADING_TONE: Record<string, string> = {
 
 function CardHeading({ icon, tone, title }: { icon: string; tone: keyof typeof HEADING_TONE; title: string }) {
   return (
-    <div className="flex items-center gap-3 mb-4">
-      <span className={`flex h-10 w-10 items-center justify-center rounded-full text-xl ${HEADING_TONE[tone]}`} aria-hidden="true">
+    <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
+      <span className={`flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-full text-lg sm:text-xl ${HEADING_TONE[tone]}`} aria-hidden="true">
         {icon}
       </span>
-      <h2 className="text-[32px] font-bold text-slate-900 tracking-tight leading-tight">{title}</h2>
+      <h2 className="text-xl sm:text-[32px] font-bold text-slate-900 tracking-tight leading-tight">{title}</h2>
     </div>
   );
 }

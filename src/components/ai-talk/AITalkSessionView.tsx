@@ -79,10 +79,10 @@ export default function AITalkSessionView({
   }
 
   return (
-    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-2xl mx-auto px-4 sm:px-6 py-4 sm:py-10">
       <div className="flex items-start justify-between gap-4 mb-2">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">AI Talk</h1>
+          <h1 className="text-xl sm:text-2xl font-bold text-slate-900">AI Talk</h1>
           <p className="text-sm font-medium text-indigo-600">{themeTitle}</p>
         </div>
         <Link
@@ -92,7 +92,7 @@ export default function AITalkSessionView({
           ✕ Exit
         </Link>
       </div>
-      <p className="text-slate-600 text-sm mb-8">
+      <p className="text-slate-600 text-sm mb-4 sm:mb-8">
         Let&rsquo;s talk about who you&rsquo;re becoming — there&rsquo;s no right or wrong answer here.
       </p>
 

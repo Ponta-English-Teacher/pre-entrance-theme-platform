@@ -33,7 +33,7 @@ export default function NoticeLanguageSection({
       </p>
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
         {activities.map((activity, i) => (
-          <div key={i} className="bg-white rounded-2xl border border-yellow-100 shadow-sm p-5">
+          <div key={i} className="bg-white rounded-2xl border border-yellow-100 shadow-sm p-4 sm:p-5">
             <p className="text-sm font-bold uppercase tracking-wide text-yellow-800 mb-2">
               {LABELS[activity.type]}
             </p>

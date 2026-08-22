@@ -82,14 +82,14 @@ export default function TranscriptTurn({
   }
 
   return (
-    <div className="py-4 border-b border-slate-100 last:border-b-0">
+    <div className="py-3 sm:py-4 border-b border-slate-100 last:border-b-0">
       <p className="text-[10px] font-bold uppercase tracking-widest text-slate-400 mb-1.5">
         {isPartner ? 'Partner' : 'You'}
       </p>
       <div className="flex items-start gap-3">
         <p
           data-turn-role={turn.role}
-          className="flex-1 font-serif text-[1.05rem] leading-[1.8] text-slate-900 whitespace-pre-line"
+          className="flex-1 font-serif text-base sm:text-[1.05rem] leading-relaxed sm:leading-[1.8] text-slate-900 whitespace-pre-line"
         >
           {mainText}
         </p>

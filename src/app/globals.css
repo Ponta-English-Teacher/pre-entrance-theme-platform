@@ -3,3 +3,14 @@
 @theme inline {
   --font-sans: var(--font-geist-sans);
 }
+
+/* iOS Safari can automatically inflate rendered font size ("text
+ * autosizing") on narrow text columns, independent of any CSS font-size —
+ * a real iPhone can render text noticeably larger than what devtools/
+ * headless testing ever shows for the same markup. This is the standard,
+ * minimal fix (disables that heuristic; all sizing stays fully controlled
+ * by our own responsive Tailwind classes). */
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}

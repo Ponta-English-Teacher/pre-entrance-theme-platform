@@ -32,9 +32,9 @@ export default async function ActivityPlayerPage({
   const activity = ACTIVITY_DEFS.find(a => a.type === type)!;
 
   return (
-    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+    <div className="max-w-5xl mx-auto px-4 sm:px-6 py-4 sm:py-10">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-sm text-slate-400 mb-6 flex-wrap">
+      <nav className="flex items-center gap-2 text-xs sm:text-sm text-slate-400 mb-3 sm:mb-6 flex-wrap">
         <Link href="/themes" className="hover:text-slate-600 transition-colors">Themes</Link>
         <span>›</span>
         <Link href={`/themes/${slug}`} className="hover:text-slate-600 transition-colors">{theme.title}</Link>
@@ -45,14 +45,14 @@ export default async function ActivityPlayerPage({
       </nav>
 
       {/* Activity header */}
-      <div className="flex items-start gap-4 mb-8">
-        <span className="text-3xl">{activity.icon}</span>
+      <div className="flex items-start gap-3 sm:gap-4 mb-4 sm:mb-8">
+        <span className="text-2xl sm:text-3xl">{activity.icon}</span>
         <div>
           <div className="flex items-center gap-2 mb-1 flex-wrap">
-            <h1 className="text-2xl font-bold text-slate-900">{activity.label}</h1>
+            <h1 className="text-xl sm:text-2xl font-bold text-slate-900">{activity.label}</h1>
             <LevelBadge level={level} />
           </div>
-          <p className="text-slate-500 text-sm">
+          <p className="text-slate-500 text-xs sm:text-sm">
             {theme.title} · {activity.labelJapanese} · {activity.estimatedMinutes} min
           </p>
         </div>

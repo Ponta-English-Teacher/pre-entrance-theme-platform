@@ -391,7 +391,7 @@ export default function AIPartnerConversation({
         }}
       />
 
-      <div ref={transcriptRef} className="border border-slate-300 rounded-lg bg-white px-5 py-6 sm:px-8 sm:py-8 mb-4">
+      <div ref={transcriptRef} className="border border-slate-300 rounded-lg bg-white px-4 py-4 sm:px-8 sm:py-8 mb-4">
         {turns.map(turn => (
           <TranscriptTurn
             key={turn.id}

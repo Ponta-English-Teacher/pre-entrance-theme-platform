@@ -78,18 +78,18 @@ export default function WritingToolbox({
   }
 
   return (
-    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-6 sm:p-10">
+    <div className="bg-white rounded-3xl border border-slate-200 shadow-sm p-5 sm:p-10">
       {/* Header */}
       <div className="flex items-center gap-3 mb-1">
-        <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-xl" aria-hidden="true">
+        <span className="flex h-9 w-9 sm:h-10 sm:w-10 shrink-0 items-center justify-center rounded-full bg-indigo-50 text-lg sm:text-xl" aria-hidden="true">
           🧰
         </span>
-        <h2 className="text-2xl sm:text-[26px] font-bold text-slate-900 tracking-tight leading-tight">Writing Toolbox</h2>
+        <h2 className="text-xl sm:text-[26px] font-bold text-slate-900 tracking-tight leading-tight">Writing Toolbox</h2>
       </div>
-      <p className="text-base leading-[1.5] text-slate-400 mb-6 ml-[52px]">Everything you need to write your answer</p>
+      <p className="text-base leading-[1.5] text-slate-400 mb-5 sm:mb-6 ml-[48px] sm:ml-[52px]">Everything you need to write your answer</p>
 
       {/* Discoverability hint */}
-      <div className="mb-9 flex items-start gap-2.5 rounded-2xl border border-indigo-100 bg-indigo-50/50 px-4 py-3.5">
+      <div className="mb-6 sm:mb-9 flex items-start gap-2.5 rounded-2xl border border-indigo-100 bg-indigo-50/50 px-4 py-3.5">
         <span aria-hidden="true">💡</span>
         <p className="text-base leading-[1.5]">
           <span className="text-slate-700">Click any word or phrase below to insert it into your writing.</span>
@@ -101,7 +101,7 @@ export default function WritingToolbox({
       {/* Sentence Starters — writing blocks, not chips: students read these
           carefully while writing, so they need real reading weight. */}
       {sentenceStarters && sentenceStarters.length > 0 && (
-        <div className="mb-9">
+        <div className="mb-6 sm:mb-9">
           <p className="text-base font-bold text-slate-600 uppercase tracking-widest mb-3">Sentence Starters</p>
           <div className="grid gap-2.5 sm:grid-cols-2">
             {sentenceStarters.map(starter => {
@@ -134,7 +134,7 @@ export default function WritingToolbox({
           Word/gloss deliberately stay at 14px (not the 16px "learning content"
           floor) — they remain secondary to the example sentence, per explicit
           design intent, while still being comfortably readable. */}
-      <div className="mb-9">
+      <div className="mb-6 sm:mb-9">
         <p className="text-base font-bold text-slate-600 uppercase tracking-widest mb-3">Word Bank</p>
         <div className="grid gap-3 sm:grid-cols-2">
           {wordBank.map(entry => {
