@@ -17,6 +17,18 @@
 -- structure) so a pesm.profiles row is created automatically on signup —
 -- this is the official Supabase pattern for a "profiles" table, not a
 -- deviation from it.
+--
+-- THIS IS A SHARED, DEPARTMENT-WIDE SUPABASE PROJECT — confirmed by a
+-- manual read-only audit (see docs/PESM_SUPABASE_ARCHITECTURE.md) — used
+-- by at least one other departmental application through the same
+-- auth.users table. Because of that, the auth.users trigger below is NOT
+-- an unconditional "create a profile for every new user" trigger: it
+-- creates a pesm.profiles row ONLY for signups explicitly tagged as PESM's
+-- own (raw_user_meta_data ->> 'app' = 'pesm'), and does nothing at all —
+-- no insert, no error, no side effect — for every other auth.users row,
+-- including the other application's users. See the function body below
+-- for the full reasoning, including why this marker is a routing signal
+-- only and never an authorization decision.
 
 
 -- ── Schema ───────────────────────────────────────────────────────────────
@@ -75,27 +87,44 @@ create trigger set_profiles_updated_at
   execute function pesm.set_updated_at();
 
 
--- ── Automatic profile creation on signup ────────────────────────────────
+-- ── Automatic profile creation on signup (PESM users only) ──────────────
 -- SECURITY DEFINER is required here: this function must be able to insert
 -- into pesm.profiles on behalf of a brand-new auth.users row, before that
 -- user has any privileges of their own (they don't have a session yet).
 --
--- Two things make this safe rather than a privilege-escalation risk:
+-- Three things make this safe rather than a privilege-escalation or
+-- shared-project risk:
 --   1. `set search_path = ''` plus fully-qualifying every reference
 --      (`pesm.profiles`, not `profiles`) closes the classic SECURITY
 --      DEFINER hijack: without a locked-down search_path, a caller could
 --      create an object earlier in the resolution path to shadow an
 --      unqualified name and have this function operate on it instead.
---   2. `role` is hardcoded to the literal 'student' — never read from
---      raw_user_meta_data or any other client-supplied value — so there is
---      no metadata field a signup request could set to grant itself the
---      teacher role. full_name/high_school_name ARE read from metadata
---      (populated by the signup form via supabase.auth.signUp's
---      `options.data`), since those are ordinary profile fields with no
---      privilege implications.
+--   2. THIS TRIGGER FIRES FOR EVERY NEW ROW IN auth.users PROJECT-WIDE —
+--      confirmed by manual audit that this project already serves at
+--      least one other departmental application through the same
+--      auth.users table. The very first thing this function does is check
+--      raw_user_meta_data ->> 'app' = 'pesm' and, if it doesn't match,
+--      `return new;` immediately — no insert, no error, no side effect of
+--      any kind. Every signup that isn't explicitly PESM's own (including
+--      every existing and future user of the other application) passes
+--      through completely untouched. This marker is set by PESM's own
+--      signup call (supabase.auth.signUp's `options.data.app = 'pesm'`,
+--      documented in docs/PESM_SUPABASE_ARCHITECTURE.md) — nothing else on
+--      this shared project has any reason to ever set it.
+--   3. That 'app' marker is a ROUTING signal only — "should this function
+--      do anything at all" — never an AUTHORIZATION decision. `role` is
+--      still hardcoded to the literal 'student' immediately below,
+--      regardless of anything in raw_user_meta_data. A client can influence
+--      *whether* a pesm.profiles row is created (by claiming to be a PESM
+--      signup) but can never influence *what privilege* that row gets —
+--      there is no metadata field, PESM or otherwise, that this function
+--      reads to decide role. raw_user_meta_data is never trusted for
+--      authorization, only ever for this narrow "is this us" routing check
+--      and for the two harmless profile fields below.
 --
--- coalesce(...,'') guards against the NOT NULL constraint if metadata is
--- ever missing/malformed — defensive, not expected in normal use.
+-- coalesce(...,'') guards against the NOT NULL constraint if full_name/
+-- high_school_name are ever missing/malformed on a genuine PESM signup —
+-- defensive, not expected in normal use.
 create function pesm.handle_new_user()
 returns trigger
 language plpgsql
@@ -103,6 +132,13 @@ security definer
 set search_path = ''
 as $$
 begin
+  -- Not a PESM signup (the other departmental app, or anything else on
+  -- this shared project) — do nothing at all and let auth.users' own
+  -- insert proceed exactly as it would with no PESM trigger present.
+  if new.raw_user_meta_data ->> 'app' is distinct from 'pesm' then
+    return new;
+  end if;
+
   insert into pesm.profiles (id, full_name, high_school_name, role)
   values (
     new.id,
@@ -115,9 +151,14 @@ end;
 $$;
 
 -- Attaches to auth.users without altering its structure — see the note at
--- the top of this file. This is the ONLY way a pesm.profiles row is ever
+-- the top of this file. Safe to coexist with any trigger the other
+-- departmental application may already have (Postgres fires every trigger
+-- matching an event; distinct trigger names never conflict) — confirmed by
+-- manual audit that no existing trigger currently exists on auth.users in
+-- this project at all. This is the ONLY way a pesm.profiles row is ever
 -- created; there is deliberately no INSERT grant/policy for `authenticated`
--- below, so a client can never create or backdate its own profile row.
+-- below, so a client can never create or backdate its own profile row
+-- directly, only ever through this app-marker-gated trigger.
 create trigger on_auth_user_created
   after insert on auth.users
   for each row
