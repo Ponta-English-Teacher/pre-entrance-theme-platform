@@ -123,11 +123,33 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
       const el = textareaRef.current;
       const start = el?.selectionStart ?? draftText.length;
       const end = el?.selectionEnd ?? draftText.length;
-      const next = draftText.slice(0, start) + fragment + draftText.slice(end);
+
+      // Word Bank / useful-expression scaffolds ("My personality is...",
+      // "I am ready to...") use a trailing "..." only as a visual "finish
+      // this sentence" cue on the Toolbox card. Inserted verbatim it becomes
+      // literal ellipsis characters glued to whatever the student types
+      // next, which reads (and edits) like a broken placeholder rather than
+      // normal text. Convert it to a plain trailing space instead, so the
+      // result is an ordinary, freely editable, continuable sentence — the
+      // source data itself is untouched; this only affects what lands in
+      // the textarea.
+      let clean = fragment.trim();
+      if (clean.endsWith('...')) clean = `${clean.slice(0, -3).trimEnd()} `;
+
+      const before = draftText.slice(0, start);
+      const after = draftText.slice(end);
+
+      // Sensible spacing only where actually needed, on either side of the
+      // insertion point — existing text is never altered.
+      const needsLeadingSpace = before.length > 0 && !/\s$/.test(before) && !/^\s/.test(clean);
+      const needsTrailingSpace = after.length > 0 && !/\s$/.test(clean) && !/^\s/.test(after);
+      const insertion = `${needsLeadingSpace ? ' ' : ''}${clean}${needsTrailingSpace ? ' ' : ''}`;
+
+      const next = before + insertion + after;
       setDraftText(next);
       requestAnimationFrame(() => {
         el?.focus();
-        const cursor = start + fragment.length;
+        const cursor = start + insertion.length;
         el?.setSelectionRange(cursor, cursor);
       });
     },

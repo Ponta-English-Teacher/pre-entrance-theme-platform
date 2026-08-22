@@ -112,8 +112,8 @@ export default function WritingToolbox({
                   key={starter}
                   role="button"
                   tabIndex={0}
-                  onClick={e => handleItemClick(e, key, starter + ' ')}
-                  onKeyDown={e => handleItemKeyDown(e, key, starter + ' ')}
+                  onClick={e => handleItemClick(e, key, starter)}
+                  onKeyDown={e => handleItemKeyDown(e, key, starter)}
                   className="text-left px-4 py-4 rounded-xl border border-slate-200 bg-white cursor-pointer transition-all hover:border-indigo-300 hover:bg-indigo-50/40 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
                 >
                   {inserted ? (
@@ -231,8 +231,8 @@ export default function WritingToolbox({
                 key={expr.phrase}
                 role="button"
                 tabIndex={0}
-                onClick={e => handleItemClick(e, key, expr.phrase + ' ')}
-                onKeyDown={e => handleItemKeyDown(e, key, expr.phrase + ' ')}
+                onClick={e => handleItemClick(e, key, expr.phrase)}
+                onKeyDown={e => handleItemKeyDown(e, key, expr.phrase)}
                 className="text-left px-4 py-3.5 rounded-xl border border-slate-200 bg-white cursor-pointer transition-all hover:border-indigo-300 hover:bg-indigo-50/40 active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-indigo-400 focus-visible:ring-offset-2"
               >
                 {inserted ? (
