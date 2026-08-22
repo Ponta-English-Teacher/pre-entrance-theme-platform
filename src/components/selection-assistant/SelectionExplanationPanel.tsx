@@ -335,7 +335,7 @@ export default function SelectionExplanationPanel({
               level={selection?.scope.level}
               label={`${actionMeta?.label ?? 'Explanation'} — result`}
             >
-              <p className="text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
+              <p className="text-base sm:text-lg leading-relaxed text-slate-800">{panel.explanation}</p>
             </SelectableContent>
           </div>
         )}

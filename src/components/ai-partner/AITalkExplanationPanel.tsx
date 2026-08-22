@@ -155,7 +155,7 @@ export default function AITalkExplanationPanel({
           // data-ai-talk-selectable: read by AIPartnerConversation's selection
           // listener so selecting text in here (not just in a partner turn)
           // still invokes the toolbar — enables recursive lookups.
-          <p data-ai-talk-selectable className="text-lg leading-relaxed text-slate-800">{panel.text}</p>
+          <p data-ai-talk-selectable className="text-base sm:text-lg leading-relaxed text-slate-800">{panel.text}</p>
         )}
         {canSave && (
           <div className="mt-3 flex justify-end">

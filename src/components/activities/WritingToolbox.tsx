@@ -152,7 +152,7 @@ export default function WritingToolbox({
                 className="text-left rounded-2xl border border-slate-200 bg-white px-5 py-4 cursor-pointer transition-all hover:border-indigo-300 hover:shadow-md hover:-translate-y-0.5 active:scale-[0.98] active:transition-none"
               >
                 <SelectableContent activityType="writing-toolbox" themeId={themeId} level={level} label="Word Bank">
-                  <p className="font-serif text-lg leading-[1.5] text-slate-900 mb-3">
+                  <p className="font-serif text-base sm:text-lg leading-[1.5] text-slate-900 mb-3">
                     {highlightWord(entry.examplePhrase, vocab.word)}
                   </p>
                 </SelectableContent>

@@ -130,7 +130,7 @@ export default function WritingActivity({
           <p className="text-sm font-bold uppercase tracking-widest text-slate-600">Your Writing Topic</p>
         </div>
         <SelectableContent activityType="writing-prompt" themeId={themeId} level={level} label="Writing Prompt">
-          <p className="font-serif text-[18px] sm:text-[28px] text-slate-900 mb-4 sm:mb-8 leading-relaxed sm:leading-snug">{lesson.writing.prompt}</p>
+          <p className="font-serif text-base sm:text-[28px] text-slate-900 mb-4 sm:mb-8 leading-relaxed sm:leading-snug">{lesson.writing.prompt}</p>
         </SelectableContent>
 
         <WritingTutor

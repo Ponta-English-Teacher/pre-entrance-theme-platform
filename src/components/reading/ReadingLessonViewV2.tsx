@@ -265,14 +265,14 @@ export default function ReadingLessonViewV2({
                       </span>
                     </div>
                     <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Reading Passage">
-                      {/* Re-tested on real mobile devices at 17px (down from
-                          20px): with a narrower font and the existing wide
-                          column, enough words fit per line for justified text
-                          to look natural — re-enabled on mobile. (At the
-                          earlier 20px size this produced large, uneven word
-                          gaps and was mobile-only left-aligned; that is no
-                          longer the case at this size.) */}
-                      <p className="font-serif text-[17px] sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-justify">
+                      {/* Mobile: normal body-text scale (16px), left-aligned.
+                          Passage text is no longer treated as special
+                          display typography on mobile — visual importance
+                          comes from the card/paragraph structure, not from
+                          an oversized font. Desktop keeps its larger,
+                          justified reading presentation, where the wider
+                          column has always made justification look natural. */}
+                      <p className="font-serif text-base sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-left sm:text-justify">
                         {readingMode === 'original' ? paragraph.english : paragraph.plainEnglish}
                       </p>
                     </SelectableContent>
@@ -309,7 +309,7 @@ export default function ReadingLessonViewV2({
                 </div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Choose the Answer">
-                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.question}</p>
+                  <p className="text-base sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.question}</p>
                 </SelectableContent>
                 <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose ONE answer.</p>
                 <div className="flex flex-col gap-2">
@@ -359,7 +359,7 @@ export default function ReadingLessonViewV2({
                 </div>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Supporting Evidence">
-                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.evidencePrompt}</p>
+                  <p className="text-base sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.evidencePrompt}</p>
                 </SelectableContent>
                 <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose the BEST supporting evidence.</p>
                 <div className="flex flex-col gap-2">
@@ -416,7 +416,7 @@ export default function ReadingLessonViewV2({
                 </SelectableContent>
                 <p className="text-[11px] font-bold uppercase tracking-widest text-slate-400 mb-1">❓ Question</p>
                 <SelectableContent activityType="mission-check" themeId={themeId} level={lesson.level} label="Mission Check — Vocabulary in Context">
-                  <p className="text-lg sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.vocabInContext.question}</p>
+                  <p className="text-base sm:text-[26px] font-bold text-slate-900 mb-2 leading-snug">{lesson.missionCheck.vocabInContext.question}</p>
                 </SelectableContent>
                 <p className="text-[15px] font-semibold text-emerald-700 mb-3 sm:mb-5">Choose the correct meaning.</p>
                 <div className="flex flex-col gap-2">

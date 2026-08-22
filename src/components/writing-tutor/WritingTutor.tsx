@@ -244,7 +244,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
                 <ul className="flex flex-col gap-3">
                   {feedback.corrections.map((c, i) => (
                     <li key={i}>
-                      <p className="font-serif text-lg">
+                      <p className="font-serif text-base sm:text-lg">
                         {diffWords(c.wrong, c.correct).map((seg, segIndex) => {
                           if (seg.type === 'delete') {
                             return (
@@ -277,7 +277,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
                     const key = `alt-${i}`;
                     return (
                       <li key={i}>
-                        <p className="font-serif italic text-slate-900">{a.phrase}</p>
+                        <p className="font-serif italic text-base sm:text-lg text-slate-900">{a.phrase}</p>
                         <p className="text-slate-600">{a.whyJa}</p>
                         <NotebookSaveButton
                           saved={savedKeys.has(key)}
@@ -292,7 +292,7 @@ const WritingTutor = forwardRef<WritingTutorHandle, WritingTutorProps>(function 
 
             {feedback.improvedVersion && (
               <FeedbackSection title="Improved Version" variant="primary">
-                <p className="font-serif text-lg text-slate-900">{feedback.improvedVersion}</p>
+                <p className="font-serif text-base sm:text-lg text-slate-900">{feedback.improvedVersion}</p>
                 <p className="text-sm text-slate-600 mt-2">{feedback.improvedVersionNoteJa}</p>
                 <NotebookSaveButton
                   saved={savedKeys.has('improved')}
