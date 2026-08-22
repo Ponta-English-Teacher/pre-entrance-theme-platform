@@ -1,40 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { getWordStatuses, setWordReviewStatus } from '@/lib/store';
-import { getSavedVocabulary, type SavedVocabEntry } from '@/lib/portfolio';
+import { setWordReviewStatus } from '@/lib/store';
+import { getThemeVocabulary, type SavedVocabEntry, type ReviewEntry } from '@/lib/portfolio';
 import { speakText } from '@/lib/speech';
-import { getVocabById, findVocabEntryByWord, type VocabEntry } from '@/data/vocabulary/masterVocabulary';
-import { THEMES } from '@/data/themes';
+import { findVocabEntryByWord, type VocabEntry } from '@/data/vocabulary/masterVocabulary';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
 import LevelBadge from '@/components/LevelBadge';
 import VocabDictionaryModal, { type VocabAnchorRect } from '@/components/activities/VocabDictionaryModal';
 import type { Level, WordReviewStatus } from '@/types';
 
-/**
- * "My Vocabulary" — a real review area, not a record of clicks. Reuses
- * existing infrastructure end to end rather than building anything
- * parallel: the same pronunciation endpoint VocabDictionaryModal already
- * calls (src/lib/speech.ts), and VocabDictionaryModal itself for the "full
- * word card" escalation (which already carries the Selection Assistant's
- * Translate/How to Read/Easy English support on any selected text inside
- * it — real AI help, with zero new backend work).
- */
-
-interface ReviewEntry {
-  id: string;
-  entry: VocabEntry;
-  status: WordReviewStatus;
-}
-
-function themeTitle(themeId: string): string {
-  return THEMES.find(t => t.id === themeId)?.title ?? themeId;
-}
-
-const SAVED_LIMIT = 5;
-const REVIEW_LIMIT = 8;
-
-export default function PortfolioVocabulary() {
+/** One theme's vocabulary — Saved and To Review, scoped entirely to this
+ *  theme (a word belonging to multiple themes appears under each one it's
+ *  actually associated with). Reuses the exact same VocabRow presentation
+ *  and TTS/full-card-escalation infrastructure as the earlier global My
+ *  Vocabulary section — only the data source is now theme-scoped. */
+export default function ThemeVocabularySection({ themeId }: { themeId: string }) {
   const [showAllSaved, setShowAllSaved] = useState(false);
   const [showAllReview, setShowAllReview] = useState(false);
   const [showKnown, setShowKnown] = useState(false);
@@ -42,34 +23,19 @@ export default function PortfolioVocabulary() {
   const [speaking, setSpeaking] = useState<string | null>(null);
   const [fullCard, setFullCard] = useState<{ entry: VocabEntry; themeId: string; level?: Level; anchorRect: VocabAnchorRect | null } | null>(null);
 
-  // Empty until mount, then populated — localStorage isn't available during
-  // server rendering (see PortfolioProgress.tsx for the same pattern).
   const [saved, setSaved] = useState<SavedVocabEntry[]>([]);
   const [toReview, setToReview] = useState<ReviewEntry[]>([]);
   const [known, setKnown] = useState<ReviewEntry[]>([]);
 
   function loadData() {
-    const savedList = getSavedVocabulary();
-    setSaved(savedList);
-
-    // Words already Saved carry a stronger, deliberate signal than merely
-    // having been opened — excluded here so the same word never appears
-    // under two different confidence levels at once.
-    const savedWordsLower = new Set(savedList.map(s => s.word.toLowerCase()));
-    const resolved: ReviewEntry[] = Object.entries(getWordStatuses())
-      .map(([id, status]) => ({ id, entry: getVocabById(id), status }))
-      .filter((x): x is ReviewEntry => !!x.entry)
-      .filter(x => !savedWordsLower.has(x.entry.word.toLowerCase()));
-
-    setToReview(resolved.filter(x => x.status !== 'known'));
-    setKnown(resolved.filter(x => x.status === 'known'));
+    const data = getThemeVocabulary(themeId);
+    setSaved(data.saved);
+    setToReview(data.toReview);
+    setKnown(data.known);
   }
-  useEffect(loadData, []);
+  useEffect(loadData, [themeId]);
 
   function toggleExpand(key: string, e: React.MouseEvent) {
-    // A drag-select or a multi-click (used to select a word) ending on this
-    // row shouldn't also toggle it — same guard already used for Mission
-    // Check's answer options and the Writing Toolbox's items.
     if (e.detail > 1 || window.getSelection()?.toString()) return;
     setExpanded(prev => {
       const next = new Set(prev);
@@ -90,38 +56,32 @@ export default function PortfolioVocabulary() {
     loadData();
   }
 
-  function openFullCardFromEntry(entry: VocabEntry, themeId: string, level: Level | undefined, e: React.MouseEvent) {
+  function openFullCardFromEntry(entry: VocabEntry, forThemeId: string, level: Level | undefined, e: React.MouseEvent) {
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
-    setFullCard({ entry, themeId, level, anchorRect: { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right } });
+    setFullCard({ entry, themeId: forThemeId, level, anchorRect: { top: rect.top, bottom: rect.bottom, left: rect.left, right: rect.right } });
   }
 
+  const SAVED_LIMIT = 5;
+  const REVIEW_LIMIT = 8;
   const visibleSaved = showAllSaved ? saved : saved.slice(0, SAVED_LIMIT);
   const visibleReview = showAllReview ? toReview : toReview.slice(0, REVIEW_LIMIT);
 
   return (
-    <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
-      <div className="px-4 sm:px-6 py-3 sm:py-4 border-b border-slate-100 flex items-center gap-3">
-        <span className="text-xl" aria-hidden="true">📖</span>
-        <div>
-          <h2 className="font-bold text-slate-900">My Vocabulary</h2>
-          <p className="text-xs text-slate-400">語彙</p>
-        </div>
-      </div>
-
+    <div className="space-y-4">
       {/* Saved */}
-      <div className="px-4 sm:px-6 py-4 border-b border-slate-100">
-        <div className="flex items-center gap-2 mb-3">
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">Saved</h3>
+      <div>
+        <div className="flex items-center gap-2 mb-2">
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">📖 Vocabulary — Saved</p>
           {saved.length > 0 && <span className="text-xs font-semibold text-slate-400">{saved.length}</span>}
         </div>
 
         {saved.length === 0 ? (
-          <p className="text-sm text-slate-400">Words you save during Vocabulary activities will appear here.</p>
+          <p className="text-sm text-slate-400">Words you save from this theme&rsquo;s Vocabulary activity will appear here.</p>
         ) : (
           <>
             <div className="grid gap-2 sm:grid-cols-2">
               {visibleSaved.map((s, i) => {
-                const key = `saved-${s.word}-${s.themeId}-${i}`;
+                const key = `saved-${s.word}-${i}`;
                 const resolvedEntry = findVocabEntryByWord(s.word);
                 return (
                   <VocabRow
@@ -130,7 +90,7 @@ export default function PortfolioVocabulary() {
                     japanese={s.japanese}
                     level={s.level}
                     themeId={s.themeId}
-                    metaLabel={`${themeTitle(s.themeId)} · saved ${new Date(s.savedDate).toLocaleDateString()}`}
+                    metaLabel={`saved ${new Date(s.savedDate).toLocaleDateString()}`}
                     definition={s.definition}
                     example={s.example}
                     expanded={expanded.has(key)}
@@ -138,9 +98,7 @@ export default function PortfolioVocabulary() {
                     onSpeak={() => handleSpeak(s.word, key)}
                     speaking={speaking === key}
                     onOpenFullCard={
-                      resolvedEntry
-                        ? e => openFullCardFromEntry(resolvedEntry, s.themeId, s.level, e)
-                        : undefined
+                      resolvedEntry ? e => openFullCardFromEntry(resolvedEntry, s.themeId, s.level, e) : undefined
                     }
                   />
                 );
@@ -150,7 +108,7 @@ export default function PortfolioVocabulary() {
               <button
                 type="button"
                 onClick={() => setShowAllSaved(v => !v)}
-                className="mt-3 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer"
+                className="mt-2 text-xs font-semibold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer"
               >
                 {showAllSaved ? 'Show fewer ▴' : `Show all ${saved.length} ▾`}
               </button>
@@ -159,18 +117,15 @@ export default function PortfolioVocabulary() {
         )}
       </div>
 
-      {/* To Review — words opened but not explicitly saved. A real review
-          queue: "I know this" moves a word into the collapsed Known list;
-          "Still learning" keeps it here, both fully reversible. */}
-      <div className="px-4 sm:px-6 py-4">
+      {/* To Review */}
+      <div>
         <div className="flex items-center gap-2 mb-1">
-          <h3 className="text-xs font-bold text-slate-500 uppercase tracking-wider">To Review</h3>
+          <p className="text-xs font-bold text-slate-500 uppercase tracking-wider">To Review</p>
           {toReview.length > 0 && <span className="text-xs font-semibold text-slate-400">{toReview.length}</span>}
         </div>
-        <p className="text-xs text-slate-400 mb-3">Words you&rsquo;ve opened — not necessarily learned yet.</p>
 
         {toReview.length === 0 && known.length === 0 ? (
-          <p className="text-sm text-slate-400">No words to review yet — open a word in the Vocabulary activity to add it here.</p>
+          <p className="text-sm text-slate-400">No words to review yet — open a word in this theme&rsquo;s Vocabulary activity to add it here.</p>
         ) : (
           <>
             {toReview.length === 0 ? (
@@ -185,15 +140,14 @@ export default function PortfolioVocabulary() {
                       word={entry.word}
                       japanese={entry.japanese}
                       level={entry.introductionLevel}
-                      themeId={entry.themes[0]}
-                      metaLabel={entry.themes[0] ? themeTitle(entry.themes[0]) : undefined}
+                      themeId={themeId}
                       definition={entry.coreMeaning}
                       example={entry.examples[0]}
                       expanded={expanded.has(key)}
                       onToggle={e => toggleExpand(key, e)}
                       onSpeak={() => handleSpeak(entry.word, key)}
                       speaking={speaking === key}
-                      onOpenFullCard={e => openFullCardFromEntry(entry, entry.themes[0] ?? '', entry.introductionLevel, e)}
+                      onOpenFullCard={e => openFullCardFromEntry(entry, themeId, entry.introductionLevel, e)}
                       reviewActions={
                         <>
                           <button
@@ -223,23 +177,23 @@ export default function PortfolioVocabulary() {
               <button
                 type="button"
                 onClick={() => setShowAllReview(v => !v)}
-                className="mt-3 text-sm font-semibold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer"
+                className="mt-2 text-xs font-semibold text-indigo-600 hover:text-indigo-700 transition-colors cursor-pointer"
               >
                 {showAllReview ? 'Show fewer ▴' : `Show all ${toReview.length} ▾`}
               </button>
             )}
 
             {known.length > 0 && (
-              <div className="mt-4 pt-3 border-t border-slate-100">
+              <div className="mt-3 pt-2.5 border-t border-slate-100">
                 <button
                   type="button"
                   onClick={() => setShowKnown(v => !v)}
-                  className="text-sm font-semibold text-emerald-700 hover:text-emerald-800 transition-colors cursor-pointer"
+                  className="text-xs font-semibold text-emerald-700 hover:text-emerald-800 transition-colors cursor-pointer"
                 >
                   {showKnown ? 'Hide ▴' : `✓ ${known.length} word${known.length === 1 ? '' : 's'} you know — Show ▾`}
                 </button>
                 {showKnown && (
-                  <div className="space-y-2 mt-3">
+                  <div className="space-y-2 mt-2">
                     {known.map(({ id, entry }) => {
                       const key = `known-${id}`;
                       return (
@@ -248,15 +202,12 @@ export default function PortfolioVocabulary() {
                           word={entry.word}
                           japanese={entry.japanese}
                           level={entry.introductionLevel}
-                          themeId={entry.themes[0]}
-                          metaLabel={entry.themes[0] ? themeTitle(entry.themes[0]) : undefined}
-                          definition={entry.coreMeaning}
-                          example={entry.examples[0]}
+                          themeId={themeId}
                           expanded={expanded.has(key)}
                           onToggle={e => toggleExpand(key, e)}
                           onSpeak={() => handleSpeak(entry.word, key)}
                           speaking={speaking === key}
-                          onOpenFullCard={e => openFullCardFromEntry(entry, entry.themes[0] ?? '', entry.introductionLevel, e)}
+                          onOpenFullCard={e => openFullCardFromEntry(entry, themeId, entry.introductionLevel, e)}
                           tone="known"
                           reviewActions={
                             <button
@@ -291,11 +242,9 @@ export default function PortfolioVocabulary() {
   );
 }
 
-/** One compact row for every list in this section (Saved / To Review /
- *  Known) — word and Japanese always visible and prominent; everything
- *  else (definition, example, review actions, the full-card escalation)
- *  only renders once expanded, so the default view stays scannable even
- *  with many words. */
+/** One compact row for every list here (Saved / To Review / Known) — word
+ *  and Japanese always visible; everything else only renders once
+ *  expanded, so the list stays scannable even with many words. */
 function VocabRow({
   word,
   japanese,
