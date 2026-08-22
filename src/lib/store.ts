@@ -1,4 +1,4 @@
-import type { Level, ActivityType, ThemeProgress, LevelProgress } from '@/types';
+import type { Level, ActivityType, ThemeProgress, LevelProgress, WordReviewStatus } from '@/types';
 import { getReadingsByTheme } from '@/data/reading/masterReadings';
 
 const STORAGE_KEY  = 'etp-progress';
@@ -144,27 +144,70 @@ export function getAllProgress(): Record<string, ThemeProgress> {
 }
 
 // ── Studied words ─────────────────────────────────────────────────────────────
+//
+// Storage evolved from a flat string[] of "opened" word ids to a
+// Record<wordId, WordReviewStatus>, so Portfolio's My Vocabulary can offer a
+// real "I know this / Still learning" review action without losing any
+// existing student data. A legacy flat array is detected (Array.isArray)
+// and migrated once, on first read, into the new shape with every id set to
+// 'seen' — the only honest status for data that predates this distinction;
+// nothing is upgraded to 'known' or 'learning' without an explicit student
+// action. getStudiedWordIds/markWordStudied keep their exact old signatures
+// and behavior so every existing caller (VocabularyWordList.tsx) keeps
+// working unchanged.
 
 const STUDIED_KEY  = 'etp-studied-words';
 const PRACTICE_KEY = 'etp-practice';
 
-export function getStudiedWordIds(): string[] {
-  if (typeof window === 'undefined') return [];
+function readWordStatuses(): Record<string, WordReviewStatus> {
+  if (typeof window === 'undefined') return {};
   try {
     const raw = localStorage.getItem(STUDIED_KEY);
-    return raw ? (JSON.parse(raw) as string[]) : [];
+    if (!raw) return {};
+    const parsed: unknown = JSON.parse(raw);
+    if (Array.isArray(parsed)) {
+      const migrated: Record<string, WordReviewStatus> = {};
+      for (const id of parsed as string[]) migrated[id] = 'seen';
+      writeWordStatuses(migrated); // persist the legacy → status-map migration immediately
+      return migrated;
+    }
+    return parsed as Record<string, WordReviewStatus>;
   } catch {
-    return [];
+    return {};
   }
+}
+
+function writeWordStatuses(data: Record<string, WordReviewStatus>): void {
+  if (typeof window === 'undefined') return;
+  try {
+    localStorage.setItem(STUDIED_KEY, JSON.stringify(data));
+  } catch {}
+}
+
+export function getStudiedWordIds(): string[] {
+  return Object.keys(readWordStatuses());
 }
 
 export function markWordStudied(wordId: string): void {
   if (typeof window === 'undefined') return;
-  const ids = getStudiedWordIds();
-  if (!ids.includes(wordId)) {
-    ids.push(wordId);
-    try { localStorage.setItem(STUDIED_KEY, JSON.stringify(ids)); } catch {}
-  }
+  const statuses = readWordStatuses();
+  // First encounter only — re-opening an already-reviewed word must never
+  // reset a student's own "I know this" / "Still learning" choice back to
+  // the neutral default.
+  if (statuses[wordId]) return;
+  writeWordStatuses({ ...statuses, [wordId]: 'seen' });
+}
+
+export function getWordStatuses(): Record<string, WordReviewStatus> {
+  return readWordStatuses();
+}
+
+/** Explicit student action from the Portfolio review queue — always
+ *  overwrites, since "I know this" / "Still learning" is a deliberate,
+ *  reversible choice the student can change their mind about at any time. */
+export function setWordReviewStatus(wordId: string, status: WordReviewStatus): void {
+  const statuses = readWordStatuses();
+  writeWordStatuses({ ...statuses, [wordId]: status });
 }
 
 // ── Practice set completion ───────────────────────────────────────────────────

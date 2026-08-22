@@ -52,3 +52,10 @@ export interface ThemeProgress {
   lastLevel: Level | null;
   levels: Partial<Record<Level, LevelProgress>>;
 }
+
+/** A word's self-reported review state, distinct from whether it has ever
+ *  been opened at all: 'seen' is the default the moment a word is opened
+ *  (no claim about learning either way), 'known' and 'learning' only ever
+ *  come from an explicit student action ("I know this" / "Still learning")
+ *  in Portfolio's My Vocabulary review queue. */
+export type WordReviewStatus = 'seen' | 'known' | 'learning';

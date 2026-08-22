@@ -21,6 +21,7 @@ export interface SavedVocabEntry {
    *  recorded a level, so this stays undefined for those rather than
    *  guessing one. */
   level?: Level;
+  example?: string;
 }
 
 /** Merges the legacy Vocabulary Glossary (etp-glossary) and the Notebook's
@@ -34,12 +35,12 @@ export function getSavedVocabulary(): SavedVocabEntry[] {
   const notebook: NotebookItem[] = getNotebookItems();
 
   const fromGlossary: SavedVocabEntry[] = glossary.map(g => ({
-    word: g.word, japanese: g.japanese, definition: g.definition, themeId: g.themeId, savedDate: g.savedDate,
+    word: g.word, japanese: g.japanese, definition: g.definition, themeId: g.themeId, savedDate: g.savedDate, example: g.example,
   }));
   const fromNotebook: SavedVocabEntry[] = notebook
     .filter(n => n.category === 'vocabulary')
     .map(n => ({
-      word: n.content, japanese: n.japanese ?? '', definition: n.explanation ?? '', themeId: n.themeId, savedDate: n.savedAt, level: n.level,
+      word: n.content, japanese: n.japanese ?? '', definition: n.explanation ?? '', themeId: n.themeId, savedDate: n.savedAt, level: n.level, example: n.context,
     }));
 
   const dedup = new Map<string, SavedVocabEntry>();
