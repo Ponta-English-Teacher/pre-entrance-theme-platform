@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import SelectionAssistantProvider from '@/components/selection-assistant/SelectionAssistantProvider';
+import AccountNavItem from '@/components/auth/AccountNavItem';
 
 const NAV = [
   { href: '/themes',    label: 'Themes',     labelJapanese: 'テーマ' },
@@ -42,6 +43,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
                   </Link>
                 );
               })}
+              <AccountNavItem />
             </nav>
           </div>
         </header>
