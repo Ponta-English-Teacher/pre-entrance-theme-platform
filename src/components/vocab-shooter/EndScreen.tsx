@@ -3,6 +3,7 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { markActivityComplete, markPracticeSetComplete } from '@/lib/store';
+import type { Level } from '@/types';
 
 export default function EndScreen({
   wordCount,
@@ -26,7 +27,7 @@ export default function EndScreen({
   }, []); // eslint-disable-line react-hooks/exhaustive-deps
 
   function handleDone() {
-    markActivityComplete(themeId, 'vocabulary');
+    markActivityComplete(themeId, level as Level, 'vocabulary');
     router.push(`/themes/${themeId}/${level}`);
   }
 

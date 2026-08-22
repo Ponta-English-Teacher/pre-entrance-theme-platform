@@ -39,8 +39,16 @@ export interface ActivityDef {
   hidden?: boolean;
 }
 
-export interface ThemeProgress {
-  chosenLevel: Level | null;
+export interface LevelProgress {
   completedActivities: ActivityType[];
   startedAt: string | null;
+}
+
+export interface ThemeProgress {
+  /** UI preference only — which level to default to / show as "last
+   *  studied." Never used to attribute or gate activity completion:
+   *  Foundation and Advanced progress live independently in `levels`,
+   *  and switching this must never move or merge either level's data. */
+  lastLevel: Level | null;
+  levels: Partial<Record<Level, LevelProgress>>;
 }

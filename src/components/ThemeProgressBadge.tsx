@@ -9,7 +9,7 @@ export default function ThemeProgressBadge({ themeId }: { themeId: string }) {
   const [level, setLevel] = useState<Level | null>(null);
 
   useEffect(() => {
-    setLevel(getThemeProgress(themeId).chosenLevel);
+    setLevel(getThemeProgress(themeId).lastLevel);
   }, [themeId]);
 
   if (!level) return null;

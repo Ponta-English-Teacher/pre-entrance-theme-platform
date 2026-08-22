@@ -51,7 +51,7 @@ export default function AITalkSessionView({
 
   function handleFinish() {
     if (targetMet) {
-      markActivityComplete(themeId, 'ai-talk');
+      markActivityComplete(themeId, level, 'ai-talk');
     }
     setFinished(true);
   }

@@ -161,7 +161,7 @@ export default function ReadingLessonView({
       return;
     }
     markReadingComplete(lesson.id);
-    markActivityComplete(themeId, 'reading');
+    markActivityComplete(themeId, lesson.level, 'reading');
     setCompleted(true);
     setShowContinueScreen(true);
   }

@@ -6,11 +6,17 @@ import { THEMES } from '@/data/themes';
 import { getReadingProgress } from '@/lib/store';
 import { getSavedVocabulary, getReviewableNotebookItems } from '@/lib/portfolio';
 import { getNotebookSectionConfig } from '@/data/notebook/sections';
+import LevelBadge from '@/components/LevelBadge';
+import type { Level } from '@/types';
 
 interface RecentEvent {
   date: string;
   icon: string;
   text: string;
+  /** Only set where the source record actually has one (Reading/Writing
+   *  completion always does; Notebook saves only when that item recorded
+   *  it) — never guessed. */
+  level?: Level;
 }
 
 function themeTitle(themeId: string): string {
@@ -27,20 +33,20 @@ function buildRecentEvents(): RecentEvent[] {
   for (const lesson of MASTER_READINGS) {
     const progress = getReadingProgress(lesson.id);
     if (progress.completed && progress.completedAt) {
-      events.push({ date: progress.completedAt, icon: '📰', text: `Completed Reading — ${themeTitle(lesson.themeId)}` });
+      events.push({ date: progress.completedAt, icon: '📰', text: `Completed Reading — ${themeTitle(lesson.themeId)}`, level: lesson.level });
     }
     if (progress.writingCompleted && progress.writingCompletedAt) {
-      events.push({ date: progress.writingCompletedAt, icon: '🖊️', text: `Completed Writing — ${themeTitle(lesson.themeId)}` });
+      events.push({ date: progress.writingCompletedAt, icon: '🖊️', text: `Completed Writing — ${themeTitle(lesson.themeId)}`, level: lesson.level });
     }
   }
 
   for (const entry of getSavedVocabulary()) {
-    events.push({ date: entry.savedDate, icon: '📖', text: `Saved word: ${entry.word}` });
+    events.push({ date: entry.savedDate, icon: '📖', text: `Saved word: ${entry.word}`, level: entry.level });
   }
 
   for (const item of getReviewableNotebookItems()) {
     const section = getNotebookSectionConfig(item.category);
-    events.push({ date: item.savedAt, icon: section?.icon ?? '📓', text: `Saved ${section?.label ?? 'note'} — ${themeTitle(item.themeId)}` });
+    events.push({ date: item.savedAt, icon: section?.icon ?? '📓', text: `Saved ${section?.label ?? 'note'} — ${themeTitle(item.themeId)}`, level: item.level });
   }
 
   return events.sort((a, b) => b.date.localeCompare(a.date));
@@ -73,6 +79,7 @@ export default function PortfolioRecent() {
             <li key={i} className="px-4 sm:px-6 py-3 flex items-center gap-3">
               <span className="text-base shrink-0" aria-hidden="true">{event.icon}</span>
               <span className="text-sm text-slate-700 flex-1 min-w-0 truncate">{event.text}</span>
+              {event.level && <span className="shrink-0"><LevelBadge level={event.level} /></span>}
               <time className="text-xs text-slate-400 whitespace-nowrap">{new Date(event.date).toLocaleDateString()}</time>
             </li>
           ))}

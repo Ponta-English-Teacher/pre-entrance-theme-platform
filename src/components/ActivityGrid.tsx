@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { ACTIVITY_DEFS } from '@/data/themes';
 import { getReadingsByTheme } from '@/data/reading/masterReadings';
-import { getThemeProgress } from '@/lib/store';
+import { getLevelProgress } from '@/lib/store';
 import type { Level, ActivityType } from '@/types';
 
 export default function ActivityGrid({
@@ -19,8 +19,8 @@ export default function ActivityGrid({
   const [completed, setCompleted] = useState<ActivityType[]>([]);
 
   useEffect(() => {
-    setCompleted(getThemeProgress(themeId).completedActivities);
-  }, [themeId]);
+    setCompleted(getLevelProgress(themeId, level).completedActivities);
+  }, [themeId, level]);
 
   // Writing is content-gated rather than statically hidden: only visible for
   // a theme/level whose reading lesson has experienceVersion === 2 (Theme 1

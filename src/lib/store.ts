@@ -1,4 +1,5 @@
-import type { Level, ActivityType, ThemeProgress } from '@/types';
+import type { Level, ActivityType, ThemeProgress, LevelProgress } from '@/types';
+import { getReadingsByTheme } from '@/data/reading/masterReadings';
 
 const STORAGE_KEY  = 'etp-progress';
 const GLOSSARY_KEY = 'etp-glossary';
@@ -23,23 +24,79 @@ function migrateStoredLevel(level: StoredLevel | null): Level | null {
   return level;
 }
 
+/** Shape written by every version of this app before Foundation/Advanced
+ *  progress became independent — one flat `completedActivities` array per
+ *  theme, shared across whichever level happened to be selected at the
+ *  time. Detected by the absence of `levels`, which only the new shape has. */
+interface LegacyThemeProgress {
+  chosenLevel: StoredLevel | null;
+  completedActivities: ActivityType[];
+  startedAt: string | null;
+}
+
+function isLegacyThemeProgress(record: ThemeProgress | LegacyThemeProgress): record is LegacyThemeProgress {
+  return !('levels' in record);
+}
+
+/** One-time, best-effort migration of a single theme's old flat progress
+ *  record into independent per-level tracks. There is no way to know, after
+ *  the fact, which level a `vocabulary` or `ai-talk` completion in the old
+ *  array actually happened under — those two activity types have never had
+ *  any other level-scoped record anywhere in this app. The only honest,
+ *  non-destructive choice is to attribute the old array to `chosenLevel`
+ *  (whatever level was selected when the record was last written) rather
+ *  than guessing across both levels or discarding real progress.
+ *
+ *  Reading and Writing are different: `etp-reading-progress` has always been
+ *  keyed by lesson id, and Foundation/Advanced lessons have always had
+ *  distinct ids (e.g. `km-f-reading-01` vs `km-s-reading-01`) — so that
+ *  store has been level-safe all along and is real ground truth. Rather
+ *  than trust the old array for these two types, this recomputes Reading
+ *  and Writing completion directly from it, for BOTH levels independently,
+ *  which is strictly more accurate than anything in the old record. */
+function migrateLegacyThemeProgress(themeId: string, legacy: LegacyThemeProgress): ThemeProgress {
+  const lastLevel = migrateStoredLevel(legacy.chosenLevel);
+  const levels: Partial<Record<Level, LevelProgress>> = {};
+
+  const nonReadingWriting = legacy.completedActivities.filter(t => t !== 'reading' && t !== 'writing');
+  const allReadingProgress = readReadingProgress();
+
+  for (const level of ['foundation', 'advanced'] as Level[]) {
+    const lessons = getReadingsByTheme(themeId, level);
+    const readingDone = lessons.some(l => allReadingProgress[l.id]?.completed);
+    const writingDone = lessons.some(l => allReadingProgress[l.id]?.writingCompleted);
+
+    const completedActivities: ActivityType[] = level === lastLevel ? [...nonReadingWriting] : [];
+    if (readingDone && !completedActivities.includes('reading')) completedActivities.push('reading');
+    if (writingDone && !completedActivities.includes('writing')) completedActivities.push('writing');
+
+    if (completedActivities.length > 0) {
+      levels[level] = { completedActivities, startedAt: level === lastLevel ? legacy.startedAt : null };
+    }
+  }
+
+  return { lastLevel, levels };
+}
+
 function readAll(): Record<string, ThemeProgress> {
   if (typeof window === 'undefined') return {};
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
     if (!raw) return {};
-    const parsed = JSON.parse(raw) as Record<string, ThemeProgress & { chosenLevel: StoredLevel | null }>;
+    const parsed = JSON.parse(raw) as Record<string, ThemeProgress | LegacyThemeProgress>;
 
     let migrated = false;
+    const result: Record<string, ThemeProgress> = {};
     for (const themeId of Object.keys(parsed)) {
-      const migratedLevel = migrateStoredLevel(parsed[themeId].chosenLevel);
-      if (migratedLevel !== parsed[themeId].chosenLevel) {
-        parsed[themeId] = { ...parsed[themeId], chosenLevel: migratedLevel };
+      const record = parsed[themeId];
+      if (isLegacyThemeProgress(record)) {
+        result[themeId] = migrateLegacyThemeProgress(themeId, record);
         migrated = true;
+      } else {
+        result[themeId] = record;
       }
     }
-    const result = parsed as Record<string, ThemeProgress>;
-    if (migrated) writeAll(result); // persist the old-level → advanced migration immediately
+    if (migrated) writeAll(result); // persist the legacy → per-level migration immediately
     return result;
   } catch {
     return {};
@@ -54,26 +111,31 @@ function writeAll(data: Record<string, ThemeProgress>): void {
 }
 
 export function getThemeProgress(themeId: string): ThemeProgress {
-  return readAll()[themeId] ?? { chosenLevel: null, completedActivities: [], startedAt: null };
+  return readAll()[themeId] ?? { lastLevel: null, levels: {} };
 }
 
-export function setChosenLevel(themeId: string, level: Level): void {
+export function getLevelProgress(themeId: string, level: Level): LevelProgress {
+  return getThemeProgress(themeId).levels[level] ?? { completedActivities: [], startedAt: null };
+}
+
+/** UI preference only ("which level should this theme open to") — never
+ *  touches `levels`, so switching this can never move or merge either
+ *  level's actual progress. */
+export function setLastLevel(themeId: string, level: Level): void {
   const all = readAll();
-  all[themeId] = {
-    ...getThemeProgress(themeId),
-    chosenLevel: level,
-    startedAt: all[themeId]?.startedAt ?? new Date().toISOString(),
-  };
+  all[themeId] = { ...getThemeProgress(themeId), lastLevel: level };
   writeAll(all);
 }
 
-export function markActivityComplete(themeId: string, type: ActivityType): void {
+export function markActivityComplete(themeId: string, level: Level, type: ActivityType): void {
   const all = readAll();
-  const progress = getThemeProgress(themeId);
-  if (!progress.completedActivities.includes(type)) {
-    progress.completedActivities = [...progress.completedActivities, type];
-  }
-  all[themeId] = progress;
+  const theme = getThemeProgress(themeId);
+  const current = theme.levels[level] ?? { completedActivities: [], startedAt: null };
+  const completedActivities = current.completedActivities.includes(type)
+    ? current.completedActivities
+    : [...current.completedActivities, type];
+  theme.levels = { ...theme.levels, [level]: { completedActivities, startedAt: current.startedAt ?? new Date().toISOString() } };
+  all[themeId] = theme;
   writeAll(all);
 }
 

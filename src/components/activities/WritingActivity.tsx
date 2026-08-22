@@ -110,7 +110,7 @@ export default function WritingActivity({
       return;
     }
     markWritingComplete(lesson.id);
-    markActivityComplete(themeId, 'writing');
+    markActivityComplete(themeId, level, 'writing');
     setCompleted(true);
     setShowContinueScreen(true);
   }

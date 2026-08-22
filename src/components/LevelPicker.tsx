@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { LEVEL_INFO } from '@/data/themes';
-import { getThemeProgress, setChosenLevel } from '@/lib/store';
+import { getThemeProgress, setLastLevel } from '@/lib/store';
 import LevelBadge from '@/components/LevelBadge';
 import type { Level } from '@/types';
 
@@ -22,11 +22,11 @@ export default function LevelPicker({ themeId, slug }: { themeId: string; slug: 
   const [savedLevel, setSavedLevel] = useState<Level | null>(null);
 
   useEffect(() => {
-    setSavedLevel(getThemeProgress(themeId).chosenLevel);
+    setSavedLevel(getThemeProgress(themeId).lastLevel);
   }, [themeId]);
 
   function handleChoose(level: Level) {
-    setChosenLevel(themeId, level);
+    setLastLevel(themeId, level);
     setSavedLevel(level);
     router.push(`/themes/${slug}/${level}`);
   }

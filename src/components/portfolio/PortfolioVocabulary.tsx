@@ -6,6 +6,7 @@ import { getSavedVocabulary, type SavedVocabEntry } from '@/lib/portfolio';
 import { getVocabById, type VocabEntry } from '@/data/vocabulary/masterVocabulary';
 import { THEMES } from '@/data/themes';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import LevelBadge from '@/components/LevelBadge';
 
 function buildSeenWords(savedWordsLower: Set<string>): VocabEntry[] {
   return getStudiedWordIds()
@@ -70,6 +71,7 @@ export default function PortfolioVocabulary() {
                       <span className="font-bold text-slate-900">{entry.word}</span>
                       {entry.japanese && <span className="text-sm font-medium text-indigo-600">{entry.japanese}</span>}
                       <span className="text-xs text-slate-400">{themeTitle(entry.themeId)}</span>
+                      {entry.level && <LevelBadge level={entry.level} />}
                     </div>
                     {entry.definition && <p className="text-sm text-slate-600 leading-relaxed">{entry.definition}</p>}
                   </SelectableContent>

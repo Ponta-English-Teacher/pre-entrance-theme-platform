@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { THEMES, ACTIVITY_DEFS } from '@/data/themes';
 import { getReadingsByTheme } from '@/data/reading/masterReadings';
-import { getThemeProgress } from '@/lib/store';
+import { getLevelProgress } from '@/lib/store';
 import type { ActivityDef, Level, Theme } from '@/types';
 
 /** Same small per-theme accent-color table as ThemeCard.tsx — kept local
@@ -16,34 +16,44 @@ const ACCENT: Record<string, string> = {
   fuchsia: 'bg-fuchsia-400', cyan: 'bg-cyan-400',
 };
 
-interface ThemeRow {
-  theme: Theme;
-  chosenLevel: Level | null;
+const LEVELS: { level: Level; label: string; tone: string }[] = [
+  { level: 'foundation', label: 'Foundation', tone: 'bg-emerald-100 text-emerald-700' },
+  { level: 'advanced',   label: 'Advanced',   tone: 'bg-blue-100 text-blue-700' },
+];
+
+interface LevelRow {
+  level: Level;
   visibleActivities: ActivityDef[];
   completedCount: number;
 }
 
-/** Mirrors ActivityGrid.tsx's own visible-activity computation exactly, so
- *  "X of Y done" here always matches what the activity list page shows —
- *  no new tracking, just the same existing data read the same way. */
+interface ThemeRow {
+  theme: Theme;
+  levelRows: LevelRow[];
+}
+
+/** Foundation and Advanced are independent learning tracks — different
+ *  vocabulary, Reading, Writing, and AI Talk content — so each theme's
+ *  progress is now two separate level rows, never one merged number.
+ *  Mirrors ActivityGrid.tsx's own visible-activity computation exactly for
+ *  each level, so "X of Y done" here always matches what that level's own
+ *  activity list page shows. */
 function buildThemeRows(): ThemeRow[] {
   return THEMES.slice()
     .sort((a, b) => a.order - b.order)
     .map(theme => {
-      const progress = getThemeProgress(theme.id);
-      const level = progress.chosenLevel;
-      let visibleActivities: ActivityDef[] = [];
-      if (level) {
+      const levelRows: LevelRow[] = LEVELS.map(({ level }) => {
         const hasStandaloneWriting = getReadingsByTheme(theme.id, level).some(l => l.experienceVersion === 2);
-        visibleActivities = ACTIVITY_DEFS.filter(a => {
+        const visibleActivities = ACTIVITY_DEFS.filter(a => {
           if (a.hidden) return false;
           if (a.type === 'writing') return hasStandaloneWriting;
           return true;
         });
-      }
-      const completedTypes = new Set(progress.completedActivities);
-      const completedCount = visibleActivities.filter(a => completedTypes.has(a.type)).length;
-      return { theme, chosenLevel: level, visibleActivities, completedCount };
+        const completedTypes = new Set(getLevelProgress(theme.id, level).completedActivities);
+        const completedCount = visibleActivities.filter(a => completedTypes.has(a.type)).length;
+        return { level, visibleActivities, completedCount };
+      });
+      return { theme, levelRows };
     });
 }
 
@@ -55,8 +65,10 @@ export default function PortfolioProgress() {
   const [rows, setRows] = useState<ThemeRow[]>([]);
   useEffect(() => setRows(buildThemeRows()), []);
 
-  const startedCount = rows.filter(r => r.chosenLevel !== null).length;
-  const doneCount = rows.filter(r => r.visibleActivities.length > 0 && r.completedCount === r.visibleActivities.length).length;
+  const allLevelRows = rows.flatMap(r => r.levelRows);
+  const totalTracks = allLevelRows.length; // 10 themes x 2 levels, once loaded
+  const doneTracks = allLevelRows.filter(r => r.visibleActivities.length > 0 && r.completedCount === r.visibleActivities.length).length;
+  const inProgressTracks = allLevelRows.filter(r => r.completedCount > 0 && r.completedCount < r.visibleActivities.length).length;
 
   return (
     <div className="bg-white rounded-2xl border border-slate-200 overflow-hidden">
@@ -66,49 +78,52 @@ export default function PortfolioProgress() {
           <h2 className="font-bold text-slate-900">Progress</h2>
           <p className="text-xs text-slate-400">進み具合</p>
         </div>
-        <span className="ml-auto text-xs font-semibold text-slate-500">
-          {doneCount} of 10 themes complete{startedCount > doneCount ? ` · ${startedCount} started` : ''}
-        </span>
+        {totalTracks > 0 && (
+          <span className="ml-auto text-xs font-semibold text-slate-500">
+            {doneTracks} of {totalTracks} levels complete{inProgressTracks > 0 ? ` · ${inProgressTracks} in progress` : ''}
+          </span>
+        )}
       </div>
 
       <div className="divide-y divide-slate-100">
-        {rows.map(row => {
-          const href = row.chosenLevel ? `/themes/${row.theme.slug}/${row.chosenLevel}` : `/themes/${row.theme.slug}`;
-          const pct = row.visibleActivities.length > 0 ? Math.round((row.completedCount / row.visibleActivities.length) * 100) : 0;
-          return (
-            <Link
-              key={row.theme.id}
-              href={href}
-              className="flex flex-col sm:flex-row sm:items-center gap-1.5 sm:gap-4 px-4 sm:px-6 py-3 hover:bg-slate-50 transition-colors"
-            >
-              <div className="flex items-center gap-3 min-w-0 flex-1">
-                <span className={`w-1.5 h-8 rounded-full shrink-0 ${ACCENT[row.theme.color] ?? 'bg-slate-300'}`} aria-hidden="true" />
-                <div className="min-w-0">
-                  <p className="text-base font-semibold text-slate-900 truncate">{row.theme.title}</p>
-                  <p className="text-xs text-slate-400 truncate">{row.theme.titleJapanese}</p>
-                </div>
+        {rows.map(row => (
+          <div key={row.theme.id} className="px-4 sm:px-6 py-3">
+            <div className="flex items-center gap-3 mb-2">
+              <span className={`w-1.5 h-8 rounded-full shrink-0 ${ACCENT[row.theme.color] ?? 'bg-slate-300'}`} aria-hidden="true" />
+              <div className="min-w-0">
+                <p className="text-base font-semibold text-slate-900 truncate">{row.theme.title}</p>
+                <p className="text-xs text-slate-400 truncate">{row.theme.titleJapanese}</p>
               </div>
+            </div>
 
-              <div className="flex items-center gap-2 shrink-0 pl-[22px] sm:pl-0">
-                {row.chosenLevel ? (
-                  <>
-                    <span className="text-xs font-semibold text-slate-500 whitespace-nowrap">
-                      {row.completedCount}/{row.visibleActivities.length} done
+            <div className="pl-[22px] space-y-1.5">
+              {row.levelRows.map(lr => {
+                const meta = LEVELS.find(l => l.level === lr.level)!;
+                const pct = lr.visibleActivities.length > 0 ? Math.round((lr.completedCount / lr.visibleActivities.length) * 100) : 0;
+                return (
+                  <Link
+                    key={lr.level}
+                    href={`/themes/${row.theme.slug}/${lr.level}`}
+                    className="flex items-center gap-2 py-1 -mx-2 px-2 rounded-lg hover:bg-slate-50 transition-colors"
+                  >
+                    <span className={`shrink-0 px-1.5 py-0.5 rounded text-[10px] font-bold uppercase tracking-wide ${meta.tone}`}>
+                      {meta.label}
                     </span>
-                    <span className="w-16 h-1.5 rounded-full bg-slate-100 overflow-hidden" aria-hidden="true">
+                    <span className="text-xs font-semibold text-slate-500 whitespace-nowrap">
+                      {lr.completedCount}/{lr.visibleActivities.length} done
+                    </span>
+                    <span className="flex-1 h-1.5 rounded-full bg-slate-100 overflow-hidden max-w-[6rem]" aria-hidden="true">
                       <span
                         className={`block h-full rounded-full ${pct === 100 ? 'bg-emerald-500' : 'bg-indigo-400'}`}
                         style={{ width: `${pct}%` }}
                       />
                     </span>
-                  </>
-                ) : (
-                  <span className="text-xs font-medium text-slate-400">Not started</span>
-                )}
-              </div>
-            </Link>
-          );
-        })}
+                  </Link>
+                );
+              })}
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

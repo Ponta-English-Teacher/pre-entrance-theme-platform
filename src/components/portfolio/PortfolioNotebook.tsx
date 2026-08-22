@@ -6,6 +6,7 @@ import { getReviewableNotebookItems } from '@/lib/portfolio';
 import { THEMES } from '@/data/themes';
 import { getNotebookSectionConfig } from '@/data/notebook/sections';
 import SelectableContent from '@/components/selection-assistant/SelectableContent';
+import LevelBadge from '@/components/LevelBadge';
 
 interface ThemeGroup {
   themeId: string;
@@ -82,6 +83,7 @@ export default function PortfolioNotebook() {
                             )}
                             <span className="font-bold text-slate-900">{item.content}</span>
                             {item.japanese && <span className="text-sm font-medium text-indigo-600">{item.japanese}</span>}
+                            {item.level && <LevelBadge level={item.level} />}
                           </div>
                           {item.explanation && <p className="text-sm text-slate-600 leading-relaxed">{item.explanation}</p>}
                         </SelectableContent>

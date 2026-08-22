@@ -1,5 +1,6 @@
 import { getGlossary, getNotebookItems } from '@/lib/store';
 import type { GlossaryItem, NotebookItem } from '@/lib/store';
+import type { Level } from '@/types';
 
 /**
  * Shared read-only aggregation helpers for Portfolio. Every function here
@@ -16,6 +17,10 @@ export interface SavedVocabEntry {
   definition: string;
   themeId: string;
   savedDate: string;
+  /** Only present for Notebook-sourced saves — GlossaryItem has never
+   *  recorded a level, so this stays undefined for those rather than
+   *  guessing one. */
+  level?: Level;
 }
 
 /** Merges the legacy Vocabulary Glossary (etp-glossary) and the Notebook's
@@ -34,7 +39,7 @@ export function getSavedVocabulary(): SavedVocabEntry[] {
   const fromNotebook: SavedVocabEntry[] = notebook
     .filter(n => n.category === 'vocabulary')
     .map(n => ({
-      word: n.content, japanese: n.japanese ?? '', definition: n.explanation ?? '', themeId: n.themeId, savedDate: n.savedAt,
+      word: n.content, japanese: n.japanese ?? '', definition: n.explanation ?? '', themeId: n.themeId, savedDate: n.savedAt, level: n.level,
     }));
 
   const dedup = new Map<string, SavedVocabEntry>();

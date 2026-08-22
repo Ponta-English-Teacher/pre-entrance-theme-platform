@@ -131,7 +131,7 @@ export default function ReadingLessonViewV2({
       return;
     }
     markReadingComplete(lesson.id);
-    markActivityComplete(themeId, 'reading');
+    markActivityComplete(themeId, lesson.level, 'reading');
     setCompleted(true);
     // No Continue screen for Reading anymore — it finishes naturally and
     // returns to the activity list, where Writing is the recommended next step.
