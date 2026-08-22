@@ -265,14 +265,16 @@ export default function ReadingLessonViewV2({
                       </span>
                     </div>
                     <SelectableContent activityType="reading" themeId={themeId} level={lesson.level} label="Reading Passage">
-                      {/* Mobile: normal body-text scale (16px), left-aligned.
-                          Passage text is no longer treated as special
-                          display typography on mobile — visual importance
-                          comes from the card/paragraph structure, not from
-                          an oversized font. Desktop keeps its larger,
-                          justified reading presentation, where the wider
-                          column has always made justification look natural. */}
-                      <p className="font-serif text-base sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-left sm:text-justify">
+                      {/* Mobile: same body font (Geist, via font-sans on the
+                          body) and scale as ordinary content — the earlier
+                          "font-serif" book typeface was the actual cause of
+                          the passage looking oversized even at a matching
+                          pixel size: serif glyphs (Georgia/Times) are
+                          noticeably wider per character than Geist, so far
+                          fewer words fit per line. Desktop keeps the serif,
+                          larger, justified reading presentation, where the
+                          wider column has always made it read well. */}
+                      <p className="font-sans sm:font-serif text-base sm:text-[27px] leading-relaxed sm:leading-[1.75] text-stone-800 text-left sm:text-justify">
                         {readingMode === 'original' ? paragraph.english : paragraph.plainEnglish}
                       </p>
                     </SelectableContent>
