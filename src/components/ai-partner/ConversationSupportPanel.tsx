@@ -71,6 +71,10 @@ export default function ConversationSupportPanel({
       label: 'Natural phrasing suggestion',
       content: suggestion,
       explanation: context,
+      // Distinguishes this from Writing's identical-looking save (same
+      // category/label) so Portfolio can attribute each save to the right
+      // activity — see WritingExpressPanel.tsx for the counterpart tag.
+      metadata: { source: 'ai-talk' },
     });
   }
 

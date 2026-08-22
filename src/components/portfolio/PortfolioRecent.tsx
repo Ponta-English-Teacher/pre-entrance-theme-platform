@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import { MASTER_READINGS } from '@/data/reading/masterReadings';
 import { THEMES } from '@/data/themes';
 import { getReadingProgress } from '@/lib/store';
-import { getSavedVocabulary, getReviewableNotebookItems } from '@/lib/portfolio';
+import { getSavedVocabulary, getReviewableNotebookItems, getAllWritingFeedback } from '@/lib/portfolio';
 import { getNotebookSectionConfig } from '@/data/notebook/sections';
 import LevelBadge from '@/components/LevelBadge';
 import type { Level } from '@/types';
@@ -47,6 +47,13 @@ function buildRecentEvents(): RecentEvent[] {
   for (const item of getReviewableNotebookItems()) {
     const section = getNotebookSectionConfig(item.category);
     events.push({ date: item.savedAt, icon: section?.icon ?? '📓', text: `Saved ${section?.label ?? 'note'} — ${themeTitle(item.themeId)}`, level: item.level });
+  }
+
+  // Writing feedback saves are excluded from getReviewableNotebookItems()
+  // (they have their own home in My Writing now) but still belong in this
+  // activity timeline, same as every other save type.
+  for (const item of getAllWritingFeedback()) {
+    events.push({ date: item.savedAt, icon: '🖊️', text: `Saved writing feedback — ${themeTitle(item.themeId)}`, level: item.level });
   }
 
   return events.sort((a, b) => b.date.localeCompare(a.date));

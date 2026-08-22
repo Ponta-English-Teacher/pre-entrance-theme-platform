@@ -59,6 +59,11 @@ export default function WritingExpressPanel({
       label: 'Natural phrasing suggestion',
       content: suggestion,
       explanation: context,
+      // Distinguishes this from AI Talk's identical-looking save (same
+      // category/label) so Portfolio's My Writing can reliably show only
+      // its own saved feedback — see ConversationSupportPanel.tsx for the
+      // counterpart tag.
+      metadata: { source: 'writing' },
     });
   }
 
